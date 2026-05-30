@@ -1,0 +1,1528 @@
+{
+  "notices": [
+    {
+      "place-of-performance": [
+        "FRE11",
+        "FRA",
+        "FRE11",
+        "FRA"
+      ],
+      "deadline-receipt-tender-date-lot": [
+        "2026-06-12+02:00"
+      ],
+      "notice-type": "cn-standard",
+      "publication-number": "367831-2026",
+      "estimated-value-lot": [
+        "600000"
+      ],
+      "total-value-cur": [
+        "EUR"
+      ],
+      "estimated-value-cur-lot": [
+        "EUR"
+      ],
+      "buyer-country": [
+        "FRA"
+      ],
+      "total-value": 600000,
+      "description-lot": {
+        "fra": [
+          "L'accord-cadre sera ex\u00e9cut\u00e9 par l'\u00e9mission de bons de commande. Les prestations sont r\u00e9gl\u00e9es par des prix unitaires et forfaitaires. Les montants estimatifs sont indicatifs et comprennent la totalit\u00e9 des p\u00e9riodes de reconduction. Les montants estimatifs sont indicatifs et comprennent les options (prestations similaires et reconductions). La R\u00e9gion Hauts de France a d\u00e9velopp\u00e9 son syst\u00e8me d\u00e9cisionnel autour des outils SAP BusinessObjects. L'objet de la pr\u00e9sente consultation est de trouver un partenaire en mesure de vendre et d'assurer le support des licences SAP BusinessObjects au Conseil R\u00e9gional des Hauts de France ainsi que les mont\u00e9es de version. Le march\u00e9 porte sur les prestations suivantes : - Maintenance technique des licences acquises : o 10 licences nomm\u00e9es, SAP BusinessObjects Entreprise, professional edition (user) o 4 packs de 10 licences concurrentes, SAP BusinessObjects Entreprise, professional edition (CS) o 2 packs de10 licences concurrentes, SAP BusinessObjects Entreprise, professional edition (CS)"
+        ]
+      },
+      "procedure-type": "open",
+      "classification-cpv": [
+        "72262000",
+        "72262000",
+        "72262000",
+        "72262000"
+      ],
+      "buyer-name": {
+        "fra": [
+          "R\u00e9gion Hauts-de-France"
+        ]
+      },
+      "publication-date": "2026-05-29+02:00",
+      "links": {
+        "xml": {
+          "MUL": "https://ted.europa.eu/en/notice/367831-2026/xml"
+        },
+        "pdf": {
+          "BUL": "https://ted.europa.eu/bg/notice/367831-2026/pdf",
+          "SPA": "https://ted.europa.eu/es/notice/367831-2026/pdf",
+          "CES": "https://ted.europa.eu/cs/notice/367831-2026/pdf",
+          "DAN": "https://ted.europa.eu/da/notice/367831-2026/pdf",
+          "DEU": "https://ted.europa.eu/de/notice/367831-2026/pdf",
+          "EST": "https://ted.europa.eu/et/notice/367831-2026/pdf",
+          "ELL": "https://ted.europa.eu/el/notice/367831-2026/pdf",
+          "ENG": "https://ted.europa.eu/en/notice/367831-2026/pdf",
+          "FRA": "https://ted.europa.eu/fr/notice/367831-2026/pdf",
+          "GLE": "https://ted.europa.eu/ga/notice/367831-2026/pdf",
+          "HRV": "https://ted.europa.eu/hr/notice/367831-2026/pdf",
+          "ITA": "https://ted.europa.eu/it/notice/367831-2026/pdf",
+          "LAV": "https://ted.europa.eu/lv/notice/367831-2026/pdf",
+          "LIT": "https://ted.europa.eu/lt/notice/367831-2026/pdf",
+          "HUN": "https://ted.europa.eu/hu/notice/367831-2026/pdf",
+          "MLT": "https://ted.europa.eu/mt/notice/367831-2026/pdf",
+          "NLD": "https://ted.europa.eu/nl/notice/367831-2026/pdf",
+          "POL": "https://ted.europa.eu/pl/notice/367831-2026/pdf",
+          "POR": "https://ted.europa.eu/pt/notice/367831-2026/pdf",
+          "RON": "https://ted.europa.eu/ro/notice/367831-2026/pdf",
+          "SLK": "https://ted.europa.eu/sk/notice/367831-2026/pdf",
+          "SLV": "https://ted.europa.eu/sl/notice/367831-2026/pdf",
+          "FIN": "https://ted.europa.eu/fi/notice/367831-2026/pdf",
+          "SWE": "https://ted.europa.eu/sv/notice/367831-2026/pdf"
+        },
+        "pdfs": {
+          "FRA": "https://ted.europa.eu/fr/notice/367831-2026/pdfs"
+        },
+        "html": {
+          "BUL": "https://ted.europa.eu/bg/notice/-/detail/367831-2026",
+          "SPA": "https://ted.europa.eu/es/notice/-/detail/367831-2026",
+          "CES": "https://ted.europa.eu/cs/notice/-/detail/367831-2026",
+          "DAN": "https://ted.europa.eu/da/notice/-/detail/367831-2026",
+          "DEU": "https://ted.europa.eu/de/notice/-/detail/367831-2026",
+          "EST": "https://ted.europa.eu/et/notice/-/detail/367831-2026",
+          "ELL": "https://ted.europa.eu/el/notice/-/detail/367831-2026",
+          "ENG": "https://ted.europa.eu/en/notice/-/detail/367831-2026",
+          "FRA": "https://ted.europa.eu/fr/notice/-/detail/367831-2026",
+          "GLE": "https://ted.europa.eu/ga/notice/-/detail/367831-2026",
+          "HRV": "https://ted.europa.eu/hr/notice/-/detail/367831-2026",
+          "ITA": "https://ted.europa.eu/it/notice/-/detail/367831-2026",
+          "LAV": "https://ted.europa.eu/lv/notice/-/detail/367831-2026",
+          "LIT": "https://ted.europa.eu/lt/notice/-/detail/367831-2026",
+          "HUN": "https://ted.europa.eu/hu/notice/-/detail/367831-2026",
+          "MLT": "https://ted.europa.eu/mt/notice/-/detail/367831-2026",
+          "NLD": "https://ted.europa.eu/nl/notice/-/detail/367831-2026",
+          "POL": "https://ted.europa.eu/pl/notice/-/detail/367831-2026",
+          "POR": "https://ted.europa.eu/pt/notice/-/detail/367831-2026",
+          "RON": "https://ted.europa.eu/ro/notice/-/detail/367831-2026",
+          "SLK": "https://ted.europa.eu/sk/notice/-/detail/367831-2026",
+          "SLV": "https://ted.europa.eu/sl/notice/-/detail/367831-2026",
+          "FIN": "https://ted.europa.eu/fi/notice/-/detail/367831-2026",
+          "SWE": "https://ted.europa.eu/sv/notice/-/detail/367831-2026"
+        },
+        "htmlDirect": {
+          "BUL": "https://ted.europa.eu/bg/notice/367831-2026/html",
+          "SPA": "https://ted.europa.eu/es/notice/367831-2026/html",
+          "CES": "https://ted.europa.eu/cs/notice/367831-2026/html",
+          "DAN": "https://ted.europa.eu/da/notice/367831-2026/html",
+          "DEU": "https://ted.europa.eu/de/notice/367831-2026/html",
+          "EST": "https://ted.europa.eu/et/notice/367831-2026/html",
+          "ELL": "https://ted.europa.eu/el/notice/367831-2026/html",
+          "ENG": "https://ted.europa.eu/en/notice/367831-2026/html",
+          "FRA": "https://ted.europa.eu/fr/notice/367831-2026/html",
+          "GLE": "https://ted.europa.eu/ga/notice/367831-2026/html",
+          "HRV": "https://ted.europa.eu/hr/notice/367831-2026/html",
+          "ITA": "https://ted.europa.eu/it/notice/367831-2026/html",
+          "LAV": "https://ted.europa.eu/lv/notice/367831-2026/html",
+          "LIT": "https://ted.europa.eu/lt/notice/367831-2026/html",
+          "HUN": "https://ted.europa.eu/hu/notice/367831-2026/html",
+          "MLT": "https://ted.europa.eu/mt/notice/367831-2026/html",
+          "NLD": "https://ted.europa.eu/nl/notice/367831-2026/html",
+          "POL": "https://ted.europa.eu/pl/notice/367831-2026/html",
+          "POR": "https://ted.europa.eu/pt/notice/367831-2026/html",
+          "RON": "https://ted.europa.eu/ro/notice/367831-2026/html",
+          "SLK": "https://ted.europa.eu/sk/notice/367831-2026/html",
+          "SLV": "https://ted.europa.eu/sl/notice/367831-2026/html",
+          "FIN": "https://ted.europa.eu/fi/notice/367831-2026/html",
+          "SWE": "https://ted.europa.eu/sv/notice/367831-2026/html"
+        }
+      },
+      "notice-title": {
+        "hun": "Franciaorsz\u00e1g \u2013 Szoftverfejleszt\u00e9si szolg\u00e1ltat\u00e1sok \u2013 Maintenance et acquisition de licences BO SAP et prestations de mont\u00e9e de version",
+        "lav": "Francija \u2013 Programmat\u016bras izstr\u0101des pakalpojumi \u2013 Maintenance et acquisition de licences BO SAP et prestations de mont\u00e9e de version",
+        "swe": "Frankrike \u2013 Utveckling av programvara \u2013 Maintenance et acquisition de licences BO SAP et prestations de mont\u00e9e de version",
+        "gle": "An Fhrainc \u2013 Software development services \u2013 Maintenance et acquisition de licences BO SAP et prestations de mont\u00e9e de version",
+        "ell": "\u0393\u03b1\u03bb\u03bb\u03af\u03b1 \u2013 \u03a5\u03c0\u03b7\u03c1\u03b5\u03c3\u03af\u03b5\u03c2 \u03b1\u03bd\u03ac\u03c0\u03c4\u03c5\u03be\u03b7\u03c2 \u03bb\u03bf\u03b3\u03b9\u03c3\u03bc\u03b9\u03ba\u03bf\u03cd \u2013 Maintenance et acquisition de licences BO SAP et prestations de mont\u00e9e de version",
+        "spa": "Francia \u2013 Servicios de desarrollo de software \u2013 Maintenance et acquisition de licences BO SAP et prestations de mont\u00e9e de version",
+        "est": "Prantsusmaa \u2013 Tarkvara arendusteenused \u2013 Maintenance et acquisition de licences BO SAP et prestations de mont\u00e9e de version",
+        "nld": "Frankrijk \u2013 Ontwikkeling van software \u2013 Maintenance et acquisition de licences BO SAP et prestations de mont\u00e9e de version",
+        "fin": "Ranska \u2013 Ohjelmiston kehitt\u00e4mispalvelut \u2013 Maintenance et acquisition de licences BO SAP et prestations de mont\u00e9e de version",
+        "pol": "Francja \u2013 Us\u0142ugi rozbudowy oprogramowania \u2013 Maintenance et acquisition de licences BO SAP et prestations de mont\u00e9e de version",
+        "hrv": "Francuska \u2013 Usluge razvoja programske podr\u0161ke \u2013 Maintenance et acquisition de licences BO SAP et prestations de mont\u00e9e de version",
+        "ces": "Francie \u2013 V\u00fdvoj programov\u00e9ho vybaven\u00ed \u2013 Maintenance et acquisition de licences BO SAP et prestations de mont\u00e9e de version",
+        "dan": "Frankrig \u2013 Programmeludvikling \u2013 Maintenance et acquisition de licences BO SAP et prestations de mont\u00e9e de version",
+        "ron": "Fran\u0163a \u2013 Servicii de dezvoltare software \u2013 Maintenance et acquisition de licences BO SAP et prestations de mont\u00e9e de version",
+        "por": "Fran\u00e7a \u2013 Servi\u00e7os de desenvolvimento de software \u2013 Maintenance et acquisition de licences BO SAP et prestations de mont\u00e9e de version",
+        "slk": "Franc\u00fazsko \u2013 V\u00fdvoj softv\u00e9ru \u2013 Maintenance et acquisition de licences BO SAP et prestations de mont\u00e9e de version",
+        "fra": "France \u2013 Services de d\u00e9veloppement de logiciels \u2013 Maintenance et acquisition de licences BO SAP et prestations de mont\u00e9e de version",
+        "mlt": "Franza \u2013 Servizzi ta' l-i\u017cvulupp tas-software \u2013 Maintenance et acquisition de licences BO SAP et prestations de mont\u00e9e de version",
+        "deu": "Frankreich \u2013 Software-Entwicklung \u2013 Maintenance et acquisition de licences BO SAP et prestations de mont\u00e9e de version",
+        "lit": "Pranc\u016bzija \u2013 Programin\u0117s \u012frangos k\u016brimo paslaugos \u2013 Maintenance et acquisition de licences BO SAP et prestations de mont\u00e9e de version",
+        "ita": "Francia \u2013 Servizi di sviluppo di software \u2013 Maintenance et acquisition de licences BO SAP et prestations de mont\u00e9e de version",
+        "bul": "\u0424pa\u043d\u0446\u0438\u044f \u2013 \u0423\u0441\u043b\u0443\u0433\u0438 \u043f\u043e \u0440\u0430\u0437\u0440\u0430\u0431\u043e\u0442\u0432\u0430\u043d\u0435 \u043d\u0430 \u0441\u043e\u0444\u0442\u0443\u0435\u0440 \u2013 Maintenance et acquisition de licences BO SAP et prestations de mont\u00e9e de version",
+        "slv": "Francija \u2013 Storitve razvoja programske opreme \u2013 Maintenance et acquisition de licences BO SAP et prestations de mont\u00e9e de version",
+        "eng": "France \u2013 Software development services \u2013 Maintenance et acquisition de licences BO SAP et prestations de mont\u00e9e de version"
+      },
+      "form-type": "competition"
+    },
+    {
+      "place-of-performance": [
+        "DEA33",
+        "DEU",
+        "DEA33",
+        "DEU"
+      ],
+      "description-lot": {
+        "deu": [
+          "Auftraggeber UKM Infrastruktur Management GmbH Die UKM Infrastruktur Management GmbH (UKM IM) ist als 100%ige Tochtergesellschaft des Universit\u00e4tsklinikums M\u00fcnster (UKM) f\u00fcr die Koordination s\u00e4mtlicher Bauleistungen im Unterneh-mensverbund des UKM zust\u00e4ndig. Insofern \u00fcbernimmt die UKM IM f\u00fcr das vorliegende Vergabeverfahren eine koordinierende Rolle und fungiert als Auftraggeberin. Informationen zur UKM IM stehen unter http://ukm-im.de/ zur Verf\u00fcgung Ziel der Ausschreibung F\u00fcr die Umstrukturierung und Sanierung der Infrastruktur des UKM befinden sich derzeit mehrere gr\u00f6\u00dfere Projekte in der Planung bzw. bereits in der Ausf\u00fchrung. Die Vorbereitung und die Umsetzung dieser Projekte auf dem UKM-Campus ziehen eine Vielzahl an kleineren Ma\u00dfnahmen und Projekten nach sich. Die vorliegende Ausschreibung betrifft die Implementierung eines Common Data Environment (CDE) als Cloud-L\u00f6sung zur Unterst\u00fctzung der Bau- und Infrastrukturprojekte des Universit\u00e4tsklinikums M\u00fcnster (UKM). Ziel ist es, eine Rahmenvereinbarung abzuschlie\u00dfen, mit der es dem Auftraggeber erm\u00f6glicht wird, kurzfristig f\u00fcr die verschiedenen Ma\u00dfnahmen jeweils eine zentrale, einheitliche und revisionssichere Plattform f\u00fcr die Zusammenarbeit aller an Planung, Bau und Betrieb beteiligten Stellen (z. B. Bauherrenvertreter, externe Planungsb\u00fcros, Bauunternehmen) bereitzustellen. Leistungsumfang Der genaue Umfang der ben\u00f6tigten Leistungen kann derzeit nicht festgelegt werden. F\u00fcr eine Sch\u00e4tzung des Leistungsumfangs geht der Auftraggeber von bis zu zwanzig Ma\u00dfnahmen in unterschiedlicher Gr\u00f6\u00dfe aus. Um zur vorliegenden Ausschreibung einigerma\u00dfen realistische Angebote zu erhalten, wird das fo-gende Mengenger\u00fcst vorgegeben. 5 Ma\u00dfnahmen mit Herstellungskosten in H\u00f6he von 1-10 Mio. EUR 3 Ma\u00dfnahmen mit Herstellungskosten in H\u00f6he von 10-25 Mio. EUR 8 Ma\u00dfnahmen mit Herstellungskosten in H\u00f6he von 25-50 Mio. EUR 3 Ma\u00dfnahmen mit Herstellungskosten in H\u00f6he von 50-100 Mio. EUR 1 Ma\u00dfnahmen mit Herstellungskosten in H\u00f6he von \u00fcber 100 Mio. EUR Vertragslaufzeit Die Vertragslaufzeit beginnt mit Vertragsabschluss und endet zun\u00e4chst zum 30.04.2028. Der Vertrag verl\u00e4ngert sich automatisch um zwei weitere Jahre, wenn nicht ein Rahmenvertragspartner mindestens 6 Monate vor Ende der Vertragslaufzeit schriftlich k\u00fcndigt. Die Vertragslaufzeit endet ohne vorhergehende K\u00fcndigung sp\u00e4testens zum 30.04.2030. Mit Ablauf der Rahmenvereinbarung werden keine weiteren Abrufe get\u00e4tigt. Alle bis dahin beauftragten Projektplattformen werden bis zur Fertigstellung der jeweiligen Projekte weiter betrieben."
+        ]
+      },
+      "notice-type": "can-standard",
+      "procedure-type": "open",
+      "publication-number": "368708-2026",
+      "classification-cpv": [
+        "72263000",
+        "72260000",
+        "72263000",
+        "72268000",
+        "72263000",
+        "72260000",
+        "72263000",
+        "72268000"
+      ],
+      "buyer-name": {
+        "deu": [
+          "Universit\u00e4tsklinikum M\u00fcnster"
+        ]
+      },
+      "publication-date": "2026-05-29+02:00",
+      "links": {
+        "xml": {
+          "MUL": "https://ted.europa.eu/en/notice/368708-2026/xml"
+        },
+        "pdf": {
+          "BUL": "https://ted.europa.eu/bg/notice/368708-2026/pdf",
+          "SPA": "https://ted.europa.eu/es/notice/368708-2026/pdf",
+          "CES": "https://ted.europa.eu/cs/notice/368708-2026/pdf",
+          "DAN": "https://ted.europa.eu/da/notice/368708-2026/pdf",
+          "DEU": "https://ted.europa.eu/de/notice/368708-2026/pdf",
+          "EST": "https://ted.europa.eu/et/notice/368708-2026/pdf",
+          "ELL": "https://ted.europa.eu/el/notice/368708-2026/pdf",
+          "ENG": "https://ted.europa.eu/en/notice/368708-2026/pdf",
+          "FRA": "https://ted.europa.eu/fr/notice/368708-2026/pdf",
+          "GLE": "https://ted.europa.eu/ga/notice/368708-2026/pdf",
+          "HRV": "https://ted.europa.eu/hr/notice/368708-2026/pdf",
+          "ITA": "https://ted.europa.eu/it/notice/368708-2026/pdf",
+          "LAV": "https://ted.europa.eu/lv/notice/368708-2026/pdf",
+          "LIT": "https://ted.europa.eu/lt/notice/368708-2026/pdf",
+          "HUN": "https://ted.europa.eu/hu/notice/368708-2026/pdf",
+          "MLT": "https://ted.europa.eu/mt/notice/368708-2026/pdf",
+          "NLD": "https://ted.europa.eu/nl/notice/368708-2026/pdf",
+          "POL": "https://ted.europa.eu/pl/notice/368708-2026/pdf",
+          "POR": "https://ted.europa.eu/pt/notice/368708-2026/pdf",
+          "RON": "https://ted.europa.eu/ro/notice/368708-2026/pdf",
+          "SLK": "https://ted.europa.eu/sk/notice/368708-2026/pdf",
+          "SLV": "https://ted.europa.eu/sl/notice/368708-2026/pdf",
+          "FIN": "https://ted.europa.eu/fi/notice/368708-2026/pdf",
+          "SWE": "https://ted.europa.eu/sv/notice/368708-2026/pdf"
+        },
+        "pdfs": {
+          "DEU": "https://ted.europa.eu/de/notice/368708-2026/pdfs"
+        },
+        "html": {
+          "BUL": "https://ted.europa.eu/bg/notice/-/detail/368708-2026",
+          "SPA": "https://ted.europa.eu/es/notice/-/detail/368708-2026",
+          "CES": "https://ted.europa.eu/cs/notice/-/detail/368708-2026",
+          "DAN": "https://ted.europa.eu/da/notice/-/detail/368708-2026",
+          "DEU": "https://ted.europa.eu/de/notice/-/detail/368708-2026",
+          "EST": "https://ted.europa.eu/et/notice/-/detail/368708-2026",
+          "ELL": "https://ted.europa.eu/el/notice/-/detail/368708-2026",
+          "ENG": "https://ted.europa.eu/en/notice/-/detail/368708-2026",
+          "FRA": "https://ted.europa.eu/fr/notice/-/detail/368708-2026",
+          "GLE": "https://ted.europa.eu/ga/notice/-/detail/368708-2026",
+          "HRV": "https://ted.europa.eu/hr/notice/-/detail/368708-2026",
+          "ITA": "https://ted.europa.eu/it/notice/-/detail/368708-2026",
+          "LAV": "https://ted.europa.eu/lv/notice/-/detail/368708-2026",
+          "LIT": "https://ted.europa.eu/lt/notice/-/detail/368708-2026",
+          "HUN": "https://ted.europa.eu/hu/notice/-/detail/368708-2026",
+          "MLT": "https://ted.europa.eu/mt/notice/-/detail/368708-2026",
+          "NLD": "https://ted.europa.eu/nl/notice/-/detail/368708-2026",
+          "POL": "https://ted.europa.eu/pl/notice/-/detail/368708-2026",
+          "POR": "https://ted.europa.eu/pt/notice/-/detail/368708-2026",
+          "RON": "https://ted.europa.eu/ro/notice/-/detail/368708-2026",
+          "SLK": "https://ted.europa.eu/sk/notice/-/detail/368708-2026",
+          "SLV": "https://ted.europa.eu/sl/notice/-/detail/368708-2026",
+          "FIN": "https://ted.europa.eu/fi/notice/-/detail/368708-2026",
+          "SWE": "https://ted.europa.eu/sv/notice/-/detail/368708-2026"
+        },
+        "htmlDirect": {
+          "BUL": "https://ted.europa.eu/bg/notice/368708-2026/html",
+          "SPA": "https://ted.europa.eu/es/notice/368708-2026/html",
+          "CES": "https://ted.europa.eu/cs/notice/368708-2026/html",
+          "DAN": "https://ted.europa.eu/da/notice/368708-2026/html",
+          "DEU": "https://ted.europa.eu/de/notice/368708-2026/html",
+          "EST": "https://ted.europa.eu/et/notice/368708-2026/html",
+          "ELL": "https://ted.europa.eu/el/notice/368708-2026/html",
+          "ENG": "https://ted.europa.eu/en/notice/368708-2026/html",
+          "FRA": "https://ted.europa.eu/fr/notice/368708-2026/html",
+          "GLE": "https://ted.europa.eu/ga/notice/368708-2026/html",
+          "HRV": "https://ted.europa.eu/hr/notice/368708-2026/html",
+          "ITA": "https://ted.europa.eu/it/notice/368708-2026/html",
+          "LAV": "https://ted.europa.eu/lv/notice/368708-2026/html",
+          "LIT": "https://ted.europa.eu/lt/notice/368708-2026/html",
+          "HUN": "https://ted.europa.eu/hu/notice/368708-2026/html",
+          "MLT": "https://ted.europa.eu/mt/notice/368708-2026/html",
+          "NLD": "https://ted.europa.eu/nl/notice/368708-2026/html",
+          "POL": "https://ted.europa.eu/pl/notice/368708-2026/html",
+          "POR": "https://ted.europa.eu/pt/notice/368708-2026/html",
+          "RON": "https://ted.europa.eu/ro/notice/368708-2026/html",
+          "SLK": "https://ted.europa.eu/sk/notice/368708-2026/html",
+          "SLV": "https://ted.europa.eu/sl/notice/368708-2026/html",
+          "FIN": "https://ted.europa.eu/fi/notice/368708-2026/html",
+          "SWE": "https://ted.europa.eu/sv/notice/368708-2026/html"
+        }
+      },
+      "buyer-country": [
+        "DEU"
+      ],
+      "notice-title": {
+        "hun": "N\u00e9metorsz\u00e1g \u2013 Szoftvermegval\u00f3s\u00edt\u00e1si szolg\u00e1ltat\u00e1sok \u2013 Implementierung eines Common Data Environment (CDE)",
+        "lav": "V\u0101cija \u2013 Programmat\u016bras ievie\u0161anas pakalpojumi \u2013 Implementierung eines Common Data Environment (CDE)",
+        "swe": "Tyskland \u2013 Programimplementation \u2013 Implementierung eines Common Data Environment (CDE)",
+        "gle": "An Ghearm\u00e1in \u2013 Software implementation services \u2013 Implementierung eines Common Data Environment (CDE)",
+        "ell": "\u0393\u03b5\u03c1\u03bc\u03b1\u03bd\u03af\u03b1 \u2013 \u03a5\u03c0\u03b7\u03c1\u03b5\u03c3\u03af\u03b5\u03c2 \u03c5\u03bb\u03bf\u03c0\u03bf\u03af\u03b7\u03c3\u03b7\u03c2 \u03bb\u03bf\u03b3\u03b9\u03c3\u03bc\u03b9\u03ba\u03bf\u03cd \u2013 Implementierung eines Common Data Environment (CDE)",
+        "spa": "Alemania \u2013 Servicios de implementaci\u00f3n de software \u2013 Implementierung eines Common Data Environment (CDE)",
+        "est": "Saksamaa \u2013 Tarkvara rakendusteenused \u2013 Implementierung eines Common Data Environment (CDE)",
+        "nld": "Duitsland \u2013 Software-implementatiediensten \u2013 Implementierung eines Common Data Environment (CDE)",
+        "fin": "Saksa \u2013 Ohjelmiston toteutuspalvelut \u2013 Implementierung eines Common Data Environment (CDE)",
+        "pol": "Niemcy \u2013 Us\u0142ugi wdra\u017cania oprogramowania \u2013 Implementierung eines Common Data Environment (CDE)",
+        "hrv": "Njema\u010dka \u2013 Usluge izvo\u0111enja programske podr\u0161ke \u2013 Implementierung eines Common Data Environment (CDE)",
+        "ces": "N\u011bmecko \u2013 Implementace programov\u00e9ho vybaven\u00ed \u2013 Implementierung eines Common Data Environment (CDE)",
+        "dan": "Tyskland \u2013 Implementering af programmel \u2013 Implementierung eines Common Data Environment (CDE)",
+        "ron": "Germania \u2013 Servicii de aplicare de software \u2013 Implementierung eines Common Data Environment (CDE)",
+        "por": "Alemanha \u2013 Servi\u00e7os de implementa\u00e7\u00e3o de software \u2013 Implementierung eines Common Data Environment (CDE)",
+        "slk": "Nemecko \u2013 Implement\u00e1cia softv\u00e9ru \u2013 Implementierung eines Common Data Environment (CDE)",
+        "fra": "Allemagne \u2013 Services d'impl\u00e9mentation de logiciels \u2013 Implementierung eines Common Data Environment (CDE)",
+        "mlt": "Il-\u0120ermanja \u2013 Servizzi ta' l-implimentazzjoni tas-software \u2013 Implementierung eines Common Data Environment (CDE)",
+        "deu": "Deutschland \u2013 Software-Implementierung \u2013 Implementierung eines Common Data Environment (CDE)",
+        "lit": "Vokietija \u2013 Programin\u0117s \u012frangos diegimo paslaugos \u2013 Implementierung eines Common Data Environment (CDE)",
+        "ita": "Germania \u2013 Servizi di implementazione di software \u2013 Implementierung eines Common Data Environment (CDE)",
+        "bul": "\u0413ep\u043ca\u043d\u0438\u044f \u2013 \u0423\u0441\u043b\u0443\u0433\u0438 \u043f\u043e \u0438\u043d\u0441\u0442\u0430\u043b\u0438\u0440\u0430\u043d\u0435 \u043d\u0430 \u0441\u043e\u0444\u0442\u0443\u0435\u0440\u043d\u0438 \u043f\u0440\u043e\u0434\u0443\u043a\u0442\u0438 \u2013 Implementierung eines Common Data Environment (CDE)",
+        "slv": "Nem\u010dija \u2013 Storitve izvajanja programske opreme \u2013 Implementierung eines Common Data Environment (CDE)",
+        "eng": "Germany \u2013 Software implementation services \u2013 Implementierung eines Common Data Environment (CDE)"
+      },
+      "form-type": "result"
+    },
+    {
+      "place-of-performance": [
+        "DEA22",
+        "DEU",
+        "DEA22",
+        "DEU"
+      ],
+      "deadline-receipt-tender-date-lot": [
+        "2026-06-29+02:00"
+      ],
+      "notice-type": "cn-standard",
+      "publication-number": "368822-2026",
+      "estimated-value-lot": [
+        "1200000.00"
+      ],
+      "total-value-cur": [
+        "EUR"
+      ],
+      "estimated-value-cur-lot": [
+        "EUR"
+      ],
+      "buyer-country": [
+        "DEU"
+      ],
+      "total-value": 1200000,
+      "description-lot": {
+        "deu": [
+          "Die Gesamtleistung wird in 4 Mengenlose aufgeteilt, die aus technischen Gr\u00fcnden in den zwei folgenden Vergabeverfahren abgebildet werden. Los 1: Online-Schulungen ZIB 14.03 - 99129/25/VV : 1 Los 2: Inhouse- und Au\u00dfer-Haus-Schulungen - Region Berlin ZIB 14.03 - 99129/25/VV : 2 Los 3: Inhouse- und Au\u00dfer-Haus-Schulungen - Region NRW ZIB 14.03 - 99129/25/VV : 3 Los 4: Inhouse- und Au\u00dfer-Haus-Schulungen - restliches Bundesgebiet au\u00dfer Berlin und NRW ZIB 14.03 - 99129/25/VV : 4 F\u00fcr die unter diesem Los (Los 4) zu erbringenden vertragsgegenst#ndlichen Leistungen wurde ein Gesamtsch\u00e4tzwert in H\u00f6he von 1.200.000,00 Euro netto, bezogen auf den maximalen Vertragszeitraum von 4 Jahren, ermittelt. Der H\u00f6chstwert entspricht dem Gesamtsch\u00e4tzwert. Das Abrufvolumen kann nicht abschlie\u00dfend festgelegt werden."
+        ]
+      },
+      "procedure-type": "open",
+      "classification-cpv": [
+        "72260000",
+        "72261000",
+        "72260000",
+        "72261000"
+      ],
+      "buyer-name": {
+        "deu": [
+          "Bundesrepublik Deutschland, vertreten durch das Bundesministerium des Innern, vertreten durch das Beschaffungsamt des BMI"
+        ]
+      },
+      "publication-date": "2026-05-29+02:00",
+      "links": {
+        "xml": {
+          "MUL": "https://ted.europa.eu/en/notice/368822-2026/xml"
+        },
+        "pdf": {
+          "BUL": "https://ted.europa.eu/bg/notice/368822-2026/pdf",
+          "SPA": "https://ted.europa.eu/es/notice/368822-2026/pdf",
+          "CES": "https://ted.europa.eu/cs/notice/368822-2026/pdf",
+          "DAN": "https://ted.europa.eu/da/notice/368822-2026/pdf",
+          "DEU": "https://ted.europa.eu/de/notice/368822-2026/pdf",
+          "EST": "https://ted.europa.eu/et/notice/368822-2026/pdf",
+          "ELL": "https://ted.europa.eu/el/notice/368822-2026/pdf",
+          "ENG": "https://ted.europa.eu/en/notice/368822-2026/pdf",
+          "FRA": "https://ted.europa.eu/fr/notice/368822-2026/pdf",
+          "GLE": "https://ted.europa.eu/ga/notice/368822-2026/pdf",
+          "HRV": "https://ted.europa.eu/hr/notice/368822-2026/pdf",
+          "ITA": "https://ted.europa.eu/it/notice/368822-2026/pdf",
+          "LAV": "https://ted.europa.eu/lv/notice/368822-2026/pdf",
+          "LIT": "https://ted.europa.eu/lt/notice/368822-2026/pdf",
+          "HUN": "https://ted.europa.eu/hu/notice/368822-2026/pdf",
+          "MLT": "https://ted.europa.eu/mt/notice/368822-2026/pdf",
+          "NLD": "https://ted.europa.eu/nl/notice/368822-2026/pdf",
+          "POL": "https://ted.europa.eu/pl/notice/368822-2026/pdf",
+          "POR": "https://ted.europa.eu/pt/notice/368822-2026/pdf",
+          "RON": "https://ted.europa.eu/ro/notice/368822-2026/pdf",
+          "SLK": "https://ted.europa.eu/sk/notice/368822-2026/pdf",
+          "SLV": "https://ted.europa.eu/sl/notice/368822-2026/pdf",
+          "FIN": "https://ted.europa.eu/fi/notice/368822-2026/pdf",
+          "SWE": "https://ted.europa.eu/sv/notice/368822-2026/pdf"
+        },
+        "pdfs": {
+          "DEU": "https://ted.europa.eu/de/notice/368822-2026/pdfs"
+        },
+        "html": {
+          "BUL": "https://ted.europa.eu/bg/notice/-/detail/368822-2026",
+          "SPA": "https://ted.europa.eu/es/notice/-/detail/368822-2026",
+          "CES": "https://ted.europa.eu/cs/notice/-/detail/368822-2026",
+          "DAN": "https://ted.europa.eu/da/notice/-/detail/368822-2026",
+          "DEU": "https://ted.europa.eu/de/notice/-/detail/368822-2026",
+          "EST": "https://ted.europa.eu/et/notice/-/detail/368822-2026",
+          "ELL": "https://ted.europa.eu/el/notice/-/detail/368822-2026",
+          "ENG": "https://ted.europa.eu/en/notice/-/detail/368822-2026",
+          "FRA": "https://ted.europa.eu/fr/notice/-/detail/368822-2026",
+          "GLE": "https://ted.europa.eu/ga/notice/-/detail/368822-2026",
+          "HRV": "https://ted.europa.eu/hr/notice/-/detail/368822-2026",
+          "ITA": "https://ted.europa.eu/it/notice/-/detail/368822-2026",
+          "LAV": "https://ted.europa.eu/lv/notice/-/detail/368822-2026",
+          "LIT": "https://ted.europa.eu/lt/notice/-/detail/368822-2026",
+          "HUN": "https://ted.europa.eu/hu/notice/-/detail/368822-2026",
+          "MLT": "https://ted.europa.eu/mt/notice/-/detail/368822-2026",
+          "NLD": "https://ted.europa.eu/nl/notice/-/detail/368822-2026",
+          "POL": "https://ted.europa.eu/pl/notice/-/detail/368822-2026",
+          "POR": "https://ted.europa.eu/pt/notice/-/detail/368822-2026",
+          "RON": "https://ted.europa.eu/ro/notice/-/detail/368822-2026",
+          "SLK": "https://ted.europa.eu/sk/notice/-/detail/368822-2026",
+          "SLV": "https://ted.europa.eu/sl/notice/-/detail/368822-2026",
+          "FIN": "https://ted.europa.eu/fi/notice/-/detail/368822-2026",
+          "SWE": "https://ted.europa.eu/sv/notice/-/detail/368822-2026"
+        },
+        "htmlDirect": {
+          "BUL": "https://ted.europa.eu/bg/notice/368822-2026/html",
+          "SPA": "https://ted.europa.eu/es/notice/368822-2026/html",
+          "CES": "https://ted.europa.eu/cs/notice/368822-2026/html",
+          "DAN": "https://ted.europa.eu/da/notice/368822-2026/html",
+          "DEU": "https://ted.europa.eu/de/notice/368822-2026/html",
+          "EST": "https://ted.europa.eu/et/notice/368822-2026/html",
+          "ELL": "https://ted.europa.eu/el/notice/368822-2026/html",
+          "ENG": "https://ted.europa.eu/en/notice/368822-2026/html",
+          "FRA": "https://ted.europa.eu/fr/notice/368822-2026/html",
+          "GLE": "https://ted.europa.eu/ga/notice/368822-2026/html",
+          "HRV": "https://ted.europa.eu/hr/notice/368822-2026/html",
+          "ITA": "https://ted.europa.eu/it/notice/368822-2026/html",
+          "LAV": "https://ted.europa.eu/lv/notice/368822-2026/html",
+          "LIT": "https://ted.europa.eu/lt/notice/368822-2026/html",
+          "HUN": "https://ted.europa.eu/hu/notice/368822-2026/html",
+          "MLT": "https://ted.europa.eu/mt/notice/368822-2026/html",
+          "NLD": "https://ted.europa.eu/nl/notice/368822-2026/html",
+          "POL": "https://ted.europa.eu/pl/notice/368822-2026/html",
+          "POR": "https://ted.europa.eu/pt/notice/368822-2026/html",
+          "RON": "https://ted.europa.eu/ro/notice/368822-2026/html",
+          "SLK": "https://ted.europa.eu/sk/notice/368822-2026/html",
+          "SLV": "https://ted.europa.eu/sl/notice/368822-2026/html",
+          "FIN": "https://ted.europa.eu/fi/notice/368822-2026/html",
+          "SWE": "https://ted.europa.eu/sv/notice/368822-2026/html"
+        }
+      },
+      "notice-title": {
+        "hun": "N\u00e9metorsz\u00e1g \u2013 Szoftverrel kapcsolatos szolg\u00e1ltat\u00e1sok \u2013 Microsoft Schulungsleistungen - Los 4: Inhouse- und Au\u00dfer-Haus-Schulungen - restliches Bundesgebiet au\u00dfer Berlin und NRW",
+        "lav": "V\u0101cija \u2013 Ar programmat\u016bru saist\u012btie pakalpojumi \u2013 Microsoft Schulungsleistungen - Los 4: Inhouse- und Au\u00dfer-Haus-Schulungen - restliches Bundesgebiet au\u00dfer Berlin und NRW",
+        "swe": "Tyskland \u2013 Programrelaterade tj\u00e4nster \u2013 Microsoft Schulungsleistungen - Los 4: Inhouse- und Au\u00dfer-Haus-Schulungen - restliches Bundesgebiet au\u00dfer Berlin und NRW",
+        "gle": "An Ghearm\u00e1in \u2013 Software-related services \u2013 Microsoft Schulungsleistungen - Los 4: Inhouse- und Au\u00dfer-Haus-Schulungen - restliches Bundesgebiet au\u00dfer Berlin und NRW",
+        "ell": "\u0393\u03b5\u03c1\u03bc\u03b1\u03bd\u03af\u03b1 \u2013 \u03a5\u03c0\u03b7\u03c1\u03b5\u03c3\u03af\u03b5\u03c2 \u03c3\u03c7\u03b5\u03c4\u03b9\u03b6\u03cc\u03bc\u03b5\u03bd\u03b5\u03c2 \u03bc\u03b5 \u03bb\u03bf\u03b3\u03b9\u03c3\u03bc\u03b9\u03ba\u03ac \u2013 Microsoft Schulungsleistungen - Los 4: Inhouse- und Au\u00dfer-Haus-Schulungen - restliches Bundesgebiet au\u00dfer Berlin und NRW",
+        "spa": "Alemania \u2013 Servicios relacionados con el software \u2013 Microsoft Schulungsleistungen - Los 4: Inhouse- und Au\u00dfer-Haus-Schulungen - restliches Bundesgebiet au\u00dfer Berlin und NRW",
+        "est": "Saksamaa \u2013 Tarkvaraga seotud teenused \u2013 Microsoft Schulungsleistungen - Los 4: Inhouse- und Au\u00dfer-Haus-Schulungen - restliches Bundesgebiet au\u00dfer Berlin und NRW",
+        "nld": "Duitsland \u2013 Diensten in verband met software \u2013 Microsoft Schulungsleistungen - Los 4: Inhouse- und Au\u00dfer-Haus-Schulungen - restliches Bundesgebiet au\u00dfer Berlin und NRW",
+        "fin": "Saksa \u2013 Ohjelmistoihin liittyv\u00e4t palvelut \u2013 Microsoft Schulungsleistungen - Los 4: Inhouse- und Au\u00dfer-Haus-Schulungen - restliches Bundesgebiet au\u00dfer Berlin und NRW",
+        "pol": "Niemcy \u2013 Us\u0142ugi w zakresie oprogramowania \u2013 Microsoft Schulungsleistungen - Los 4: Inhouse- und Au\u00dfer-Haus-Schulungen - restliches Bundesgebiet au\u00dfer Berlin und NRW",
+        "hrv": "Njema\u010dka \u2013 Usluge povezane s programskom podr\u0161kom \u2013 Microsoft Schulungsleistungen - Los 4: Inhouse- und Au\u00dfer-Haus-Schulungen - restliches Bundesgebiet au\u00dfer Berlin und NRW",
+        "ces": "N\u011bmecko \u2013 Slu\u017eby programov\u00e9ho vybaven\u00ed \u2013 Microsoft Schulungsleistungen - Los 4: Inhouse- und Au\u00dfer-Haus-Schulungen - restliches Bundesgebiet au\u00dfer Berlin und NRW",
+        "dan": "Tyskland \u2013 Programmelrelaterede tjenester \u2013 Microsoft Schulungsleistungen - Los 4: Inhouse- und Au\u00dfer-Haus-Schulungen - restliches Bundesgebiet au\u00dfer Berlin und NRW",
+        "ron": "Germania \u2013 Servicii de software \u2013 Microsoft Schulungsleistungen - Los 4: Inhouse- und Au\u00dfer-Haus-Schulungen - restliches Bundesgebiet au\u00dfer Berlin und NRW",
+        "por": "Alemanha \u2013 Servi\u00e7os relacionados com software \u2013 Microsoft Schulungsleistungen - Los 4: Inhouse- und Au\u00dfer-Haus-Schulungen - restliches Bundesgebiet au\u00dfer Berlin und NRW",
+        "slk": "Nemecko \u2013 Slu\u017eby s\u00favisiace so softv\u00e9rom \u2013 Microsoft Schulungsleistungen - Los 4: Inhouse- und Au\u00dfer-Haus-Schulungen - restliches Bundesgebiet au\u00dfer Berlin und NRW",
+        "fra": "Allemagne \u2013 Services relatifs aux logiciels \u2013 Microsoft Schulungsleistungen - Los 4: Inhouse- und Au\u00dfer-Haus-Schulungen - restliches Bundesgebiet au\u00dfer Berlin und NRW",
+        "mlt": "Il-\u0120ermanja \u2013 Servizzi relatati mas-software \u2013 Microsoft Schulungsleistungen - Los 4: Inhouse- und Au\u00dfer-Haus-Schulungen - restliches Bundesgebiet au\u00dfer Berlin und NRW",
+        "deu": "Deutschland \u2013 Dienstleistungen in Verbindung mit Software \u2013 Microsoft Schulungsleistungen - Los 4: Inhouse- und Au\u00dfer-Haus-Schulungen - restliches Bundesgebiet au\u00dfer Berlin und NRW",
+        "lit": "Vokietija \u2013 Su programine \u012franga susijusios paslaugos \u2013 Microsoft Schulungsleistungen - Los 4: Inhouse- und Au\u00dfer-Haus-Schulungen - restliches Bundesgebiet au\u00dfer Berlin und NRW",
+        "ita": "Germania \u2013 Servizi connessi al software \u2013 Microsoft Schulungsleistungen - Los 4: Inhouse- und Au\u00dfer-Haus-Schulungen - restliches Bundesgebiet au\u00dfer Berlin und NRW",
+        "bul": "\u0413ep\u043ca\u043d\u0438\u044f \u2013 \u0423\u0441\u043b\u0443\u0433\u0438, \u0441\u0432\u044a\u0440\u0437\u0430\u043d\u0438 \u0441\u044a\u0441 \u0441\u043e\u0444\u0442\u0443\u0435\u0440\u043d\u0438 \u043f\u0440\u043e\u0434\u0443\u043a\u0442\u0438 \u2013 Microsoft Schulungsleistungen - Los 4: Inhouse- und Au\u00dfer-Haus-Schulungen - restliches Bundesgebiet au\u00dfer Berlin und NRW",
+        "slv": "Nem\u010dija \u2013 Storitve, povezane s programsko opremo \u2013 Microsoft Schulungsleistungen - Los 4: Inhouse- und Au\u00dfer-Haus-Schulungen - restliches Bundesgebiet au\u00dfer Berlin und NRW",
+        "eng": "Germany \u2013 Software-related services \u2013 Microsoft Schulungsleistungen - Los 4: Inhouse- und Au\u00dfer-Haus-Schulungen - restliches Bundesgebiet au\u00dfer Berlin und NRW"
+      },
+      "form-type": "competition"
+    },
+    {
+      "place-of-performance": [
+        "NLD",
+        "NLD"
+      ],
+      "notice-type": "pin-cfc-standard",
+      "publication-number": "368879-2026",
+      "estimated-value-lot": [
+        "0"
+      ],
+      "total-value-cur": [
+        "EUR"
+      ],
+      "estimated-value-cur-lot": [
+        "EUR"
+      ],
+      "buyer-country": [
+        "NLD"
+      ],
+      "total-value": 0,
+      "description-lot": {
+        "nld": [
+          "Dit betreft een Marktconsultatie van het UMC Utrecht. De Marktconsultatie betreft een cadeauplatform. De doelstelling van deze marktconsultatie is om, voorafgaand aan een formele Europese aanbestedingsprocedure (geheel vrijblijvend) met volledige openbaarheid en zonder verplichtingen, de markt te consulteren over een aantal belangrijke aspecten van het hierboven omschreven project en de kenmerken van de markt waarin deze dienstverlening zich bevindt."
+        ]
+      },
+      "procedure-type": "oth-mult",
+      "classification-cpv": [
+        "18530000",
+        "48000000",
+        "48400000",
+        "18530000",
+        "48000000",
+        "48400000"
+      ],
+      "buyer-name": {
+        "nld": [
+          "Universitair Medisch Centrum Utrecht"
+        ]
+      },
+      "publication-date": "2026-05-29+02:00",
+      "links": {
+        "xml": {
+          "MUL": "https://ted.europa.eu/en/notice/368879-2026/xml"
+        },
+        "pdf": {
+          "BUL": "https://ted.europa.eu/bg/notice/368879-2026/pdf",
+          "SPA": "https://ted.europa.eu/es/notice/368879-2026/pdf",
+          "CES": "https://ted.europa.eu/cs/notice/368879-2026/pdf",
+          "DAN": "https://ted.europa.eu/da/notice/368879-2026/pdf",
+          "DEU": "https://ted.europa.eu/de/notice/368879-2026/pdf",
+          "EST": "https://ted.europa.eu/et/notice/368879-2026/pdf",
+          "ELL": "https://ted.europa.eu/el/notice/368879-2026/pdf",
+          "ENG": "https://ted.europa.eu/en/notice/368879-2026/pdf",
+          "FRA": "https://ted.europa.eu/fr/notice/368879-2026/pdf",
+          "GLE": "https://ted.europa.eu/ga/notice/368879-2026/pdf",
+          "HRV": "https://ted.europa.eu/hr/notice/368879-2026/pdf",
+          "ITA": "https://ted.europa.eu/it/notice/368879-2026/pdf",
+          "LAV": "https://ted.europa.eu/lv/notice/368879-2026/pdf",
+          "LIT": "https://ted.europa.eu/lt/notice/368879-2026/pdf",
+          "HUN": "https://ted.europa.eu/hu/notice/368879-2026/pdf",
+          "MLT": "https://ted.europa.eu/mt/notice/368879-2026/pdf",
+          "NLD": "https://ted.europa.eu/nl/notice/368879-2026/pdf",
+          "POL": "https://ted.europa.eu/pl/notice/368879-2026/pdf",
+          "POR": "https://ted.europa.eu/pt/notice/368879-2026/pdf",
+          "RON": "https://ted.europa.eu/ro/notice/368879-2026/pdf",
+          "SLK": "https://ted.europa.eu/sk/notice/368879-2026/pdf",
+          "SLV": "https://ted.europa.eu/sl/notice/368879-2026/pdf",
+          "FIN": "https://ted.europa.eu/fi/notice/368879-2026/pdf",
+          "SWE": "https://ted.europa.eu/sv/notice/368879-2026/pdf"
+        },
+        "pdfs": {
+          "NLD": "https://ted.europa.eu/nl/notice/368879-2026/pdfs"
+        },
+        "html": {
+          "BUL": "https://ted.europa.eu/bg/notice/-/detail/368879-2026",
+          "SPA": "https://ted.europa.eu/es/notice/-/detail/368879-2026",
+          "CES": "https://ted.europa.eu/cs/notice/-/detail/368879-2026",
+          "DAN": "https://ted.europa.eu/da/notice/-/detail/368879-2026",
+          "DEU": "https://ted.europa.eu/de/notice/-/detail/368879-2026",
+          "EST": "https://ted.europa.eu/et/notice/-/detail/368879-2026",
+          "ELL": "https://ted.europa.eu/el/notice/-/detail/368879-2026",
+          "ENG": "https://ted.europa.eu/en/notice/-/detail/368879-2026",
+          "FRA": "https://ted.europa.eu/fr/notice/-/detail/368879-2026",
+          "GLE": "https://ted.europa.eu/ga/notice/-/detail/368879-2026",
+          "HRV": "https://ted.europa.eu/hr/notice/-/detail/368879-2026",
+          "ITA": "https://ted.europa.eu/it/notice/-/detail/368879-2026",
+          "LAV": "https://ted.europa.eu/lv/notice/-/detail/368879-2026",
+          "LIT": "https://ted.europa.eu/lt/notice/-/detail/368879-2026",
+          "HUN": "https://ted.europa.eu/hu/notice/-/detail/368879-2026",
+          "MLT": "https://ted.europa.eu/mt/notice/-/detail/368879-2026",
+          "NLD": "https://ted.europa.eu/nl/notice/-/detail/368879-2026",
+          "POL": "https://ted.europa.eu/pl/notice/-/detail/368879-2026",
+          "POR": "https://ted.europa.eu/pt/notice/-/detail/368879-2026",
+          "RON": "https://ted.europa.eu/ro/notice/-/detail/368879-2026",
+          "SLK": "https://ted.europa.eu/sk/notice/-/detail/368879-2026",
+          "SLV": "https://ted.europa.eu/sl/notice/-/detail/368879-2026",
+          "FIN": "https://ted.europa.eu/fi/notice/-/detail/368879-2026",
+          "SWE": "https://ted.europa.eu/sv/notice/-/detail/368879-2026"
+        },
+        "htmlDirect": {
+          "BUL": "https://ted.europa.eu/bg/notice/368879-2026/html",
+          "SPA": "https://ted.europa.eu/es/notice/368879-2026/html",
+          "CES": "https://ted.europa.eu/cs/notice/368879-2026/html",
+          "DAN": "https://ted.europa.eu/da/notice/368879-2026/html",
+          "DEU": "https://ted.europa.eu/de/notice/368879-2026/html",
+          "EST": "https://ted.europa.eu/et/notice/368879-2026/html",
+          "ELL": "https://ted.europa.eu/el/notice/368879-2026/html",
+          "ENG": "https://ted.europa.eu/en/notice/368879-2026/html",
+          "FRA": "https://ted.europa.eu/fr/notice/368879-2026/html",
+          "GLE": "https://ted.europa.eu/ga/notice/368879-2026/html",
+          "HRV": "https://ted.europa.eu/hr/notice/368879-2026/html",
+          "ITA": "https://ted.europa.eu/it/notice/368879-2026/html",
+          "LAV": "https://ted.europa.eu/lv/notice/368879-2026/html",
+          "LIT": "https://ted.europa.eu/lt/notice/368879-2026/html",
+          "HUN": "https://ted.europa.eu/hu/notice/368879-2026/html",
+          "MLT": "https://ted.europa.eu/mt/notice/368879-2026/html",
+          "NLD": "https://ted.europa.eu/nl/notice/368879-2026/html",
+          "POL": "https://ted.europa.eu/pl/notice/368879-2026/html",
+          "POR": "https://ted.europa.eu/pt/notice/368879-2026/html",
+          "RON": "https://ted.europa.eu/ro/notice/368879-2026/html",
+          "SLK": "https://ted.europa.eu/sk/notice/368879-2026/html",
+          "SLV": "https://ted.europa.eu/sl/notice/368879-2026/html",
+          "FIN": "https://ted.europa.eu/fi/notice/368879-2026/html",
+          "SWE": "https://ted.europa.eu/sv/notice/368879-2026/html"
+        }
+      },
+      "notice-title": {
+        "hun": "Hollandia \u2013 Aj\u00e1nd\u00e9kok \u00e9s jutalmak \u2013 Marktconsultatie Cadeauplatform",
+        "lav": "N\u012bderlande \u2013 D\u0101vanas un atl\u012bdz\u012bbas/apbalvojumi \u2013 Marktconsultatie Cadeauplatform",
+        "swe": "Nederl\u00e4nderna \u2013 Presenter och priser \u2013 Marktconsultatie Cadeauplatform",
+        "gle": "An \u00cdsilt\u00edr \u2013 Presents and rewards \u2013 Marktconsultatie Cadeauplatform",
+        "ell": "\u039a\u03ac\u03c4\u03c9 \u03a7\u03ce\u03c1\u03b5\u03c2 \u2013 \u0394\u03ce\u03c1\u03b1 \u03ba\u03b1\u03b9 \u03b2\u03c1\u03b1\u03b2\u03b5\u03af\u03b1 \u2013 Marktconsultatie Cadeauplatform",
+        "spa": "Pa\u00edses Bajos \u2013 Regalos y premios \u2013 Marktconsultatie Cadeauplatform",
+        "est": "Madalmaad \u2013 Kingitused ja auhinnad \u2013 Marktconsultatie Cadeauplatform",
+        "nld": "Nederland \u2013 Geschenken en beloningen \u2013 Marktconsultatie Cadeauplatform",
+        "fin": "Alankomaat \u2013 Lahjat ja palkinnot \u2013 Marktconsultatie Cadeauplatform",
+        "pol": "Niderlandy \u2013 Prezenty i nagrody \u2013 Marktconsultatie Cadeauplatform",
+        "hrv": "Nizozemska \u2013 Darovi i priznanja \u2013 Marktconsultatie Cadeauplatform",
+        "ces": "Nizozemsko \u2013 D\u00e1rky a ceny \u2013 Marktconsultatie Cadeauplatform",
+        "dan": "Nederlandene \u2013 Gaver og bel\u00f8nninger \u2013 Marktconsultatie Cadeauplatform",
+        "ron": "\u0162\u0103rile de Jos \u2013 Cadouri \u015fi recompense \u2013 Marktconsultatie Cadeauplatform",
+        "por": "Pa\u00edses Baixos \u2013 Prendas e brindes \u2013 Marktconsultatie Cadeauplatform",
+        "slk": "Holandsko \u2013 Dary a ceny \u2013 Marktconsultatie Cadeauplatform",
+        "fra": "Pays-Bas \u2013 Cadeaux et prix \u2013 Marktconsultatie Cadeauplatform",
+        "mlt": "In-Netherlands \u2013 Rigali u premijiet \u2013 Marktconsultatie Cadeauplatform",
+        "deu": "Niederlande \u2013 Geschenkartikel \u2013 Marktconsultatie Cadeauplatform",
+        "lit": "Nyderlandai \u2013 Dovanos ir apdovanojimai \u2013 Marktconsultatie Cadeauplatform",
+        "ita": "Paesi Bassi \u2013 Regali e premi \u2013 Marktconsultatie Cadeauplatform",
+        "bul": "\u041d\u0438\u0434\u0435\u0440\u043b\u0430\u043d\u0434\u0438\u044f \u2013 \u041f\u043e\u0434\u0430\u0440\u044a\u0446\u0438 \u0438 \u043d\u0430\u0433\u0440\u0430\u0434\u0438 \u2013 Marktconsultatie Cadeauplatform",
+        "slv": "Nizozemska \u2013 Darila in nagrade \u2013 Marktconsultatie Cadeauplatform",
+        "eng": "Netherlands \u2013 Presents and rewards \u2013 Marktconsultatie Cadeauplatform"
+      },
+      "form-type": "competition"
+    },
+    {
+      "place-of-performance": [
+        "FRI12",
+        "FRI32",
+        "FRA",
+        "FRA",
+        "FRI12",
+        "FRI32",
+        "FRA",
+        "FRA"
+      ],
+      "notice-type": "can-standard",
+      "publication-number": "368912-2026",
+      "total-value-cur": [
+        "EUR"
+      ],
+      "buyer-country": [
+        "FRA"
+      ],
+      "total-value": 450000,
+      "description-lot": {
+        "fra": [
+          "Maintenance pr\u00e9ventive sur des infrastructures du r\u00e9seau Mobive \u037e Maintenance curative sur des infrastructures du r\u00e9seau Mobive, afin de maintenir un service de qualit\u00e9 de ces infrastructures au service des usagers \u037e Organisation et maintien d'un service d'astreinte pour les interventions d'urgence, qui devra \u00eatre assur\u00e9 24 heures sur 24, dimanches et jours f\u00e9ri\u00e9s inclus. Il n'est pas fix\u00e9 de montant minimum pour la dur\u00e9e du march\u00e9 (2 ans). Il est fix\u00e9 un montant maximum de 150 000 euros HT pour la dur\u00e9e du march\u00e9 (2 ans).",
+          "Maintenance pr\u00e9ventive sur des infrastructures du r\u00e9seau Mobive \u037e Maintenance curative sur des infrastructures du r\u00e9seau Mobive, afin de maintenir un service de qualit\u00e9 de ces infrastructures au service des usagers \u037e Organisation et maintien d'un service d'astreinte pour les interventions d'urgence, qui devra \u00eatre assur\u00e9 24 heures sur 24, dimanches et jours f\u00e9ri\u00e9s inclus. Il n'est pas fix\u00e9 de montant minimum pour la dur\u00e9e du march\u00e9 (2 ans). Il est fix\u00e9 un montant maximum de 300 000 euros HT pour la dur\u00e9e du march\u00e9 (2 ans)."
+        ]
+      },
+      "procedure-type": "open",
+      "classification-cpv": [
+        "72250000",
+        "72250000",
+        "72250000"
+      ],
+      "buyer-name": {
+        "fra": [
+          "Territoire d'Energie Lot-et-Garonne"
+        ]
+      },
+      "publication-date": "2026-05-29+02:00",
+      "links": {
+        "xml": {
+          "MUL": "https://ted.europa.eu/en/notice/368912-2026/xml"
+        },
+        "pdf": {
+          "BUL": "https://ted.europa.eu/bg/notice/368912-2026/pdf",
+          "SPA": "https://ted.europa.eu/es/notice/368912-2026/pdf",
+          "CES": "https://ted.europa.eu/cs/notice/368912-2026/pdf",
+          "DAN": "https://ted.europa.eu/da/notice/368912-2026/pdf",
+          "DEU": "https://ted.europa.eu/de/notice/368912-2026/pdf",
+          "EST": "https://ted.europa.eu/et/notice/368912-2026/pdf",
+          "ELL": "https://ted.europa.eu/el/notice/368912-2026/pdf",
+          "ENG": "https://ted.europa.eu/en/notice/368912-2026/pdf",
+          "FRA": "https://ted.europa.eu/fr/notice/368912-2026/pdf",
+          "GLE": "https://ted.europa.eu/ga/notice/368912-2026/pdf",
+          "HRV": "https://ted.europa.eu/hr/notice/368912-2026/pdf",
+          "ITA": "https://ted.europa.eu/it/notice/368912-2026/pdf",
+          "LAV": "https://ted.europa.eu/lv/notice/368912-2026/pdf",
+          "LIT": "https://ted.europa.eu/lt/notice/368912-2026/pdf",
+          "HUN": "https://ted.europa.eu/hu/notice/368912-2026/pdf",
+          "MLT": "https://ted.europa.eu/mt/notice/368912-2026/pdf",
+          "NLD": "https://ted.europa.eu/nl/notice/368912-2026/pdf",
+          "POL": "https://ted.europa.eu/pl/notice/368912-2026/pdf",
+          "POR": "https://ted.europa.eu/pt/notice/368912-2026/pdf",
+          "RON": "https://ted.europa.eu/ro/notice/368912-2026/pdf",
+          "SLK": "https://ted.europa.eu/sk/notice/368912-2026/pdf",
+          "SLV": "https://ted.europa.eu/sl/notice/368912-2026/pdf",
+          "FIN": "https://ted.europa.eu/fi/notice/368912-2026/pdf",
+          "SWE": "https://ted.europa.eu/sv/notice/368912-2026/pdf"
+        },
+        "pdfs": {
+          "FRA": "https://ted.europa.eu/fr/notice/368912-2026/pdfs"
+        },
+        "html": {
+          "BUL": "https://ted.europa.eu/bg/notice/-/detail/368912-2026",
+          "SPA": "https://ted.europa.eu/es/notice/-/detail/368912-2026",
+          "CES": "https://ted.europa.eu/cs/notice/-/detail/368912-2026",
+          "DAN": "https://ted.europa.eu/da/notice/-/detail/368912-2026",
+          "DEU": "https://ted.europa.eu/de/notice/-/detail/368912-2026",
+          "EST": "https://ted.europa.eu/et/notice/-/detail/368912-2026",
+          "ELL": "https://ted.europa.eu/el/notice/-/detail/368912-2026",
+          "ENG": "https://ted.europa.eu/en/notice/-/detail/368912-2026",
+          "FRA": "https://ted.europa.eu/fr/notice/-/detail/368912-2026",
+          "GLE": "https://ted.europa.eu/ga/notice/-/detail/368912-2026",
+          "HRV": "https://ted.europa.eu/hr/notice/-/detail/368912-2026",
+          "ITA": "https://ted.europa.eu/it/notice/-/detail/368912-2026",
+          "LAV": "https://ted.europa.eu/lv/notice/-/detail/368912-2026",
+          "LIT": "https://ted.europa.eu/lt/notice/-/detail/368912-2026",
+          "HUN": "https://ted.europa.eu/hu/notice/-/detail/368912-2026",
+          "MLT": "https://ted.europa.eu/mt/notice/-/detail/368912-2026",
+          "NLD": "https://ted.europa.eu/nl/notice/-/detail/368912-2026",
+          "POL": "https://ted.europa.eu/pl/notice/-/detail/368912-2026",
+          "POR": "https://ted.europa.eu/pt/notice/-/detail/368912-2026",
+          "RON": "https://ted.europa.eu/ro/notice/-/detail/368912-2026",
+          "SLK": "https://ted.europa.eu/sk/notice/-/detail/368912-2026",
+          "SLV": "https://ted.europa.eu/sl/notice/-/detail/368912-2026",
+          "FIN": "https://ted.europa.eu/fi/notice/-/detail/368912-2026",
+          "SWE": "https://ted.europa.eu/sv/notice/-/detail/368912-2026"
+        },
+        "htmlDirect": {
+          "BUL": "https://ted.europa.eu/bg/notice/368912-2026/html",
+          "SPA": "https://ted.europa.eu/es/notice/368912-2026/html",
+          "CES": "https://ted.europa.eu/cs/notice/368912-2026/html",
+          "DAN": "https://ted.europa.eu/da/notice/368912-2026/html",
+          "DEU": "https://ted.europa.eu/de/notice/368912-2026/html",
+          "EST": "https://ted.europa.eu/et/notice/368912-2026/html",
+          "ELL": "https://ted.europa.eu/el/notice/368912-2026/html",
+          "ENG": "https://ted.europa.eu/en/notice/368912-2026/html",
+          "FRA": "https://ted.europa.eu/fr/notice/368912-2026/html",
+          "GLE": "https://ted.europa.eu/ga/notice/368912-2026/html",
+          "HRV": "https://ted.europa.eu/hr/notice/368912-2026/html",
+          "ITA": "https://ted.europa.eu/it/notice/368912-2026/html",
+          "LAV": "https://ted.europa.eu/lv/notice/368912-2026/html",
+          "LIT": "https://ted.europa.eu/lt/notice/368912-2026/html",
+          "HUN": "https://ted.europa.eu/hu/notice/368912-2026/html",
+          "MLT": "https://ted.europa.eu/mt/notice/368912-2026/html",
+          "NLD": "https://ted.europa.eu/nl/notice/368912-2026/html",
+          "POL": "https://ted.europa.eu/pl/notice/368912-2026/html",
+          "POR": "https://ted.europa.eu/pt/notice/368912-2026/html",
+          "RON": "https://ted.europa.eu/ro/notice/368912-2026/html",
+          "SLK": "https://ted.europa.eu/sk/notice/368912-2026/html",
+          "SLV": "https://ted.europa.eu/sl/notice/368912-2026/html",
+          "FIN": "https://ted.europa.eu/fi/notice/368912-2026/html",
+          "SWE": "https://ted.europa.eu/sv/notice/368912-2026/html"
+        }
+      },
+      "notice-title": {
+        "hun": "Franciaorsz\u00e1g \u2013 Rendszer-karbantart\u00e1si \u00e9s t\u00e1mogat\u00e1si szolg\u00e1ltat\u00e1sok \u2013 Maintenance technique d'infrastructures de recharge pour v\u00e9hicules \u00e9lectriques en Gironde et Charente-Maritime",
+        "lav": "Francija \u2013 Sist\u0113mas un atbalsta pakalpojumi \u2013 Maintenance technique d'infrastructures de recharge pour v\u00e9hicules \u00e9lectriques en Gironde et Charente-Maritime",
+        "swe": "Frankrike \u2013 System- och st\u00f6dtj\u00e4nster \u2013 Maintenance technique d'infrastructures de recharge pour v\u00e9hicules \u00e9lectriques en Gironde et Charente-Maritime",
+        "gle": "An Fhrainc \u2013 System and support services \u2013 Maintenance technique d'infrastructures de recharge pour v\u00e9hicules \u00e9lectriques en Gironde et Charente-Maritime",
+        "ell": "\u0393\u03b1\u03bb\u03bb\u03af\u03b1 \u2013 \u03a5\u03c0\u03b7\u03c1\u03b5\u03c3\u03af\u03b5\u03c2 \u03c3\u03c5\u03c3\u03c4\u03ae\u03bc\u03b1\u03c4\u03bf\u03c2 \u03ba\u03b1\u03b9 \u03c5\u03c0\u03bf\u03c3\u03c4\u03ae\u03c1\u03b9\u03be\u03b7\u03c2 \u2013 Maintenance technique d'infrastructures de recharge pour v\u00e9hicules \u00e9lectriques en Gironde et Charente-Maritime",
+        "spa": "Francia \u2013 Servicios de sistemas y apoyo \u2013 Maintenance technique d'infrastructures de recharge pour v\u00e9hicules \u00e9lectriques en Gironde et Charente-Maritime",
+        "est": "Prantsusmaa \u2013 S\u00fcsteemi hooldus- ja tugiteenused \u2013 Maintenance technique d'infrastructures de recharge pour v\u00e9hicules \u00e9lectriques en Gironde et Charente-Maritime",
+        "nld": "Frankrijk \u2013 Systeem- en ondersteuningsdiensten \u2013 Maintenance technique d'infrastructures de recharge pour v\u00e9hicules \u00e9lectriques en Gironde et Charente-Maritime",
+        "fin": "Ranska \u2013 J\u00e4rjestelm\u00e4- ja tukipalvelut \u2013 Maintenance technique d'infrastructures de recharge pour v\u00e9hicules \u00e9lectriques en Gironde et Charente-Maritime",
+        "pol": "Francja \u2013 Us\u0142ugi w zakresie konserwacji i wsparcia system\u00f3w \u2013 Maintenance technique d'infrastructures de recharge pour v\u00e9hicules \u00e9lectriques en Gironde et Charente-Maritime",
+        "hrv": "Francuska \u2013 Sistemske usluge i usluge potpore \u2013 Maintenance technique d'infrastructures de recharge pour v\u00e9hicules \u00e9lectriques en Gironde et Charente-Maritime",
+        "ces": "Francie \u2013 Syst\u00e9mov\u00e9 a podp\u016frn\u00e9 slu\u017eby \u2013 Maintenance technique d'infrastructures de recharge pour v\u00e9hicules \u00e9lectriques en Gironde et Charente-Maritime",
+        "dan": "Frankrig \u2013 System- og supporttjenester \u2013 Maintenance technique d'infrastructures de recharge pour v\u00e9hicules \u00e9lectriques en Gironde et Charente-Maritime",
+        "ron": "Fran\u0163a \u2013 Servicii pentru sisteme \u015fi asisten\u0163\u0103 \u2013 Maintenance technique d'infrastructures de recharge pour v\u00e9hicules \u00e9lectriques en Gironde et Charente-Maritime",
+        "por": "Fran\u00e7a \u2013 Servi\u00e7os de sistemas e de apoio \u2013 Maintenance technique d'infrastructures de recharge pour v\u00e9hicules \u00e9lectriques en Gironde et Charente-Maritime",
+        "slk": "Franc\u00fazsko \u2013 Slu\u017eby t\u00fdkaj\u00face sa podpory syst\u00e9mu \u2013 Maintenance technique d'infrastructures de recharge pour v\u00e9hicules \u00e9lectriques en Gironde et Charente-Maritime",
+        "fra": "France \u2013 Services de maintenance des syst\u00e8mes et services d'assistance \u2013 Maintenance technique d'infrastructures de recharge pour v\u00e9hicules \u00e9lectriques en Gironde et Charente-Maritime",
+        "mlt": "Franza \u2013 Servizzi ta' sistemi u appo\u0121\u0121 \u2013 Maintenance technique d'infrastructures de recharge pour v\u00e9hicules \u00e9lectriques en Gironde et Charente-Maritime",
+        "deu": "Frankreich \u2013 Systemdienstleistungen und Unterst\u00fctzungsdienste \u2013 Maintenance technique d'infrastructures de recharge pour v\u00e9hicules \u00e9lectriques en Gironde et Charente-Maritime",
+        "lit": "Pranc\u016bzija \u2013 Sistem\u0173 ir aptarnavimo paslaugos \u2013 Maintenance technique d'infrastructures de recharge pour v\u00e9hicules \u00e9lectriques en Gironde et Charente-Maritime",
+        "ita": "Francia \u2013 Servizi di manutenzione di sistemi e di assistenza \u2013 Maintenance technique d'infrastructures de recharge pour v\u00e9hicules \u00e9lectriques en Gironde et Charente-Maritime",
+        "bul": "\u0424pa\u043d\u0446\u0438\u044f \u2013 \u0423\u0441\u043b\u0443\u0433\u0438 \u043f\u043e \u043f\u043e\u0434\u0434\u044a\u0440\u0436\u0430\u043d\u0435 \u043d\u0430 \u0441\u0438\u0441\u0442\u0435\u043c\u0438 \u0438 \u043e\u043a\u0430\u0437\u0432\u0430\u043d\u0435 \u043d\u0430 \u043f\u043e\u043c\u043e\u0449 \u2013 Maintenance technique d'infrastructures de recharge pour v\u00e9hicules \u00e9lectriques en Gironde et Charente-Maritime",
+        "slv": "Francija \u2013 Sistemske in podporne storitve \u2013 Maintenance technique d'infrastructures de recharge pour v\u00e9hicules \u00e9lectriques en Gironde et Charente-Maritime",
+        "eng": "France \u2013 System and support services \u2013 Maintenance technique d'infrastructures de recharge pour v\u00e9hicules \u00e9lectriques en Gironde et Charente-Maritime"
+      },
+      "form-type": "result"
+    },
+    {
+      "place-of-performance": [
+        "FR101",
+        "FRA",
+        "FR101",
+        "FRA"
+      ],
+      "description-lot": {
+        "fra": [
+          "Le pr\u00e9sent march\u00e9 a pour objet la mise en place d'un dispositif global de facturation clients et de facturation \u00e9lectronique sortante au sein de l'association COALLIA, dans le cadre de la mise en conformit\u00e9 avec la r\u00e9forme nationale de la facturation \u00e9lectronique applicable \u00e0 compter de 2026. Le march\u00e9 porte sur la mise en oeuvre d'une solution permettant de couvrir l'ensemble du processus de facturation clients dit Order-to-Cash (O2C), incluant notamment : - la pr\u00e9paration et la structuration des donn\u00e9es de facturation ; - la g\u00e9n\u00e9ration et l'\u00e9mission des factures clients ; - la gestion du cycle de vie des factures ; - le suivi des statuts r\u00e9glementaires associ\u00e9s aux flux de facturation. La solution mise en oeuvre devra \u00eatre int\u00e9gr\u00e9e ou interfac\u00e9e avec une Plateforme Agr\u00e9\u00e9e (PA) permettant notamment : - la transmission des factures \u00e9lectroniques conform\u00e9ment aux obligations r\u00e9glementaires ; - la gestion et la restitution des statuts r\u00e9glementaires ; - la production et la transmission des flux de e-reporting ; - la tra\u00e7abilit\u00e9 des flux et traitements associ\u00e9s. La solution devra s'int\u00e9grer dans l'\u00e9cosyst\u00e8me applicatif existant de COALLIA, notamment avec l'ERP financier SAP et les outils amont producteurs de donn\u00e9es de facturation. Les prestations attendues sont d\u00e9crites de mani\u00e8re d\u00e9taill\u00e9e dans le Cahier des Clauses Techniques Particuli\u00e8res (CCTP)."
+        ]
+      },
+      "notice-type": "can-standard",
+      "procedure-type": "open",
+      "publication-number": "368900-2026",
+      "classification-cpv": [
+        "72268000",
+        "72252000",
+        "72268000",
+        "72263000",
+        "72261000",
+        "72268000"
+      ],
+      "buyer-name": {
+        "fra": [
+          "Coallia"
+        ]
+      },
+      "publication-date": "2026-05-29+02:00",
+      "links": {
+        "xml": {
+          "MUL": "https://ted.europa.eu/en/notice/368900-2026/xml"
+        },
+        "pdf": {
+          "BUL": "https://ted.europa.eu/bg/notice/368900-2026/pdf",
+          "SPA": "https://ted.europa.eu/es/notice/368900-2026/pdf",
+          "CES": "https://ted.europa.eu/cs/notice/368900-2026/pdf",
+          "DAN": "https://ted.europa.eu/da/notice/368900-2026/pdf",
+          "DEU": "https://ted.europa.eu/de/notice/368900-2026/pdf",
+          "EST": "https://ted.europa.eu/et/notice/368900-2026/pdf",
+          "ELL": "https://ted.europa.eu/el/notice/368900-2026/pdf",
+          "ENG": "https://ted.europa.eu/en/notice/368900-2026/pdf",
+          "FRA": "https://ted.europa.eu/fr/notice/368900-2026/pdf",
+          "GLE": "https://ted.europa.eu/ga/notice/368900-2026/pdf",
+          "HRV": "https://ted.europa.eu/hr/notice/368900-2026/pdf",
+          "ITA": "https://ted.europa.eu/it/notice/368900-2026/pdf",
+          "LAV": "https://ted.europa.eu/lv/notice/368900-2026/pdf",
+          "LIT": "https://ted.europa.eu/lt/notice/368900-2026/pdf",
+          "HUN": "https://ted.europa.eu/hu/notice/368900-2026/pdf",
+          "MLT": "https://ted.europa.eu/mt/notice/368900-2026/pdf",
+          "NLD": "https://ted.europa.eu/nl/notice/368900-2026/pdf",
+          "POL": "https://ted.europa.eu/pl/notice/368900-2026/pdf",
+          "POR": "https://ted.europa.eu/pt/notice/368900-2026/pdf",
+          "RON": "https://ted.europa.eu/ro/notice/368900-2026/pdf",
+          "SLK": "https://ted.europa.eu/sk/notice/368900-2026/pdf",
+          "SLV": "https://ted.europa.eu/sl/notice/368900-2026/pdf",
+          "FIN": "https://ted.europa.eu/fi/notice/368900-2026/pdf",
+          "SWE": "https://ted.europa.eu/sv/notice/368900-2026/pdf"
+        },
+        "pdfs": {
+          "FRA": "https://ted.europa.eu/fr/notice/368900-2026/pdfs"
+        },
+        "html": {
+          "BUL": "https://ted.europa.eu/bg/notice/-/detail/368900-2026",
+          "SPA": "https://ted.europa.eu/es/notice/-/detail/368900-2026",
+          "CES": "https://ted.europa.eu/cs/notice/-/detail/368900-2026",
+          "DAN": "https://ted.europa.eu/da/notice/-/detail/368900-2026",
+          "DEU": "https://ted.europa.eu/de/notice/-/detail/368900-2026",
+          "EST": "https://ted.europa.eu/et/notice/-/detail/368900-2026",
+          "ELL": "https://ted.europa.eu/el/notice/-/detail/368900-2026",
+          "ENG": "https://ted.europa.eu/en/notice/-/detail/368900-2026",
+          "FRA": "https://ted.europa.eu/fr/notice/-/detail/368900-2026",
+          "GLE": "https://ted.europa.eu/ga/notice/-/detail/368900-2026",
+          "HRV": "https://ted.europa.eu/hr/notice/-/detail/368900-2026",
+          "ITA": "https://ted.europa.eu/it/notice/-/detail/368900-2026",
+          "LAV": "https://ted.europa.eu/lv/notice/-/detail/368900-2026",
+          "LIT": "https://ted.europa.eu/lt/notice/-/detail/368900-2026",
+          "HUN": "https://ted.europa.eu/hu/notice/-/detail/368900-2026",
+          "MLT": "https://ted.europa.eu/mt/notice/-/detail/368900-2026",
+          "NLD": "https://ted.europa.eu/nl/notice/-/detail/368900-2026",
+          "POL": "https://ted.europa.eu/pl/notice/-/detail/368900-2026",
+          "POR": "https://ted.europa.eu/pt/notice/-/detail/368900-2026",
+          "RON": "https://ted.europa.eu/ro/notice/-/detail/368900-2026",
+          "SLK": "https://ted.europa.eu/sk/notice/-/detail/368900-2026",
+          "SLV": "https://ted.europa.eu/sl/notice/-/detail/368900-2026",
+          "FIN": "https://ted.europa.eu/fi/notice/-/detail/368900-2026",
+          "SWE": "https://ted.europa.eu/sv/notice/-/detail/368900-2026"
+        },
+        "htmlDirect": {
+          "BUL": "https://ted.europa.eu/bg/notice/368900-2026/html",
+          "SPA": "https://ted.europa.eu/es/notice/368900-2026/html",
+          "CES": "https://ted.europa.eu/cs/notice/368900-2026/html",
+          "DAN": "https://ted.europa.eu/da/notice/368900-2026/html",
+          "DEU": "https://ted.europa.eu/de/notice/368900-2026/html",
+          "EST": "https://ted.europa.eu/et/notice/368900-2026/html",
+          "ELL": "https://ted.europa.eu/el/notice/368900-2026/html",
+          "ENG": "https://ted.europa.eu/en/notice/368900-2026/html",
+          "FRA": "https://ted.europa.eu/fr/notice/368900-2026/html",
+          "GLE": "https://ted.europa.eu/ga/notice/368900-2026/html",
+          "HRV": "https://ted.europa.eu/hr/notice/368900-2026/html",
+          "ITA": "https://ted.europa.eu/it/notice/368900-2026/html",
+          "LAV": "https://ted.europa.eu/lv/notice/368900-2026/html",
+          "LIT": "https://ted.europa.eu/lt/notice/368900-2026/html",
+          "HUN": "https://ted.europa.eu/hu/notice/368900-2026/html",
+          "MLT": "https://ted.europa.eu/mt/notice/368900-2026/html",
+          "NLD": "https://ted.europa.eu/nl/notice/368900-2026/html",
+          "POL": "https://ted.europa.eu/pl/notice/368900-2026/html",
+          "POR": "https://ted.europa.eu/pt/notice/368900-2026/html",
+          "RON": "https://ted.europa.eu/ro/notice/368900-2026/html",
+          "SLK": "https://ted.europa.eu/sk/notice/368900-2026/html",
+          "SLV": "https://ted.europa.eu/sl/notice/368900-2026/html",
+          "FIN": "https://ted.europa.eu/fi/notice/368900-2026/html",
+          "SWE": "https://ted.europa.eu/sv/notice/368900-2026/html"
+        }
+      },
+      "buyer-country": [
+        "FRA"
+      ],
+      "notice-title": {
+        "hun": "Franciaorsz\u00e1g \u2013 Szoftverell\u00e1t\u00e1si szolg\u00e1ltat\u00e1sok \u2013 D\u00e9ploiement d'une solution O2C de facturation \u00e9lectronique interfac\u00e9e avec une plateforme agr\u00e9\u00e9e (r\u00e9forme 2026)",
+        "lav": "Francija \u2013 Programmat\u016bras pieg\u0101des pakalpojumi \u2013 D\u00e9ploiement d'une solution O2C de facturation \u00e9lectronique interfac\u00e9e avec une plateforme agr\u00e9\u00e9e (r\u00e9forme 2026)",
+        "swe": "Frankrike \u2013 Tillhandah\u00e5llande av programvara \u2013 D\u00e9ploiement d'une solution O2C de facturation \u00e9lectronique interfac\u00e9e avec une plateforme agr\u00e9\u00e9e (r\u00e9forme 2026)",
+        "gle": "An Fhrainc \u2013 Software supply services \u2013 D\u00e9ploiement d'une solution O2C de facturation \u00e9lectronique interfac\u00e9e avec une plateforme agr\u00e9\u00e9e (r\u00e9forme 2026)",
+        "ell": "\u0393\u03b1\u03bb\u03bb\u03af\u03b1 \u2013 \u03a5\u03c0\u03b7\u03c1\u03b5\u03c3\u03af\u03b5\u03c2 \u03c0\u03c1\u03bf\u03bc\u03ae\u03b8\u03b5\u03b9\u03b1\u03c2 \u03bb\u03bf\u03b3\u03b9\u03c3\u03bc\u03b9\u03ba\u03bf\u03cd \u2013 D\u00e9ploiement d'une solution O2C de facturation \u00e9lectronique interfac\u00e9e avec une plateforme agr\u00e9\u00e9e (r\u00e9forme 2026)",
+        "spa": "Francia \u2013 Servicios de suministro de software \u2013 D\u00e9ploiement d'une solution O2C de facturation \u00e9lectronique interfac\u00e9e avec une plateforme agr\u00e9\u00e9e (r\u00e9forme 2026)",
+        "est": "Prantsusmaa \u2013 Tarkvara tarnimisteenused \u2013 D\u00e9ploiement d'une solution O2C de facturation \u00e9lectronique interfac\u00e9e avec une plateforme agr\u00e9\u00e9e (r\u00e9forme 2026)",
+        "nld": "Frankrijk \u2013 Leveren van software \u2013 D\u00e9ploiement d'une solution O2C de facturation \u00e9lectronique interfac\u00e9e avec une plateforme agr\u00e9\u00e9e (r\u00e9forme 2026)",
+        "fin": "Ranska \u2013 Ohjelmiston toimituspalvelut \u2013 D\u00e9ploiement d'une solution O2C de facturation \u00e9lectronique interfac\u00e9e avec une plateforme agr\u00e9\u00e9e (r\u00e9forme 2026)",
+        "pol": "Francja \u2013 Us\u0142ugi dostawy oprogramowania \u2013 D\u00e9ploiement d'une solution O2C de facturation \u00e9lectronique interfac\u00e9e avec une plateforme agr\u00e9\u00e9e (r\u00e9forme 2026)",
+        "hrv": "Francuska \u2013 Usluge dobave programske podr\u0161ke \u2013 D\u00e9ploiement d'une solution O2C de facturation \u00e9lectronique interfac\u00e9e avec une plateforme agr\u00e9\u00e9e (r\u00e9forme 2026)",
+        "ces": "Francie \u2013 Dod\u00e1vka programov\u00e9ho vybaven\u00ed \u2013 D\u00e9ploiement d'une solution O2C de facturation \u00e9lectronique interfac\u00e9e avec une plateforme agr\u00e9\u00e9e (r\u00e9forme 2026)",
+        "dan": "Frankrig \u2013 Levering af programmel \u2013 D\u00e9ploiement d'une solution O2C de facturation \u00e9lectronique interfac\u00e9e avec une plateforme agr\u00e9\u00e9e (r\u00e9forme 2026)",
+        "ron": "Fran\u0163a \u2013 Servicii de furnizare de software \u2013 D\u00e9ploiement d'une solution O2C de facturation \u00e9lectronique interfac\u00e9e avec une plateforme agr\u00e9\u00e9e (r\u00e9forme 2026)",
+        "por": "Fran\u00e7a \u2013 Servi\u00e7os de fornecimento de software \u2013 D\u00e9ploiement d'une solution O2C de facturation \u00e9lectronique interfac\u00e9e avec une plateforme agr\u00e9\u00e9e (r\u00e9forme 2026)",
+        "slk": "Franc\u00fazsko \u2013 Dod\u00e1vky softv\u00e9ru \u2013 D\u00e9ploiement d'une solution O2C de facturation \u00e9lectronique interfac\u00e9e avec une plateforme agr\u00e9\u00e9e (r\u00e9forme 2026)",
+        "fra": "France \u2013 Services de fourniture de logiciels \u2013 D\u00e9ploiement d'une solution O2C de facturation \u00e9lectronique interfac\u00e9e avec une plateforme agr\u00e9\u00e9e (r\u00e9forme 2026)",
+        "mlt": "Franza \u2013 Servizzi tal-forniment tas-software \u2013 D\u00e9ploiement d'une solution O2C de facturation \u00e9lectronique interfac\u00e9e avec une plateforme agr\u00e9\u00e9e (r\u00e9forme 2026)",
+        "deu": "Frankreich \u2013 Bereitstellung von Software \u2013 D\u00e9ploiement d'une solution O2C de facturation \u00e9lectronique interfac\u00e9e avec une plateforme agr\u00e9\u00e9e (r\u00e9forme 2026)",
+        "lit": "Pranc\u016bzija \u2013 Programin\u0117s \u012frangos tiekimo paslaugos \u2013 D\u00e9ploiement d'une solution O2C de facturation \u00e9lectronique interfac\u00e9e avec une plateforme agr\u00e9\u00e9e (r\u00e9forme 2026)",
+        "ita": "Francia \u2013 Servizi di fornitura di software \u2013 D\u00e9ploiement d'une solution O2C de facturation \u00e9lectronique interfac\u00e9e avec une plateforme agr\u00e9\u00e9e (r\u00e9forme 2026)",
+        "bul": "\u0424pa\u043d\u0446\u0438\u044f \u2013 \u0423\u0441\u043b\u0443\u0433\u0438 \u043f\u043e \u0434\u043e\u0441\u0442\u0430\u0432\u043a\u0430 \u043d\u0430 \u0441\u043e\u0444\u0442\u0443\u0435\u0440\u043d\u0438 \u043f\u0440\u043e\u0434\u0443\u043a\u0442\u0438 \u2013 D\u00e9ploiement d'une solution O2C de facturation \u00e9lectronique interfac\u00e9e avec une plateforme agr\u00e9\u00e9e (r\u00e9forme 2026)",
+        "slv": "Francija \u2013 Storitve oskrbe s programsko opremo \u2013 D\u00e9ploiement d'une solution O2C de facturation \u00e9lectronique interfac\u00e9e avec une plateforme agr\u00e9\u00e9e (r\u00e9forme 2026)",
+        "eng": "France \u2013 Software supply services \u2013 D\u00e9ploiement d'une solution O2C de facturation \u00e9lectronique interfac\u00e9e avec une plateforme agr\u00e9\u00e9e (r\u00e9forme 2026)"
+      },
+      "form-type": "result"
+    },
+    {
+      "place-of-performance": [
+        "DEA23",
+        "DEU",
+        "DEA23",
+        "DEU"
+      ],
+      "notice-type": "can-standard",
+      "publication-number": "369161-2026",
+      "total-value-cur": [
+        "EUR"
+      ],
+      "buyer-country": [
+        "DEU"
+      ],
+      "total-value": 1,
+      "description-lot": {
+        "deu": [
+          "Verl\u00e4ngerung des EVB-IT Dienstvertrags Nr. 329/2021/6016607-Los4 f\u00fcr folgende Services: Gitab, IDP Shibboleth, Linux Server Management (LSS), Wiki, Cryptshare und SFTP"
+        ]
+      },
+      "procedure-type": "oth-single",
+      "classification-cpv": [
+        "72000000",
+        "72000000"
+      ],
+      "buyer-name": {
+        "deu": [
+          "Deutsches Zentrum f\u00fcr Luft- und Raumfahrt e.V. (DLR)"
+        ]
+      },
+      "publication-date": "2026-05-29+02:00",
+      "links": {
+        "xml": {
+          "MUL": "https://ted.europa.eu/en/notice/369161-2026/xml"
+        },
+        "pdf": {
+          "BUL": "https://ted.europa.eu/bg/notice/369161-2026/pdf",
+          "SPA": "https://ted.europa.eu/es/notice/369161-2026/pdf",
+          "CES": "https://ted.europa.eu/cs/notice/369161-2026/pdf",
+          "DAN": "https://ted.europa.eu/da/notice/369161-2026/pdf",
+          "DEU": "https://ted.europa.eu/de/notice/369161-2026/pdf",
+          "EST": "https://ted.europa.eu/et/notice/369161-2026/pdf",
+          "ELL": "https://ted.europa.eu/el/notice/369161-2026/pdf",
+          "ENG": "https://ted.europa.eu/en/notice/369161-2026/pdf",
+          "FRA": "https://ted.europa.eu/fr/notice/369161-2026/pdf",
+          "GLE": "https://ted.europa.eu/ga/notice/369161-2026/pdf",
+          "HRV": "https://ted.europa.eu/hr/notice/369161-2026/pdf",
+          "ITA": "https://ted.europa.eu/it/notice/369161-2026/pdf",
+          "LAV": "https://ted.europa.eu/lv/notice/369161-2026/pdf",
+          "LIT": "https://ted.europa.eu/lt/notice/369161-2026/pdf",
+          "HUN": "https://ted.europa.eu/hu/notice/369161-2026/pdf",
+          "MLT": "https://ted.europa.eu/mt/notice/369161-2026/pdf",
+          "NLD": "https://ted.europa.eu/nl/notice/369161-2026/pdf",
+          "POL": "https://ted.europa.eu/pl/notice/369161-2026/pdf",
+          "POR": "https://ted.europa.eu/pt/notice/369161-2026/pdf",
+          "RON": "https://ted.europa.eu/ro/notice/369161-2026/pdf",
+          "SLK": "https://ted.europa.eu/sk/notice/369161-2026/pdf",
+          "SLV": "https://ted.europa.eu/sl/notice/369161-2026/pdf",
+          "FIN": "https://ted.europa.eu/fi/notice/369161-2026/pdf",
+          "SWE": "https://ted.europa.eu/sv/notice/369161-2026/pdf"
+        },
+        "pdfs": {
+          "DEU": "https://ted.europa.eu/de/notice/369161-2026/pdfs"
+        },
+        "html": {
+          "BUL": "https://ted.europa.eu/bg/notice/-/detail/369161-2026",
+          "SPA": "https://ted.europa.eu/es/notice/-/detail/369161-2026",
+          "CES": "https://ted.europa.eu/cs/notice/-/detail/369161-2026",
+          "DAN": "https://ted.europa.eu/da/notice/-/detail/369161-2026",
+          "DEU": "https://ted.europa.eu/de/notice/-/detail/369161-2026",
+          "EST": "https://ted.europa.eu/et/notice/-/detail/369161-2026",
+          "ELL": "https://ted.europa.eu/el/notice/-/detail/369161-2026",
+          "ENG": "https://ted.europa.eu/en/notice/-/detail/369161-2026",
+          "FRA": "https://ted.europa.eu/fr/notice/-/detail/369161-2026",
+          "GLE": "https://ted.europa.eu/ga/notice/-/detail/369161-2026",
+          "HRV": "https://ted.europa.eu/hr/notice/-/detail/369161-2026",
+          "ITA": "https://ted.europa.eu/it/notice/-/detail/369161-2026",
+          "LAV": "https://ted.europa.eu/lv/notice/-/detail/369161-2026",
+          "LIT": "https://ted.europa.eu/lt/notice/-/detail/369161-2026",
+          "HUN": "https://ted.europa.eu/hu/notice/-/detail/369161-2026",
+          "MLT": "https://ted.europa.eu/mt/notice/-/detail/369161-2026",
+          "NLD": "https://ted.europa.eu/nl/notice/-/detail/369161-2026",
+          "POL": "https://ted.europa.eu/pl/notice/-/detail/369161-2026",
+          "POR": "https://ted.europa.eu/pt/notice/-/detail/369161-2026",
+          "RON": "https://ted.europa.eu/ro/notice/-/detail/369161-2026",
+          "SLK": "https://ted.europa.eu/sk/notice/-/detail/369161-2026",
+          "SLV": "https://ted.europa.eu/sl/notice/-/detail/369161-2026",
+          "FIN": "https://ted.europa.eu/fi/notice/-/detail/369161-2026",
+          "SWE": "https://ted.europa.eu/sv/notice/-/detail/369161-2026"
+        },
+        "htmlDirect": {
+          "BUL": "https://ted.europa.eu/bg/notice/369161-2026/html",
+          "SPA": "https://ted.europa.eu/es/notice/369161-2026/html",
+          "CES": "https://ted.europa.eu/cs/notice/369161-2026/html",
+          "DAN": "https://ted.europa.eu/da/notice/369161-2026/html",
+          "DEU": "https://ted.europa.eu/de/notice/369161-2026/html",
+          "EST": "https://ted.europa.eu/et/notice/369161-2026/html",
+          "ELL": "https://ted.europa.eu/el/notice/369161-2026/html",
+          "ENG": "https://ted.europa.eu/en/notice/369161-2026/html",
+          "FRA": "https://ted.europa.eu/fr/notice/369161-2026/html",
+          "GLE": "https://ted.europa.eu/ga/notice/369161-2026/html",
+          "HRV": "https://ted.europa.eu/hr/notice/369161-2026/html",
+          "ITA": "https://ted.europa.eu/it/notice/369161-2026/html",
+          "LAV": "https://ted.europa.eu/lv/notice/369161-2026/html",
+          "LIT": "https://ted.europa.eu/lt/notice/369161-2026/html",
+          "HUN": "https://ted.europa.eu/hu/notice/369161-2026/html",
+          "MLT": "https://ted.europa.eu/mt/notice/369161-2026/html",
+          "NLD": "https://ted.europa.eu/nl/notice/369161-2026/html",
+          "POL": "https://ted.europa.eu/pl/notice/369161-2026/html",
+          "POR": "https://ted.europa.eu/pt/notice/369161-2026/html",
+          "RON": "https://ted.europa.eu/ro/notice/369161-2026/html",
+          "SLK": "https://ted.europa.eu/sk/notice/369161-2026/html",
+          "SLV": "https://ted.europa.eu/sl/notice/369161-2026/html",
+          "FIN": "https://ted.europa.eu/fi/notice/369161-2026/html",
+          "SWE": "https://ted.europa.eu/sv/notice/369161-2026/html"
+        }
+      },
+      "notice-title": {
+        "hun": "N\u00e9metorsz\u00e1g \u2013 IT-szolg\u00e1ltat\u00e1sok: tan\u00e1csad\u00e1s, szoftverfejleszt\u00e9s, internet \u00e9s t\u00e1mogat\u00e1s \u2013 IT-Dienste: Erbringung von Leistungen eines IT Service-Providers - 329/2021/6016607 - Los4 Auftrags\u00e4nderung",
+        "lav": "V\u0101cija \u2013 IT pakalpojumi konsult\u0113\u0161ana, programmat\u016bras izstr\u0101de, internets un atbalsts \u2013 IT-Dienste: Erbringung von Leistungen eines IT Service-Providers - 329/2021/6016607 - Los4 Auftrags\u00e4nderung",
+        "swe": "Tyskland \u2013 IT-tj\u00e4nster: konsultverksamhet, programvaruutveckling, Internet och st\u00f6d \u2013 IT-Dienste: Erbringung von Leistungen eines IT Service-Providers - 329/2021/6016607 - Los4 Auftrags\u00e4nderung",
+        "gle": "An Ghearm\u00e1in \u2013 IT services: consulting, software development, Internet and support \u2013 IT-Dienste: Erbringung von Leistungen eines IT Service-Providers - 329/2021/6016607 - Los4 Auftrags\u00e4nderung",
+        "ell": "\u0393\u03b5\u03c1\u03bc\u03b1\u03bd\u03af\u03b1 \u2013 \u03a5\u03c0\u03b7\u03c1\u03b5\u03c3\u03af\u03b5\u03c2 \u03c4\u03b5\u03c7\u03bd\u03bf\u03bb\u03bf\u03b3\u03af\u03b1\u03c2 \u03c4\u03c9\u03bd \u03c0\u03bb\u03b7\u03c1\u03bf\u03c6\u03bf\u03c1\u03b9\u03ce\u03bd: \u03c0\u03b1\u03c1\u03bf\u03c7\u03ae \u03c3\u03c5\u03bc\u03b2\u03bf\u03c5\u03bb\u03ce\u03bd, \u03b1\u03bd\u03ac\u03c0\u03c4\u03c5\u03be\u03b7 \u03bb\u03bf\u03b3\u03b9\u03c3\u03bc\u03b9\u03ba\u03bf\u03cd, \u0394\u03b9\u03b1\u03b4\u03af\u03ba\u03c4\u03c5\u03bf \u03ba\u03b1\u03b9 \u03c5\u03c0\u03bf\u03c3\u03c4\u03ae\u03c1\u03b9\u03be\u03b7 \u2013 IT-Dienste: Erbringung von Leistungen eines IT Service-Providers - 329/2021/6016607 - Los4 Auftrags\u00e4nderung",
+        "spa": "Alemania \u2013 Servicios TI: consultor\u00eda, desarrollo de software, Internet y apoyo \u2013 IT-Dienste: Erbringung von Leistungen eines IT Service-Providers - 329/2021/6016607 - Los4 Auftrags\u00e4nderung",
+        "est": "Saksamaa \u2013 IT-teenused: n\u00f5uande-, tarkvaraarendus-, Interneti- ja tugiteenused \u2013 IT-Dienste: Erbringung von Leistungen eines IT Service-Providers - 329/2021/6016607 - Los4 Auftrags\u00e4nderung",
+        "nld": "Duitsland \u2013 IT-diensten: adviezen, softwareontwikkeling, internet en ondersteuning \u2013 IT-Dienste: Erbringung von Leistungen eines IT Service-Providers - 329/2021/6016607 - Los4 Auftrags\u00e4nderung",
+        "fin": "Saksa \u2013 Tietotekniset palvelut: neuvonta, ohjelmistojen kehitt\u00e4minen, Internet ja tuki \u2013 IT-Dienste: Erbringung von Leistungen eines IT Service-Providers - 329/2021/6016607 - Los4 Auftrags\u00e4nderung",
+        "pol": "Niemcy \u2013 Us\u0142ugi informatyczne: konsultacyjne, opracowywania oprogramowania, internetowe i wsparcia \u2013 IT-Dienste: Erbringung von Leistungen eines IT Service-Providers - 329/2021/6016607 - Los4 Auftrags\u00e4nderung",
+        "hrv": "Njema\u010dka \u2013 Usluge informacijske tehnologije: savjetovanje, razvoj programske podr\u0161ke, internet i podr\u0161ka \u2013 IT-Dienste: Erbringung von Leistungen eines IT Service-Providers - 329/2021/6016607 - Los4 Auftrags\u00e4nderung",
+        "ces": "N\u011bmecko \u2013 Informa\u010dn\u00ed technologie: poradenstv\u00ed, v\u00fdvoj programov\u00e9ho vybaven\u00ed, internet a podpora \u2013 IT-Dienste: Erbringung von Leistungen eines IT Service-Providers - 329/2021/6016607 - Los4 Auftrags\u00e4nderung",
+        "dan": "Tyskland \u2013 It-tjenester: r\u00e5dgivning, programmeludvikling, internet og support \u2013 IT-Dienste: Erbringung von Leistungen eines IT Service-Providers - 329/2021/6016607 - Los4 Auftrags\u00e4nderung",
+        "ron": "Germania \u2013 Servicii IT: consultan\u0163\u0103, dezvoltare de software, internet \u015fi asisten\u0163\u0103 \u2013 IT-Dienste: Erbringung von Leistungen eines IT Service-Providers - 329/2021/6016607 - Los4 Auftrags\u00e4nderung",
+        "por": "Alemanha \u2013 Servi\u00e7os de TI: consultoria, desenvolvimento de software, Internet e apoio \u2013 IT-Dienste: Erbringung von Leistungen eines IT Service-Providers - 329/2021/6016607 - Los4 Auftrags\u00e4nderung",
+        "slk": "Nemecko \u2013 Slu\u017eby informa\u010dn\u00fdch technol\u00f3gi\u00ed: konzult\u00e1cie, v\u00fdvoj softv\u00e9ru, internet a podpora \u2013 IT-Dienste: Erbringung von Leistungen eines IT Service-Providers - 329/2021/6016607 - Los4 Auftrags\u00e4nderung",
+        "fra": "Allemagne \u2013 Services de technologies de l'information, conseil, d\u00e9veloppement de logiciels, internet et appui \u2013 IT-Dienste: Erbringung von Leistungen eines IT Service-Providers - 329/2021/6016607 - Los4 Auftrags\u00e4nderung",
+        "mlt": "Il-\u0120ermanja \u2013 Servizzi ta' IT: konsulenza, \u017cvilupp ta' softwer, Internet u appo\u0121\u0121 \u2013 IT-Dienste: Erbringung von Leistungen eines IT Service-Providers - 329/2021/6016607 - Los4 Auftrags\u00e4nderung",
+        "deu": "Deutschland \u2013 IT-Dienste: Beratung, Software-Entwicklung, Internet und Hilfestellung \u2013 IT-Dienste: Erbringung von Leistungen eines IT Service-Providers - 329/2021/6016607 - Los4 Auftrags\u00e4nderung",
+        "lit": "Vokietija \u2013 IT paslaugos: konsultavimas, programin\u0117s \u012frangos k\u016brimas, internetas ir aptarnavimo paslaugos \u2013 IT-Dienste: Erbringung von Leistungen eines IT Service-Providers - 329/2021/6016607 - Los4 Auftrags\u00e4nderung",
+        "ita": "Germania \u2013 Servizi informatici: consulenza, sviluppo di software, Internet e supporto \u2013 IT-Dienste: Erbringung von Leistungen eines IT Service-Providers - 329/2021/6016607 - Los4 Auftrags\u00e4nderung",
+        "bul": "\u0413ep\u043ca\u043d\u0438\u044f \u2013 \u0418\u0422 \u0443\u0441\u043b\u0443\u0433\u0438: \u043a\u043e\u043d\u0441\u0443\u043b\u0442\u0430\u0446\u0438\u0438, \u0440\u0430\u0437\u0440\u0430\u0431\u043e\u0442\u0432\u0430\u043d\u0435 \u043d\u0430 \u0441\u043e\u0444\u0442\u0443\u0435\u0440, \u0418\u043d\u0442\u0435\u0440\u043d\u0435\u0442 \u0438 \u043f\u043e\u0434\u0434\u0440\u044a\u0436\u043a\u0430 \u2013 IT-Dienste: Erbringung von Leistungen eines IT Service-Providers - 329/2021/6016607 - Los4 Auftrags\u00e4nderung",
+        "slv": "Nem\u010dija \u2013 Storitve informacijske tehnologije: svetovanje, razvoj programske opreme, internet in podpora \u2013 IT-Dienste: Erbringung von Leistungen eines IT Service-Providers - 329/2021/6016607 - Los4 Auftrags\u00e4nderung",
+        "eng": "Germany \u2013 IT services: consulting, software development, Internet and support \u2013 IT-Dienste: Erbringung von Leistungen eines IT Service-Providers - 329/2021/6016607 - Los4 Auftrags\u00e4nderung"
+      },
+      "form-type": "result"
+    },
+    {
+      "place-of-performance": [
+        "anyw",
+        "BEL"
+      ],
+      "deadline-receipt-tender-date-lot": [
+        "2026-06-22+02:00"
+      ],
+      "notice-type": "cn-standard",
+      "publication-number": "369526-2026",
+      "estimated-value-lot": [
+        "231500"
+      ],
+      "total-value-cur": [
+        "EUR"
+      ],
+      "estimated-value-cur-lot": [
+        "EUR"
+      ],
+      "buyer-country": [
+        "BEL"
+      ],
+      "total-value": 231500,
+      "description-lot": {
+        "fra": [
+          "Le pr\u00e9sent march\u00e9 public de fournitures porte sur l-acquisition de licences pour la plateforme Jira et Confluence du SPRB"
+        ],
+        "nld": [
+          "Deze opdracht betreft de levering van licenties voor het Jira en Confluence-platform van de GOB"
+        ]
+      },
+      "procedure-type": "open",
+      "classification-cpv": [
+        "48000000",
+        "48000000"
+      ],
+      "buyer-name": {
+        "fra": [
+          "R\u00e9gion Bruxelles-Capitales : SPRB"
+        ],
+        "nld": [
+          "Brussels Hoofdstedelijk Gewest : GOB"
+        ]
+      },
+      "publication-date": "2026-05-29+02:00",
+      "links": {
+        "xml": {
+          "MUL": "https://ted.europa.eu/en/notice/369526-2026/xml"
+        },
+        "pdf": {
+          "BUL": "https://ted.europa.eu/bg/notice/369526-2026/pdf",
+          "SPA": "https://ted.europa.eu/es/notice/369526-2026/pdf",
+          "CES": "https://ted.europa.eu/cs/notice/369526-2026/pdf",
+          "DAN": "https://ted.europa.eu/da/notice/369526-2026/pdf",
+          "DEU": "https://ted.europa.eu/de/notice/369526-2026/pdf",
+          "EST": "https://ted.europa.eu/et/notice/369526-2026/pdf",
+          "ELL": "https://ted.europa.eu/el/notice/369526-2026/pdf",
+          "ENG": "https://ted.europa.eu/en/notice/369526-2026/pdf",
+          "FRA": "https://ted.europa.eu/fr/notice/369526-2026/pdf",
+          "GLE": "https://ted.europa.eu/ga/notice/369526-2026/pdf",
+          "HRV": "https://ted.europa.eu/hr/notice/369526-2026/pdf",
+          "ITA": "https://ted.europa.eu/it/notice/369526-2026/pdf",
+          "LAV": "https://ted.europa.eu/lv/notice/369526-2026/pdf",
+          "LIT": "https://ted.europa.eu/lt/notice/369526-2026/pdf",
+          "HUN": "https://ted.europa.eu/hu/notice/369526-2026/pdf",
+          "MLT": "https://ted.europa.eu/mt/notice/369526-2026/pdf",
+          "NLD": "https://ted.europa.eu/nl/notice/369526-2026/pdf",
+          "POL": "https://ted.europa.eu/pl/notice/369526-2026/pdf",
+          "POR": "https://ted.europa.eu/pt/notice/369526-2026/pdf",
+          "RON": "https://ted.europa.eu/ro/notice/369526-2026/pdf",
+          "SLK": "https://ted.europa.eu/sk/notice/369526-2026/pdf",
+          "SLV": "https://ted.europa.eu/sl/notice/369526-2026/pdf",
+          "FIN": "https://ted.europa.eu/fi/notice/369526-2026/pdf",
+          "SWE": "https://ted.europa.eu/sv/notice/369526-2026/pdf"
+        },
+        "pdfs": {
+          "FRA": "https://ted.europa.eu/fr/notice/369526-2026/pdfs",
+          "NLD": "https://ted.europa.eu/nl/notice/369526-2026/pdfs"
+        },
+        "html": {
+          "BUL": "https://ted.europa.eu/bg/notice/-/detail/369526-2026",
+          "SPA": "https://ted.europa.eu/es/notice/-/detail/369526-2026",
+          "CES": "https://ted.europa.eu/cs/notice/-/detail/369526-2026",
+          "DAN": "https://ted.europa.eu/da/notice/-/detail/369526-2026",
+          "DEU": "https://ted.europa.eu/de/notice/-/detail/369526-2026",
+          "EST": "https://ted.europa.eu/et/notice/-/detail/369526-2026",
+          "ELL": "https://ted.europa.eu/el/notice/-/detail/369526-2026",
+          "ENG": "https://ted.europa.eu/en/notice/-/detail/369526-2026",
+          "FRA": "https://ted.europa.eu/fr/notice/-/detail/369526-2026",
+          "GLE": "https://ted.europa.eu/ga/notice/-/detail/369526-2026",
+          "HRV": "https://ted.europa.eu/hr/notice/-/detail/369526-2026",
+          "ITA": "https://ted.europa.eu/it/notice/-/detail/369526-2026",
+          "LAV": "https://ted.europa.eu/lv/notice/-/detail/369526-2026",
+          "LIT": "https://ted.europa.eu/lt/notice/-/detail/369526-2026",
+          "HUN": "https://ted.europa.eu/hu/notice/-/detail/369526-2026",
+          "MLT": "https://ted.europa.eu/mt/notice/-/detail/369526-2026",
+          "NLD": "https://ted.europa.eu/nl/notice/-/detail/369526-2026",
+          "POL": "https://ted.europa.eu/pl/notice/-/detail/369526-2026",
+          "POR": "https://ted.europa.eu/pt/notice/-/detail/369526-2026",
+          "RON": "https://ted.europa.eu/ro/notice/-/detail/369526-2026",
+          "SLK": "https://ted.europa.eu/sk/notice/-/detail/369526-2026",
+          "SLV": "https://ted.europa.eu/sl/notice/-/detail/369526-2026",
+          "FIN": "https://ted.europa.eu/fi/notice/-/detail/369526-2026",
+          "SWE": "https://ted.europa.eu/sv/notice/-/detail/369526-2026"
+        },
+        "htmlDirect": {
+          "BUL": "https://ted.europa.eu/bg/notice/369526-2026/html",
+          "SPA": "https://ted.europa.eu/es/notice/369526-2026/html",
+          "CES": "https://ted.europa.eu/cs/notice/369526-2026/html",
+          "DAN": "https://ted.europa.eu/da/notice/369526-2026/html",
+          "DEU": "https://ted.europa.eu/de/notice/369526-2026/html",
+          "EST": "https://ted.europa.eu/et/notice/369526-2026/html",
+          "ELL": "https://ted.europa.eu/el/notice/369526-2026/html",
+          "ENG": "https://ted.europa.eu/en/notice/369526-2026/html",
+          "FRA": "https://ted.europa.eu/fr/notice/369526-2026/html",
+          "GLE": "https://ted.europa.eu/ga/notice/369526-2026/html",
+          "HRV": "https://ted.europa.eu/hr/notice/369526-2026/html",
+          "ITA": "https://ted.europa.eu/it/notice/369526-2026/html",
+          "LAV": "https://ted.europa.eu/lv/notice/369526-2026/html",
+          "LIT": "https://ted.europa.eu/lt/notice/369526-2026/html",
+          "HUN": "https://ted.europa.eu/hu/notice/369526-2026/html",
+          "MLT": "https://ted.europa.eu/mt/notice/369526-2026/html",
+          "NLD": "https://ted.europa.eu/nl/notice/369526-2026/html",
+          "POL": "https://ted.europa.eu/pl/notice/369526-2026/html",
+          "POR": "https://ted.europa.eu/pt/notice/369526-2026/html",
+          "RON": "https://ted.europa.eu/ro/notice/369526-2026/html",
+          "SLK": "https://ted.europa.eu/sk/notice/369526-2026/html",
+          "SLV": "https://ted.europa.eu/sl/notice/369526-2026/html",
+          "FIN": "https://ted.europa.eu/fi/notice/369526-2026/html",
+          "SWE": "https://ted.europa.eu/sv/notice/369526-2026/html"
+        }
+      },
+      "notice-title": {
+        "hun": "Belgium \u2013 Szoftvercsomag \u00e9s inform\u00e1ci\u00f3s rendszerek \u2013 Achat de licences pour les produits de la suite Atlassian (JIRA/Confluence)",
+        "lav": "Be\u013c\u0123ija \u2013 Programmat\u016bras pakotne un inform\u0101cijas sist\u0113mas \u2013 Achat de licences pour les produits de la suite Atlassian (JIRA/Confluence)",
+        "swe": "Belgien \u2013 Programvara och informationssystem \u2013 Achat de licences pour les produits de la suite Atlassian (JIRA/Confluence)",
+        "gle": "An Bheilg \u2013 Software package and information systems \u2013 Achat de licences pour les produits de la suite Atlassian (JIRA/Confluence)",
+        "ell": "\u0392\u03ad\u03bb\u03b3\u03b9\u03bf \u2013 \u03a0\u03b1\u03ba\u03ad\u03c4\u03b1 \u03bb\u03bf\u03b3\u03b9\u03c3\u03bc\u03b9\u03ba\u03bf\u03cd \u03ba\u03b1\u03b9 \u03c3\u03c5\u03c3\u03c4\u03ae\u03bc\u03b1\u03c4\u03b1 \u03c0\u03bb\u03b7\u03c1\u03bf\u03c6\u03bf\u03c1\u03b9\u03ba\u03ae\u03c2 \u2013 Achat de licences pour les produits de la suite Atlassian (JIRA/Confluence)",
+        "spa": "B\u00e9lgica \u2013 Paquetes de software y sistemas de informaci\u00f3n \u2013 Achat de licences pour les produits de la suite Atlassian (JIRA/Confluence)",
+        "est": "Belgia \u2013 Tarkvarapaketid ja infos\u00fcsteemid \u2013 Achat de licences pour les produits de la suite Atlassian (JIRA/Confluence)",
+        "nld": "Belgi\u00eb \u2013 Software en informatiesystemen \u2013 Aankoop van licenties voor de producten van het Atlassian-pakket (JIRA/Confluence)",
+        "fin": "Belgia \u2013 Ohjelmatuotteet ja tietoj\u00e4rjestelm\u00e4t \u2013 Achat de licences pour les produits de la suite Atlassian (JIRA/Confluence)",
+        "pol": "Belgia \u2013 Pakiety oprogramowania i systemy informatyczne \u2013 Achat de licences pour les produits de la suite Atlassian (JIRA/Confluence)",
+        "hrv": "Belgija \u2013 Programski paketi i informacijski sustavi \u2013 Achat de licences pour les produits de la suite Atlassian (JIRA/Confluence)",
+        "ces": "Belgie \u2013 Bal\u00edky program\u016f a informa\u010dn\u00ed syst\u00e9my \u2013 Achat de licences pour les produits de la suite Atlassian (JIRA/Confluence)",
+        "dan": "Belgien \u2013 Programpakker og informationssystemer \u2013 Achat de licences pour les produits de la suite Atlassian (JIRA/Confluence)",
+        "ron": "Belgia \u2013 Pachete software \u015fi sisteme informatice \u2013 Achat de licences pour les produits de la suite Atlassian (JIRA/Confluence)",
+        "por": "B\u00e9lgica \u2013 Pacotes de software e sistemas de informa\u00e7\u00e3o \u2013 Achat de licences pour les produits de la suite Atlassian (JIRA/Confluence)",
+        "slk": "Belgicko \u2013 Softv\u00e9rov\u00e9 bal\u00edky a informa\u010dn\u00e9 syst\u00e9my \u2013 Achat de licences pour les produits de la suite Atlassian (JIRA/Confluence)",
+        "fra": "Belgique \u2013 Logiciels et syst\u00e8mes d'information \u2013 Achat de licences pour les produits de la suite Atlassian (JIRA/Confluence)",
+        "mlt": "Il-Bel\u0121ju \u2013 Pakketti tas-softwer u sistemi ta' informazzjoni \u2013 Achat de licences pour les produits de la suite Atlassian (JIRA/Confluence)",
+        "deu": "Belgien \u2013 Softwarepaket und Informationssysteme \u2013 Achat de licences pour les produits de la suite Atlassian (JIRA/Confluence)",
+        "lit": "Belgija \u2013 Programin\u0117s \u012frangos paketai ir informacin\u0117s sistemos \u2013 Achat de licences pour les produits de la suite Atlassian (JIRA/Confluence)",
+        "ita": "Belgio \u2013 Pacchetti software e sistemi di informazione \u2013 Achat de licences pour les produits de la suite Atlassian (JIRA/Confluence)",
+        "bul": "\u0411e\u043b\u0433\u0438\u044f \u2013 \u0421\u043e\u0444\u0442\u0443\u0435\u0440\u043d\u0438 \u043f\u0430\u043a\u0435\u0442\u0438 \u0438 \u0438\u043d\u0444\u043e\u0440\u043c\u0430\u0446\u0438\u043e\u043d\u043d\u0438 \u0441\u0438\u0441\u0442\u0435\u043c\u0438 \u2013 Achat de licences pour les produits de la suite Atlassian (JIRA/Confluence)",
+        "slv": "Belgija \u2013 Programski paketi in informacijski sistemi \u2013 Achat de licences pour les produits de la suite Atlassian (JIRA/Confluence)",
+        "eng": "Belgium \u2013 Software package and information systems \u2013 Achat de licences pour les produits de la suite Atlassian (JIRA/Confluence)"
+      },
+      "form-type": "competition"
+    },
+    {
+      "place-of-performance": [
+        "BE100",
+        "BEL",
+        "BE100",
+        "BEL"
+      ],
+      "notice-type": "can-standard",
+      "publication-number": "369074-2026",
+      "total-value-cur": [
+        "EUR"
+      ],
+      "buyer-country": [
+        "BEL"
+      ],
+      "total-value": 545056,
+      "description-lot": {
+        "nld": [
+          "Springer licentei"
+        ]
+      },
+      "procedure-type": "neg-wo-call",
+      "classification-cpv": [
+        "48000000",
+        "48000000"
+      ],
+      "buyer-name": {
+        "nld": [
+          "Vrije Universiteit Brussel"
+        ]
+      },
+      "publication-date": "2026-05-29+02:00",
+      "links": {
+        "xml": {
+          "MUL": "https://ted.europa.eu/en/notice/369074-2026/xml"
+        },
+        "pdf": {
+          "BUL": "https://ted.europa.eu/bg/notice/369074-2026/pdf",
+          "SPA": "https://ted.europa.eu/es/notice/369074-2026/pdf",
+          "CES": "https://ted.europa.eu/cs/notice/369074-2026/pdf",
+          "DAN": "https://ted.europa.eu/da/notice/369074-2026/pdf",
+          "DEU": "https://ted.europa.eu/de/notice/369074-2026/pdf",
+          "EST": "https://ted.europa.eu/et/notice/369074-2026/pdf",
+          "ELL": "https://ted.europa.eu/el/notice/369074-2026/pdf",
+          "ENG": "https://ted.europa.eu/en/notice/369074-2026/pdf",
+          "FRA": "https://ted.europa.eu/fr/notice/369074-2026/pdf",
+          "GLE": "https://ted.europa.eu/ga/notice/369074-2026/pdf",
+          "HRV": "https://ted.europa.eu/hr/notice/369074-2026/pdf",
+          "ITA": "https://ted.europa.eu/it/notice/369074-2026/pdf",
+          "LAV": "https://ted.europa.eu/lv/notice/369074-2026/pdf",
+          "LIT": "https://ted.europa.eu/lt/notice/369074-2026/pdf",
+          "HUN": "https://ted.europa.eu/hu/notice/369074-2026/pdf",
+          "MLT": "https://ted.europa.eu/mt/notice/369074-2026/pdf",
+          "NLD": "https://ted.europa.eu/nl/notice/369074-2026/pdf",
+          "POL": "https://ted.europa.eu/pl/notice/369074-2026/pdf",
+          "POR": "https://ted.europa.eu/pt/notice/369074-2026/pdf",
+          "RON": "https://ted.europa.eu/ro/notice/369074-2026/pdf",
+          "SLK": "https://ted.europa.eu/sk/notice/369074-2026/pdf",
+          "SLV": "https://ted.europa.eu/sl/notice/369074-2026/pdf",
+          "FIN": "https://ted.europa.eu/fi/notice/369074-2026/pdf",
+          "SWE": "https://ted.europa.eu/sv/notice/369074-2026/pdf"
+        },
+        "pdfs": {
+          "NLD": "https://ted.europa.eu/nl/notice/369074-2026/pdfs"
+        },
+        "html": {
+          "BUL": "https://ted.europa.eu/bg/notice/-/detail/369074-2026",
+          "SPA": "https://ted.europa.eu/es/notice/-/detail/369074-2026",
+          "CES": "https://ted.europa.eu/cs/notice/-/detail/369074-2026",
+          "DAN": "https://ted.europa.eu/da/notice/-/detail/369074-2026",
+          "DEU": "https://ted.europa.eu/de/notice/-/detail/369074-2026",
+          "EST": "https://ted.europa.eu/et/notice/-/detail/369074-2026",
+          "ELL": "https://ted.europa.eu/el/notice/-/detail/369074-2026",
+          "ENG": "https://ted.europa.eu/en/notice/-/detail/369074-2026",
+          "FRA": "https://ted.europa.eu/fr/notice/-/detail/369074-2026",
+          "GLE": "https://ted.europa.eu/ga/notice/-/detail/369074-2026",
+          "HRV": "https://ted.europa.eu/hr/notice/-/detail/369074-2026",
+          "ITA": "https://ted.europa.eu/it/notice/-/detail/369074-2026",
+          "LAV": "https://ted.europa.eu/lv/notice/-/detail/369074-2026",
+          "LIT": "https://ted.europa.eu/lt/notice/-/detail/369074-2026",
+          "HUN": "https://ted.europa.eu/hu/notice/-/detail/369074-2026",
+          "MLT": "https://ted.europa.eu/mt/notice/-/detail/369074-2026",
+          "NLD": "https://ted.europa.eu/nl/notice/-/detail/369074-2026",
+          "POL": "https://ted.europa.eu/pl/notice/-/detail/369074-2026",
+          "POR": "https://ted.europa.eu/pt/notice/-/detail/369074-2026",
+          "RON": "https://ted.europa.eu/ro/notice/-/detail/369074-2026",
+          "SLK": "https://ted.europa.eu/sk/notice/-/detail/369074-2026",
+          "SLV": "https://ted.europa.eu/sl/notice/-/detail/369074-2026",
+          "FIN": "https://ted.europa.eu/fi/notice/-/detail/369074-2026",
+          "SWE": "https://ted.europa.eu/sv/notice/-/detail/369074-2026"
+        },
+        "htmlDirect": {
+          "BUL": "https://ted.europa.eu/bg/notice/369074-2026/html",
+          "SPA": "https://ted.europa.eu/es/notice/369074-2026/html",
+          "CES": "https://ted.europa.eu/cs/notice/369074-2026/html",
+          "DAN": "https://ted.europa.eu/da/notice/369074-2026/html",
+          "DEU": "https://ted.europa.eu/de/notice/369074-2026/html",
+          "EST": "https://ted.europa.eu/et/notice/369074-2026/html",
+          "ELL": "https://ted.europa.eu/el/notice/369074-2026/html",
+          "ENG": "https://ted.europa.eu/en/notice/369074-2026/html",
+          "FRA": "https://ted.europa.eu/fr/notice/369074-2026/html",
+          "GLE": "https://ted.europa.eu/ga/notice/369074-2026/html",
+          "HRV": "https://ted.europa.eu/hr/notice/369074-2026/html",
+          "ITA": "https://ted.europa.eu/it/notice/369074-2026/html",
+          "LAV": "https://ted.europa.eu/lv/notice/369074-2026/html",
+          "LIT": "https://ted.europa.eu/lt/notice/369074-2026/html",
+          "HUN": "https://ted.europa.eu/hu/notice/369074-2026/html",
+          "MLT": "https://ted.europa.eu/mt/notice/369074-2026/html",
+          "NLD": "https://ted.europa.eu/nl/notice/369074-2026/html",
+          "POL": "https://ted.europa.eu/pl/notice/369074-2026/html",
+          "POR": "https://ted.europa.eu/pt/notice/369074-2026/html",
+          "RON": "https://ted.europa.eu/ro/notice/369074-2026/html",
+          "SLK": "https://ted.europa.eu/sk/notice/369074-2026/html",
+          "SLV": "https://ted.europa.eu/sl/notice/369074-2026/html",
+          "FIN": "https://ted.europa.eu/fi/notice/369074-2026/html",
+          "SWE": "https://ted.europa.eu/sv/notice/369074-2026/html"
+        }
+      },
+      "notice-title": {
+        "hun": "Belgium \u2013 Szoftvercsomag \u00e9s inform\u00e1ci\u00f3s rendszerek \u2013 Springer licentie",
+        "lav": "Be\u013c\u0123ija \u2013 Programmat\u016bras pakotne un inform\u0101cijas sist\u0113mas \u2013 Springer licentie",
+        "swe": "Belgien \u2013 Programvara och informationssystem \u2013 Springer licentie",
+        "gle": "An Bheilg \u2013 Software package and information systems \u2013 Springer licentie",
+        "ell": "\u0392\u03ad\u03bb\u03b3\u03b9\u03bf \u2013 \u03a0\u03b1\u03ba\u03ad\u03c4\u03b1 \u03bb\u03bf\u03b3\u03b9\u03c3\u03bc\u03b9\u03ba\u03bf\u03cd \u03ba\u03b1\u03b9 \u03c3\u03c5\u03c3\u03c4\u03ae\u03bc\u03b1\u03c4\u03b1 \u03c0\u03bb\u03b7\u03c1\u03bf\u03c6\u03bf\u03c1\u03b9\u03ba\u03ae\u03c2 \u2013 Springer licentie",
+        "spa": "B\u00e9lgica \u2013 Paquetes de software y sistemas de informaci\u00f3n \u2013 Springer licentie",
+        "est": "Belgia \u2013 Tarkvarapaketid ja infos\u00fcsteemid \u2013 Springer licentie",
+        "nld": "Belgi\u00eb \u2013 Software en informatiesystemen \u2013 Springer licentie",
+        "fin": "Belgia \u2013 Ohjelmatuotteet ja tietoj\u00e4rjestelm\u00e4t \u2013 Springer licentie",
+        "pol": "Belgia \u2013 Pakiety oprogramowania i systemy informatyczne \u2013 Springer licentie",
+        "hrv": "Belgija \u2013 Programski paketi i informacijski sustavi \u2013 Springer licentie",
+        "ces": "Belgie \u2013 Bal\u00edky program\u016f a informa\u010dn\u00ed syst\u00e9my \u2013 Springer licentie",
+        "dan": "Belgien \u2013 Programpakker og informationssystemer \u2013 Springer licentie",
+        "ron": "Belgia \u2013 Pachete software \u015fi sisteme informatice \u2013 Springer licentie",
+        "por": "B\u00e9lgica \u2013 Pacotes de software e sistemas de informa\u00e7\u00e3o \u2013 Springer licentie",
+        "slk": "Belgicko \u2013 Softv\u00e9rov\u00e9 bal\u00edky a informa\u010dn\u00e9 syst\u00e9my \u2013 Springer licentie",
+        "fra": "Belgique \u2013 Logiciels et syst\u00e8mes d'information \u2013 Springer licentie",
+        "mlt": "Il-Bel\u0121ju \u2013 Pakketti tas-softwer u sistemi ta' informazzjoni \u2013 Springer licentie",
+        "deu": "Belgien \u2013 Softwarepaket und Informationssysteme \u2013 Springer licentie",
+        "lit": "Belgija \u2013 Programin\u0117s \u012frangos paketai ir informacin\u0117s sistemos \u2013 Springer licentie",
+        "ita": "Belgio \u2013 Pacchetti software e sistemi di informazione \u2013 Springer licentie",
+        "bul": "\u0411e\u043b\u0433\u0438\u044f \u2013 \u0421\u043e\u0444\u0442\u0443\u0435\u0440\u043d\u0438 \u043f\u0430\u043a\u0435\u0442\u0438 \u0438 \u0438\u043d\u0444\u043e\u0440\u043c\u0430\u0446\u0438\u043e\u043d\u043d\u0438 \u0441\u0438\u0441\u0442\u0435\u043c\u0438 \u2013 Springer licentie",
+        "slv": "Belgija \u2013 Programski paketi in informacijski sistemi \u2013 Springer licentie",
+        "eng": "Belgium \u2013 Software package and information systems \u2013 Springer licentie"
+      },
+      "form-type": "result"
+    },
+    {
+      "place-of-performance": [
+        "DE300",
+        "DEU",
+        "DE300",
+        "DEU"
+      ],
+      "deadline-receipt-tender-date-lot": [
+        "2026-07-02+02:00"
+      ],
+      "notice-type": "cn-standard",
+      "publication-number": "369693-2026",
+      "estimated-value-lot": [
+        "290000.00"
+      ],
+      "total-value-cur": [
+        "EUR"
+      ],
+      "estimated-value-cur-lot": [
+        "EUR"
+      ],
+      "buyer-country": [
+        "DEU"
+      ],
+      "total-value": 290000,
+      "description-lot": {
+        "deu": [
+          "SOTI-MobiControl Vertragsverl\u00e4ngerung von 9300 SOTI-Lizenzen inkl. Support ab 01.08.2026 f\u00fcr 12 Monate"
+        ]
+      },
+      "procedure-type": "open",
+      "classification-cpv": [
+        "48000000",
+        "48000000"
+      ],
+      "buyer-name": {
+        "deu": [
+          "Polizei Berlin"
+        ]
+      },
+      "publication-date": "2026-05-29+02:00",
+      "links": {
+        "xml": {
+          "MUL": "https://ted.europa.eu/en/notice/369693-2026/xml"
+        },
+        "pdf": {
+          "BUL": "https://ted.europa.eu/bg/notice/369693-2026/pdf",
+          "SPA": "https://ted.europa.eu/es/notice/369693-2026/pdf",
+          "CES": "https://ted.europa.eu/cs/notice/369693-2026/pdf",
+          "DAN": "https://ted.europa.eu/da/notice/369693-2026/pdf",
+          "DEU": "https://ted.europa.eu/de/notice/369693-2026/pdf",
+          "EST": "https://ted.europa.eu/et/notice/369693-2026/pdf",
+          "ELL": "https://ted.europa.eu/el/notice/369693-2026/pdf",
+          "ENG": "https://ted.europa.eu/en/notice/369693-2026/pdf",
+          "FRA": "https://ted.europa.eu/fr/notice/369693-2026/pdf",
+          "GLE": "https://ted.europa.eu/ga/notice/369693-2026/pdf",
+          "HRV": "https://ted.europa.eu/hr/notice/369693-2026/pdf",
+          "ITA": "https://ted.europa.eu/it/notice/369693-2026/pdf",
+          "LAV": "https://ted.europa.eu/lv/notice/369693-2026/pdf",
+          "LIT": "https://ted.europa.eu/lt/notice/369693-2026/pdf",
+          "HUN": "https://ted.europa.eu/hu/notice/369693-2026/pdf",
+          "MLT": "https://ted.europa.eu/mt/notice/369693-2026/pdf",
+          "NLD": "https://ted.europa.eu/nl/notice/369693-2026/pdf",
+          "POL": "https://ted.europa.eu/pl/notice/369693-2026/pdf",
+          "POR": "https://ted.europa.eu/pt/notice/369693-2026/pdf",
+          "RON": "https://ted.europa.eu/ro/notice/369693-2026/pdf",
+          "SLK": "https://ted.europa.eu/sk/notice/369693-2026/pdf",
+          "SLV": "https://ted.europa.eu/sl/notice/369693-2026/pdf",
+          "FIN": "https://ted.europa.eu/fi/notice/369693-2026/pdf",
+          "SWE": "https://ted.europa.eu/sv/notice/369693-2026/pdf"
+        },
+        "pdfs": {
+          "DEU": "https://ted.europa.eu/de/notice/369693-2026/pdfs"
+        },
+        "html": {
+          "BUL": "https://ted.europa.eu/bg/notice/-/detail/369693-2026",
+          "SPA": "https://ted.europa.eu/es/notice/-/detail/369693-2026",
+          "CES": "https://ted.europa.eu/cs/notice/-/detail/369693-2026",
+          "DAN": "https://ted.europa.eu/da/notice/-/detail/369693-2026",
+          "DEU": "https://ted.europa.eu/de/notice/-/detail/369693-2026",
+          "EST": "https://ted.europa.eu/et/notice/-/detail/369693-2026",
+          "ELL": "https://ted.europa.eu/el/notice/-/detail/369693-2026",
+          "ENG": "https://ted.europa.eu/en/notice/-/detail/369693-2026",
+          "FRA": "https://ted.europa.eu/fr/notice/-/detail/369693-2026",
+          "GLE": "https://ted.europa.eu/ga/notice/-/detail/369693-2026",
+          "HRV": "https://ted.europa.eu/hr/notice/-/detail/369693-2026",
+          "ITA": "https://ted.europa.eu/it/notice/-/detail/369693-2026",
+          "LAV": "https://ted.europa.eu/lv/notice/-/detail/369693-2026",
+          "LIT": "https://ted.europa.eu/lt/notice/-/detail/369693-2026",
+          "HUN": "https://ted.europa.eu/hu/notice/-/detail/369693-2026",
+          "MLT": "https://ted.europa.eu/mt/notice/-/detail/369693-2026",
+          "NLD": "https://ted.europa.eu/nl/notice/-/detail/369693-2026",
+          "POL": "https://ted.europa.eu/pl/notice/-/detail/369693-2026",
+          "POR": "https://ted.europa.eu/pt/notice/-/detail/369693-2026",
+          "RON": "https://ted.europa.eu/ro/notice/-/detail/369693-2026",
+          "SLK": "https://ted.europa.eu/sk/notice/-/detail/369693-2026",
+          "SLV": "https://ted.europa.eu/sl/notice/-/detail/369693-2026",
+          "FIN": "https://ted.europa.eu/fi/notice/-/detail/369693-2026",
+          "SWE": "https://ted.europa.eu/sv/notice/-/detail/369693-2026"
+        },
+        "htmlDirect": {
+          "BUL": "https://ted.europa.eu/bg/notice/369693-2026/html",
+          "SPA": "https://ted.europa.eu/es/notice/369693-2026/html",
+          "CES": "https://ted.europa.eu/cs/notice/369693-2026/html",
+          "DAN": "https://ted.europa.eu/da/notice/369693-2026/html",
+          "DEU": "https://ted.europa.eu/de/notice/369693-2026/html",
+          "EST": "https://ted.europa.eu/et/notice/369693-2026/html",
+          "ELL": "https://ted.europa.eu/el/notice/369693-2026/html",
+          "ENG": "https://ted.europa.eu/en/notice/369693-2026/html",
+          "FRA": "https://ted.europa.eu/fr/notice/369693-2026/html",
+          "GLE": "https://ted.europa.eu/ga/notice/369693-2026/html",
+          "HRV": "https://ted.europa.eu/hr/notice/369693-2026/html",
+          "ITA": "https://ted.europa.eu/it/notice/369693-2026/html",
+          "LAV": "https://ted.europa.eu/lv/notice/369693-2026/html",
+          "LIT": "https://ted.europa.eu/lt/notice/369693-2026/html",
+          "HUN": "https://ted.europa.eu/hu/notice/369693-2026/html",
+          "MLT": "https://ted.europa.eu/mt/notice/369693-2026/html",
+          "NLD": "https://ted.europa.eu/nl/notice/369693-2026/html",
+          "POL": "https://ted.europa.eu/pl/notice/369693-2026/html",
+          "POR": "https://ted.europa.eu/pt/notice/369693-2026/html",
+          "RON": "https://ted.europa.eu/ro/notice/369693-2026/html",
+          "SLK": "https://ted.europa.eu/sk/notice/369693-2026/html",
+          "SLV": "https://ted.europa.eu/sl/notice/369693-2026/html",
+          "FIN": "https://ted.europa.eu/fi/notice/369693-2026/html",
+          "SWE": "https://ted.europa.eu/sv/notice/369693-2026/html"
+        }
+      },
+      "notice-title": {
+        "hun": "N\u00e9metorsz\u00e1g \u2013 Szoftvercsomag \u00e9s inform\u00e1ci\u00f3s rendszerek \u2013 PolBln 220_26 Verl\u00e4ngerung SOTI MobiControl Lizenzen EU",
+        "lav": "V\u0101cija \u2013 Programmat\u016bras pakotne un inform\u0101cijas sist\u0113mas \u2013 PolBln 220_26 Verl\u00e4ngerung SOTI MobiControl Lizenzen EU",
+        "swe": "Tyskland \u2013 Programvara och informationssystem \u2013 PolBln 220_26 Verl\u00e4ngerung SOTI MobiControl Lizenzen EU",
+        "gle": "An Ghearm\u00e1in \u2013 Software package and information systems \u2013 PolBln 220_26 Verl\u00e4ngerung SOTI MobiControl Lizenzen EU",
+        "ell": "\u0393\u03b5\u03c1\u03bc\u03b1\u03bd\u03af\u03b1 \u2013 \u03a0\u03b1\u03ba\u03ad\u03c4\u03b1 \u03bb\u03bf\u03b3\u03b9\u03c3\u03bc\u03b9\u03ba\u03bf\u03cd \u03ba\u03b1\u03b9 \u03c3\u03c5\u03c3\u03c4\u03ae\u03bc\u03b1\u03c4\u03b1 \u03c0\u03bb\u03b7\u03c1\u03bf\u03c6\u03bf\u03c1\u03b9\u03ba\u03ae\u03c2 \u2013 PolBln 220_26 Verl\u00e4ngerung SOTI MobiControl Lizenzen EU",
+        "spa": "Alemania \u2013 Paquetes de software y sistemas de informaci\u00f3n \u2013 PolBln 220_26 Verl\u00e4ngerung SOTI MobiControl Lizenzen EU",
+        "est": "Saksamaa \u2013 Tarkvarapaketid ja infos\u00fcsteemid \u2013 PolBln 220_26 Verl\u00e4ngerung SOTI MobiControl Lizenzen EU",
+        "nld": "Duitsland \u2013 Software en informatiesystemen \u2013 PolBln 220_26 Verl\u00e4ngerung SOTI MobiControl Lizenzen EU",
+        "fin": "Saksa \u2013 Ohjelmatuotteet ja tietoj\u00e4rjestelm\u00e4t \u2013 PolBln 220_26 Verl\u00e4ngerung SOTI MobiControl Lizenzen EU",
+        "pol": "Niemcy \u2013 Pakiety oprogramowania i systemy informatyczne \u2013 PolBln 220_26 Verl\u00e4ngerung SOTI MobiControl Lizenzen EU",
+        "hrv": "Njema\u010dka \u2013 Programski paketi i informacijski sustavi \u2013 PolBln 220_26 Verl\u00e4ngerung SOTI MobiControl Lizenzen EU",
+        "ces": "N\u011bmecko \u2013 Bal\u00edky program\u016f a informa\u010dn\u00ed syst\u00e9my \u2013 PolBln 220_26 Verl\u00e4ngerung SOTI MobiControl Lizenzen EU",
+        "dan": "Tyskland \u2013 Programpakker og informationssystemer \u2013 PolBln 220_26 Verl\u00e4ngerung SOTI MobiControl Lizenzen EU",
+        "ron": "Germania \u2013 Pachete software \u015fi sisteme informatice \u2013 PolBln 220_26 Verl\u00e4ngerung SOTI MobiControl Lizenzen EU",
+        "por": "Alemanha \u2013 Pacotes de software e sistemas de informa\u00e7\u00e3o \u2013 PolBln 220_26 Verl\u00e4ngerung SOTI MobiControl Lizenzen EU",
+        "slk": "Nemecko \u2013 Softv\u00e9rov\u00e9 bal\u00edky a informa\u010dn\u00e9 syst\u00e9my \u2013 PolBln 220_26 Verl\u00e4ngerung SOTI MobiControl Lizenzen EU",
+        "fra": "Allemagne \u2013 Logiciels et syst\u00e8mes d'information \u2013 PolBln 220_26 Verl\u00e4ngerung SOTI MobiControl Lizenzen EU",
+        "mlt": "Il-\u0120ermanja \u2013 Pakketti tas-softwer u sistemi ta' informazzjoni \u2013 PolBln 220_26 Verl\u00e4ngerung SOTI MobiControl Lizenzen EU",
+        "deu": "Deutschland \u2013 Softwarepaket und Informationssysteme \u2013 PolBln 220_26 Verl\u00e4ngerung SOTI MobiControl Lizenzen EU",
+        "lit": "Vokietija \u2013 Programin\u0117s \u012frangos paketai ir informacin\u0117s sistemos \u2013 PolBln 220_26 Verl\u00e4ngerung SOTI MobiControl Lizenzen EU",
+        "ita": "Germania \u2013 Pacchetti software e sistemi di informazione \u2013 PolBln 220_26 Verl\u00e4ngerung SOTI MobiControl Lizenzen EU",
+        "bul": "\u0413ep\u043ca\u043d\u0438\u044f \u2013 \u0421\u043e\u0444\u0442\u0443\u0435\u0440\u043d\u0438 \u043f\u0430\u043a\u0435\u0442\u0438 \u0438 \u0438\u043d\u0444\u043e\u0440\u043c\u0430\u0446\u0438\u043e\u043d\u043d\u0438 \u0441\u0438\u0441\u0442\u0435\u043c\u0438 \u2013 PolBln 220_26 Verl\u00e4ngerung SOTI MobiControl Lizenzen EU",
+        "slv": "Nem\u010dija \u2013 Programski paketi in informacijski sistemi \u2013 PolBln 220_26 Verl\u00e4ngerung SOTI MobiControl Lizenzen EU",
+        "eng": "Germany \u2013 Software package and information systems \u2013 PolBln 220_26 Verl\u00e4ngerung SOTI MobiControl Lizenzen EU"
+      },
+      "form-type": "competition"
+    }
+  ],
+  "totalNoticeCount": 13484,
+  "iterationNextToken": null,
+  "timedOut": false
+}

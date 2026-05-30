@@ -6,3 +6,9 @@ build
 .git
 *.log
 .DS_Store
+.venv
+__pycache__
+*.pyc
+.pytest_cache
+*.egg-info
+*.sqlite
