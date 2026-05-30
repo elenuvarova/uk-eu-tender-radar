@@ -21,6 +21,17 @@ from app.schemas.opportunity import (
 router = APIRouter(prefix="/api", tags=["opportunities"])
 
 
+def _compute_effective_status(opp: TenderOpportunity) -> str:
+    """CLOSED is synthetic: OPEN with deadline already passed."""
+    if opp.status == "OPEN" and opp.deadline:
+        dl = opp.deadline
+        if dl.tzinfo is None:
+            dl = dl.replace(tzinfo=timezone.utc)
+        if dl < datetime.now(timezone.utc):
+            return "CLOSED"
+    return opp.status
+
+
 def _build_stmt(
     source: str | None,
     country: list[str],
@@ -160,6 +171,7 @@ def list_opportunities(
 
     def _to_item(o: TenderOpportunity) -> OpportunityItem:
         item = OpportunityItem.model_validate(o)
+        item.status = _compute_effective_status(o)  # CLOSED is synthetic
         if profile:
             from app.scoring.relevance import compute_score
             # C5: None if buyer not resolved, 0 if resolved but no matching history
