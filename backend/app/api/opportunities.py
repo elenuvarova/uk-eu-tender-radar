@@ -1,3 +1,4 @@
+from collections import defaultdict
 from datetime import datetime, timedelta, timezone
 
 from fastapi import APIRouter, Depends, HTTPException, Query
@@ -6,12 +7,14 @@ from sqlmodel import Session, select
 
 from app.db import get_session
 from app.models.tender import TenderCpv, TenderOpportunity
+from app.models.profile import SupplierProfile
 from app.schemas.opportunity import (
     FacetsResponse,
     CountItem,
     OpportunityDetail,
     OpportunityItem,
     OpportunityListResponse,
+    RelevanceScore,
 )
 
 router = APIRouter(prefix="/api", tags=["opportunities"])
@@ -95,6 +98,7 @@ def list_opportunities(
     sort: str = "deadline_asc",
     limit: int = Query(default=25, ge=1, le=100),
     offset: int = Query(default=0, ge=0),
+    score: bool = False,   # attach relevance scores using the stored profile
     session: Session = Depends(get_session),
 ):
     stmt = _build_stmt(
@@ -122,8 +126,40 @@ def list_opportunities(
     stmt = stmt.offset(offset).limit(limit)
     items = session.exec(stmt).all()
 
+    # Attach relevance scores if requested
+    profile: SupplierProfile | None = None
+    cpv_map: dict[str, list[str]] = {}
+    if score and items:
+        profile = session.get(SupplierProfile, "default")
+        opp_ids = [o.id for o in items]
+        cpv_rows = session.exec(
+            select(TenderCpv).where(TenderCpv.tender_id.in_(opp_ids))
+        ).all()
+        for row in cpv_rows:
+            cpv_map.setdefault(row.tender_id, []).append(row.cpv_code)
+
+    def _to_item(o: TenderOpportunity) -> OpportunityItem:
+        item = OpportunityItem.model_validate(o)
+        if profile:
+            from app.scoring.relevance import compute_score
+            result = compute_score(
+                tender_cpvs=cpv_map.get(o.id, []),
+                title=o.title,
+                description=o.description,
+                deadline=o.deadline,
+                estimated_value_eur=o.estimated_value_eur,
+                buyer_name=o.buyer_name,
+                profile_cpv_codes=profile.target_cpv_codes or [],
+                profile_keywords=profile.keywords or [],
+                profile_value_min=profile.value_min,
+                profile_value_max=profile.value_max,
+                profile_min_days_to_bid=profile.min_days_to_bid,
+            )
+            item.relevance = RelevanceScore(score=result.score, reasons=result.reasons)
+        return item
+
     return OpportunityListResponse(
-        items=[OpportunityItem.model_validate(o) for o in items],
+        items=[_to_item(o) for o in items],
         total=total,
         offset=offset,
         limit=limit,

@@ -2,6 +2,11 @@ from datetime import datetime
 from pydantic import BaseModel, ConfigDict
 
 
+class RelevanceScore(BaseModel):
+    score: int          # 0-100
+    reasons: list[str]
+
+
 class OpportunityItem(BaseModel):
     model_config = ConfigDict(from_attributes=True)
 
@@ -21,6 +26,7 @@ class OpportunityItem(BaseModel):
     procedure_type: str
     status: str
     award_supplier: str | None
+    relevance: RelevanceScore | None = None
 
 
 class OpportunityDetail(OpportunityItem):

@@ -1,6 +1,21 @@
 import { useEffect, useState, useCallback } from "react";
 
-// ── data hooks ────────────────────────────────────────────────────────────────
+// ── data hooks + mutation ─────────────────────────────────────────────────────
+
+function usePut(path) {
+  const [saving, setSaving] = useState(false);
+  const [error, setError] = useState(null);
+  const put = async (body) => {
+    setSaving(true); setError(null);
+    try {
+      const r = await fetch(path, { method: "PUT", headers: { "Content-Type": "application/json" }, body: JSON.stringify(body) });
+      if (!r.ok) throw new Error(`HTTP ${r.status}`);
+      return await r.json();
+    } catch (e) { setError(e.message); return null; }
+    finally { setSaving(false); }
+  };
+  return { put, saving, error };
+}
 
 function buildUrl(path, params) {
   const url = new URL(path, window.location.origin);
@@ -61,6 +76,17 @@ function SourceBadge({ source }) {
   return <span className={`badge badge-${source?.toLowerCase()}`}>{source}</span>;
 }
 
+function ScorePill({ relevance }) {
+  if (!relevance) return null;
+  const s = relevance.score;
+  const cls = s >= 65 ? "score-high" : s >= 40 ? "score-mid" : "score-low";
+  return (
+    <span className={`score-pill ${cls}`} title={relevance.reasons.join("\n")}>
+      {s}%
+    </span>
+  );
+}
+
 // ── stats row ─────────────────────────────────────────────────────────────────
 
 function StatsRow({ facets }) {
@@ -100,6 +126,69 @@ const CPV_DIVISIONS = [
   ["48", "Software"], ["72", "IT services"], ["80", "Education"],
   ["79", "Business services"], ["73", "R&D"],
 ];
+
+// ── profile panel ─────────────────────────────────────────────────────────────
+
+function ProfilePanel({ profile, onSave }) {
+  const [form, setForm] = useState(null);
+  const { put, saving } = usePut("/api/profile");
+
+  // Initialise form from profile (once loaded)
+  if (!form && profile) {
+    setForm({
+      cpvs: (profile.target_cpv_codes || []).join(", "),
+      keywords: (profile.keywords || []).join(", "),
+      value_min: profile.value_min ?? "",
+      value_max: profile.value_max ?? "",
+      countries: (profile.target_countries || []).join(", "),
+      min_days: profile.min_days_to_bid ?? 7,
+    });
+  }
+
+  if (!form) return <div className="profile-loading">Loading profile…</div>;
+
+  const save = async () => {
+    const parsed = {
+      id: "default",
+      name: profile?.name || "My Company",
+      target_cpv_codes: form.cpvs.split(",").map(s => s.trim()).filter(Boolean),
+      keywords: form.keywords.split(",").map(s => s.trim()).filter(Boolean),
+      value_min: form.value_min !== "" ? Number(form.value_min) : null,
+      value_max: form.value_max !== "" ? Number(form.value_max) : null,
+      value_currency: "EUR",
+      target_countries: form.countries.split(",").map(s => s.trim()).filter(Boolean),
+      min_days_to_bid: Number(form.min_days) || 7,
+    };
+    const saved = await put(parsed);
+    if (saved) onSave(saved);
+  };
+
+  const f = (k) => (v) => setForm(p => ({ ...p, [k]: v }));
+
+  return (
+    <div className="profile-panel">
+      <div className="profile-header">
+        <span>🎯 Supplier Profile</span>
+        <span className="profile-hint">Used to score relevance</span>
+      </div>
+      <label className="filter-label">Target CPV codes <span className="profile-hint">(comma-separated)</span></label>
+      <input className="filter-input" value={form.cpvs} onChange={e => f("cpvs")(e.target.value)} placeholder="72000000, 48000000" />
+      <label className="filter-label">Keywords</label>
+      <input className="filter-input" value={form.keywords} onChange={e => f("keywords")(e.target.value)} placeholder="cloud, digital, GDPR" />
+      <label className="filter-label">Value range (EUR)</label>
+      <div className="value-range">
+        <input className="filter-input" type="number" value={form.value_min} onChange={e => f("value_min")(e.target.value)} placeholder="min" />
+        <span>–</span>
+        <input className="filter-input" type="number" value={form.value_max} onChange={e => f("value_max")(e.target.value)} placeholder="max" />
+      </div>
+      <label className="filter-label">Target countries <span className="profile-hint">(ISO codes)</span></label>
+      <input className="filter-input" value={form.countries} onChange={e => f("countries")(e.target.value)} placeholder="GB, DE, FR" />
+      <label className="filter-label">Min days to bid</label>
+      <input className="filter-input" type="number" value={form.min_days} onChange={e => f("min_days")(e.target.value)} />
+      <button className="btn-save" onClick={save} disabled={saving}>{saving ? "Saving…" : "Save profile"}</button>
+    </div>
+  );
+}
 
 function FilterPanel({ filters, onChange }) {
   const set = (k, v) => onChange({ ...filters, [k]: v });
@@ -178,7 +267,7 @@ function FilterPanel({ filters, onChange }) {
 
 // ── results table ─────────────────────────────────────────────────────────────
 
-function OpportunitiesTable({ data, loading, error, sort, onSort, onPage, offset, limit }) {
+function OpportunitiesTable({ data, loading, error, sort, onSort, onPage, offset, limit, hasProfile }) {
   if (error) return <div className="msg msg-error">Failed to load: {error}</div>;
   if (loading && !data) return <div className="msg">Loading…</div>;
   if (!data) return null;
@@ -217,6 +306,7 @@ function OpportunitiesTable({ data, loading, error, sort, onSort, onPage, offset
                 <th>Value</th>
                 <th>Type</th>
                 <th>Deadline</th>
+                {hasProfile && <th>Score</th>}
                 <th></th>
               </tr>
             </thead>
@@ -232,6 +322,7 @@ function OpportunitiesTable({ data, loading, error, sort, onSort, onPage, offset
                   <td className="cell-value">{fmtValue(o.estimated_value, o.currency)}</td>
                   <td><span className="pill pill-type">{o.notice_type}</span></td>
                   <td><DeadlinePill iso={o.deadline} /></td>
+                  {hasProfile && <td><ScorePill relevance={o.relevance} /></td>}
                   <td>
                     <a className="link-source" href={o.source_url} target="_blank" rel="noopener noreferrer">↗</a>
                   </td>
@@ -258,14 +349,24 @@ export default function App() {
   const [filters, setFilters] = useState({});
   const [sort, setSort] = useState("deadline_asc");
   const [offset, setOffset] = useState(0);
+  const [profile, setProfile] = useState(null);
+  const [showProfile, setShowProfile] = useState(false);
 
   const limit = 25;
 
-  // Reset offset when filters/sort change
+  // Load profile on mount
+  const profileApi = useApi("/api/profile", {});
+  if (profileApi.data && !profile) setProfile(profileApi.data);
+
+  const hasProfile = profile && (
+    (profile.target_cpv_codes || []).length > 0 ||
+    (profile.keywords || []).length > 0
+  );
+
   const handleFilters = (f) => { setFilters(f); setOffset(0); };
   const handleSort = (s) => { setSort(s); setOffset(0); };
 
-  const apiParams = { ...filters, sort, limit, offset };
+  const apiParams = { ...filters, sort, limit, offset, ...(hasProfile ? { score: true } : {}) };
 
   const opps = useApi("/api/opportunities", apiParams);
   const facets = useApi("/api/facets", {});
@@ -292,7 +393,13 @@ export default function App() {
       <StatsRow facets={facets.data} />
 
       <div className="main-layout">
-        <FilterPanel filters={filters} onChange={handleFilters} />
+        <div className="left-col">
+          <div className="profile-toggle" onClick={() => setShowProfile(p => !p)}>
+            {hasProfile ? "🎯 Profile active" : "👤 Set profile"} {showProfile ? "▲" : "▼"}
+          </div>
+          {showProfile && <ProfilePanel profile={profile} onSave={p => { setProfile(p); setShowProfile(false); }} />}
+          <FilterPanel filters={filters} onChange={handleFilters} />
+        </div>
         <OpportunitiesTable
           data={opps.data}
           loading={opps.loading}
@@ -302,6 +409,7 @@ export default function App() {
           onPage={setOffset}
           offset={offset}
           limit={limit}
+          hasProfile={hasProfile}
         />
       </div>
     </div>

@@ -7,6 +7,7 @@ from fastapi.staticfiles import StaticFiles
 
 from app.api.health import router as health_router
 from app.api.opportunities import router as opp_router
+from app.api.profile import router as profile_router
 from app.config import settings
 from app.db import db_kind, init_db
 
@@ -23,6 +24,7 @@ async def lifespan(app: FastAPI):
 app = FastAPI(title="UK & EU Procurement Radar", lifespan=lifespan)
 app.include_router(health_router)
 app.include_router(opp_router)
+app.include_router(profile_router)
 
 
 if settings.is_production and PUBLIC_DIR.exists():
