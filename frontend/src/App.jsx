@@ -1,49 +1,309 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useCallback } from "react";
 
-function useApi(url) {
-  const [data, setData] = useState(null);
-  const [error, setError] = useState(null);
-  const [loading, setLoading] = useState(true);
+// ── data hooks ────────────────────────────────────────────────────────────────
 
-  useEffect(() => {
-    let active = true;
-    fetch(url)
-      .then((res) => {
-        if (!res.ok) throw new Error(`HTTP ${res.status}`);
-        return res.json();
-      })
-      .then((json) => active && setData(json))
-      .catch((err) => active && setError(err.message))
-      .finally(() => active && setLoading(false));
-    return () => {
-      active = false;
-    };
-  }, [url]);
-
-  return { data, error, loading };
+function buildUrl(path, params) {
+  const url = new URL(path, window.location.origin);
+  Object.entries(params).forEach(([k, v]) => {
+    if (Array.isArray(v)) v.forEach((x) => x && url.searchParams.append(k, x));
+    else if (v !== "" && v !== null && v !== undefined) url.searchParams.set(k, v);
+  });
+  return url.toString();
 }
 
-function Card({ title, state }) {
+function useApi(path, params = {}, deps = []) {
+  const [state, setState] = useState({ data: null, loading: true, error: null });
+  const fetch_ = useCallback(() => {
+    setState((s) => ({ ...s, loading: true, error: null }));
+    fetch(buildUrl(path, params))
+      .then((r) => { if (!r.ok) throw new Error(`HTTP ${r.status}`); return r.json(); })
+      .then((data) => setState({ data, loading: false, error: null }))
+      .catch((e) => setState({ data: null, loading: false, error: e.message }));
+  }, [JSON.stringify(params)]);
+  useEffect(() => { fetch_(); }, [fetch_, ...deps]);
+  return { ...state, reload: fetch_ };
+}
+
+// ── formatting helpers ────────────────────────────────────────────────────────
+
+function fmtValue(value, currency) {
+  if (value == null) return "—";
+  const sym = currency === "GBP" ? "£" : currency === "EUR" ? "€" : (currency || "");
+  const n = value >= 1_000_000
+    ? `${(value / 1_000_000).toFixed(1)}M`
+    : value >= 1_000
+    ? `${Math.round(value / 1_000)}k`
+    : String(value);
+  return `${sym}${n}`;
+}
+
+function fmtDate(iso) {
+  if (!iso) return "—";
+  return new Date(iso).toLocaleDateString("en-GB", { day: "numeric", month: "short", year: "numeric" });
+}
+
+function daysLeft(iso) {
+  if (!iso) return null;
+  const diff = Math.round((new Date(iso) - Date.now()) / 86400000);
+  return diff;
+}
+
+function DeadlinePill({ iso }) {
+  const d = daysLeft(iso);
+  if (d == null) return <span className="pill pill-none">No deadline</span>;
+  if (d < 0) return <span className="pill pill-expired">Expired</span>;
+  if (d <= 7) return <span className="pill pill-urgent">{d}d left</span>;
+  if (d <= 21) return <span className="pill pill-soon">{d}d left</span>;
+  return <span className="pill pill-ok">{fmtDate(iso)}</span>;
+}
+
+function SourceBadge({ source }) {
+  return <span className={`badge badge-${source?.toLowerCase()}`}>{source}</span>;
+}
+
+// ── stats row ─────────────────────────────────────────────────────────────────
+
+function StatsRow({ facets }) {
+  if (!facets) return null;
   return (
-    <div className="card">
-      <h2>{title}</h2>
-      {state.loading && <p className="muted">Loading…</p>}
-      {state.error && <p className="error">Error: {state.error}</p>}
-      {state.data && <pre>{JSON.stringify(state.data, null, 2)}</pre>}
+    <div className="stats-row">
+      <div className="stat-card">
+        <div className="stat-value">{facets.total.toLocaleString()}</div>
+        <div className="stat-label">Total notices</div>
+      </div>
+      <div className="stat-card">
+        <div className="stat-value">{(facets.by_source.UK || 0).toLocaleString()}</div>
+        <div className="stat-label">UK (Find a Tender)</div>
+      </div>
+      <div className="stat-card">
+        <div className="stat-value">{(facets.by_source.EU || 0).toLocaleString()}</div>
+        <div className="stat-label">EU (TED)</div>
+      </div>
+      <div className="stat-card stat-card-urgent">
+        <div className="stat-value">{facets.closing_soon}</div>
+        <div className="stat-label">Closing in 7 days</div>
+      </div>
     </div>
   );
 }
 
-export default function App() {
-  const hello = useApi("/api/hello");
-  const health = useApi("/api/health");
+// ── filters ───────────────────────────────────────────────────────────────────
+
+const NOTICE_TYPES = ["PLANNING", "TENDER", "AWARD", "CONTRACT", "MODIFICATION"];
+const STATUSES = ["PLANNED", "OPEN", "CLOSED", "AWARDED", "UNSUCCESSFUL", "CANCELLED"];
+const COUNTRIES = [
+  ["GB", "United Kingdom"], ["DE", "Germany"], ["FR", "France"],
+  ["BE", "Belgium"], ["NL", "Netherlands"], ["IE", "Ireland"],
+  ["ES", "Spain"], ["IT", "Italy"], ["PL", "Poland"],
+];
+const CPV_DIVISIONS = [
+  ["48", "Software"], ["72", "IT services"], ["80", "Education"],
+  ["79", "Business services"], ["73", "R&D"],
+];
+
+function FilterPanel({ filters, onChange }) {
+  const set = (k, v) => onChange({ ...filters, [k]: v });
+  const toggle = (k, v) => {
+    const arr = filters[k] || [];
+    onChange({ ...filters, [k]: arr.includes(v) ? arr.filter((x) => x !== v) : [...arr, v] });
+  };
 
   return (
-    <main>
-      <h1>Full-Stack Template</h1>
-      <p className="muted">React + Vite · Express · Sequelize</p>
-      <Card title="/api/hello" state={hello} />
-      <Card title="/api/health" state={health} />
-    </main>
+    <aside className="filter-panel">
+      <h2 className="filter-heading">Filters</h2>
+
+      <label className="filter-label">Keyword</label>
+      <input
+        className="filter-input"
+        placeholder="Search title / description…"
+        value={filters.q || ""}
+        onChange={(e) => set("q", e.target.value)}
+      />
+
+      <label className="filter-label">Source</label>
+      <select className="filter-select" value={filters.source || ""} onChange={(e) => set("source", e.target.value)}>
+        <option value="">All sources</option>
+        <option value="UK">UK (Find a Tender)</option>
+        <option value="EU">EU (TED)</option>
+      </select>
+
+      <label className="filter-label">Country</label>
+      <div className="check-group">
+        {COUNTRIES.map(([code, label]) => (
+          <label key={code} className="check-item">
+            <input type="checkbox" checked={(filters.country || []).includes(code)}
+              onChange={() => toggle("country", code)} />
+            {label}
+          </label>
+        ))}
+      </div>
+
+      <label className="filter-label">CPV category</label>
+      <div className="check-group">
+        {CPV_DIVISIONS.map(([code, label]) => (
+          <label key={code} className="check-item">
+            <input type="checkbox" checked={(filters.cpv || []).includes(code)}
+              onChange={() => toggle("cpv", code)} />
+            {label} ({code})
+          </label>
+        ))}
+      </div>
+
+      <label className="filter-label">Notice type</label>
+      <div className="check-group">
+        {NOTICE_TYPES.map((t) => (
+          <label key={t} className="check-item">
+            <input type="checkbox" checked={(filters.notice_type || []).includes(t)}
+              onChange={() => toggle("notice_type", t)} />
+            {t}
+          </label>
+        ))}
+      </div>
+
+      <label className="filter-label">Status</label>
+      <div className="check-group">
+        {STATUSES.map((s) => (
+          <label key={s} className="check-item">
+            <input type="checkbox" checked={(filters.status || []).includes(s)}
+              onChange={() => toggle("status", s)} />
+            {s}
+          </label>
+        ))}
+      </div>
+
+      <button className="btn-reset" onClick={() => onChange({})}>Reset filters</button>
+    </aside>
+  );
+}
+
+// ── results table ─────────────────────────────────────────────────────────────
+
+function OpportunitiesTable({ data, loading, error, sort, onSort, onPage, offset, limit }) {
+  if (error) return <div className="msg msg-error">Failed to load: {error}</div>;
+  if (loading && !data) return <div className="msg">Loading…</div>;
+  if (!data) return null;
+
+  const { items, total } = data;
+  const page = Math.floor(offset / limit);
+  const pages = Math.ceil(total / limit);
+
+  const SortBtn = ({ field, label }) => (
+    <button className={`sort-btn ${sort === field ? "active" : ""}`} onClick={() => onSort(field)}>
+      {label}
+    </button>
+  );
+
+  return (
+    <div className="results-wrap">
+      <div className="results-meta">
+        {loading ? "Refreshing…" : `${total.toLocaleString()} notices`}
+        <span className="sort-row">
+          Sort: <SortBtn field="deadline_asc" label="Deadline ↑" />
+          <SortBtn field="published_desc" label="Published ↓" />
+          <SortBtn field="value_desc" label="Value ↓" />
+        </span>
+      </div>
+
+      {items.length === 0
+        ? <div className="msg msg-empty">No notices match these filters. Try ingesting data first:<br />
+            <code>python -m app.ingestion.run --source fts --days 7</code>
+          </div>
+        : <table className="opp-table">
+            <thead>
+              <tr>
+                <th>Title</th>
+                <th>Buyer</th>
+                <th>Country</th>
+                <th>Value</th>
+                <th>Type</th>
+                <th>Deadline</th>
+                <th></th>
+              </tr>
+            </thead>
+            <tbody>
+              {items.map((o) => (
+                <tr key={o.id}>
+                  <td className="cell-title">
+                    <SourceBadge source={o.source} />
+                    {o.title}
+                  </td>
+                  <td className="cell-buyer">{o.buyer_name || "—"}</td>
+                  <td>{o.buyer_country || "—"}</td>
+                  <td className="cell-value">{fmtValue(o.estimated_value, o.currency)}</td>
+                  <td><span className="pill pill-type">{o.notice_type}</span></td>
+                  <td><DeadlinePill iso={o.deadline} /></td>
+                  <td>
+                    <a className="link-source" href={o.source_url} target="_blank" rel="noopener noreferrer">↗</a>
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+      }
+
+      {pages > 1 && (
+        <div className="pagination">
+          <button disabled={page === 0} onClick={() => onPage((page - 1) * limit)}>← Prev</button>
+          <span>Page {page + 1} of {pages}</span>
+          <button disabled={page >= pages - 1} onClick={() => onPage((page + 1) * limit)}>Next →</button>
+        </div>
+      )}
+    </div>
+  );
+}
+
+// ── app ───────────────────────────────────────────────────────────────────────
+
+export default function App() {
+  const [filters, setFilters] = useState({});
+  const [sort, setSort] = useState("deadline_asc");
+  const [offset, setOffset] = useState(0);
+
+  const limit = 25;
+
+  // Reset offset when filters/sort change
+  const handleFilters = (f) => { setFilters(f); setOffset(0); };
+  const handleSort = (s) => { setSort(s); setOffset(0); };
+
+  const apiParams = { ...filters, sort, limit, offset };
+
+  const opps = useApi("/api/opportunities", apiParams);
+  const facets = useApi("/api/facets", {});
+  const health = useApi("/api/health", {});
+
+  return (
+    <div className="app">
+      <header className="app-header">
+        <h1>UK &amp; EU Procurement Radar</h1>
+        <span className="header-sub">
+          {health.data ? (
+            <span className={`db-indicator db-${health.data.db}`}>
+              db: {health.data.db}
+            </span>
+          ) : ""}
+          <span className="attr">
+            Data: <a href="https://www.find-tender.service.gov.uk" target="_blank" rel="noopener noreferrer">UK FTS (OGL v3)</a>
+            {" · "}
+            <a href="https://ted.europa.eu" target="_blank" rel="noopener noreferrer">EU TED (© EU)</a>
+          </span>
+        </span>
+      </header>
+
+      <StatsRow facets={facets.data} />
+
+      <div className="main-layout">
+        <FilterPanel filters={filters} onChange={handleFilters} />
+        <OpportunitiesTable
+          data={opps.data}
+          loading={opps.loading}
+          error={opps.error}
+          sort={sort}
+          onSort={handleSort}
+          onPage={setOffset}
+          offset={offset}
+          limit={limit}
+        />
+      </div>
+    </div>
   );
 }
