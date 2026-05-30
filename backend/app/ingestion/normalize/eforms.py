@@ -1,0 +1,305 @@
+"""TED Search API field model -> TenderOpportunity normalization.
+
+Uses the TED v3 Search API field names directly (not the OCDS-for-eForms
+conversion step) — confirmed in SPIKE_FINDINGS.md as sufficient and simpler.
+
+Key shape facts from the live spike:
+- notice-title : lang -> str  (flat map, e.g. {"eng": "...", "fra": "..."})
+- buyer-name   : lang -> [str] (array per lang — different shape from title!)
+- classification-cpv : list of strings, WITH duplicates -> dedup on ingest
+- place-of-performance : list mixing NUTS codes + alpha-3 country codes, WITH dups
+- deadline-receipt-tender-date-lot : list or None (None on result/award notices)
+- total-value / estimated-value-lot : may be None; carry currency alongside
+- buyer-country : list of ISO alpha-3 (e.g. ["FRA"]) -> normalize to alpha-2
+- publication-date : "YYYY-MM-DD+HH:MM" (carries offset)
+- source_url : https://ted.europa.eu/en/notice/{publication-number}/html
+"""
+from __future__ import annotations
+
+import re
+from datetime import datetime, timezone
+from typing import Any
+
+from app.ingestion.normalize.enums import (
+    AWARD, CONTRACT, MODIFICATION, NOTICE_OTHER, PLANNING, TENDER,
+    map_procedure_type,
+    STATUS_OPEN, AWARDED, PLANNED, CANCELLED, UNSUCCESSFUL,
+)
+
+TED_BASE_URL = "https://ted.europa.eu/en/notice"
+
+# TED alpha-3 -> ISO alpha-2 for the countries we cover
+_ALPHA3_TO_ALPHA2: dict[str, str] = {
+    "GBR": "GB", "FRA": "FR", "DEU": "DE", "BEL": "BE",
+    "NLD": "NL", "IRL": "IE", "ESP": "ES", "ITA": "IT",
+    "POL": "PL", "AUT": "AT", "SWE": "SE", "DNK": "DK",
+    "FIN": "FI", "NOR": "NO", "CHE": "CH", "PRT": "PT",
+    "CZE": "CZ", "HUN": "HU", "ROU": "RO", "SVK": "SK",
+    "BGR": "BG", "HRV": "HR", "SVN": "SI", "LTU": "LT",
+    "LVA": "LV", "EST": "EE", "CYP": "CY", "MLT": "MT",
+    "LUX": "LU", "GRC": "GR",
+}
+
+# TED form-type -> unified notice_type
+_FORM_TYPE_MAP = {
+    "planning": PLANNING,
+    "competition": TENDER,
+    "result": AWARD,
+    "modification": MODIFICATION,
+    "contract": CONTRACT,
+}
+
+# TED procedure-type codes -> OCDS procurementMethod for reuse of existing mapper
+_TED_PROCEDURE_TO_OCDS = {
+    "open": "open",
+    "restricted": "selective",
+    "comp-dial": "selective",
+    "comp-tend": "selective",
+    "innovation": "selective",
+    "neg-w-call": "selective",
+    "neg-wo-call": "limited",
+}
+
+
+def _pick_lang(field: dict | None, preferred: str = "eng") -> str | None:
+    """
+    Extract a string from a TED multilingual field.
+    - notice-title shape: {lang: str}        -> return string directly
+    - buyer-name shape:   {lang: [str]}      -> return first element of list
+    Fall back through all language keys if preferred is missing.
+    """
+    if not field:
+        return None
+    # Try preferred language first, then any available
+    for lang in [preferred, *field.keys()]:
+        val = field.get(lang)
+        if val is None:
+            continue
+        if isinstance(val, list):
+            # buyer-name, description-lot style
+            return val[0] if val else None
+        if isinstance(val, str) and val:
+            return val
+    return None
+
+
+def _dedup_list(items: list | None) -> list:
+    """Remove duplicates from a list, preserving first-seen order."""
+    if not items:
+        return []
+    seen: set = set()
+    result = []
+    for item in items:
+        if item not in seen:
+            seen.add(item)
+            result.append(item)
+    return result
+
+
+def _extract_nuts(place_of_performance: list | None) -> str | None:
+    """
+    From place-of-performance (mixed NUTS + alpha-3 codes, possibly duplicated),
+    return the first NUTS code (starts with 2 letters + digits, e.g. FRE11, DEA33).
+    """
+    for item in _dedup_list(place_of_performance):
+        # NUTS codes: 2-letter country prefix + alphanumeric suffix (e.g. FRE11, DEA33, UKI)
+        # Alpha-3 country codes are pure letters (FRA, DEU, BEL) — exclude them
+        if item and re.match(r"^[A-Z]{2}[A-Z0-9]+$", item) and len(item) > 3:
+            return item
+    return None
+
+
+def _parse_ted_date(value: str | None) -> datetime | None:
+    """Parse TED date strings like '2026-05-29+02:00' or '2026-06-12+02:00'."""
+    if not value:
+        return None
+    # Strip the trailing offset to parse the date part, then re-attach UTC
+    bare = re.sub(r"[+-]\d{2}:\d{2}$", "", value).strip()
+    for fmt in ("%Y-%m-%dT%H:%M:%S", "%Y-%m-%dT%H:%M", "%Y-%m-%d"):
+        try:
+            dt = datetime.strptime(bare, fmt)
+            return dt.replace(tzinfo=timezone.utc)
+        except ValueError:
+            continue
+    return None
+
+
+def _deadline_offset(value: str | None) -> str | None:
+    if not value:
+        return None
+    m = re.search(r"([+-]\d{2}:\d{2})$", value)
+    return m.group(1) if m else None
+
+
+def _extract_value(notice: dict) -> tuple[float | None, str | None]:
+    """
+    Extract estimated value + currency.
+    Prefer estimated-value-lot (list of strings) then total-value (number).
+    """
+    # estimated-value-lot is a list of strings in the live data
+    evl = notice.get("estimated-value-lot")
+    cur_l = notice.get("estimated-value-cur-lot")
+    if evl:
+        raw = evl[0] if isinstance(evl, list) else evl
+        try:
+            val = float(raw)
+            currency = (cur_l[0] if isinstance(cur_l, list) else cur_l) if cur_l else "EUR"
+            return val, currency
+        except (TypeError, ValueError):
+            pass
+
+    tv = notice.get("total-value")
+    tc = notice.get("total-value-cur")
+    if tv is not None:
+        try:
+            currency = (tc[0] if isinstance(tc, list) else tc) if tc else "EUR"
+            return float(tv), currency
+        except (TypeError, ValueError):
+            pass
+
+    return None, None
+
+
+def _map_form_type(form_type: str | None, notice_type_raw: str | None) -> str:
+    """Map TED form-type to unified notice_type."""
+    mapped = _FORM_TYPE_MAP.get((form_type or "").lower())
+    if mapped:
+        return mapped
+    # Fallback: can-* notice types are awards
+    if (notice_type_raw or "").startswith("can-"):
+        return AWARD
+    if (notice_type_raw or "").startswith("cn-"):
+        return TENDER
+    if (notice_type_raw or "").startswith("pin-"):
+        return PLANNING
+    return NOTICE_OTHER
+
+
+def _map_ted_status(form_type: str | None, deadline_raw: str | None) -> str:
+    """Derive unified status from TED form-type and deadline."""
+    ft = (form_type or "").lower()
+    if ft == "result":
+        return AWARDED
+    if ft == "planning":
+        return PLANNED
+    if ft == "competition":
+        if not deadline_raw:
+            return STATUS_OPEN
+        # CLOSED is synthetic: deadline passed — evaluated at query time, not stored
+        return STATUS_OPEN
+    return STATUS_OPEN
+
+
+def normalize_ted_notice(notice: dict) -> dict[str, Any]:
+    """
+    Map one TED v3 Search API notice dict to a TenderOpportunity field dict.
+    Returns a plain dict; caller creates the SQLModel instance.
+    """
+    pub_num = notice.get("publication-number", "")
+    form_type = notice.get("form-type")
+    notice_type_raw = notice.get("notice-type")
+
+    # Title (flat lang->str)
+    title_field = notice.get("notice-title") or {}
+    title = _pick_lang(title_field) or "(no title)"
+    title_lang = "eng" if title_field.get("eng") else (next(iter(title_field), None) or "eng")
+
+    # Buyer (lang->[str] map)
+    buyer_name = _pick_lang(notice.get("buyer-name"))
+
+    # Country: alpha-3 list -> alpha-2
+    countries_raw = _dedup_list(notice.get("buyer-country"))
+    buyer_country_alpha2: str | None = None
+    if countries_raw:
+        alpha3 = countries_raw[0]
+        buyer_country_alpha2 = _ALPHA3_TO_ALPHA2.get(alpha3, alpha3)
+
+    # Region: NUTS code from place-of-performance
+    nuts = _extract_nuts(notice.get("place-of-performance"))
+
+    # CPV: dedup the flattened list
+    cpv_codes = _dedup_list(notice.get("classification-cpv") or [])
+
+    # Value
+    estimated_value, currency = _extract_value(notice)
+
+    # Dates
+    pub_date_raw = notice.get("publication-date")
+    publication_date = _parse_ted_date(pub_date_raw) or datetime.now(timezone.utc)
+
+    # Deadline: only on competition notices; list, take first element
+    deadline_list = notice.get("deadline-receipt-tender-date-lot")
+    deadline_raw: str | None = None
+    if deadline_list:
+        deadline_raw = deadline_list[0] if isinstance(deadline_list, list) else deadline_list
+    deadline = _parse_ted_date(deadline_raw)
+    deadline_tz_offset = _deadline_offset(deadline_raw)
+
+    # Enums
+    notice_type = _map_form_type(form_type, notice_type_raw)
+
+    # TED procedure-type -> OCDS method name -> unified enum
+    ted_proc = (notice.get("procedure-type") or "").lower()
+    ocds_method = _TED_PROCEDURE_TO_OCDS.get(ted_proc, ted_proc)
+    procedure_type = map_procedure_type(ocds_method)
+    procedure_type_raw = ted_proc or None
+
+    status = _map_ted_status(form_type, deadline_raw)
+
+    # Award supplier: TED exposes winner-name if present
+    award_supplier: str | None = _pick_lang(notice.get("winner-name"))
+    if not award_supplier:
+        # fallback scalar field
+        wn = notice.get("winner-name")
+        if isinstance(wn, str):
+            award_supplier = wn
+
+    return {
+        "id": f"EU:{pub_num}",
+        "source": "EU",
+        "source_notice_id": pub_num,
+        "source_url": f"{TED_BASE_URL}/{pub_num}/html",
+        "title": title,
+        "title_lang": title_lang,
+        "description": None,  # description-lot not requested in Phase 1 query; added in Phase 3
+        "buyer_name": buyer_name,
+        "buyer_country": buyer_country_alpha2,
+        "buyer_region_raw": nuts,
+        "buyer_region_code": nuts,  # NUTS codes are already structured
+        "estimated_value": estimated_value,
+        "currency": currency,
+        "estimated_value_eur": estimated_value if currency == "EUR" else None,
+        "fx_rate_date": None,
+        "publication_date": publication_date,
+        "deadline": deadline,
+        "deadline_tz_offset": deadline_tz_offset,
+        "notice_type": notice_type,
+        "procedure_type": procedure_type,
+        "procedure_type_raw": procedure_type_raw,
+        "status": status,
+        "award_supplier": award_supplier,
+        "raw_json": notice,
+        "_cpv_codes": cpv_codes,
+    }
+
+
+def normalize_ted_notices(notices: list[dict]) -> list[dict]:
+    """Normalize a list of raw TED notice dicts, deduplicating on id."""
+    import logging
+    log = logging.getLogger(__name__)
+
+    result = []
+    seen: set[str] = set()
+    for notice in notices:
+        try:
+            row = normalize_ted_notice(notice)
+        except Exception as exc:  # noqa: BLE001
+            log.warning("TED normalize error (pubnum=%s): %s",
+                        notice.get("publication-number"), exc)
+            continue
+        uid = row["id"]
+        if uid in seen:
+            continue
+        seen.add(uid)
+        result.append(row)
+    return result

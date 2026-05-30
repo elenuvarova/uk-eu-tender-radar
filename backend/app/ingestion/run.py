@@ -70,6 +70,31 @@ def run_fts(days: int, niche_only: bool) -> None:
     log.info("FTS: done — inserted=%d updated=%d", ins, upd)
 
 
+def run_ted(days: int, niche_only: bool) -> None:
+    from app.db import get_session, init_db
+    from app.ingestion.cpv import is_in_niche
+    from app.ingestion.ted import fetch_and_normalize, DEFAULT_COUNTRIES
+
+    init_db()
+    since = datetime.now(timezone.utc) - timedelta(days=days)
+    log.info("TED: fetching notices since %s (niche_only=%s)", since.date(), niche_only)
+
+    # Use Tier-1 CPV divisions as API-level pre-filter when niche_only
+    cpv_divisions = ["48", "72"] if niche_only else None
+    rows = fetch_and_normalize(
+        since=since,
+        countries=DEFAULT_COUNTRIES,
+        cpv_divisions=cpv_divisions,
+    )
+    if niche_only:
+        rows = [r for r in rows if is_in_niche(r.get("_cpv_codes", []))]
+    log.info("TED: %d rows to upsert", len(rows))
+
+    with next(get_session()) as session:
+        ins, upd = _upsert_rows(session, rows)
+    log.info("TED: done — inserted=%d updated=%d", ins, upd)
+
+
 def main() -> None:
     parser = argparse.ArgumentParser(description="Tender Radar ingestion runner")
     parser.add_argument("--source", choices=["fts", "ted"], required=True)
@@ -81,7 +106,7 @@ def main() -> None:
     if args.source == "fts":
         run_fts(days=args.days, niche_only=args.niche_only)
     else:
-        log.info("TED ingestion not yet implemented (Phase 2)")
+        run_ted(days=args.days, niche_only=args.niche_only)
 
 
 if __name__ == "__main__":
