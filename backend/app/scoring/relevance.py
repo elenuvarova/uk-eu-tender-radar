@@ -108,9 +108,21 @@ def score_deadline(deadline: datetime | None, min_days_to_bid: int) -> float:
     return max(0.6, 1.0 - (d - 45) / 120)
 
 
-def score_buyer(_buyer_name: str | None, _profile_cpvs: list[str]) -> float:
-    """C5: buyer repeat behaviour (stub — Phase 5 adds BuyerCategoryStat)."""
-    return 0.5  # neutral until BuyerCategoryStat aggregation is built
+def score_buyer(match_count: int | None) -> float:
+    """C5: buyer repeat behaviour from BuyerCategoryStat.notice_count.
+
+    match_count = total notices by this buyer in any target CPV division.
+    None = buyer not resolved yet → neutral 0.5.
+    """
+    if match_count is None:
+        return 0.5   # buyer_id not resolved → neutral
+    if match_count == 0:
+        return 0.0   # known buyer, no matching-CPV history
+    if match_count <= 2:
+        return 0.5   # occasional
+    if match_count <= 5:
+        return 0.8   # regular
+    return 1.0       # frequent / framework-style repeat
 
 
 # ── reason generation ─────────────────────────────────────────────────────────
@@ -189,12 +201,13 @@ def compute_score(
     profile_value_min: float | None,
     profile_value_max: float | None,
     profile_min_days_to_bid: int = 7,
+    buyer_match_count: int | None = None,  # from BuyerCategoryStat (Phase 5)
 ) -> ScoreResult:
     s_cpv = score_cpv(tender_cpvs, profile_cpv_codes)
     s_kw  = score_keyword(title, description, profile_keywords)
     s_val = score_value(estimated_value_eur, profile_value_min, profile_value_max)
     s_ddl = score_deadline(deadline, profile_min_days_to_bid)
-    s_buy = score_buyer(buyer_name, profile_cpv_codes)
+    s_buy = score_buyer(buyer_match_count)
 
     w = SCORE_WEIGHTS
     raw = (w["cpv"] * s_cpv + w["keyword"] * s_kw + w["value"] * s_val

@@ -8,6 +8,7 @@ from sqlmodel import Session, select
 from app.db import get_session
 from app.models.tender import TenderCpv, TenderOpportunity
 from app.models.profile import SupplierProfile
+from app.models.buyer import BuyerCategoryStat
 from app.schemas.opportunity import (
     FacetsResponse,
     CountItem,
@@ -129,19 +130,43 @@ def list_opportunities(
     # Attach relevance scores if requested
     profile: SupplierProfile | None = None
     cpv_map: dict[str, list[str]] = {}
+    buyer_stat_map: dict[str, int] = {}   # buyer_id → total match-CPV notices
     if score and items:
         profile = session.get(SupplierProfile, "default")
         opp_ids = [o.id for o in items]
+
+        # Bulk CPV fetch
         cpv_rows = session.exec(
             select(TenderCpv).where(TenderCpv.tender_id.in_(opp_ids))
         ).all()
         for row in cpv_rows:
             cpv_map.setdefault(row.tender_id, []).append(row.cpv_code)
 
+        # Bulk buyer stats fetch (C5)
+        if profile:
+            profile_divs = list({c[:2] for c in (profile.target_cpv_codes or [])})
+            buyer_ids = [o.buyer_id for o in items if o.buyer_id]
+            if buyer_ids and profile_divs:
+                stat_rows = session.exec(
+                    select(BuyerCategoryStat).where(
+                        BuyerCategoryStat.buyer_id.in_(buyer_ids),
+                        BuyerCategoryStat.cpv_division.in_(profile_divs),
+                    )
+                ).all()
+                for s in stat_rows:
+                    buyer_stat_map[s.buyer_id] = (
+                        buyer_stat_map.get(s.buyer_id, 0) + s.notice_count
+                    )
+
     def _to_item(o: TenderOpportunity) -> OpportunityItem:
         item = OpportunityItem.model_validate(o)
         if profile:
             from app.scoring.relevance import compute_score
+            # C5: None if buyer not resolved, 0 if resolved but no matching history
+            if o.buyer_id:
+                match_count = buyer_stat_map.get(o.buyer_id, 0)
+            else:
+                match_count = None
             result = compute_score(
                 tender_cpvs=cpv_map.get(o.id, []),
                 title=o.title,
@@ -154,6 +179,7 @@ def list_opportunities(
                 profile_value_min=profile.value_min,
                 profile_value_max=profile.value_max,
                 profile_min_days_to_bid=profile.min_days_to_bid,
+                buyer_match_count=match_count,
             )
             item.relevance = RelevanceScore(score=result.score, reasons=result.reasons)
         return item

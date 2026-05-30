@@ -1,0 +1,108 @@
+"""Buyer entity resolution job.
+
+Reads every unique raw buyer_name from tender_opportunity where buyer_id IS NULL,
+normalizes it, deduplicates, creates/reuses Buyer records, and populates buyer_id.
+
+Normalization is intentionally lightweight: lowercase + strip legal suffixes +
+collapse whitespace.  This avoids merging distinct buyers with similar names
+while still catching "NHS Trust" vs "nhs trust" or "Acme Ltd" vs "Acme Limited".
+"""
+from __future__ import annotations
+
+import hashlib
+import logging
+import re
+
+from sqlmodel import Session, select
+
+from app.models.buyer import Buyer
+from app.models.tender import TenderOpportunity
+
+log = logging.getLogger(__name__)
+
+# Legal suffixes that add no disambiguation value
+_SUFFIXES = re.compile(
+    r"\b(ltd|limited|plc|llp|llc|inc|corp|gmbh|s\.?a|n\.?v|b\.?v|"
+    r"sarl|a\.?g|s\.?r\.?l|s\.?l|sas|aps|oy|ab|pte|pty)\b",
+    re.IGNORECASE,
+)
+
+
+def normalize_name(raw: str) -> str:
+    """Produce a canonical form of a buyer name for deduplication."""
+    n = raw.lower().strip()
+    n = re.sub(r"[^\w\s]", " ", n)       # strip punctuation
+    n = _SUFFIXES.sub(" ", n)             # remove legal suffixes
+    n = re.sub(r"\s+", " ", n).strip()   # collapse whitespace
+    return n
+
+
+def make_buyer_id(normalized: str) -> str:
+    """Deterministic, stable ID from the normalized name."""
+    digest = hashlib.md5(normalized.encode()).hexdigest()[:12]
+    return f"B:{digest}"
+
+
+def resolve(session: Session, batch_size: int = 500) -> tuple[int, int]:
+    """
+    Assign buyer_id to all TenderOpportunity rows that have a buyer_name
+    but no buyer_id.  Returns (created, linked) counts.
+    """
+    created = linked = 0
+
+    # Fetch distinct unresolved names
+    stmt = (
+        select(TenderOpportunity.buyer_name, TenderOpportunity.buyer_country)
+        .where(
+            TenderOpportunity.buyer_name.isnot(None),
+            TenderOpportunity.buyer_id.is_(None),
+        )
+        .distinct()
+    )
+    unresolved = session.exec(stmt).all()
+    log.info("buyer_resolve: %d distinct unresolved names", len(unresolved))
+
+    for raw_name, country in unresolved:
+        if not raw_name:
+            continue
+        norm = normalize_name(raw_name)
+        if not norm:
+            continue
+
+        bid = make_buyer_id(norm)
+
+        # Reuse existing Buyer or create
+        buyer = session.get(Buyer, bid)
+        if not buyer:
+            buyer = Buyer(
+                id=bid,
+                canonical_name=raw_name,
+                normalized_name=norm,
+                country=country,
+                name_aliases=[raw_name],
+            )
+            session.add(buyer)
+            created += 1
+        else:
+            # Register alias if new spelling
+            aliases = buyer.name_aliases or []
+            if raw_name not in aliases:
+                aliases.append(raw_name)
+                buyer.name_aliases = aliases
+                session.add(buyer)
+
+        # Bulk-update all matching rows
+        opps = session.exec(
+            select(TenderOpportunity).where(
+                TenderOpportunity.buyer_name == raw_name,
+                TenderOpportunity.buyer_id.is_(None),
+            )
+        ).all()
+        for opp in opps:
+            opp.buyer_id = bid
+            session.add(opp)
+        linked += len(opps)
+
+    session.commit()
+    log.info("buyer_resolve: created=%d linked=%d", created, linked)
+    return created, linked

@@ -68,6 +68,18 @@ def run_fts(days: int, niche_only: bool) -> None:
     with next(get_session()) as session:
         ins, upd = _upsert_rows(session, rows)
     log.info("FTS: done — inserted=%d updated=%d", ins, upd)
+    _run_buyer_jobs()
+
+
+def _run_buyer_jobs() -> None:
+    """Run buyer resolve + rollup after any ingestion."""
+    from app.db import get_session
+    from app.jobs.buyer_resolve import resolve
+    from app.jobs.buyer_rollup import rollup
+    with next(get_session()) as session:
+        created, linked = resolve(session)
+        rows = rollup(session)
+    log.info("Buyer jobs: resolve created=%d linked=%d rollup=%d", created, linked, rows)
 
 
 def run_ted(days: int, niche_only: bool) -> None:
@@ -93,6 +105,7 @@ def run_ted(days: int, niche_only: bool) -> None:
     with next(get_session()) as session:
         ins, upd = _upsert_rows(session, rows)
     log.info("TED: done — inserted=%d updated=%d", ins, upd)
+    _run_buyer_jobs()
 
 
 def main() -> None:

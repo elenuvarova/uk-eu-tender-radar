@@ -26,6 +26,7 @@ class OpportunityItem(BaseModel):
     procedure_type: str
     status: str
     award_supplier: str | None
+    buyer_id: str | None = None    # set after buyer_resolve job runs
     relevance: RelevanceScore | None = None
 
 

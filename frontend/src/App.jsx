@@ -76,6 +76,50 @@ function SourceBadge({ source }) {
   return <span className={`badge badge-${source?.toLowerCase()}`}>{source}</span>;
 }
 
+// ── buyer panel ───────────────────────────────────────────────────────────────
+
+function BuyerPanel({ buyerId, onClose }) {
+  const { data, loading, error } = useApi(`/api/buyers/${buyerId}`, {}, [buyerId]);
+
+  return (
+    <div className="buyer-panel">
+      <div className="buyer-panel-header">
+        <span>Buyer profile</span>
+        <button className="buyer-close" onClick={onClose}>✕</button>
+      </div>
+      {loading && <div className="msg">Loading…</div>}
+      {error && <div className="msg msg-error">{error}</div>}
+      {data && (
+        <>
+          <h3 className="buyer-name">{data.canonical_name}</h3>
+          {data.country && <div className="buyer-meta">{data.country}{data.region ? ` · ${data.region}` : ""}</div>}
+          {data.name_aliases?.length > 1 && (
+            <div className="buyer-aliases">Also known as: {data.name_aliases.filter(a => a !== data.canonical_name).join(", ")}</div>
+          )}
+          <div className="buyer-section-title">Top categories</div>
+          {data.top_categories.length === 0
+            ? <div className="buyer-empty">No category stats yet</div>
+            : data.top_categories.map(c => (
+                <div key={c.cpv_division} className="buyer-cat-row">
+                  <span className="pill pill-type">{c.cpv_division}</span>
+                  <span>{c.notice_count} notice{c.notice_count !== 1 ? "s" : ""}</span>
+                  {c.avg_value_eur && <span className="buyer-val">avg {fmtValue(c.avg_value_eur, "EUR")}</span>}
+                </div>
+              ))
+          }
+          <div className="buyer-section-title">Recent notices</div>
+          {data.recent_notices.map(n => (
+            <div key={n.id} className="buyer-notice-row">
+              <a href={n.source_url} target="_blank" rel="noopener noreferrer">{n.title.slice(0, 60)}{n.title.length > 60 ? "…" : ""}</a>
+              <span className="buyer-notice-date">{fmtDate(n.publication_date)}</span>
+            </div>
+          ))}
+        </>
+      )}
+    </div>
+  );
+}
+
 function ScorePill({ relevance }) {
   if (!relevance) return null;
   const s = relevance.score;
@@ -267,7 +311,7 @@ function FilterPanel({ filters, onChange }) {
 
 // ── results table ─────────────────────────────────────────────────────────────
 
-function OpportunitiesTable({ data, loading, error, sort, onSort, onPage, offset, limit, hasProfile }) {
+function OpportunitiesTable({ data, loading, error, sort, onSort, onPage, offset, limit, hasProfile, onBuyerClick }) {
   if (error) return <div className="msg msg-error">Failed to load: {error}</div>;
   if (loading && !data) return <div className="msg">Loading…</div>;
   if (!data) return null;
@@ -317,7 +361,11 @@ function OpportunitiesTable({ data, loading, error, sort, onSort, onPage, offset
                     <SourceBadge source={o.source} />
                     {o.title}
                   </td>
-                  <td className="cell-buyer">{o.buyer_name || "—"}</td>
+                  <td className="cell-buyer">
+                    {o.buyer_id
+                      ? <button className="buyer-link" onClick={() => onBuyerClick(o.buyer_id)}>{o.buyer_name || "—"}</button>
+                      : (o.buyer_name || "—")}
+                  </td>
                   <td>{o.buyer_country || "—"}</td>
                   <td className="cell-value">{fmtValue(o.estimated_value, o.currency)}</td>
                   <td><span className="pill pill-type">{o.notice_type}</span></td>
@@ -351,6 +399,7 @@ export default function App() {
   const [offset, setOffset] = useState(0);
   const [profile, setProfile] = useState(null);
   const [showProfile, setShowProfile] = useState(false);
+  const [activeBuyerId, setActiveBuyerId] = useState(null);
 
   const limit = 25;
 
@@ -400,17 +449,23 @@ export default function App() {
           {showProfile && <ProfilePanel profile={profile} onSave={p => { setProfile(p); setShowProfile(false); }} />}
           <FilterPanel filters={filters} onChange={handleFilters} />
         </div>
-        <OpportunitiesTable
-          data={opps.data}
-          loading={opps.loading}
-          error={opps.error}
-          sort={sort}
-          onSort={handleSort}
-          onPage={setOffset}
-          offset={offset}
-          limit={limit}
-          hasProfile={hasProfile}
-        />
+        <div className="feed-wrap">
+          <OpportunitiesTable
+            data={opps.data}
+            loading={opps.loading}
+            error={opps.error}
+            sort={sort}
+            onSort={handleSort}
+            onPage={setOffset}
+            offset={offset}
+            limit={limit}
+            hasProfile={hasProfile}
+            onBuyerClick={setActiveBuyerId}
+          />
+          {activeBuyerId && (
+            <BuyerPanel buyerId={activeBuyerId} onClose={() => setActiveBuyerId(null)} />
+          )}
+        </div>
       </div>
     </div>
   );
