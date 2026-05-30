@@ -1,0 +1,4333 @@
+{
+  "uri": "https://www.find-tender.service.gov.uk/api/1.0/ocdsReleasePackages?updatedFrom=2026-05-23T20:19:46Z&updatedTo=2026-05-30T20:19:46Z&stages=tender&limit=20",
+  "version": "1.1",
+  "extensions": [
+    "https://standard.open-contracting.org/profiles/eu/latest/en/extension.json",
+    "https://raw.githubusercontent.com/open-contracting-extensions/ocds_amendment_rationale_classifications_extension/master/extension.json",
+    "https://raw.githubusercontent.com/open-contracting-extensions/ocds_budget_breakdown_extension/master/extension.json",
+    "https://raw.githubusercontent.com/open-contracting-extensions/ocds_contract_completion_extension/master/extension.json",
+    "https://raw.githubusercontent.com/open-contracting-extensions/ocds_documentation_extension/master/extension.json",
+    "https://raw.githubusercontent.com/open-contracting-extensions/ocds_pagination_extension/master/extension.json",
+    "https://raw.githubusercontent.com/open-contracting-extensions/ocds_suitability_extension/master/extension.json",
+    "https://raw.githubusercontent.com/portaledcahn/ocds_Links_extension/main/extension.json",
+    "https://raw.githubusercontent.com/cabinetoffice/ocds_uk_extension/main/extension.json"
+  ],
+  "publishedDate": "2026-05-29T16:12:45+01:00",
+  "publisher": {
+    "name": "Cabinet Office",
+    "scheme": "GB-GOR",
+    "uid": "D2",
+    "uri": "https://www.gov.uk/government/organisations/cabinet-office"
+  },
+  "license": "http://www.nationalarchives.gov.uk/doc/open-government-licence/version/3/",
+  "publicationPolicy": "https://www.gov.uk/government/publications/open-contracting",
+  "releases": [
+    {
+      "ocid": "ocds-h6vhtk-06a94b",
+      "id": "051000-2026",
+      "date": "2026-05-29T16:12:45+01:00",
+      "tag": [
+        "tender"
+      ],
+      "initiationType": "tender",
+      "tender": {
+        "id": "ocds-h6vhtk-06a94b",
+        "legalBasis": {
+          "id": "32014L0024",
+          "scheme": "CELEX"
+        },
+        "title": "Short Term Contract for Adaptations",
+        "status": "active",
+        "classification": {
+          "scheme": "CPV",
+          "id": "45000000",
+          "description": "Construction work"
+        },
+        "mainProcurementCategory": "works",
+        "description": "The Provision delivering Adaptation and Special Adaptation for both Council or Private owned properties under our portfolio.",
+        "value": {
+          "amount": 490000,
+          "currency": "GBP"
+        },
+        "lots": [
+          {
+            "id": "1",
+            "description": "The Provision delivering Adaptation and Special Adaptation for both Council or Private owned properties under our portfolio.",
+            "value": {
+              "amount": 490000,
+              "currency": "GBP"
+            },
+            "contractPeriod": {
+              "startDate": "2026-07-23T00:00:00+01:00",
+              "endDate": "2028-01-22T23:59:59Z"
+            },
+            "hasRenewal": true,
+            "renewal": {
+              "description": "Additional information can be obtained here: https://londonconstructionprogramme.co.uk/services/dynamic-purchasing-systems/"
+            },
+            "submissionTerms": {
+              "variantPolicy": "notAllowed"
+            },
+            "hasOptions": false,
+            "status": "active"
+          }
+        ],
+        "items": [
+          {
+            "id": "1",
+            "additionalClassifications": [
+              {
+                "scheme": "CPV",
+                "id": "45000000",
+                "description": "Construction work"
+              },
+              {
+                "scheme": "CPV",
+                "id": "45200000",
+                "description": "Works for complete or part construction and civil engineering work"
+              },
+              {
+                "scheme": "CPV",
+                "id": "45210000",
+                "description": "Building construction work"
+              },
+              {
+                "scheme": "CPV",
+                "id": "45211000",
+                "description": "Construction work for multi-dwelling buildings and individual houses"
+              },
+              {
+                "scheme": "CPV",
+                "id": "45211100",
+                "description": "Construction work for houses"
+              },
+              {
+                "scheme": "CPV",
+                "id": "45211300",
+                "description": "Houses construction work"
+              },
+              {
+                "scheme": "CPV",
+                "id": "45211310",
+                "description": "Bathrooms construction work"
+              },
+              {
+                "scheme": "CPV",
+                "id": "45211340",
+                "description": "Multi-dwelling buildings construction work"
+              },
+              {
+                "scheme": "CPV",
+                "id": "45211341",
+                "description": "Flats construction work"
+              },
+              {
+                "scheme": "CPV",
+                "id": "45211350",
+                "description": "Multi-functional buildings construction work"
+              },
+              {
+                "scheme": "CPV",
+                "id": "45211370",
+                "description": "Construction works for saunas"
+              },
+              {
+                "scheme": "CPV",
+                "id": "45400000",
+                "description": "Building completion work"
+              },
+              {
+                "scheme": "CPV",
+                "id": "45430000",
+                "description": "Floor and wall covering work"
+              },
+              {
+                "scheme": "CPV",
+                "id": "45431000",
+                "description": "Tiling work"
+              },
+              {
+                "scheme": "CPV",
+                "id": "45431100",
+                "description": "Floor-tiling work"
+              },
+              {
+                "scheme": "CPV",
+                "id": "45431200",
+                "description": "Wall-tiling work"
+              },
+              {
+                "scheme": "CPV",
+                "id": "45432000",
+                "description": "Floor-laying and covering, wall-covering and wall-papering work"
+              },
+              {
+                "scheme": "CPV",
+                "id": "45432100",
+                "description": "Floor laying and covering work"
+              },
+              {
+                "scheme": "CPV",
+                "id": "45432110",
+                "description": "Floor-laying work"
+              },
+              {
+                "scheme": "CPV",
+                "id": "45432111",
+                "description": "Laying work of flexible floor coverings"
+              },
+              {
+                "scheme": "CPV",
+                "id": "45432112",
+                "description": "Laying of paving"
+              },
+              {
+                "scheme": "CPV",
+                "id": "45432113",
+                "description": "Parquet flooring"
+              },
+              {
+                "scheme": "CPV",
+                "id": "45432114",
+                "description": "Wood flooring work"
+              },
+              {
+                "scheme": "CPV",
+                "id": "45432120",
+                "description": "False floor installation work"
+              },
+              {
+                "scheme": "CPV",
+                "id": "45432121",
+                "description": "Computer floors"
+              },
+              {
+                "scheme": "CPV",
+                "id": "45432130",
+                "description": "Floor-covering work"
+              },
+              {
+                "scheme": "CPV",
+                "id": "45450000",
+                "description": "Other building completion work"
+              },
+              {
+                "scheme": "CPV",
+                "id": "45451000",
+                "description": "Decoration work"
+              },
+              {
+                "scheme": "CPV",
+                "id": "45451100",
+                "description": "Ornamentation fitting work"
+              },
+              {
+                "scheme": "CPV",
+                "id": "45451200",
+                "description": "Panelling work"
+              },
+              {
+                "scheme": "CPV",
+                "id": "45453000",
+                "description": "Overhaul and refurbishment work"
+              },
+              {
+                "scheme": "CPV",
+                "id": "45453100",
+                "description": "Refurbishment work"
+              },
+              {
+                "scheme": "CPV",
+                "id": "45454000",
+                "description": "Restructuring work"
+              },
+              {
+                "scheme": "CPV",
+                "id": "45454100",
+                "description": "Restoration work"
+              }
+            ],
+            "deliveryAddresses": [
+              {
+                "region": "UKI"
+              }
+            ],
+            "relatedLot": "1"
+          }
+        ],
+        "submissionMethod": [
+          "electronicSubmission"
+        ],
+        "submissionMethodDetails": "https://londonconstructionprogramme.co.uk/services/dynamic-purchasing-systems/",
+        "procurementMethod": "selective",
+        "procurementMethodDetails": "Restricted procedure",
+        "coveredBy": [
+          "GPA"
+        ],
+        "tenderPeriod": {
+          "endDate": "2026-06-19"
+        },
+        "submissionTerms": {
+          "languages": [
+            "en"
+          ]
+        },
+        "hasRecurrence": false
+      },
+      "parties": [
+        {
+          "name": "London Borough of Haringey",
+          "id": "GB-FTS-182486",
+          "identifier": {
+            "legalName": "London Borough of Haringey",
+            "noIdentifierRationale": "notOnAnyRegister"
+          },
+          "address": {
+            "streetAddress": "10 Station Road, Wood Green London ",
+            "locality": "London",
+            "region": "UKI",
+            "postalCode": "N22 7TR",
+            "countryName": "United Kingdom"
+          },
+          "contactPoint": {
+            "email": "lcp@haringey.gov.uk",
+            "url": "https://londonconstructionprogramme.co.uk/services/dynamic-purchasing-systems/"
+          },
+          "roles": [
+            "buyer"
+          ],
+          "details": {
+            "url": "https://londonconstructionprogramme.co.uk/procurement/dpss-and-dpms",
+            "buyerProfile": "https://londonconstructionprogramme.co.uk/services/dynamic-purchasing-systems/",
+            "classifications": [
+              {
+                "scheme": "TED_CA_TYPE",
+                "id": "REGIONAL_AUTHORITY",
+                "description": "Regional or local authority"
+              },
+              {
+                "scheme": "COFOG",
+                "id": "01",
+                "description": "General public services"
+              }
+            ]
+          }
+        },
+        {
+          "name": "London Borough of Haringey",
+          "id": "GB-FTS-7916",
+          "identifier": {
+            "legalName": "London Borough of Haringey"
+          },
+          "address": {
+            "locality": "London",
+            "countryName": "United Kingdom"
+          },
+          "roles": [
+            "reviewBody"
+          ]
+        }
+      ],
+      "buyer": {
+        "id": "GB-FTS-182486",
+        "name": "London Borough of Haringey"
+      },
+      "language": "en"
+    },
+    {
+      "ocid": "ocds-h6vhtk-06a949",
+      "id": "050998-2026",
+      "date": "2026-05-29T16:10:39+01:00",
+      "tag": [
+        "tender"
+      ],
+      "description": "This is a Provider Selection Regime (PSR) Contract Notice. The awarding of this contract is subject to the Health Care Services (Provider Selection Regime) Regulations 2023 and is being run as a competitive process. For the avoidance of doubt, the provisions of the Procurement Act 2023 do not apply to this award.",
+      "initiationType": "tender",
+      "tender": {
+        "id": "W225628",
+        "legalBasis": {
+          "id": "32014L0024",
+          "scheme": "CELEX"
+        },
+        "title": "Out-Patient Pharmaceutical Dispensing Services",
+        "status": "active",
+        "classification": {
+          "scheme": "CPV",
+          "id": "85149000",
+          "description": "Pharmacy services"
+        },
+        "mainProcurementCategory": "services",
+        "description": "The provision of an Out-Patient Pharmaceutical Dispensing Service to support the overall Pharmacy provision at the two main hospital sites of Bradford Royal Infirmary and St Luke\u2019s Hospital, Bradford",
+        "value": {
+          "amount": 70000000.0,
+          "currency": "GBP"
+        },
+        "lots": [
+          {
+            "id": "1",
+            "description": "The provision of an Out-Patient Pharmaceutical Dispensing Service to support the overall Pharmacy provision at the two main hospital sites of Bradford Royal Infirmary and St Luke\u2019s Hospital, Bradford",
+            "contractPeriod": {
+              "durationInDays": 1800
+            },
+            "hasRenewal": true,
+            "renewal": {
+              "description": "Two periods of twelve months - total of twenty-four months"
+            },
+            "submissionTerms": {
+              "variantPolicy": "notAllowed"
+            },
+            "hasOptions": false,
+            "status": "active"
+          }
+        ],
+        "items": [
+          {
+            "id": "1",
+            "additionalClassifications": [
+              {
+                "scheme": "CPV",
+                "id": "85149000",
+                "description": "Pharmacy services"
+              }
+            ],
+            "deliveryAddresses": [
+              {
+                "region": "UKE41"
+              }
+            ],
+            "relatedLot": "1"
+          }
+        ],
+        "submissionMethod": [
+          "electronicSubmission",
+          "written"
+        ],
+        "submissionMethodDetails": "https://atamis-1928.my.site.com/s/Welcome",
+        "communication": {
+          "atypicalToolUrl": "https://atamis-1928.my.site.com/s/Welcome"
+        },
+        "selectionCriteria": {
+          "criteria": [
+            {
+              "type": "suitability",
+              "description": "It is a legal requirement to be registered with the General Pharmaceutical Council (GPhC)",
+              "appliesTo": [
+                "supplier"
+              ]
+            }
+          ]
+        },
+        "documents": [
+          {
+            "documentType": "technicalSelectionCriteria",
+            "id": "technical"
+          }
+        ],
+        "procurementMethod": "selective",
+        "procurementMethodDetails": "Competitive procedure with negotiation",
+        "tenderPeriod": {
+          "endDate": "2026-07-13T12:00:00+01:00"
+        },
+        "secondStage": {
+          "invitationDate": "2026-05-29T00:00:00+01:00"
+        },
+        "submissionTerms": {
+          "languages": [
+            "en"
+          ],
+          "bidValidityPeriod": {
+            "durationInDays": 90
+          }
+        },
+        "hasRecurrence": true
+      },
+      "parties": [
+        {
+          "name": "Bradford Teaching Hospitals NHS Foundation Trust",
+          "id": "GB-FTS-33153",
+          "identifier": {
+            "legalName": "Bradford Teaching Hospitals NHS Foundation Trust"
+          },
+          "address": {
+            "streetAddress": "Bradford Royal Infirmary",
+            "locality": "Bradford",
+            "region": "UKE41",
+            "postalCode": "BD9 6RJ",
+            "countryName": "United Kingdom"
+          },
+          "contactPoint": {
+            "email": "mohammed.zafar@bthft.nhs.uk",
+            "url": "https://atamis-1928.my.site.com/s/Welcome"
+          },
+          "roles": [
+            "buyer"
+          ],
+          "details": {
+            "url": "https://www.bradfordhospitals.nhs.uk/our-trust/",
+            "buyerProfile": "https://www.bradfordhospitals.nhs.uk/our-trust/",
+            "classifications": [
+              {
+                "scheme": "TED_CA_TYPE",
+                "id": "BODY_PUBLIC",
+                "description": "Body governed by public law"
+              },
+              {
+                "scheme": "COFOG",
+                "id": "07",
+                "description": "Health"
+              }
+            ]
+          }
+        },
+        {
+          "name": "Bradford Teaching Hospitals Review Body",
+          "id": "GB-FTS-117433",
+          "identifier": {
+            "legalName": "Bradford Teaching Hospitals Review Body"
+          },
+          "address": {
+            "streetAddress": "109 Duckworth Lane",
+            "locality": "Bradford",
+            "postalCode": "BD9 6RL",
+            "countryName": "United Kingdom"
+          },
+          "roles": [
+            "reviewBody"
+          ]
+        }
+      ],
+      "buyer": {
+        "id": "GB-FTS-33153",
+        "name": "Bradford Teaching Hospitals NHS Foundation Trust"
+      },
+      "language": "en"
+    },
+    {
+      "ocid": "ocds-h6vhtk-06a936",
+      "id": "050970-2026",
+      "date": "2026-05-29T15:55:52+01:00",
+      "tag": [
+        "tender"
+      ],
+      "description": "The contracting authority considers that this contract may be suitable for economic operators that are small or medium enterprises (SMEs). However, any selection of tenderers will be based solely on the criteria set out for the procurement.\nFor further information and to respond to this opportunity please use the following access link (if you only require the access code please find it at the end of the link):\nhttps://www.kentbusinessportal.org.uk/respond/367XV7543T\nIf you experience any technical difficulties from accessing the above URL, then please contact the Delta eSourcing Helpdesk on call 0800 923 9236 or email helpdesk@delta-esourcing.com.",
+      "initiationType": "tender",
+      "tender": {
+        "id": "Round 5",
+        "legalBasis": {
+          "id": "32014L0024",
+          "scheme": "CELEX"
+        },
+        "title": "Holiday Activities and Food (HAF) services DPS (SC240025)",
+        "status": "active",
+        "classification": {
+          "scheme": "CPV",
+          "id": "92000000",
+          "description": "Recreational, cultural and sporting services"
+        },
+        "mainProcurementCategory": "services",
+        "description": "The Holiday Activities and Food (HAF) Programme in Kent focuses on supporting children's physical health and wellbeing by providing nutritious meals and engaging activities during school holidays. Families with children aged four to sixteen who are eligible for benefits-related Free School Meals (FSM) can access these free opportunities during the Easter, summer, and Christmas breaks.\nThis initiative is funded by the Department for Education (DfE), with grant conditions outlined in the Memorandum of Understanding signed by Kent County Council (KCC). The programme aims to address the challenges some families face during school holidays, such as increased food and childcare costs and reduced household income, which can make it difficult to provide adequate meals and activities for children.\nHAF offers a variety of enriching activities designed to keep children active and socially engaged during the holidays. Participating families also benefit from resources and support to help improve their understanding of nutrition and food budgeting.\nThe opportunity to apply for this contract was first made available in December 2024. As this is a Dynamic Purchasing System (DPS), bidders may submit applications at any time. However, submissions are reviewed in rounds, as detailed in the Invitation to Tender.",
+        "value": {
+          "amount": 4000000,
+          "currency": "GBP"
+        },
+        "lotDetails": {
+          "maximumLotsBidPerSupplier": Infinity,
+          "maximumLotsAwardedPerSupplier": 4
+        },
+        "lots": [
+          {
+            "id": "1",
+            "title": "North",
+            "description": "To access all Tender documentation relating to this Lot please use the following access link (if you only require the access code please find it at the end of the link):\nhttps://www.kentbusinessportal.org.uk/respond/367XV7543T\nIf you experience any technical difficulties from accessing the above URL, then please contact the Delta eSourcing Helpdesk on call 0800 923 9236 or email helpdesk@delta-esourcing.com. Additional information: Although 'Restricted Procedure' was selected, the process followed was in fact a 'Competitive Procedure with Negotiation' under the Light Touch Regime to establish a DPS under PCR 2015. The system did not permit this combination, so it has been noted here for transparency.",
+            "value": {
+              "amount": 4000000,
+              "currency": "GBP"
+            },
+            "contractPeriod": {
+              "durationInDays": 1080
+            },
+            "hasRenewal": false,
+            "submissionTerms": {
+              "variantPolicy": "notAllowed"
+            },
+            "hasOptions": false,
+            "status": "active"
+          },
+          {
+            "id": "2",
+            "title": "East",
+            "description": "To access all Tender documentation relating to this Lot please use the following access link (if you only require the access code please find it at the end of the link):\nhttps://www.kentbusinessportal.org.uk/respond/367XV7543T\nIf you experience any technical difficulties from accessing the above URL, then please contact the Delta eSourcing Helpdesk on call 0800 923 9236 or email helpdesk@delta-esourcing.com. Additional information: Although 'Restricted Procedure' was selected, the process followed was in fact a 'Competitive Procedure with Negotiation' under the Light Touch Regime to establish a DPS under PCR 2015. The system did not permit this combination, so it has been noted here for transparency.",
+            "value": {
+              "amount": 4000000,
+              "currency": "GBP"
+            },
+            "contractPeriod": {
+              "durationInDays": 1080
+            },
+            "hasRenewal": false,
+            "submissionTerms": {
+              "variantPolicy": "notAllowed"
+            },
+            "hasOptions": false,
+            "status": "active"
+          },
+          {
+            "id": "3",
+            "title": "South",
+            "description": "To access all Tender documentation relating to this Lot please use the following access link (if you only require the access code please find it at the end of the link):\nhttps://www.kentbusinessportal.org.uk/respond/367XV7543T\nIf you experience any technical difficulties from accessing the above URL, then please contact the Delta eSourcing Helpdesk on call 0800 923 9236 or email helpdesk@delta-esourcing.com. Additional information: Although 'Restricted Procedure' was selected, the process followed was in fact a 'Competitive Procedure with Negotiation' under the Light Touch Regime to establish a DPS under PCR 2015. The system did not permit this combination, so it has been noted here for transparency.",
+            "value": {
+              "amount": 4000000,
+              "currency": "GBP"
+            },
+            "contractPeriod": {
+              "durationInDays": 1080
+            },
+            "hasRenewal": false,
+            "submissionTerms": {
+              "variantPolicy": "notAllowed"
+            },
+            "hasOptions": false,
+            "status": "active"
+          },
+          {
+            "id": "4",
+            "title": "West",
+            "description": "To access all Tender documentation relating to this Lot please use the following access link (if you only require the access code please find it at the end of the link):\nhttps://www.kentbusinessportal.org.uk/respond/367XV7543T\nIf you experience any technical difficulties from accessing the above URL, then please contact the Delta eSourcing Helpdesk on call 0800 923 9236 or email helpdesk@delta-esourcing.com. Additional information: Although 'Restricted Procedure' was selected, the process followed was in fact a 'Competitive Procedure with Negotiation' under the Light Touch Regime to establish a DPS under PCR 2015. The system did not permit this combination, so it has been noted here for transparency.",
+            "value": {
+              "amount": 4000000,
+              "currency": "GBP"
+            },
+            "contractPeriod": {
+              "durationInDays": 1080
+            },
+            "hasRenewal": false,
+            "submissionTerms": {
+              "variantPolicy": "notAllowed"
+            },
+            "hasOptions": false,
+            "status": "active"
+          }
+        ],
+        "items": [
+          {
+            "id": "1",
+            "additionalClassifications": [
+              {
+                "scheme": "CPV",
+                "id": "92000000",
+                "description": "Recreational, cultural and sporting services"
+              }
+            ],
+            "deliveryAddresses": [
+              {
+                "region": "UKJ4"
+              }
+            ],
+            "deliveryLocation": {
+              "description": "Kent"
+            },
+            "relatedLot": "1"
+          },
+          {
+            "id": "2",
+            "additionalClassifications": [
+              {
+                "scheme": "CPV",
+                "id": "92000000",
+                "description": "Recreational, cultural and sporting services"
+              }
+            ],
+            "deliveryAddresses": [
+              {
+                "region": "UKJ4"
+              }
+            ],
+            "deliveryLocation": {
+              "description": "Kent"
+            },
+            "relatedLot": "2"
+          },
+          {
+            "id": "3",
+            "additionalClassifications": [
+              {
+                "scheme": "CPV",
+                "id": "92000000",
+                "description": "Recreational, cultural and sporting services"
+              }
+            ],
+            "deliveryAddresses": [
+              {
+                "region": "UKJ4"
+              }
+            ],
+            "deliveryLocation": {
+              "description": "Kent"
+            },
+            "relatedLot": "3"
+          },
+          {
+            "id": "4",
+            "additionalClassifications": [
+              {
+                "scheme": "CPV",
+                "id": "92000000",
+                "description": "Recreational, cultural and sporting services"
+              }
+            ],
+            "deliveryAddresses": [
+              {
+                "region": "UKJ4"
+              }
+            ],
+            "deliveryLocation": {
+              "description": "Kent"
+            },
+            "relatedLot": "4"
+          }
+        ],
+        "submissionMethod": [
+          "electronicSubmission"
+        ],
+        "submissionMethodDetails": "https://www.kentbusinessportal.org.uk/",
+        "selectionCriteria": {
+          "criteria": [
+            {
+              "type": "suitability",
+              "description": "This opportunity is a DPS under PCR 2015, and therefore 'Conditions of Participation' is not the correct terminology, however, Selection Criteria is as per stated in the Invitation to Tender documents.",
+              "appliesTo": [
+                "supplier"
+              ]
+            }
+          ]
+        },
+        "documents": [
+          {
+            "documentType": "economicSelectionCriteria",
+            "id": "economic"
+          },
+          {
+            "documentType": "technicalSelectionCriteria",
+            "id": "technical"
+          }
+        ],
+        "contractTerms": {
+          "performanceTerms": "As per DPS Admission Agreement, available as part of the Invitation to Tender pack."
+        },
+        "procurementMethod": "selective",
+        "procurementMethodDetails": "Restricted procedure",
+        "techniques": {
+          "hasDynamicPurchasingSystem": true
+        },
+        "coveredBy": [
+          "GPA"
+        ],
+        "tenderPeriod": {
+          "endDate": "2026-09-11T12:00:00+01:00"
+        },
+        "submissionTerms": {
+          "languages": [
+            "en"
+          ],
+          "bidValidityPeriod": {
+            "durationInDays": 90
+          }
+        },
+        "hasRecurrence": true,
+        "recurrence": {
+          "description": "Annually"
+        }
+      },
+      "parties": [
+        {
+          "name": "Kent County Council",
+          "id": "GB-FTS-1163",
+          "identifier": {
+            "legalName": "Kent County Council",
+            "noIdentifierRationale": "notOnAnyRegister"
+          },
+          "address": {
+            "streetAddress": "County Hall",
+            "locality": "Maidstone",
+            "region": "UKJ4",
+            "postalCode": "ME14 1XQ",
+            "countryName": "United Kingdom"
+          },
+          "contactPoint": {
+            "name": "Edward Dews",
+            "email": "edward.dews@kent.gov.uk",
+            "url": "https://www.kentbusinessportal.org.uk/respond/367XV7543T"
+          },
+          "roles": [
+            "buyer"
+          ],
+          "details": {
+            "url": "https://www.kent.gov.uk",
+            "classifications": [
+              {
+                "scheme": "TED_CA_TYPE",
+                "id": "REGIONAL_AUTHORITY",
+                "description": "Regional or local authority"
+              },
+              {
+                "scheme": "COFOG",
+                "description": "Local Authority"
+              }
+            ]
+          }
+        },
+        {
+          "name": "Kent County Council",
+          "id": "GB-FTS-462",
+          "identifier": {
+            "legalName": "Kent County Council"
+          },
+          "address": {
+            "streetAddress": "Sessions House",
+            "locality": "Maidstone",
+            "postalCode": "ME14 1XQ",
+            "countryName": "United Kingdom"
+          },
+          "roles": [
+            "reviewBody"
+          ]
+        }
+      ],
+      "buyer": {
+        "id": "GB-FTS-1163",
+        "name": "Kent County Council"
+      },
+      "language": "en"
+    },
+    {
+      "ocid": "ocds-h6vhtk-06a933",
+      "id": "050965-2026",
+      "date": "2026-05-29T15:53:40+01:00",
+      "tag": [
+        "tender"
+      ],
+      "initiationType": "tender",
+      "tender": {
+        "id": "C450056",
+        "legalBasis": {
+          "id": "32014L0024",
+          "scheme": "CELEX"
+        },
+        "title": "The Provision of Enhanced Virtual Care Project",
+        "status": "active",
+        "classification": {
+          "scheme": "CPV",
+          "id": "85100000",
+          "description": "Health services"
+        },
+        "mainProcurementCategory": "services",
+        "description": "Royal Free London NHS Foundation Trust is conducting a procurement for an Enhanced Virtual Care programme using the Competitive Process under the Health Care Services (Provider Selection Regime) Regulations 2023.<br/><br/>The Service provides digitally enabled proactive care for people with complex long-term conditions who are at increased risk of deterioration and avoidable admission. A third party is sought to help deliver remote monitoring, structured clinical triage, personalised care planning, health coaching and medicines optimisation, with agreed escalation routes into primary, community, virtual ward and acute services.<br/><br/>This is a Provider Selection Regime (PSR) Contract Notice. The awarding of this contract is subject to the Health Care Services (Provider Selection Regime) Regulations 2023. For the avoidance of doubt, the provisions of the Procurement Act 2023 do not apply to this award.",
+        "value": {
+          "amount": 12000000.0,
+          "currency": "GBP"
+        },
+        "lots": [
+          {
+            "id": "1",
+            "description": "Royal Free London NHS Foundation Trust  is conducting a procurement for an Enhanced Virtual Care programme using the Competitive Process under the Health Care Services (Provider Selection Regime) Regulations 2023. <br/><br/>This procurement follows an earlier market engagement exercise undertaken by the Trust to understand provider capability and inform the development of the service specification and commercial model. This engagement did not form part of a provider selection process and no provider was selected as a result of it.<br/><br/>The Service provides digitally enabled proactive care for people with complex long-term conditions who are at increased risk of deterioration and avoidable admission. A third party is sought to help deliver remote monitoring, structured clinical triage, personalised care planning, health coaching and medicines optimisation, with agreed escalation routes into primary, community, virtual ward and acute services.<br/><br/>A detailed analysis was undertaken of population segmentation including patient level costs across acute, community, mental health and primary care settings. Patients were also segmented based on the highest cost conditions (i.e cardio, respiratory) This led to the best potential indicators of future patient cohorts being in the top 5% spend in the next 12 months.<br/><br/>Patient led remote onboarding of patients and baselining of key physiological parameters, development of a jointly held care plan, structured action to address identified care gaps such as medicines optimisation and vaccination, access to lifestyle-based interventions and direct access to appropriate clinical support and onward escalation were required.<br/><br/>This is a Provider Selection Regime (PSR) Contract Notice. The awarding of this contract is subject to the Health Care Services (Provider Selection Regime) Regulations 2023. For the avoidance of doubt, the provisions of the Procurement Act 2023 do not apply to this award.",
+            "value": {
+              "amount": 12000000.0,
+              "currency": "GBP"
+            },
+            "contractPeriod": {
+              "durationInDays": 360
+            },
+            "hasRenewal": true,
+            "renewal": {
+              "description": "Option to extend for a further 1+1+1 years."
+            },
+            "submissionTerms": {
+              "variantPolicy": "notAllowed"
+            },
+            "hasOptions": false,
+            "status": "active"
+          }
+        ],
+        "items": [
+          {
+            "id": "1",
+            "additionalClassifications": [
+              {
+                "scheme": "CPV",
+                "id": "85323000",
+                "description": "Community health services"
+              }
+            ],
+            "deliveryAddresses": [
+              {
+                "region": "UK"
+              }
+            ],
+            "relatedLot": "1"
+          }
+        ],
+        "submissionMethod": [
+          "electronicSubmission",
+          "written"
+        ],
+        "submissionMethodDetails": "https://atamis-1928.my.site.com/s/Welcome",
+        "communication": {
+          "atypicalToolUrl": "https://atamis-1928.my.site.com/s/Welcome"
+        },
+        "procurementMethod": "open",
+        "procurementMethodDetails": "Open procedure",
+        "coveredBy": [
+          "GPA"
+        ],
+        "tenderPeriod": {
+          "endDate": "2026-06-29T10:00:00+01:00"
+        },
+        "submissionTerms": {
+          "languages": [
+            "en"
+          ],
+          "bidValidityPeriod": {
+            "durationInDays": 180
+          }
+        },
+        "awardPeriod": {
+          "startDate": "2026-06-29T10:00:00+01:00"
+        },
+        "bidOpening": {
+          "date": "2026-06-29T10:00:00+01:00"
+        },
+        "hasRecurrence": false
+      },
+      "parties": [
+        {
+          "name": "Royal Free London NHS Foundation Trust",
+          "id": "GB-FTS-182481",
+          "identifier": {
+            "legalName": "Royal Free London NHS Foundation Trust"
+          },
+          "address": {
+            "streetAddress": "Pond St",
+            "locality": "London",
+            "region": "UKI31",
+            "postalCode": "NW3 2QG",
+            "countryName": "United Kingdom"
+          },
+          "contactPoint": {
+            "name": "The Procurement Team",
+            "email": "rf.ppstenders@nhs.net",
+            "url": "https://atamis-1928.my.site.com/s/Welcome"
+          },
+          "roles": [
+            "buyer"
+          ],
+          "details": {
+            "url": "https://www.royalfree.nhs.uk/",
+            "buyerProfile": "https://www.royalfree.nhs.uk/",
+            "classifications": [
+              {
+                "scheme": "TED_CA_TYPE",
+                "id": "BODY_PUBLIC",
+                "description": "Body governed by public law"
+              },
+              {
+                "scheme": "COFOG",
+                "id": "07",
+                "description": "Health"
+              }
+            ]
+          }
+        },
+        {
+          "name": "The High Court",
+          "id": "GB-FTS-1661",
+          "identifier": {
+            "legalName": "The High Court"
+          },
+          "address": {
+            "streetAddress": "The Strand",
+            "locality": "London",
+            "postalCode": "WC2A 2LL",
+            "countryName": "United Kingdom"
+          },
+          "roles": [
+            "reviewBody"
+          ]
+        }
+      ],
+      "buyer": {
+        "id": "GB-FTS-182481",
+        "name": "Royal Free London NHS Foundation Trust"
+      },
+      "language": "en"
+    },
+    {
+      "ocid": "ocds-h6vhtk-06a8df",
+      "id": "050832-2026",
+      "date": "2026-05-29T13:14:23+01:00",
+      "tag": [
+        "tender"
+      ],
+      "description": "The proposed contract is for the delivery of a comprehensive housing maintenance service across the client\u2019s residential stock, encompassing responsive repairs, void property works and emergency out-of-hours services.\nThe service is to be delivered on a fully integrated basis, with the service provider responsible for receiving, managing and completing all works orders in line with defined response times, appointment scheduling requirements, and customer service standards. Repairs will be prioritised based on urgency, with emergency works made safe within a matter of hours and routine repairs delivered within defined target timescales.\nVoid properties are to be managed efficiently to achieve rapid turnaround to a lettable standard, supported by robust inspection, reporting and handover processes.\nStrong emphasis is placed on digital integration and real-time data management, requiring full interfacing with the client\u2019s housing systems to manage orders, appointments, performance data and reporting. Performance will be closely monitored through a structured KPI regime, alongside regular reporting and collaborative contract management arrangements.\nThe contract also requires a high standard of customer care, particularly for vulnerable tenants, and includes wider obligations around community benefits, training and employment opportunities, and environmental performance. Overall, the service is intended to be delivered through a collaborative, outcomes-focused partnership, with continuous improvement, transparency and customer satisfaction at its core.\nNOTE: To register your interest in this notice and obtain any additional information please visit the Public Contracts Scotland Web Site at https://www.publiccontractsscotland.gov.uk/Search/Search_Switch.aspx?ID=832320.\nThe buyer has indicated that it will accept electronic responses to this notice via the Postbox facility. A user guide is available at https://www.publiccontractsscotland.gov.uk/sitehelp/help_guides.aspx.\nSuppliers are advised to allow adequate time for uploading documents and to dispatch the electronic response well in advance of the closing time to avoid any last minute problems.\nA sub-contract clause has been included in this contract. For more information see: http://www.publiccontractsscotland.gov.uk/info/InfoCentre.aspx?ID=2363\nCommunity benefits are included in this requirement. For more information see: https://www.gov.scot/policies/public-sector-procurement/community-benefits-in-procurement/\nA summary of the expected community benefits has been provided as follows:\nA strong commitment to community benefits.\nQuantified commitments: Jobs, apprenticeships, training places, school engagement\nLocal economic impact: Use of local SMEs / supply chain opportunities\nFair work practices: Living Wage, workforce wellbeing, stable employment\nDeliverability: Clear method of tracking/reporting (KPIs, regular reporting cycles)\nAlignment to project: Benefits relevant to repairs/voids (e.g. local call centre roles, trade apprenticeships)\nEvidence of delivery: Examples from previous contracts with measurable outcomes\n(SC Ref:832320)\nDownload the ESPD document here: https://www.publiccontractsscotland.gov.uk/ESPD/ESPD_Download.aspx?id=832320",
+      "initiationType": "tender",
+      "tender": {
+        "id": "ocds-h6vhtk-06a8df",
+        "legalBasis": {
+          "id": "32014L0024",
+          "scheme": "CELEX"
+        },
+        "title": "Thenue Housing Association - Repairs and Voids - 2027-2037",
+        "status": "active",
+        "classification": {
+          "scheme": "CPV",
+          "id": "45300000",
+          "description": "Building installation work"
+        },
+        "mainProcurementCategory": "works",
+        "description": "Responsive repairs, voids and planned maintenance works to residential properties.",
+        "value": {
+          "amount": 25000000,
+          "currency": "GBP"
+        },
+        "lots": [
+          {
+            "id": "1",
+            "description": "Thenue Housing Association are looking to procure a Contractor to deliver their responsive repairs, void works and planned repairs over the contract duration from 2027 - 2037.\nIt is the intention to shortlist interested parties using SPD Selection criteria to be invited to tender for the works. Tenderers should refer to the SPD selection criteria for further details on THA requirements.",
+            "awardCriteria": {
+              "criteria": [
+                {
+                  "name": "Quality",
+                  "type": "quality",
+                  "description": "60%"
+                },
+                {
+                  "type": "price",
+                  "description": "40%"
+                }
+              ]
+            },
+            "value": {
+              "amount": 25000000,
+              "currency": "GBP"
+            },
+            "contractPeriod": {
+              "startDate": "2027-12-01T00:00:00Z",
+              "endDate": "2037-11-30T23:59:59Z"
+            },
+            "hasRenewal": false,
+            "secondStage": {
+              "minimumCandidates": 5
+            },
+            "submissionTerms": {
+              "variantPolicy": "notAllowed"
+            },
+            "hasOptions": false,
+            "status": "active"
+          }
+        ],
+        "items": [
+          {
+            "id": "1",
+            "additionalClassifications": [
+              {
+                "scheme": "CPV",
+                "id": "45300000",
+                "description": "Building installation work"
+              },
+              {
+                "scheme": "CPV",
+                "id": "45453100",
+                "description": "Refurbishment work"
+              }
+            ],
+            "deliveryAddresses": [
+              {
+                "region": "UKM82"
+              }
+            ],
+            "relatedLot": "1"
+          }
+        ],
+        "submissionMethod": [
+          "electronicSubmission"
+        ],
+        "submissionMethodDetails": "http://www.publiccontractsscotland.gov.uk",
+        "selectionCriteria": {
+          "criteria": [
+            {
+              "type": "suitability",
+              "description": "Refer to SPD module.",
+              "appliesTo": [
+                "supplier"
+              ]
+            }
+          ]
+        },
+        "documents": [
+          {
+            "documentType": "economicSelectionCriteria",
+            "id": "economic"
+          },
+          {
+            "documentType": "technicalSelectionCriteria",
+            "id": "technical"
+          }
+        ],
+        "contractTerms": {
+          "performanceTerms": "N/A",
+          "hasElectronicOrdering": true,
+          "electronicInvoicingPolicy": "allowed",
+          "hasElectronicPayment": true
+        },
+        "procurementMethod": "selective",
+        "procurementMethodDetails": "Restricted procedure",
+        "coveredBy": [
+          "GPA"
+        ],
+        "tenderPeriod": {
+          "endDate": "2026-06-30T17:00:00+01:00"
+        },
+        "secondStage": {
+          "invitationDate": "2026-09-01T00:00:00+01:00"
+        },
+        "submissionTerms": {
+          "languages": [
+            "en"
+          ],
+          "bidValidityPeriod": {
+            "endDate": "2027-01-29T23:59:59Z"
+          }
+        },
+        "hasRecurrence": false
+      },
+      "parties": [
+        {
+          "name": "Thenue Housing Association Limited - AA17802",
+          "id": "GB-FTS-182464",
+          "identifier": {
+            "legalName": "Thenue Housing Association Limited - AA17802"
+          },
+          "address": {
+            "streetAddress": "423 London Road",
+            "locality": "Glasgow",
+            "region": "UKM82",
+            "postalCode": "G40 1AG",
+            "countryName": "United Kingdom"
+          },
+          "contactPoint": {
+            "telephone": "+44 1412202629",
+            "email": "suzanne.gray@atkinsrealis.com",
+            "url": "http://www.publiccontractsscotland.gov.uk"
+          },
+          "roles": [
+            "buyer",
+            "centralPurchasingBody"
+          ],
+          "details": {
+            "url": "https://www.thenuehousing.co.uk/",
+            "buyerProfile": "https://www.publiccontractsscotland.gov.uk/Search/Search_AuthProfile.aspx?ID=AA17802",
+            "classifications": [
+              {
+                "scheme": "TED_CA_TYPE",
+                "id": "BODY_PUBLIC",
+                "description": "Body governed by public law"
+              },
+              {
+                "scheme": "COFOG",
+                "id": "06",
+                "description": "Housing and community amenities"
+              }
+            ]
+          }
+        },
+        {
+          "name": "Glasgow Sheriff Court and Justice of the Peace Court",
+          "id": "GB-FTS-182465",
+          "identifier": {
+            "legalName": "Glasgow Sheriff Court and Justice of the Peace Court"
+          },
+          "address": {
+            "streetAddress": "Sheriff Clerk's Office PO Box 23 1 Carlton Place Glasgow",
+            "locality": "Glasgow",
+            "postalCode": "G5 9DA",
+            "countryName": "United Kingdom"
+          },
+          "roles": [
+            "reviewBody"
+          ]
+        }
+      ],
+      "buyer": {
+        "id": "GB-FTS-182464",
+        "name": "Thenue Housing Association Limited - AA17802"
+      },
+      "links": [
+        {
+          "rel": "canonical",
+          "href": "https://api.publiccontractsscotland.gov.uk/v1/Notice?id=ocds-r6ebe6-0000832320"
+        }
+      ],
+      "language": "en"
+    },
+    {
+      "ocid": "ocds-h6vhtk-068aa0",
+      "id": "050722-2026",
+      "date": "2026-05-29T11:20:17+01:00",
+      "tag": [
+        "tender"
+      ],
+      "description": "NOTE: To register your interest in this notice and obtain any additional information please visit the Public Contracts Scotland Web Site at https://www.publiccontractsscotland.gov.uk/Search/Search_Switch.aspx?ID=833264.\nThe buyer has indicated that it will accept electronic responses to this notice via the Postbox facility. A user guide is available at https://www.publiccontractsscotland.gov.uk/sitehelp/help_guides.aspx.\nSuppliers are advised to allow adequate time for uploading documents and to dispatch the electronic response well in advance of the closing time to avoid any last minute problems.\nA sub-contract clause has been included in this contract. For more information see: http://www.publiccontractsscotland.gov.uk/info/InfoCentre.aspx?ID=2363\nCommunity benefits are included in this requirement. For more information see: https://www.gov.scot/policies/public-sector-procurement/community-benefits-in-procurement/\nA summary of the expected community benefits has been provided as follows:\nsee itt\n(SC Ref:833264)\nDownload the ESPD document here: https://www.publiccontractsscotland.gov.uk/ESPD/ESPD_Download.aspx?id=833264",
+      "initiationType": "tender",
+      "tender": {
+        "id": "ocds-h6vhtk-068aa0",
+        "legalBasis": {
+          "id": "32014L0024",
+          "scheme": "CELEX"
+        },
+        "title": "Public Toilet Cleaning Services",
+        "status": "active",
+        "classification": {
+          "scheme": "CPV",
+          "id": "90910000",
+          "description": "Cleaning services"
+        },
+        "mainProcurementCategory": "services",
+        "description": "provision of opening and closing provision including cleaning and hygiene services across its public toilet estate and associated facilities",
+        "value": {
+          "amount": 1250000,
+          "currency": "GBP"
+        },
+        "lots": [
+          {
+            "id": "1",
+            "description": "The Authority intends to procure a suitably qualified and experienced contractor to deliver a high-quality provision, consistent cleaning and hygiene service across a range of public conveniences and office locations within the National Park.\nThe contract will include:\nRoutine cleaning and hygiene maintenance\nOpening and closing of specified facilities\nProvision and management of consumables\nSanitary waste collection and disposal\nDeep cleaning and ad hoc responsive cleaning services",
+            "value": {
+              "amount": 1250000,
+              "currency": "GBP"
+            },
+            "contractPeriod": {
+              "durationInDays": 1080
+            },
+            "hasRenewal": true,
+            "renewal": {
+              "description": "annual extension for a maximum 2 years - possible 5 year contract in total"
+            },
+            "secondStage": {
+              "minimumCandidates": 1,
+              "maximumCandidates": 8
+            },
+            "selectionCriteria": {
+              "description": "SPD return"
+            },
+            "submissionTerms": {
+              "variantPolicy": "notAllowed"
+            },
+            "hasOptions": true,
+            "options": {
+              "description": "any related activity"
+            },
+            "status": "active"
+          }
+        ],
+        "items": [
+          {
+            "id": "1",
+            "deliveryAddresses": [
+              {
+                "region": "UKM81"
+              }
+            ],
+            "deliveryLocation": {
+              "description": "Loch Lomond & The Trossachs National Park"
+            },
+            "relatedLot": "1"
+          }
+        ],
+        "submissionMethod": [
+          "electronicSubmission"
+        ],
+        "submissionMethodDetails": "http://www.publiccontractsscotland.gov.uk",
+        "communication": {
+          "atypicalToolUrl": "http://www.publiccontractsscotland.gov.uk"
+        },
+        "documents": [
+          {
+            "documentType": "economicSelectionCriteria",
+            "id": "economic"
+          },
+          {
+            "documentType": "technicalSelectionCriteria",
+            "id": "technical"
+          }
+        ],
+        "procurementMethod": "selective",
+        "procurementMethodDetails": "Restricted procedure",
+        "coveredBy": [
+          "GPA"
+        ],
+        "tenderPeriod": {
+          "endDate": "2026-06-29T10:00:00+01:00"
+        },
+        "secondStage": {
+          "invitationDate": "2026-09-30T00:00:00+01:00"
+        },
+        "submissionTerms": {
+          "languages": [
+            "en"
+          ],
+          "bidValidityPeriod": {
+            "durationInDays": 90
+          }
+        },
+        "hasRecurrence": false,
+        "contractTerms": {
+          "hasElectronicOrdering": true,
+          "electronicInvoicingPolicy": "allowed",
+          "hasElectronicPayment": true
+        }
+      },
+      "parties": [
+        {
+          "name": "Loch Lomond & The Trossachs National Park Authority",
+          "id": "GB-FTS-3192",
+          "identifier": {
+            "legalName": "Loch Lomond & The Trossachs National Park Authority"
+          },
+          "address": {
+            "streetAddress": "Carrochan, Carrochan Road",
+            "locality": "Alexandria",
+            "region": "UKM81",
+            "postalCode": "G83 8EG",
+            "countryName": "United Kingdom"
+          },
+          "contactPoint": {
+            "name": "Andrew Jump",
+            "telephone": "+44 1389722664",
+            "email": "procurement@lochlomond-trossachs.org",
+            "url": "http://www.publiccontractsscotland.gov.uk"
+          },
+          "roles": [
+            "buyer"
+          ],
+          "details": {
+            "url": "http://www.lochlomond-trossachs.org",
+            "buyerProfile": "https://www.publiccontractsscotland.gov.uk/search/Search_AuthProfile.aspx?ID=AA12322",
+            "classifications": [
+              {
+                "scheme": "TED_CA_TYPE",
+                "id": "BODY_PUBLIC",
+                "description": "Body governed by public law"
+              },
+              {
+                "scheme": "COFOG",
+                "description": "National Park"
+              }
+            ]
+          }
+        },
+        {
+          "name": "Dumbarton Sheriff Court",
+          "id": "GB-FTS-57060",
+          "identifier": {
+            "legalName": "Dumbarton Sheriff Court"
+          },
+          "address": {
+            "locality": "Dumbarton",
+            "countryName": "United Kingdom"
+          },
+          "roles": [
+            "reviewBody"
+          ]
+        }
+      ],
+      "buyer": {
+        "id": "GB-FTS-3192",
+        "name": "Loch Lomond & The Trossachs National Park Authority"
+      },
+      "links": [
+        {
+          "rel": "canonical",
+          "href": "https://api.publiccontractsscotland.gov.uk/v1/Notice?id=ocds-r6ebe6-0000830315"
+        }
+      ],
+      "language": "en"
+    },
+    {
+      "ocid": "ocds-h6vhtk-06a894",
+      "id": "050719-2026",
+      "date": "2026-05-29T11:17:31+01:00",
+      "tag": [
+        "tender"
+      ],
+      "description": "Form of Tender\nTenderers must sign Form of Tender - Appendix A prior to award to confirm that their Tender Response is a complete, true and accurate submission.\nFreedom of Information\nPlease confirm that you will be in a position to complete, prior to award, Appendix B - Freedom of Information(if applicable) in the Technical Questionnaire. This information should only be submitted if applicable at point of award. It is for information only and will not be scored.\nSustain Supply Chain Code of Conduct\nThe Authority has developed a Sustain Supply Chain Code of Conduct- Appendix D which sets out its expected standards for its supply chain in social, ethical and environmental compliance. Tenderers must complete the Sustain Supply Chain Code of Conduct prior to award to assist in achieving its objectives.\nList Of Institutions\nTenderers must complete and return Appendix E - List of Institutions to confirm their ability to service the required coverage levels. Tenderers must be able to provide delivery services to 76.09% (35 out of 46) of institutions listed in Appendix E - List of Institutions.\nPrompt Payment\nTenderers must confirm that payment of subcontractors at all stages of the supply chain will be made within a maximum of 30 days and that this will be managed. It is for information only and will not be scored but is a requirement of this tender and will be included in the contractual terms.\nSerious Organised Crime\nPlease complete \u201cAppendix G \u2013 Declaration of Non-Involvement in Serious Organised Crime\u201d in the Technical Questionnaire. Tenderers must complete the Declaration of Non-Involvement in Serious Organised Crime. It is for information only and will not be scored but it is a requirement of this tender and will be included in the assessment of tender responses and in contractual terms.\nHuman Trafficking & Labour Exploitation\nPlease complete \u201cAppendix H \u2013 Declaration of Non-Involvement in Human Trafficking & Labour Exploitation\u201d in the Technical Questionnaire. Tenderers must complete the Declaration of Non-Involvement in Human Trafficking & labour Exploitation. It is for information only and will not be scored but it is a requirement of this tender and will be included in the assessment of tender responses and in contractual terms.\nLiving Wage Status\nPlease provide details on your position on the Real Living Wage. This information should be submitted in the Technical envelope in PCS-T. It is for information only and will not be scored.\nThe buyer is using PCS-Tender to conduct this ITT exercise. The Project code is 31929. For more information see: http://www.publiccontractsscotland.gov.uk/info/InfoCentre.aspx?ID=2343\nThe Contracting Authority does not intend to include a sub-contract clause as part of community benefits (as per Section 25 of the Procurement Reform (Scotland) Act 2014) in this contract for the following reason:\nThe nature of this Framework Agreement does not align to the requirement to include a sub-contract clause\nThe buyer is using PCS-Tender to conduct this ITT exercise. The Project code is 31929. For more information see: http://www.publiccontractsscotland.gov.uk/info/InfoCentre.aspx?ID=2343\nA sub-contract clause has been included in this contract. For more information see: http://www.publiccontractsscotland.gov.uk/info/InfoCentre.aspx?ID=2363\nCommunity benefits are included in this requirement. For more information see: https://www.gov.scot/policies/public-sector-procurement/community-benefits-in-procurement/\nA summary of the expected community benefits has been provided as follows:\nThe Contractor will work with the Authority to deliver Community Benefits or social value where they are identifiable throughout the term of the Framework Agreement. Examples of Community Benefits or social value are: providing training opportunities to staff and students and investment in the local community.\n(SC Ref:832864)",
+      "initiationType": "tender",
+      "tender": {
+        "id": "EFM1070 AP",
+        "legalBasis": {
+          "id": "32014L0024",
+          "scheme": "CELEX"
+        },
+        "title": "Plumbing & Heating Materials",
+        "status": "active",
+        "classification": {
+          "scheme": "CPV",
+          "id": "44115210",
+          "description": "Plumbing materials"
+        },
+        "mainProcurementCategory": "goods",
+        "description": "The Authority is seeking Contractor(s) for the provision of Plumbing & Heating Materials for all Scottish Higher (HE) and Further (FE) Education sector and some other public sector bodies in Scotland. This includes all full members, associate members and their associated and affiliated bodies of APUC Ltd, as detailed at: https://www.apuc-scot.ac.uk/!#/members\nMore details can be found within Appendix E - List of Institutions.\nThe Authority are also seeking to gain a level of price normalisation across the sector. A maximum of 5 Contractors will be appointed per lot.",
+        "value": {
+          "amount": 5000000,
+          "currency": "GBP"
+        },
+        "lotDetails": {
+          "maximumLotsBidPerSupplier": Infinity
+        },
+        "lots": [
+          {
+            "id": "2",
+            "title": "Lot 2 - Heating Products",
+            "description": "The scope of this agreement is the supply of a range of Heating Materials and associated products.\nContractors must be able to price and supply a minimum of 74.31% (136 out of 183 items) of the products listed in the Core Product List for Lot 2. Additional information: Economic operators may be excluded from this competition if they are in any of the situations referred to in regulation 58 of the Public Contracts (Scotland) Regulations 2015.",
+            "awardCriteria": {
+              "criteria": [
+                {
+                  "name": "Technical",
+                  "type": "quality",
+                  "description": "40"
+                },
+                {
+                  "type": "price",
+                  "description": "60"
+                }
+              ]
+            },
+            "contractPeriod": {
+              "durationInDays": 720
+            },
+            "hasRenewal": true,
+            "renewal": {
+              "description": "The Authority reserves the right to extend the Framework Agreement for a period of up to 24 months subject to satisfactory performance and continued Institutions requirements."
+            },
+            "submissionTerms": {
+              "variantPolicy": "notAllowed"
+            },
+            "hasOptions": false,
+            "status": "active"
+          },
+          {
+            "id": "1",
+            "title": "Lot 1 - Plumbing Consumables",
+            "description": "The scope of this agreement is the supply of a range of Plumbing Consumables and associated products and materials.\nContractors must be able to price and supply a minimum of 74.46% (242 out of 325 items) of the products listed in the Core Product List for Lot 1. Additional information: Economic operators may be excluded from this competition if they are in any of the situations referred to in regulation 58 of the Public Contracts (Scotland) Regulations 2015.",
+            "awardCriteria": {
+              "criteria": [
+                {
+                  "name": "Technical",
+                  "type": "quality",
+                  "description": "40"
+                },
+                {
+                  "type": "price",
+                  "description": "60"
+                }
+              ]
+            },
+            "contractPeriod": {
+              "durationInDays": 720
+            },
+            "hasRenewal": true,
+            "renewal": {
+              "description": "The Authority reserves the right to extend the Framework Agreement for a period of up to 24 months subject to satisfactory performance and continued Institutions requirements."
+            },
+            "submissionTerms": {
+              "variantPolicy": "notAllowed"
+            },
+            "hasOptions": false,
+            "status": "active"
+          }
+        ],
+        "items": [
+          {
+            "id": "2",
+            "additionalClassifications": [
+              {
+                "scheme": "CPV",
+                "id": "44115200",
+                "description": "Plumbing and heating materials"
+              },
+              {
+                "scheme": "CPV",
+                "id": "39715200",
+                "description": "Heating equipment"
+              },
+              {
+                "scheme": "CPV",
+                "id": "39715000",
+                "description": "Water heaters and heating for buildings; plumbing equipment"
+              },
+              {
+                "scheme": "CPV",
+                "id": "44163121",
+                "description": "Heating pipes"
+              },
+              {
+                "scheme": "CPV",
+                "id": "44115220",
+                "description": "Heating materials"
+              },
+              {
+                "scheme": "CPV",
+                "id": "44620000",
+                "description": "Central-heating radiators and boilers and parts"
+              }
+            ],
+            "deliveryAddresses": [
+              {
+                "region": "UKM"
+              }
+            ],
+            "relatedLot": "2"
+          },
+          {
+            "id": "1",
+            "additionalClassifications": [
+              {
+                "scheme": "CPV",
+                "id": "39715300",
+                "description": "Plumbing equipment"
+              },
+              {
+                "scheme": "CPV",
+                "id": "44115210",
+                "description": "Plumbing materials"
+              },
+              {
+                "scheme": "CPV",
+                "id": "42131400",
+                "description": "Sanitary taps, cocks"
+              },
+              {
+                "scheme": "CPV",
+                "id": "44411000",
+                "description": "Sanitary ware"
+              },
+              {
+                "scheme": "CPV",
+                "id": "44160000",
+                "description": "Pipeline, piping, pipes, casing, tubing and related items"
+              },
+              {
+                "scheme": "CPV",
+                "id": "44411300",
+                "description": "Washbasins"
+              },
+              {
+                "scheme": "CPV",
+                "id": "42130000",
+                "description": "Taps, cocks, valves and similar appliances"
+              },
+              {
+                "scheme": "CPV",
+                "id": "44411100",
+                "description": "Taps"
+              },
+              {
+                "scheme": "CPV",
+                "id": "44411700",
+                "description": "Lavatory seats, covers, bowls and cisterns"
+              },
+              {
+                "scheme": "CPV",
+                "id": "44167300",
+                "description": "Bends, tees and pipe fittings"
+              }
+            ],
+            "deliveryAddresses": [
+              {
+                "region": "UKM"
+              }
+            ],
+            "relatedLot": "1"
+          }
+        ],
+        "submissionMethod": [
+          "electronicSubmission"
+        ],
+        "submissionMethodDetails": "https://www.publictendersscotland.publiccontractsscotland.gov.uk/esop/pts-host/public/pts/web/login.html",
+        "selectionCriteria": {
+          "criteria": [
+            {
+              "minimum": "With reference to 4B.5 of the SPD in the qualification questionnaire, bidders must confirm they can provide the following supporting evidence prior to award:\nEmployer's (Compulsory) Liability Insurance = 5 000 000 GBP\nPublic Liability Insurance = 5 000 000 GBP\nProduct Liability Insurance = 5 000 000 GBP\nWith reference to 4B.6 of the SPD in the qualification questionnaire, bidders must confirm they can provide the following supporting evidence prior to award:\nTo demonstrate and evidence suitable economic standing, successful Contractors will be required to provide 2 years audited accounts, or equivalent if awarded the Framework Agreement.\nAlternatively, if the contractor is unable to provide the required accounting information e.g. a new business without the required accounts, then they will be required to provide a bankers letter demonstrating their willingness to support the Contractors organisation over the them of the Framework Agreement.\nPlease refer to section 4B.6 of the SPD."
+            }
+          ]
+        },
+        "contractTerms": {
+          "performanceTerms": "Submission of Management Information\nFollowing commencement of the Framework Agreement, the Contractor will provide a performance report to The Authority on a quarterly basis to include spend by institution under the Framework Agreement for the reporting period.\nContractors must provide the information on a quarterly basis, within 10 working days following the start of each quarter.\nData must be uploaded to the website: http://ucsp.ac.uk/ using the template provided (template shall be provided during the lead-in period). The supplied template is the only format permissible and should contain Contractor name, tender reference, total net spend by institution each month. If there has been no spend for the quarter, then this will still require you to log in and record a nil spend return.",
+          "hasElectronicOrdering": true,
+          "electronicInvoicingPolicy": "allowed",
+          "hasElectronicPayment": true
+        },
+        "procurementMethod": "open",
+        "procurementMethodDetails": "Open procedure",
+        "techniques": {
+          "hasFrameworkAgreement": true,
+          "frameworkAgreement": {
+            "maximumParticipants": 10
+          }
+        },
+        "coveredBy": [
+          "GPA"
+        ],
+        "tenderPeriod": {
+          "endDate": "2026-06-29T12:00:00+01:00"
+        },
+        "submissionTerms": {
+          "languages": [
+            "en"
+          ]
+        },
+        "awardPeriod": {
+          "startDate": "2026-06-29T13:00:00+01:00"
+        },
+        "bidOpening": {
+          "date": "2026-06-29T13:00:00+01:00"
+        },
+        "hasRecurrence": true,
+        "recurrence": {
+          "description": "The Framework Agreement will run for an initial period of 24 months and may be extended for a further 24 month period, after which it will be re-tendered."
+        }
+      },
+      "parties": [
+        {
+          "name": "APUC Limited",
+          "id": "GB-FTS-2420",
+          "identifier": {
+            "legalName": "APUC Limited"
+          },
+          "address": {
+            "streetAddress": "Unit 27, Stirling Business Centre, Wellgreen",
+            "locality": "Stirling",
+            "region": "UKM",
+            "postalCode": "FK8 2DZ",
+            "countryName": "United Kingdom"
+          },
+          "contactPoint": {
+            "telephone": "+44 1314428930",
+            "email": "jopray@apuc-scot.ac.uk",
+            "url": "https://www.publictendersscotland.publiccontractsscotland.gov.uk/esop/pts-host/public/pts/web/login.html"
+          },
+          "roles": [
+            "buyer",
+            "centralPurchasingBody"
+          ],
+          "details": {
+            "url": "http://www.apuc-scot.ac.uk",
+            "buyerProfile": "https://www.publiccontractsscotland.gov.uk/search/Search_AuthProfile.aspx?ID=AA10402",
+            "classifications": [
+              {
+                "scheme": "TED_CA_TYPE",
+                "description": "Education"
+              },
+              {
+                "scheme": "COFOG",
+                "id": "09",
+                "description": "Education"
+              }
+            ]
+          }
+        },
+        {
+          "name": "APUC",
+          "id": "GB-FTS-182439",
+          "identifier": {
+            "legalName": "APUC"
+          },
+          "address": {
+            "streetAddress": "Unit 27, Stirling Business Centre",
+            "locality": "Stirling",
+            "postalCode": "FK8 2DZ",
+            "countryName": "United Kingdom"
+          },
+          "contactPoint": {
+            "email": "jopray@apuc-scot.ac.uk"
+          },
+          "roles": [
+            "reviewBody"
+          ],
+          "details": {
+            "url": "https://www.scotcourts.gov.uk/courts-and-tribunals/courts-tribunals-and-office-locations/find-us/stirling-sheriff-court-and-justice-of-the-peace-court/"
+          }
+        }
+      ],
+      "buyer": {
+        "id": "GB-FTS-2420",
+        "name": "APUC Limited"
+      },
+      "links": [
+        {
+          "rel": "canonical",
+          "href": "https://api.publiccontractsscotland.gov.uk/v1/Notice?id=ocds-r6ebe6-0000832864"
+        }
+      ],
+      "language": "en"
+    },
+    {
+      "ocid": "ocds-h6vhtk-06a88f",
+      "id": "050712-2026",
+      "date": "2026-05-29T11:10:21+01:00",
+      "tag": [
+        "tender"
+      ],
+      "description": "Form of Tender\nTenderers must sign Form of Tender - Appendix A prior to award to confirm that their Tender Response is a complete, true and accurate submission.\nFreedom of Information\nPlease confirm that you will be in a position to complete, prior to award, Appendix B - Freedom of Information(if applicable) in the Technical Questionnaire. This information should only be submitted if applicable at point of award. It is for information only and will not be scored.\nSustain Supply Chain Code of Conduct\nThe Authority has developed a Sustain Supply Chain Code of Conduct- Appendix D which sets out its expected standards for its supply chain in social, ethical and environmental compliance. Tenderers must complete the Sustain Supply Chain Code of Conduct prior to award to assist in achieving its objectives.\nList Of Institutions\nTenderers must complete and return Appendix E - List of Institutions to confirm their ability to service the required coverage levels. Tenderers must be able to provide delivery services to 76.09% (35 out of 46) of institutions listed in Appendix E - List of Institutions.\nPrompt Payment\nTenderers must confirm that payment of subcontractors at all stages of the supply chain will be made within a maximum of 30 days and that this will be managed. It is for information only and will not be scored but is a requirement of this tender and will be included in the contractual terms.\nSerious Organised Crime\nPlease complete \u201cAppendix G \u2013 Declaration of Non-Involvement in Serious Organised Crime\u201d in the Technical Questionnaire. Tenderers must complete the Declaration of Non-Involvement in Serious Organised Crime. It is for information only and will not be scored but it is a requirement of this tender and will be included in the assessment of tender responses and in contractual terms.\nHuman Trafficking & Labour Exploitation\nPlease complete \u201cAppendix H \u2013 Declaration of Non-Involvement in Human Trafficking & Labour Exploitation\u201d in the Technical Questionnaire. Tenderers must complete the Declaration of Non-Involvement in Human Trafficking & labour Exploitation. It is for information only and will not be scored but it is a requirement of this tender and will be included in the assessment of tender responses and in contractual terms.\nLiving Wage Status\nPlease provide details on your position on the Real Living Wage. This information should be submitted in the Technical envelope in PCS-T. It is for information only and will not be scored.\nThe buyer is using PCS-Tender to conduct this ITT exercise. The Project code is 31929. For more information see: http://www.publiccontractsscotland.gov.uk/info/InfoCentre.aspx?ID=2343\nThe Contracting Authority does not intend to include a sub-contract clause as part of community benefits (as per Section 25 of the Procurement Reform (Scotland) Act 2014) in this contract for the following reason:\nThe nature of this Framework Agreement does not align to the requirement to include a sub-contract clause\nThe buyer is using PCS-Tender to conduct this ITT exercise. The Project code is 31929. For more information see: http://www.publiccontractsscotland.gov.uk/info/InfoCentre.aspx?ID=2343\nA sub-contract clause has been included in this contract. For more information see: http://www.publiccontractsscotland.gov.uk/info/InfoCentre.aspx?ID=2363\nCommunity benefits are included in this requirement. For more information see: https://www.gov.scot/policies/public-sector-procurement/community-benefits-in-procurement/\nA summary of the expected community benefits has been provided as follows:\nThe Contractor will work with the Authority to deliver Community Benefits or social value where they are identifiable throughout the term of the Framework Agreement. Examples of Community Benefits or social value are: providing training opportunities to staff and students and investment in the local community.\n(SC Ref:832864)",
+      "initiationType": "tender",
+      "tender": {
+        "id": "EFM1070 AP",
+        "legalBasis": {
+          "id": "32014L0024",
+          "scheme": "CELEX"
+        },
+        "title": "Plumbing & Heating Materials",
+        "status": "active",
+        "classification": {
+          "scheme": "CPV",
+          "id": "44115210",
+          "description": "Plumbing materials"
+        },
+        "mainProcurementCategory": "goods",
+        "description": "The Authority is seeking Contractor(s) for the provision of Plumbing & Heating Materials for all Scottish Higher (HE) and Further (FE) Education sector and some other public sector bodies in Scotland. This includes all full members, associate members and their associated and affiliated bodies of APUC Ltd, as detailed at: https://www.apuc-scot.ac.uk/!#/members\nMore details can be found within Appendix E - List of Institutions.\nThe Authority are also seeking to gain a level of price normalisation across the sector. A maximum of 5 Contractors will be appointed per lot.",
+        "value": {
+          "amount": 5000000,
+          "currency": "GBP"
+        },
+        "lotDetails": {
+          "maximumLotsBidPerSupplier": Infinity
+        },
+        "lots": [
+          {
+            "id": "2",
+            "title": "Lot 2 - Heating Products",
+            "description": "The scope of this agreement is the supply of a range of Heating Materials and associated products.\nContractors must be able to price and supply a minimum of 74.31% (136 out of 183 items) of the products listed in the Core Product List for Lot 2. Additional information: Economic operators may be excluded from this competition if they are in any of the situations referred to in regulation 58 of the Public Contracts (Scotland) Regulations 2015.",
+            "awardCriteria": {
+              "criteria": [
+                {
+                  "name": "Technical",
+                  "type": "quality",
+                  "description": "40"
+                },
+                {
+                  "type": "price",
+                  "description": "60"
+                }
+              ]
+            },
+            "contractPeriod": {
+              "durationInDays": 720
+            },
+            "hasRenewal": true,
+            "renewal": {
+              "description": "The Authority reserves the right to extend the Framework Agreement for a period of up to 24 months subject to satisfactory performance and continued Institutions requirements."
+            },
+            "submissionTerms": {
+              "variantPolicy": "notAllowed"
+            },
+            "hasOptions": false,
+            "status": "active"
+          },
+          {
+            "id": "1",
+            "title": "Lot 1 - Plumbing Consumables",
+            "description": "The scope of this agreement is the supply of a range of Plumbing Consumables and associated products and materials.\nContractors must be able to price and supply a minimum of 74.46% (242 out of 325 items) of the products listed in the Core Product List for Lot 1. Additional information: Economic operators may be excluded from this competition if they are in any of the situations referred to in regulation 58 of the Public Contracts (Scotland) Regulations 2015.",
+            "awardCriteria": {
+              "criteria": [
+                {
+                  "name": "Technical",
+                  "type": "quality",
+                  "description": "40"
+                },
+                {
+                  "type": "price",
+                  "description": "60"
+                }
+              ]
+            },
+            "contractPeriod": {
+              "durationInDays": 720
+            },
+            "hasRenewal": true,
+            "renewal": {
+              "description": "The Authority reserves the right to extend the Framework Agreement for a period of up to 24 months subject to satisfactory performance and continued Institutions requirements."
+            },
+            "submissionTerms": {
+              "variantPolicy": "notAllowed"
+            },
+            "hasOptions": false,
+            "status": "active"
+          }
+        ],
+        "items": [
+          {
+            "id": "2",
+            "additionalClassifications": [
+              {
+                "scheme": "CPV",
+                "id": "44115200",
+                "description": "Plumbing and heating materials"
+              },
+              {
+                "scheme": "CPV",
+                "id": "39715200",
+                "description": "Heating equipment"
+              },
+              {
+                "scheme": "CPV",
+                "id": "39715000",
+                "description": "Water heaters and heating for buildings; plumbing equipment"
+              },
+              {
+                "scheme": "CPV",
+                "id": "44163121",
+                "description": "Heating pipes"
+              },
+              {
+                "scheme": "CPV",
+                "id": "44115220",
+                "description": "Heating materials"
+              },
+              {
+                "scheme": "CPV",
+                "id": "44620000",
+                "description": "Central-heating radiators and boilers and parts"
+              }
+            ],
+            "deliveryAddresses": [
+              {
+                "region": "UKM"
+              }
+            ],
+            "relatedLot": "2"
+          },
+          {
+            "id": "1",
+            "additionalClassifications": [
+              {
+                "scheme": "CPV",
+                "id": "39715300",
+                "description": "Plumbing equipment"
+              },
+              {
+                "scheme": "CPV",
+                "id": "44115210",
+                "description": "Plumbing materials"
+              },
+              {
+                "scheme": "CPV",
+                "id": "42131400",
+                "description": "Sanitary taps, cocks"
+              },
+              {
+                "scheme": "CPV",
+                "id": "44411000",
+                "description": "Sanitary ware"
+              },
+              {
+                "scheme": "CPV",
+                "id": "44160000",
+                "description": "Pipeline, piping, pipes, casing, tubing and related items"
+              },
+              {
+                "scheme": "CPV",
+                "id": "44411300",
+                "description": "Washbasins"
+              },
+              {
+                "scheme": "CPV",
+                "id": "42130000",
+                "description": "Taps, cocks, valves and similar appliances"
+              },
+              {
+                "scheme": "CPV",
+                "id": "44411100",
+                "description": "Taps"
+              },
+              {
+                "scheme": "CPV",
+                "id": "44411700",
+                "description": "Lavatory seats, covers, bowls and cisterns"
+              },
+              {
+                "scheme": "CPV",
+                "id": "44167300",
+                "description": "Bends, tees and pipe fittings"
+              }
+            ],
+            "deliveryAddresses": [
+              {
+                "region": "UKM"
+              }
+            ],
+            "relatedLot": "1"
+          }
+        ],
+        "submissionMethod": [
+          "electronicSubmission"
+        ],
+        "submissionMethodDetails": "https://www.publictendersscotland.publiccontractsscotland.gov.uk/esop/pts-host/public/pts/web/login.html",
+        "selectionCriteria": {
+          "criteria": [
+            {
+              "minimum": "With reference to 4B.5 of the SPD in the qualification questionnaire, bidders must confirm they can provide the following supporting evidence prior to award:\nEmployer's (Compulsory) Liability Insurance = 5 000 000 GBP\nPublic Liability Insurance = 5 000 000 GBP\nProduct Liability Insurance = 5 000 000 GBP\nWith reference to 4B.6 of the SPD in the qualification questionnaire, bidders must confirm they can provide the following supporting evidence prior to award:\nTo demonstrate and evidence suitable economic standing, successful Contractors will be required to provide 2 years audited accounts, or equivalent if awarded the Framework Agreement.\nAlternatively, if the contractor is unable to provide the required accounting information e.g. a new business without the required accounts, then they will be required to provide a bankers letter demonstrating their willingness to support the Contractors organisation over the them of the Framework Agreement.\nPlease refer to section 4B.6 of the SPD."
+            }
+          ]
+        },
+        "contractTerms": {
+          "performanceTerms": "Submission of Management Information\nFollowing commencement of the Framework Agreement, the Contractor will provide a performance report to The Authority on a quarterly basis to include spend by institution under the Framework Agreement for the reporting period.\nContractors must provide the information on a quarterly basis, within 10 working days following the start of each quarter.\nData must be uploaded to the website: http://ucsp.ac.uk/ using the template provided (template shall be provided during the lead-in period). The supplied template is the only format permissible and should contain Contractor name, tender reference, total net spend by institution each month. If there has been no spend for the quarter, then this will still require you to log in and record a nil spend return.",
+          "hasElectronicOrdering": true,
+          "electronicInvoicingPolicy": "allowed",
+          "hasElectronicPayment": true
+        },
+        "procurementMethod": "open",
+        "procurementMethodDetails": "Open procedure",
+        "techniques": {
+          "hasFrameworkAgreement": true,
+          "frameworkAgreement": {
+            "maximumParticipants": 10
+          }
+        },
+        "coveredBy": [
+          "GPA"
+        ],
+        "tenderPeriod": {
+          "endDate": "2026-06-29T12:00:00+01:00"
+        },
+        "submissionTerms": {
+          "languages": [
+            "en"
+          ]
+        },
+        "awardPeriod": {
+          "startDate": "2026-06-29T13:00:00+01:00"
+        },
+        "bidOpening": {
+          "date": "2026-06-29T13:00:00+01:00"
+        },
+        "hasRecurrence": true,
+        "recurrence": {
+          "description": "The Framework Agreement will run for an initial period of 24 months and may be extended for a further 24 month period, after which it will be re-tendered."
+        }
+      },
+      "parties": [
+        {
+          "name": "APUC Limited",
+          "id": "GB-FTS-2420",
+          "identifier": {
+            "legalName": "APUC Limited"
+          },
+          "address": {
+            "streetAddress": "Unit 27, Stirling Business Centre, Wellgreen",
+            "locality": "Stirling",
+            "region": "UKM",
+            "postalCode": "FK8 2DZ",
+            "countryName": "United Kingdom"
+          },
+          "contactPoint": {
+            "telephone": "+44 1314428930",
+            "email": "jopray@apuc-scot.ac.uk",
+            "url": "https://www.publictendersscotland.publiccontractsscotland.gov.uk/esop/pts-host/public/pts/web/login.html"
+          },
+          "roles": [
+            "buyer",
+            "centralPurchasingBody"
+          ],
+          "details": {
+            "url": "http://www.apuc-scot.ac.uk",
+            "buyerProfile": "https://www.publiccontractsscotland.gov.uk/search/Search_AuthProfile.aspx?ID=AA10402",
+            "classifications": [
+              {
+                "scheme": "TED_CA_TYPE",
+                "description": "Education"
+              },
+              {
+                "scheme": "COFOG",
+                "id": "09",
+                "description": "Education"
+              }
+            ]
+          }
+        },
+        {
+          "name": "APUC",
+          "id": "GB-FTS-182439",
+          "identifier": {
+            "legalName": "APUC"
+          },
+          "address": {
+            "streetAddress": "Unit 27, Stirling Business Centre",
+            "locality": "Stirling",
+            "postalCode": "FK8 2DZ",
+            "countryName": "United Kingdom"
+          },
+          "contactPoint": {
+            "email": "jopray@apuc-scot.ac.uk"
+          },
+          "roles": [
+            "reviewBody"
+          ],
+          "details": {
+            "url": "https://www.scotcourts.gov.uk/courts-and-tribunals/courts-tribunals-and-office-locations/find-us/stirling-sheriff-court-and-justice-of-the-peace-court/"
+          }
+        }
+      ],
+      "buyer": {
+        "id": "GB-FTS-2420",
+        "name": "APUC Limited"
+      },
+      "links": [
+        {
+          "rel": "canonical",
+          "href": "https://api.publiccontractsscotland.gov.uk/v1/Notice?id=ocds-r6ebe6-0000832864"
+        }
+      ],
+      "language": "en"
+    },
+    {
+      "ocid": "ocds-h6vhtk-06a84e",
+      "id": "050587-2026",
+      "date": "2026-05-29T09:03:55+01:00",
+      "tag": [
+        "tender"
+      ],
+      "description": "The buyer is using PCS-Tender to conduct this ITT exercise. The Project code is 31950. For more information see: http://www.publiccontractsscotland.gov.uk/info/InfoCentre.aspx?ID=2343\nCommunity benefits are included in this requirement. For more information see: https://www.gov.scot/policies/public-sector-procurement/community-benefits-in-procurement/\nA summary of the expected community benefits has been provided as follows:\nThe University has included a Community Benefits menu in Schedule 9 -\nCommunity Benefits Menu as part of the technical evaluation of this\nprocurement. Bidders are required to complete this and reattach this to the Technical Envelope of PCS-T.\n(SC Ref:832409)",
+      "initiationType": "tender",
+      "tender": {
+        "id": "EC1085",
+        "legalBasis": {
+          "id": "32014L0024",
+          "scheme": "CELEX"
+        },
+        "title": "NMPH (Non-Medical Personal Help)",
+        "status": "active",
+        "classification": {
+          "scheme": "CPV",
+          "id": "79600000",
+          "description": "Recruitment services"
+        },
+        "mainProcurementCategory": "services",
+        "description": "The University of Edinburgh invites you to tender for the provision Non-Medical Personal Help (NMPH) as specified in Schedule 3 - Statement of Requirements. In this ITT, references to \u201cThe University of Edinburgh\u201d includes all of the University\u2019s subsidiaries.",
+        "value": {
+          "amount": 1850000,
+          "currency": "GBP"
+        },
+        "lots": [
+          {
+            "id": "1",
+            "description": "The University intends to undertake a procurement process to appoint a suitably qualified contractor to provide reliable, person-centred NMPH services for students requiring support. These services are designed to complement\u2014rather than replace\u2014clinical or medical interventions. Their primary focus is on practical, day-to-day assistance that enables students to access learning, maintain independence, and achieve their full potential while enhancing the overall student experience.\nThe University of Edinburgh invites you to tender for the provision Non-Medical Personal Help (NMPH) as specified in Schedule 3 - Statement of Requirements. In this ITT, references to \u201cThe University of Edinburgh\u201d includes all of the University\u2019s subsidiaries.\nThis Invitation to Tender (\u201cITT\u201d) is for an Open which shall be conducted in accordance with Public Contract Scotland Regulations 2015 and Procurement (Scotland) Regulations 201 to establish a contract.",
+            "awardCriteria": {
+              "criteria": [
+                {
+                  "name": "Quality",
+                  "type": "quality",
+                  "description": "70"
+                },
+                {
+                  "type": "price",
+                  "description": "30"
+                }
+              ]
+            },
+            "value": {
+              "amount": 1850000,
+              "currency": "GBP"
+            },
+            "contractPeriod": {
+              "durationInDays": 1800
+            },
+            "hasRenewal": true,
+            "renewal": {
+              "description": "It is the University\u2019s intention to enter into a Framework Agreement is for a period of 1 years with the option to extend for up to an additional 4 years (2+2)."
+            },
+            "submissionTerms": {
+              "variantPolicy": "notAllowed"
+            },
+            "hasOptions": false,
+            "status": "active"
+          }
+        ],
+        "items": [
+          {
+            "id": "1",
+            "deliveryAddresses": [
+              {
+                "region": "UKM75"
+              }
+            ],
+            "relatedLot": "1"
+          }
+        ],
+        "submissionMethod": [
+          "electronicSubmission"
+        ],
+        "submissionMethodDetails": "https://www.publictendersscotland.publiccontractsscotland.gov.uk/go/06201586019E6F142873",
+        "documents": [
+          {
+            "documentType": "economicSelectionCriteria",
+            "id": "economic"
+          },
+          {
+            "documentType": "technicalSelectionCriteria",
+            "id": "technical"
+          }
+        ],
+        "otherRequirements": {
+          "requiresStaffNamesAndQualifications": true
+        },
+        "procurementMethod": "open",
+        "procurementMethodDetails": "Open procedure",
+        "coveredBy": [
+          "GPA"
+        ],
+        "tenderPeriod": {
+          "endDate": "2026-06-29T12:00:00+01:00"
+        },
+        "submissionTerms": {
+          "languages": [
+            "en"
+          ],
+          "bidValidityPeriod": {
+            "endDate": "2026-10-26T23:59:59Z"
+          }
+        },
+        "awardPeriod": {
+          "startDate": "2026-06-29T12:00:00+01:00"
+        },
+        "bidOpening": {
+          "date": "2026-06-29T12:00:00+01:00"
+        },
+        "hasRecurrence": false,
+        "contractTerms": {
+          "hasElectronicOrdering": true,
+          "electronicInvoicingPolicy": "allowed",
+          "hasElectronicPayment": true
+        }
+      },
+      "parties": [
+        {
+          "name": "University Of Edinburgh",
+          "id": "GB-FTS-2023",
+          "identifier": {
+            "legalName": "University Of Edinburgh"
+          },
+          "address": {
+            "streetAddress": "Charles Stewart House, 9-16 Chambers Street",
+            "locality": "Edinburgh",
+            "region": "UKM75",
+            "postalCode": "EH1 1HT",
+            "countryName": "United Kingdom"
+          },
+          "contactPoint": {
+            "name": "Ross Sharp",
+            "email": "rsharp4@ed.ac.uk",
+            "url": "https://www.publictendersscotland.publiccontractsscotland.gov.uk/go/06201586019E6F142873"
+          },
+          "roles": [
+            "buyer",
+            "centralPurchasingBody"
+          ],
+          "details": {
+            "url": "http://www.ed.ac.uk",
+            "buyerProfile": "https://www.publiccontractsscotland.gov.uk/search/Search_AuthProfile.aspx?ID=AA00107",
+            "classifications": [
+              {
+                "scheme": "TED_CA_TYPE",
+                "id": "BODY_PUBLIC",
+                "description": "Body governed by public law"
+              },
+              {
+                "scheme": "COFOG",
+                "id": "09",
+                "description": "Education"
+              }
+            ]
+          }
+        },
+        {
+          "name": "Edinburgh Sherrif Court",
+          "id": "GB-FTS-139305",
+          "identifier": {
+            "legalName": "Edinburgh Sherrif Court"
+          },
+          "address": {
+            "streetAddress": "27 Chambers Street",
+            "locality": "Edinburgh",
+            "postalCode": "EH11LB",
+            "countryName": "United Kingdom"
+          },
+          "roles": [
+            "reviewBody"
+          ]
+        }
+      ],
+      "buyer": {
+        "id": "GB-FTS-2023",
+        "name": "University Of Edinburgh"
+      },
+      "links": [
+        {
+          "rel": "canonical",
+          "href": "https://api.publiccontractsscotland.gov.uk/v1/Notice?id=ocds-r6ebe6-0000832409"
+        }
+      ],
+      "language": "en"
+    },
+    {
+      "ocid": "ocds-h6vhtk-06a825",
+      "id": "050518-2026",
+      "date": "2026-05-28T16:46:05+01:00",
+      "tag": [
+        "tender"
+      ],
+      "description": "This is a Transparency - Intention to Award Notice - to inform market of the Relevant Authority's intention to Award a Contract under the Health Care Services (Provider Selection Regime) Regulations 2023, Most Suitable Provider Process. The lifetime value of the contract is expected to be \u00a355,000 (\u00a3110,000 including the extension period.)\n1.A statement that the relevant authority is intending to award a contract following Most Suitable Provider Process.\n2.The name and address of the registered office or principal place of business of the provider(s) to whom an award is to be made:\nHullcare Limited, Kingswood Health Centre, ,10 School Lane, Hull, United Kingdom, HU7 3JQ\n3.A description of the relevant health care services to which the contract relates, including the most relevant CPV code:\nPublic Health Services and Children Services- Hull City Council\n85100000 - Health Care Services.\n4.The approximate lifetime value of the contract:\n\u00a355,000 (\u00a3110,000 including the extension period)\n5.Details of the award decision-makers:\nGovernance - Hull City Council - Public Health Directorate and Children's Services Directorate.\n6.A statement explaining the award decision-makers' reasons for selecting the chosen provider, with reference to the key criteria:\nConsidered by public health service and guidance obtained to use PSR Regulations:\nThe Service Review was undertaken contributing to our decision making as well as colleagues in procurement and legal. The Review was then cross-referenced with the Key Evaluation Criteria to assess their proposal. The weighting for each of the criteria was as follows:\n1. Quality and Innovation - Pass/Fail\n2. Value - Pass/Fail\n3. Integration, collaboration and service sustainability - Pass/Fail\n4. Improving access, reducing health inequalities, and facilitating choice - Pass/Fail\n5. Social value - Pass/Fail\nAs further assurance that the provider would be able to satisfy the new contract to a sufficient standard, Quality Assurance questions based on the updated service specification were issued covering the key criteria, the statements are below:\n1. Quality and Innovation - The Service Provider provided a comprehensive response and gives assurance. Specifically covers integration, ethos, model and approach. Clinical governance is particularly key for this service, and the provider articulates how this will be provided. Commitment to evaluation and development is welcome. \n2. Value - The Service Provider proposed budget matches the HCC indicative amount. Costings give assurance that this is a realistic budget, gaining the value of the wider organisation but with minimal management overheads.\nThe Service Provider shall work with the Local Authority to ensure efficiency and achieve effectiveness.\n3. Integration, collaboration and service sustainability  - The service provider gave a comprehensive response covering ethos and practical approach. This gives assurance that the service will continue to be provided in the way it has been in the past. Evidence of effectiveness from previous evaluation quoted and relevant examples given.\n4. Improving access, reducing health inequalities, and facilitating choice - The service provider gave a comprehensive response which gives assurance that health inequalities and access barriers for this community are both understood and given full consideration in service planning and delivery.\n5. Social value  - This service provision will improve the overall well being of families. Clear articulation of how the model will build trust and improve families' ability to navigate the system. Relevant examples given. Good examples of sharing learning in the past and commitment to do so in the future. \n8.Any declared conflicts or potential conflicts of interest.\nNone declared",
+      "initiationType": "tender",
+      "tender": {
+        "id": "ocds-h6vhtk-06a825",
+        "legalBasis": {
+          "id": "32014L0024",
+          "scheme": "CELEX"
+        },
+        "title": "Family Hub GP Drop In Clinics",
+        "status": "active",
+        "classification": {
+          "scheme": "CPV",
+          "id": "85100000",
+          "description": "Health services"
+        },
+        "mainProcurementCategory": "services",
+        "description": "This is a Provider Selection Regime (PSR) intended to award notice. The awarding of this contract is subject to the Health Care Services (Provider Selection Regime) Regulations 2023. For the avoidance of doubt, the provisions of the Procurement Act do not apply to this award. In accordance with Regulation 10 of The Health Care Services (Provider Selection Regime) Regulations 2023, Hull City Council is looking to award a contract under the Most Suitable Provider process as the Council is able to identify the most suitable provider without running a competitive exercise, for the provision of Family Hub GP Drop In Clinic Services. The contract is anticipated to commence 1st July 2026 ending by 30th June 2027. The Authority has estimated the value of the services to be \u00a355,000. The publication of this notice marks the start of the standstill period. Representations by providers must be made to decision makers (please email procurementteam@hullcc.gov.uk) by midnight on 8th June 2026. This contract has not yet formally been awarded; this notice serves as an intention to award under the Provider Selection Regime.",
+        "value": {
+          "amount": 55000,
+          "currency": "GBP"
+        },
+        "lots": [
+          {
+            "id": "1",
+            "description": "The Family Hub GP Drop In Clincs shall provide a GP 'drop-in' service at both the Rainbow Family Hub and the Fenchurch Family Hub.  The service aims to improve the experience of families and their health outcomes by making holistic and preventative primary care accessible. \nAims and objectives of service \n\u2022 Improve the experience of families and their health outcomes by making holistic and preventative primary care accessible.\n\u2022 Build the confidence, capability and health literacy of parents and carers to manage family health needs well by working alongside them with more flexible appointment times, in an environment tailored towards proactive health-oriented shared decision making.\n\u2022 Build trust and connections between services (for example, primary care, health visiting and Best Start Family Hubs) and upskilling of other professionals working in early years at the Family Hub.",
+            "awardCriteria": {
+              "criteria": [
+                {
+                  "name": "Quality and Innovation",
+                  "type": "quality",
+                  "description": "Pass/ Fail"
+                },
+                {
+                  "name": "Integration, collaboration and service sustainability",
+                  "type": "quality",
+                  "description": "Pass/ Fail"
+                },
+                {
+                  "name": "Improving Access, reducing health inequalities and facilitating choice",
+                  "type": "quality",
+                  "description": "Pass/ Fail"
+                },
+                {
+                  "name": "Social Value",
+                  "type": "quality",
+                  "description": "Pass/Fail"
+                },
+                {
+                  "name": "Value",
+                  "type": "quality",
+                  "description": "Pass/ Fail"
+                },
+                {
+                  "type": "price",
+                  "description": "0"
+                }
+              ]
+            },
+            "value": {
+              "amount": 55000,
+              "currency": "GBP"
+            },
+            "contractPeriod": {
+              "durationInDays": 360
+            },
+            "hasRenewal": false,
+            "submissionTerms": {
+              "variantPolicy": "notAllowed"
+            },
+            "hasOptions": true,
+            "options": {
+              "description": "Option to extend 1 x 12 month period at the discretion of the Authority."
+            },
+            "status": "active"
+          }
+        ],
+        "items": [
+          {
+            "id": "1",
+            "additionalClassifications": [
+              {
+                "scheme": "CPV",
+                "id": "85121100",
+                "description": "General-practitioner services"
+              }
+            ],
+            "deliveryAddresses": [
+              {
+                "region": "UKE11"
+              }
+            ],
+            "relatedLot": "1"
+          }
+        ],
+        "participationFees": [
+          {
+            "id": "1",
+            "type": [
+              "document"
+            ]
+          }
+        ],
+        "submissionMethod": [
+          "electronicSubmission"
+        ],
+        "submissionMethodDetails": "https://yortender.eu-supply.com/",
+        "procurementMethod": "selective",
+        "procurementMethodDetails": "Restricted procedure",
+        "coveredBy": [
+          "GPA"
+        ],
+        "tenderPeriod": {
+          "endDate": "2026-06-08"
+        },
+        "submissionTerms": {
+          "languages": [
+            "en"
+          ]
+        },
+        "hasRecurrence": true
+      },
+      "parties": [
+        {
+          "name": "Kingston Upon Hull City Council",
+          "id": "GB-FTS-163356",
+          "identifier": {
+            "legalName": "Kingston Upon Hull City Council",
+            "noIdentifierRationale": "notOnAnyRegister"
+          },
+          "address": {
+            "streetAddress": "The Guildhall, Alfred Gelder Street,",
+            "locality": "Hull",
+            "region": "UKE11",
+            "postalCode": "HU11AA",
+            "countryName": "United Kingdom"
+          },
+          "contactPoint": {
+            "name": "Lucy Pattinson",
+            "telephone": "+44 1482615737",
+            "email": "lucy.pattinson@hullcc.gov.uk",
+            "url": "https://yortender.eu-supply.com/"
+          },
+          "roles": [
+            "buyer"
+          ],
+          "details": {
+            "url": "http://www.hullcc.gov.uk",
+            "classifications": [
+              {
+                "scheme": "TED_CA_TYPE",
+                "id": "REGIONAL_AUTHORITY",
+                "description": "Regional or local authority"
+              },
+              {
+                "scheme": "COFOG",
+                "id": "01",
+                "description": "General public services"
+              }
+            ]
+          }
+        },
+        {
+          "name": "Town Clerk",
+          "id": "GB-FTS-8983",
+          "identifier": {
+            "legalName": "Town Clerk"
+          },
+          "address": {
+            "locality": "Hull",
+            "countryName": "United Kingdom"
+          },
+          "roles": [
+            "reviewBody"
+          ]
+        }
+      ],
+      "buyer": {
+        "id": "GB-FTS-163356",
+        "name": "Kingston Upon Hull City Council"
+      },
+      "language": "en"
+    },
+    {
+      "ocid": "ocds-h6vhtk-05fbc8",
+      "id": "050515-2026",
+      "date": "2026-05-28T16:43:39+01:00",
+      "tag": [
+        "tender"
+      ],
+      "description": "NOTE: To register your interest in this notice and obtain any additional information please visit the Public Contracts Scotland Web Site at https://www.publiccontractsscotland.gov.uk/Search/Search_Switch.aspx?ID=828321.\nThe buyer has indicated that it will accept electronic responses to this notice via the Postbox facility. A user guide is available at https://www.publiccontractsscotland.gov.uk/sitehelp/help_guides.aspx.\nSuppliers are advised to allow adequate time for uploading documents and to dispatch the electronic response well in advance of the closing time to avoid any last minute problems.\n(SC Ref:828321)\nDownload the ESPD document here: https://www.publiccontractsscotland.gov.uk/ESPD/ESPD_Download.aspx?id=828321",
+      "initiationType": "tender",
+      "tender": {
+        "id": "HIA-25-005",
+        "legalBasis": {
+          "id": "32014L0025",
+          "scheme": "CELEX"
+        },
+        "title": "Non-Directional Beacon (NDB) Replacement at Stornoway (SYY) and Sumburgh (LSI)",
+        "status": "active",
+        "classification": {
+          "scheme": "CPV",
+          "id": "34966200",
+          "description": "Non-Directional Beacon (NDB)"
+        },
+        "mainProcurementCategory": "goods",
+        "description": "Supply and installation of replacement Non-Directional Beacons (NDB) at Stornoway (SYY) and Sumburgh (LSI) Airports.",
+        "value": {
+          "amount": 350000,
+          "currency": "GBP"
+        },
+        "lots": [
+          {
+            "id": "1",
+            "description": "The Supplier will be required to supply and install replacement Non-Directional Beacons at Stornoway and Sumburgh Airports with minimal loss of NDB service at the Airports.\nThe installation, commission, test and acceptance of the NDBs will achieve regulatory approval for entry into operational service as a rolling programme of works.",
+            "awardCriteria": {
+              "criteria": [
+                {
+                  "name": "Quality",
+                  "type": "quality",
+                  "description": "80"
+                },
+                {
+                  "type": "price",
+                  "description": "20"
+                }
+              ]
+            },
+            "contractPeriod": {
+              "durationInDays": 1440
+            },
+            "hasRenewal": true,
+            "renewal": {
+              "description": "Option to extend for further 24 months at Authority's discretion"
+            },
+            "submissionTerms": {
+              "variantPolicy": "notAllowed"
+            },
+            "hasOptions": true,
+            "options": {
+              "description": "As detailed in the procurement documents"
+            },
+            "status": "active"
+          }
+        ],
+        "items": [
+          {
+            "id": "1",
+            "deliveryAddresses": [
+              {
+                "region": "UKM6"
+              }
+            ],
+            "deliveryLocation": {
+              "description": "Stornoway and Sumburgh"
+            },
+            "relatedLot": "1"
+          }
+        ],
+        "participationFees": [
+          {
+            "id": "1",
+            "type": [
+              "document"
+            ]
+          }
+        ],
+        "submissionMethod": [
+          "electronicSubmission"
+        ],
+        "submissionMethodDetails": "http://www.publiccontractsscotland.gov.uk",
+        "selectionCriteria": {
+          "criteria": [
+            {
+              "type": "economic",
+              "description": "As described in the SPD module",
+              "minimum": "As described in the SPD module",
+              "appliesTo": [
+                "supplier"
+              ]
+            },
+            {
+              "type": "technical",
+              "description": "As described in the SPD module",
+              "minimum": "As described in the SPD module",
+              "appliesTo": [
+                "supplier"
+              ]
+            }
+          ]
+        },
+        "submissionTerms": {
+          "depositsGuarantees": "Parent Company Guarantee may be required depending on economic and financial standing",
+          "languages": [
+            "en"
+          ],
+          "bidValidityPeriod": {
+            "durationInDays": 180
+          }
+        },
+        "contractTerms": {
+          "financialTerms": "A payment schedule will be agreed between the Purchaser and Service Provider following contract award. The Purchaser shall have any final decision on the payment schedule.",
+          "hasElectronicOrdering": true,
+          "electronicInvoicingPolicy": "allowed"
+        },
+        "procurementMethod": "open",
+        "procurementMethodDetails": "Open procedure",
+        "coveredBy": [
+          "GPA"
+        ],
+        "tenderPeriod": {
+          "endDate": "2026-06-29T12:00:00+01:00"
+        },
+        "awardPeriod": {
+          "startDate": "2026-06-29T12:00:00+01:00"
+        },
+        "bidOpening": {
+          "date": "2026-06-29T12:00:00+01:00"
+        },
+        "hasRecurrence": false
+      },
+      "parties": [
+        {
+          "name": "Highlands and Islands Airports Limited",
+          "id": "GB-FTS-100",
+          "identifier": {
+            "legalName": "Highlands and Islands Airports Limited"
+          },
+          "address": {
+            "streetAddress": "Head Office, Inverness Airport",
+            "locality": "Inverness",
+            "region": "UKM6",
+            "postalCode": "IV2 7JB",
+            "countryName": "United Kingdom"
+          },
+          "contactPoint": {
+            "telephone": "+44 1667462445",
+            "email": "lucy.wright@gov.scot",
+            "faxNumber": "+44 1667464300",
+            "url": "http://www.publiccontractsscotland.gov.uk"
+          },
+          "roles": [
+            "buyer"
+          ],
+          "details": {
+            "url": "http://www.hial.co.uk",
+            "buyerProfile": "https://www.publiccontractsscotland.gov.uk/search/Search_AuthProfile.aspx?ID=AA13542",
+            "classifications": [
+              {
+                "scheme": "TED_CE_ACTIVITY",
+                "id": "AIRPORT_RELATED_ACTIVITIES",
+                "description": "Airport-related activities"
+              }
+            ]
+          }
+        },
+        {
+          "name": "Sheriff Court",
+          "id": "GB-FTS-182399",
+          "identifier": {
+            "legalName": "Sheriff Court"
+          },
+          "address": {
+            "streetAddress": "Inverness Justice Centre, Longman Road",
+            "locality": "Inverness",
+            "postalCode": "IV1 1AH",
+            "countryName": "United Kingdom"
+          },
+          "roles": [
+            "reviewBody"
+          ]
+        }
+      ],
+      "buyer": {
+        "id": "GB-FTS-100",
+        "name": "Highlands and Islands Airports Limited"
+      },
+      "links": [
+        {
+          "rel": "canonical",
+          "href": "https://api.publiccontractsscotland.gov.uk/v1/Notice?id=ocds-r6ebe6-0000818133"
+        }
+      ],
+      "language": "en"
+    },
+    {
+      "ocid": "ocds-h6vhtk-05faa0",
+      "id": "050426-2026",
+      "date": "2026-05-28T15:25:24+01:00",
+      "tag": [
+        "tender"
+      ],
+      "initiationType": "tender",
+      "tender": {
+        "id": "ocds-h6vhtk-05faa0",
+        "legalBasis": {
+          "id": "32014L0024",
+          "scheme": "CELEX"
+        },
+        "title": "Community Audiology - NHS Birmingham and Solihull ICB",
+        "status": "active",
+        "classification": {
+          "scheme": "CPV",
+          "id": "85100000",
+          "description": "Health services"
+        },
+        "mainProcurementCategory": "services",
+        "description": "NHS Birmingham and Solihull Integrated Care Board (referred to as the Commissioner) is inviting suitably qualified and experienced providers to express interest in delivering an Adult non-complex  Audiology Service in Birmingham and Solihull. <br/><br/>The Adult Non-Complex Community Audiology service is for patients over 18 years of age, who meet the eligibility criteria set out in this specification. Patients must be registered with a Birmingham and Solihull GP practice for whom Birmingham and Solihull (BSOL) Integrated Care Board (ICB) is the responsible commissioner.<br/><br/>The service required is for a community based, adult screening and hearing assessment service, treatment including earwax removal and automated audiology in line with the GIRFT Community ENT Framework, hearing aid fitting (where required), follow-up and aftercare services. BSOL ICB is seeking to commission full geographical coverage of provision across rural and urban areas.<br/><br/>The Provider will need to meet the needs of eligible patients whose referral indicates:<br/>\u2022 Sight loss/dual sensory loss;<br/>\u2022 Requiring translation services including language, lip reading and sign language;<br/>\u2022 Learning Disabilities \u2013 as special test facilities and techniques are needed;<br/>\u2022 Requiring domiciliary care \u2013 the Provider must provide all parts of the service at the patient\u2019s domicile (including residential or nursing homes) where this is requested in writing by a GP.<br/><br/>Interested parties should express an interest by visiting https://atamis-1928.my.site.com/s/Welcome and searching for project reference C450113. The closing date for submission of tenders is 25th June 2026 at 1700hrs.",
+        "value": {
+          "amount": 40428752.0,
+          "currency": "GBP"
+        },
+        "lots": [
+          {
+            "id": "1",
+            "description": "NHS Birmingham and Solihull Integrated Care Board (referred to as the Commissioner) is inviting suitably qualified and experienced providers to express interest in delivering an Adult non-complex  Audiology Service in Birmingham and Solihull. <br/><br/>The Adult Non-Complex Community Audiology service is for patients over 18 years of age, who meet the eligibility criteria set out in this specification. Patients must be registered with a Birmingham and Solihull GP practice for whom Birmingham and Solihull (BSOL) Integrated Care Board (ICB) is the responsible commissioner.<br/><br/>The service required is for a community based, adult screening and hearing assessment service, treatment including earwax removal and automated audiology in line with the GIRFT Community ENT Framework, hearing aid fitting (where required), follow-up and aftercare services. BSOL ICB is seeking to commission full geographical coverage of provision across rural and urban areas.<br/><br/>The Provider will need to meet the needs of eligible patients whose referral indicates:<br/>\u2022 Sight loss/dual sensory loss;<br/>\u2022 Requiring translation services including language, lip reading and sign language;<br/>\u2022 Learning Disabilities \u2013 as special test facilities and techniques are needed;<br/>\u2022 Requiring domiciliary care \u2013 the Provider must provide all parts of the service at the patient\u2019s domicile (including residential or nursing homes) where this is requested in writing by a GP.<br/><br/>Interested parties should express an interest by visiting https://atamis-1928.my.site.com/s/Welcome and searching for project reference C450113. The closing date for submission of tenders is 25th June 2026 at 1700hrs. Additional information: This procurement exercise will be carried out under the Health Care Services (Provider Selection Regime) Regulations 2023. For the avoidance of doubt, the provisions of the Procurement Act 2023 do not apply, save for those provisions in the Act which may be applicable under the Procurement Act 2023 (consequential and other amendments) Regulations 2025.",
+            "value": {
+              "amount": 40428752.0,
+              "currency": "GBP"
+            },
+            "contractPeriod": {
+              "durationInDays": 1800
+            },
+            "hasRenewal": true,
+            "renewal": {
+              "description": "On expiry of the initial 5 year period the commissioner at their sole discretion reserves the right to extend the contract for up to a further 2 years."
+            },
+            "submissionTerms": {
+              "variantPolicy": "notAllowed"
+            },
+            "hasOptions": false,
+            "status": "active"
+          }
+        ],
+        "items": [
+          {
+            "id": "1",
+            "deliveryAddresses": [
+              {
+                "region": "UKG3"
+              }
+            ],
+            "relatedLot": "1"
+          }
+        ],
+        "submissionMethod": [
+          "electronicSubmission",
+          "written"
+        ],
+        "submissionMethodDetails": "https://atamis-1928.my.site.com/s/Welcome",
+        "communication": {
+          "atypicalToolUrl": "https://atamis-1928.my.site.com/s/Welcome"
+        },
+        "procurementMethod": "open",
+        "procurementMethodDetails": "Open procedure",
+        "tenderPeriod": {
+          "endDate": "2026-06-25T17:00:00+01:00"
+        },
+        "submissionTerms": {
+          "languages": [
+            "en"
+          ],
+          "bidValidityPeriod": {
+            "durationInDays": 120
+          }
+        },
+        "awardPeriod": {
+          "startDate": "2026-06-26T10:00:00+01:00"
+        },
+        "bidOpening": {
+          "date": "2026-06-26T10:00:00+01:00"
+        },
+        "hasRecurrence": false
+      },
+      "parties": [
+        {
+          "name": "NHS Birmingham and Solihull Integrated Care Board",
+          "id": "GB-FTS-148803",
+          "identifier": {
+            "legalName": "NHS Birmingham and Solihull Integrated Care Board"
+          },
+          "address": {
+            "streetAddress": "NHS Birmingham and Solihull Integrated Care Board Alpha Tower, 8th Floor, Suffolk Street Queensway",
+            "locality": "Birmingham",
+            "region": "UKG31",
+            "postalCode": "B1 1TT",
+            "countryName": "United Kingdom"
+          },
+          "contactPoint": {
+            "name": "Michael Barlow",
+            "email": "michael.barlow1@nhs.net",
+            "url": "https://atamis-1928.my.site.com/s/Welcome"
+          },
+          "roles": [
+            "buyer"
+          ],
+          "details": {
+            "url": "https://www.birminghamsolihull.icb.nhs.uk/",
+            "buyerProfile": "https://www.birminghamsolihull.icb.nhs.uk/",
+            "classifications": [
+              {
+                "scheme": "TED_CA_TYPE",
+                "id": "BODY_PUBLIC",
+                "description": "Body governed by public law"
+              },
+              {
+                "scheme": "COFOG",
+                "id": "07",
+                "description": "Health"
+              }
+            ]
+          }
+        },
+        {
+          "name": "The High Court",
+          "id": "GB-FTS-1661",
+          "identifier": {
+            "legalName": "The High Court"
+          },
+          "address": {
+            "streetAddress": "The Strand",
+            "locality": "London",
+            "postalCode": "WC2A 2LL",
+            "countryName": "United Kingdom"
+          },
+          "roles": [
+            "reviewBody"
+          ]
+        }
+      ],
+      "buyer": {
+        "id": "GB-FTS-148803",
+        "name": "NHS Birmingham and Solihull Integrated Care Board"
+      },
+      "language": "en"
+    },
+    {
+      "ocid": "ocds-h6vhtk-06a7da",
+      "id": "050396-2026",
+      "date": "2026-05-28T14:56:30+01:00",
+      "tag": [
+        "tender"
+      ],
+      "description": "The buyer is using PCS-Tender to conduct this ITT exercise. The Project code is 31814. For more information see: http://www.publiccontractsscotland.gov.uk/info/InfoCentre.aspx?ID=2343\n(SC Ref:832927)",
+      "initiationType": "tender",
+      "tender": {
+        "id": "GCU - FM - 2026 - 002",
+        "legalBasis": {
+          "id": "32014L0024",
+          "scheme": "CELEX"
+        },
+        "title": "Air Conditioning-Cooling Plant Maintenance and Repair (GCU)",
+        "status": "active",
+        "classification": {
+          "scheme": "CPV",
+          "id": "50730000",
+          "description": "Repair and maintenance services of cooler groups"
+        },
+        "mainProcurementCategory": "services",
+        "description": "Air Conditioning-Cooling Plant Maintenance and Repair",
+        "lots": [
+          {
+            "id": "1",
+            "description": "Air Conditioning-Cooling Plant Maintenance and Repair",
+            "awardCriteria": {
+              "criteria": [
+                {
+                  "name": "Service Delivery - Methodology",
+                  "type": "quality",
+                  "description": "15"
+                },
+                {
+                  "name": "Service Delivery - Resources and Resilience",
+                  "type": "quality",
+                  "description": "15"
+                },
+                {
+                  "name": "Service Delivery - Staff Training",
+                  "type": "quality",
+                  "description": "10"
+                },
+                {
+                  "name": "Service Delivery - RAMS and Health & Safety",
+                  "type": "quality",
+                  "description": "15"
+                },
+                {
+                  "name": "Service Delivery - Reporting",
+                  "type": "quality",
+                  "description": "5"
+                },
+                {
+                  "name": "Sustainable Procurement - Environmental",
+                  "type": "quality",
+                  "description": "5"
+                },
+                {
+                  "name": "Sustainable Procurement - Fair Work Practices and Community Benefits",
+                  "type": "quality",
+                  "description": "5"
+                },
+                {
+                  "name": "Commercial",
+                  "type": "cost",
+                  "description": "30"
+                }
+              ]
+            },
+            "contractPeriod": {
+              "startDate": "2026-11-01T00:00:00Z",
+              "endDate": "2029-10-31T23:59:59Z"
+            },
+            "hasRenewal": true,
+            "renewal": {
+              "description": "The University reserves the right to extend the Contract for a further 2x12 month periods (subject to satisfactory performance and continued University requirements)"
+            },
+            "submissionTerms": {
+              "variantPolicy": "notAllowed"
+            },
+            "hasOptions": false,
+            "status": "active"
+          }
+        ],
+        "items": [
+          {
+            "id": "1",
+            "deliveryAddresses": [
+              {
+                "region": "UKM82"
+              }
+            ],
+            "deliveryLocation": {
+              "description": "Glasgow Caledonian University"
+            },
+            "relatedLot": "1"
+          }
+        ],
+        "submissionMethod": [
+          "electronicSubmission"
+        ],
+        "submissionMethodDetails": "https://www.publictendersscotland.publiccontractsscotland.gov.uk/esop/pts-host/public/pts/web/login.html",
+        "selectionCriteria": {
+          "criteria": [
+            {
+              "type": "suitability",
+              "description": "Engineers are to be in possession of a current valid ACRIB Ref/Air Con Tech/Engineer Skill Card (or equivalent) to demonstrate their compliance with the required legislation and H&S requirements.\nThe Contractor must be able to demonstrate that they are currently certified by an approved body to service stationary equipment containing F gas, such as Refcom, Bureau Veritas, Quidos, FIA or another equivalent body.\nInformation provided for Part III and IV will be assessed on a Pass/Fail basis, where:\nPass = meets requirements as stated in Contract Notice\nFail = does not meet requirements as stated in Contract Notice",
+              "appliesTo": [
+                "supplier"
+              ]
+            },
+            {
+              "type": "economic",
+              "description": "Bidders must confirm they can provide the following supporting evidence prior to award:\nEmployer\u2019s (Compulsory) Liability Insurance = 10 Million GBP\nPublic Liability Insurance = 5 Million GBP\nProduct Liability Insurance = 5 Million GBP\nProfessional Liability Insurance = 2 Million GBP\nThe successful Contractor will be required to provide 2 years audited accounts, or equivalent if awarded the Contract.",
+              "appliesTo": [
+                "supplier"
+              ]
+            },
+            {
+              "type": "technical",
+              "description": "Tenderers are required to provide a minimum of three relevant examples of similar contracts in value and scope in a similar environment over the last 3 years.\nInformation provided for Part III and IV will be assessed on a Pass/Fail basis, where:\nPass = meets requirements as stated in Contract Notice\nFail = does not meet requirements as stated in Contract Notice\nThe Contractor shall employ competent approved engineers who possess, at a minimum, an NVQ level 2 qualification such as Level 2 Diploma Refrigeration, Air Conditioning and Heat Pump Systems (7189-02), Level 2 NVQ Diploma in Installing and Maintaining Refrigeration Systems (6187-02), or Level 2 NVQ Diploma in Installing, Testing and Maintaining Air Conditioning and Heat Pump Systems (6187-01). Older qualifications will need to be supplemented with a Level 2 F Gas and ODS Regulations certificate.\nInformation provided for Part III and IV will be assessed on a Pass/Fail basis, where:\nPass = meets requirements as stated in Contract Notice\nFail = does not meet requirements as stated in Contract Notice",
+              "appliesTo": [
+                "supplier"
+              ]
+            }
+          ]
+        },
+        "otherRequirements": {
+          "requiresStaffNamesAndQualifications": true
+        },
+        "procurementMethod": "open",
+        "procurementMethodDetails": "Open procedure",
+        "coveredBy": [
+          "GPA"
+        ],
+        "tenderPeriod": {
+          "endDate": "2026-07-01T12:00:00+01:00"
+        },
+        "submissionTerms": {
+          "languages": [
+            "en"
+          ],
+          "bidValidityPeriod": {
+            "endDate": "2026-09-01T23:59:59+01:00"
+          }
+        },
+        "awardPeriod": {
+          "startDate": "2026-07-01T12:00:00+01:00"
+        },
+        "bidOpening": {
+          "date": "2026-07-01T12:00:00+01:00"
+        },
+        "hasRecurrence": true,
+        "contractTerms": {
+          "hasElectronicOrdering": true,
+          "electronicInvoicingPolicy": "allowed",
+          "hasElectronicPayment": true
+        },
+        "recurrence": {
+          "description": "The next notice will be published when this contract is due to expire."
+        }
+      },
+      "parties": [
+        {
+          "name": "Glasgow Caledonian University",
+          "id": "GB-FTS-9129",
+          "identifier": {
+            "legalName": "Glasgow Caledonian University"
+          },
+          "address": {
+            "streetAddress": "70 Cowcaddens Road",
+            "locality": "Glasgow",
+            "region": "UKM82",
+            "postalCode": "G4 0BA",
+            "countryName": "United Kingdom"
+          },
+          "contactPoint": {
+            "name": "Procurement",
+            "telephone": "+44 1413313578",
+            "email": "procurement@gcu.ac.uk",
+            "url": "https://www.publictendersscotland.publiccontractsscotland.gov.uk/esop/pts-host/public/pts/web/login.html"
+          },
+          "roles": [
+            "buyer"
+          ],
+          "details": {
+            "url": "https://www.gcu.ac.uk/aboutgcu/services-and-facilities/finance/procurement",
+            "buyerProfile": "https://www.publiccontractsscotland.gov.uk/search/Search_AuthProfile.aspx?ID=AA00195",
+            "classifications": [
+              {
+                "scheme": "TED_CA_TYPE",
+                "id": "BODY_PUBLIC",
+                "description": "Body governed by public law"
+              },
+              {
+                "scheme": "COFOG",
+                "id": "09",
+                "description": "Education"
+              }
+            ]
+          }
+        },
+        {
+          "name": "Glasgow Sheriff Court",
+          "id": "GB-FTS-2553",
+          "identifier": {
+            "legalName": "Glasgow Sheriff Court"
+          },
+          "address": {
+            "streetAddress": "1 Carlton Place",
+            "locality": "Glasgow",
+            "postalCode": "G5 9DA",
+            "countryName": "United Kingdom"
+          },
+          "roles": [
+            "reviewBody"
+          ]
+        }
+      ],
+      "buyer": {
+        "id": "GB-FTS-9129",
+        "name": "Glasgow Caledonian University"
+      },
+      "links": [
+        {
+          "rel": "canonical",
+          "href": "https://api.publiccontractsscotland.gov.uk/v1/Notice?id=ocds-r6ebe6-0000832927"
+        }
+      ],
+      "language": "en"
+    },
+    {
+      "ocid": "ocds-h6vhtk-06a7b0",
+      "id": "050318-2026",
+      "date": "2026-05-28T13:30:32+01:00",
+      "tag": [
+        "tender"
+      ],
+      "description": "The following should be submitted prior to award. It is for information only and will not be scored: Form of Tender (Appendix A), FOI disclaimer (Appendix B), APUC Supply Chain Code of Conduct (Appendix D), GDPR Assurance Assessment (Appendix J),\nSCM Responsible Procurement Supply Chain Evaluation Tool: Section 1\nSCM RP is the Authority's designated tool for contracted suppliers to keep up-to-date essential information on their company, which allows\nthe Authority to get an insight into their company\u2019s general standing, commitment to preventing modern slavery and addressing climate\nchange, as well as their pledge to fair and decent working practices for their staff.\nTenderers must confirm that they will commit to\ncompleting SCM RP Section 1 on award. It is for information only and will not be scored but is a requirement of this tender and will be\nincluded in the contractual terms.\nTenderers must also confirm that they will commit to completing Cyber Security Procurement Support Tool (Supply25) prior to award.\nThe buyer is using PCS-Tender to conduct this ITT exercise. The Project code is 31733. For more information see: http://www.publiccontractsscotland.gov.uk/info/InfoCentre.aspx?ID=2343\nThe Contracting Authority does not intend to include a sub-contract clause as part of community benefits (as per Section 25 of the Procurement Reform (Scotland) Act 2014) in this contract for the following reason:\nThis is a specialist multi-supplier framework within which sub-contracting opportunities are limited.\nCommunity benefits are included in this requirement. For more information see: https://www.gov.scot/policies/public-sector-procurement/community-benefits-in-procurement/\nA summary of the expected community benefits has been provided as follows:\nA summary of the expected community benefits has been provided as follows:\nProvision of training opportunities to staff and students,\napprenticeships and potential investment in Institution local communities.\n(SC Ref:830483)",
+      "initiationType": "tender",
+      "tender": {
+        "id": "ITS1076 AP",
+        "legalBasis": {
+          "id": "32014L0024",
+          "scheme": "CELEX"
+        },
+        "title": "Student Placement Systems and Associated Services",
+        "status": "active",
+        "classification": {
+          "scheme": "CPV",
+          "id": "72000000",
+          "description": "IT services: consulting, software development, Internet and support"
+        },
+        "mainProcurementCategory": "services",
+        "description": "Framework for Student Placement Systems and Associated Services for Universities, Colleges, Local Authorities and partner sectors in Scotland, including provision of all software and any associated licensing. Potential Services include, but are not limited to:\nSystem Implementation; Migration Support; Support and Maintenance; Hosting. Required solutions should have the capability to operate effectively across multi-site environments.\nThe agreement will be open to the members of Advanced Procurement for Universities and Colleges (APUC Limited) and other procurement consortia as listed further below.",
+        "value": {
+          "amount": 5000000,
+          "currency": "GBP"
+        },
+        "lots": [
+          {
+            "id": "1",
+            "description": "Framework for Student Placement Systems and Associated Services for Universities, Colleges, Local Authorities and partner sectors in Scotland, including provision of all software and any associated licensing. Potential Services include, but are not limited to:\nSystem Implementation; Migration Support; Support and Maintenance; Hosting. Required solutions should have the capability to operate effectively across multi-site environments.\nThe agreement will be open to the members of Advanced Procurement for Universities and Colleges (APUC Limited), Scotland Excel and the Scottish Government.",
+            "awardCriteria": {
+              "criteria": [
+                {
+                  "name": "Service Delivery",
+                  "type": "quality",
+                  "description": "70.00"
+                },
+                {
+                  "type": "price",
+                  "description": "30"
+                }
+              ]
+            },
+            "contractPeriod": {
+              "durationInDays": 720
+            },
+            "hasRenewal": true,
+            "renewal": {
+              "description": "Two further periods of 12 months at the sole discretion of the Authority."
+            },
+            "submissionTerms": {
+              "variantPolicy": "notAllowed"
+            },
+            "hasOptions": false,
+            "status": "active"
+          }
+        ],
+        "items": [
+          {
+            "id": "1",
+            "additionalClassifications": [
+              {
+                "scheme": "CPV",
+                "id": "72261000",
+                "description": "Software support services"
+              },
+              {
+                "scheme": "CPV",
+                "id": "48000000",
+                "description": "Software package and information systems"
+              },
+              {
+                "scheme": "CPV",
+                "id": "48611000",
+                "description": "Database software package"
+              },
+              {
+                "scheme": "CPV",
+                "id": "48190000",
+                "description": "Educational software package"
+              }
+            ],
+            "deliveryAddresses": [
+              {
+                "region": "UKM"
+              }
+            ],
+            "deliveryLocation": {
+              "description": "Scotland"
+            },
+            "relatedLot": "1"
+          }
+        ],
+        "submissionMethod": [
+          "electronicSubmission"
+        ],
+        "submissionMethodDetails": "https://www.publictendersscotland.publiccontractsscotland.gov.uk/",
+        "selectionCriteria": {
+          "criteria": [
+            {
+              "type": "economic",
+              "description": "The Single Procurement Document (SPD) Section 4B refers.",
+              "minimum": "Section 4B.5 specifies the minimum levels of insurance which are as follows:\nEmployer's (Compulsory) Liability Insurance, GBP 5Million\nPublic and Product Liability Insurance, GBP 5Million\nProfessional Indemnity GBP 2Million\nCyber Insurance or equivalent\nSection 4B.6 of the SPD requests further information from the successful Tenderers.\nA copy of your audited accounts or equivalent for the most recent two years, along with details of any significant changes since the\nprevious year end.",
+              "appliesTo": [
+                "supplier"
+              ]
+            },
+            {
+              "type": "technical",
+              "description": "Section 4C.1.2 of the SPD requests at least one relevant example of previous experience from suppliers tendering for this framework contract and/or services carried out within the last three years.\nSection 4C.4, Supply Chain Management and Prompt Payment question, must also be completed.",
+              "minimum": "For a Pass at 4C.1.2 of the SPD, Tenderers must have a solution in place within an equivalent environment to the tender Specification. The minimum required equivalent environment to the Tender Specification includes having a solution in place that provides all capabilities listed up to and including 4.3 of the Specification of Requirements main section 2 of the ITT.\nFor a Fail at 4C.1.2, Tenderers seeking to develop a fully bespoke solution will be disqualified. Tenderers who cannot provide evidence that their solution is in place within an equivalent environment to the tender Specification will be disqualified.\nFor a Pass at 4C.4 of the SPD, The Tenderer has (or has access to) the relevant supply chain management and tracking systems to ensure a resilient and sustainable supply chain, has confirmed that they have the systems in place to pay contractors through the supply chain promptly and effectively, and that they will provide evidence, when requested, of (a) their standard payment terms and (b) > or equal to\n95% of all supply chain invoices being paid on time (in accordance with the terms of the contract) in the last financial year. If the Tenderer is unable to confirm (b) then they must provide an improvement plan, signed by their Director which improves the payment performance.\nFor a Fail at 4C.4, the Tenderer does not have the relevant supply chain management and tracking systems to ensure a resilient and sustainable supply chain, does not have the systems in place to pay contractors through the supply chain promptly and effectively, and cannot provide evidence of (a) their standard payment terms and (b) > or equal to 95% of all supply chain invoices being paid on time (in accordance with the terms of the contract) in the last financial year and the Tenderer is unable to provide an improvement plan signed by their Director which improves the payment performance.",
+              "appliesTo": [
+                "supplier"
+              ]
+            }
+          ]
+        },
+        "contractTerms": {
+          "performanceTerms": "SUBMISSION OF MANAGEMENT INFORMATION\nPrior to the commencement of the Framework Agreement, the Contractor will provide the Authority with contact details of the Management Information contact who will be provided with a template spreadsheet/reporting schedule along with a username and password for the management information website http://www.ucsp.ac.uk/\nThe Contractors must provide the information on a quarterly basis, within 10 working days."
+        },
+        "procurementMethod": "open",
+        "procurementMethodDetails": "Open procedure",
+        "techniques": {
+          "hasFrameworkAgreement": true,
+          "frameworkAgreement": {
+            "maximumParticipants": 5
+          }
+        },
+        "coveredBy": [
+          "GPA"
+        ],
+        "tenderPeriod": {
+          "endDate": "2026-07-07T17:00:00+01:00"
+        },
+        "submissionTerms": {
+          "languages": [
+            "en"
+          ],
+          "bidValidityPeriod": {
+            "durationInDays": 90
+          }
+        },
+        "awardPeriod": {
+          "startDate": "2026-07-07T17:00:00+01:00"
+        },
+        "bidOpening": {
+          "date": "2026-07-07T17:00:00+01:00"
+        },
+        "hasRecurrence": true,
+        "recurrence": {
+          "description": "48 months"
+        }
+      },
+      "parties": [
+        {
+          "name": "APUC Limited",
+          "id": "GB-FTS-2420",
+          "identifier": {
+            "legalName": "APUC Limited"
+          },
+          "address": {
+            "streetAddress": "Unit 27, Stirling Business Centre, Wellgreen",
+            "locality": "Stirling",
+            "region": "UKM77",
+            "postalCode": "FK8 2DZ",
+            "countryName": "United Kingdom"
+          },
+          "contactPoint": {
+            "telephone": "+44 1314428930",
+            "email": "pjackson@apuc-scot.ac.uk",
+            "url": "https://www.publictendersscotland.publiccontractsscotland.gov.uk/"
+          },
+          "roles": [
+            "buyer",
+            "centralPurchasingBody"
+          ],
+          "details": {
+            "url": "http://www.apuc-scot.ac.uk",
+            "buyerProfile": "https://www.publiccontractsscotland.gov.uk/search/Search_AuthProfile.aspx?ID=AA10402",
+            "classifications": [
+              {
+                "scheme": "TED_CA_TYPE",
+                "id": "BODY_PUBLIC",
+                "description": "Body governed by public law"
+              },
+              {
+                "scheme": "COFOG",
+                "id": "09",
+                "description": "Education"
+              }
+            ]
+          }
+        },
+        {
+          "name": "Stirling Sherriff Court",
+          "id": "GB-FTS-143925",
+          "identifier": {
+            "legalName": "Stirling Sherriff Court"
+          },
+          "address": {
+            "locality": "Stirling",
+            "postalCode": "FK8 1NH",
+            "countryName": "United Kingdom"
+          },
+          "roles": [
+            "reviewBody"
+          ],
+          "details": {
+            "url": "https://www.scotcourts.gov.uk/the-courts/court-locations/stirling-sheriff-court-and-justice-of-the-peace-court"
+          }
+        }
+      ],
+      "buyer": {
+        "id": "GB-FTS-2420",
+        "name": "APUC Limited"
+      },
+      "links": [
+        {
+          "rel": "canonical",
+          "href": "https://api.publiccontractsscotland.gov.uk/v1/Notice?id=ocds-r6ebe6-0000830483"
+        }
+      ],
+      "language": "en"
+    },
+    {
+      "ocid": "ocds-h6vhtk-06a75c",
+      "id": "050199-2026",
+      "date": "2026-05-28T11:40:53+01:00",
+      "tag": [
+        "tender"
+      ],
+      "description": "Economic operators may be excluded from this competition if they are in any situation referred to in regulation 58 of the Public Contracts (Scotland) Regulations 2015.\nFinancial Viability Test\nThe financial information will be evaluated using the Midlothian Council Financial Viability Test, please see Appendix 1.\nThe Tenderer will require to submit evidence in the form of their audited accounts or equivalent for the most recent 2 years (2 sets of signed, audited accounts, along with details of any significant changes since the last year end.\nTenderers must not contact anyone at the Local Authority directly in relation to this tender exercise, doing so may result in your exclusion from any further part in the process.\nAll questions must be raised using the Question & Answer facility within this notice.\nNOTE: To register your interest in this notice and obtain any additional information please visit the Public Contracts Scotland Web Site at https://www.publiccontractsscotland.gov.uk/Search/Search_Switch.aspx?ID=832265.\nThe buyer has indicated that it will accept electronic responses to this notice via the Postbox facility. A user guide is available at https://www.publiccontractsscotland.gov.uk/sitehelp/help_guides.aspx.\nSuppliers are advised to allow adequate time for uploading documents and to dispatch the electronic response well in advance of the closing time to avoid any last minute problems.\nCommunity benefits are included in this requirement. For more information see: https://www.gov.scot/policies/public-sector-procurement/community-benefits-in-procurement/\nA summary of the expected community benefits has been provided as follows:\nAll Tenderers must sign and return Schedule 5 - Community Benefits as a commitment to engage with Midlothian Council to identify and deliver community benefits to make positive contributions to people living in Midlothian.\nThe successful Tenderer is required as part of their contract to provide community benefits in compliance with Midlothian Council requirements as set out in Schedule 5 - Community Benefits.\n(SC Ref:832265)\nDownload the ESPD document here: https://www.publiccontractsscotland.gov.uk/ESPD/ESPD_Download.aspx?id=832265",
+      "initiationType": "tender",
+      "tender": {
+        "id": "MID/25/82",
+        "legalBasis": {
+          "id": "32014L0024",
+          "scheme": "CELEX"
+        },
+        "title": "Summer & Easter Playscheme for Children with a Disability",
+        "status": "active",
+        "classification": {
+          "scheme": "CPV",
+          "id": "85000000",
+          "description": "Health and social work services"
+        },
+        "mainProcurementCategory": "services",
+        "description": "Midlothian Council seeks a provider to offer a holiday provision for children and young people with disabilities. The service will be provided for 6 weeks of holiday provision - 2 weeks at Easter and 4 weeks in the Summer holidays.",
+        "value": {
+          "amount": 635000,
+          "currency": "GBP"
+        },
+        "lots": [
+          {
+            "id": "1",
+            "description": "The provider is required to provide a holiday provision for 30 children per day for children and young people with a disability. This will be for 6 weeks of the year - 2 weeks at Easter school holidays and 4 weeks in summer school holidays. These will align with the school holidays of Midlothian Council.\nThis will be a high quality, inclusive, and child\u2011centred playscheme designed specifically for children and young people with disabilities. The approach should prioritise safety, personalised support, and meaningful engagement, ensuring every child can participate fully, build confidence, and enjoy enriching play experiences. The provider should have a skilled and compassionate staff team, robust safeguarding practices, and a focus on collaboration with families and professionals. The aim should be to provide a nurturing environment that meets diverse needs and promotes positive outcomes for all participants.",
+            "status": "active"
+          }
+        ],
+        "items": [
+          {
+            "id": "1",
+            "additionalClassifications": [
+              {
+                "scheme": "CPV",
+                "id": "85300000",
+                "description": "Social work and related services"
+              },
+              {
+                "scheme": "CPV",
+                "id": "85310000",
+                "description": "Social work services"
+              },
+              {
+                "scheme": "CPV",
+                "id": "85312120",
+                "description": "Daycare services for disabled children and young people"
+              },
+              {
+                "scheme": "CPV",
+                "id": "85312110",
+                "description": "Child daycare services"
+              },
+              {
+                "scheme": "CPV",
+                "id": "85312100",
+                "description": "Daycare services"
+              }
+            ],
+            "deliveryAddresses": [
+              {
+                "region": "UKM73"
+              }
+            ],
+            "deliveryLocation": {
+              "description": "Midlothian"
+            },
+            "relatedLot": "1"
+          }
+        ],
+        "submissionMethod": [
+          "electronicSubmission"
+        ],
+        "submissionMethodDetails": "http://www.publiccontractsscotland.gov.uk",
+        "otherRequirements": {
+          "reductionCriteria": "Suitability to purse the professional activity:\nRelevant selection criteria are included in the SPD module. Of particular notes is question 4A2A.\nIt is a requirement of this contract that the Tenderer holds and maintains the necessary registration with the Care Inspectorate for delivering this service. Please provide evidence of your registration with the Care Inspectorate. If you are not currently registered with the Care Inspectorate please detail how you are going to obtain the necessary registration before the start of this contract and maintain it."
+        },
+        "contractTerms": {
+          "performanceTerms": "The contract will be governed by Midlothian Council terms & conditions.",
+          "hasElectronicOrdering": true,
+          "electronicInvoicingPolicy": "allowed",
+          "hasElectronicPayment": true
+        },
+        "procurementMethod": "open",
+        "procurementMethodDetails": "Open procedure",
+        "tenderPeriod": {
+          "endDate": "2026-07-17T12:00:00+01:00"
+        },
+        "submissionTerms": {
+          "languages": [
+            "en"
+          ]
+        }
+      },
+      "parties": [
+        {
+          "name": "Midlothian Council",
+          "id": "GB-FTS-594",
+          "identifier": {
+            "legalName": "Midlothian Council"
+          },
+          "address": {
+            "streetAddress": "Midlothian House, Buccleuch Street",
+            "locality": "Dalkeith",
+            "region": "UKM73",
+            "postalCode": "EH22 1DN",
+            "countryName": "United Kingdom"
+          },
+          "contactPoint": {
+            "name": "Barbara Foxwell",
+            "email": "barbara.foxwell@midlothian.gov.uk",
+            "url": "http://www.publiccontractsscotland.gov.uk"
+          },
+          "roles": [
+            "buyer",
+            "centralPurchasingBody"
+          ],
+          "details": {
+            "url": "http://www.midlothian.gov.uk",
+            "buyerProfile": "https://www.publiccontractsscotland.gov.uk/search/Search_AuthProfile.aspx?ID=AA00336",
+            "classifications": [
+              {
+                "scheme": "TED_CA_TYPE",
+                "id": "REGIONAL_AUTHORITY",
+                "description": "Regional or local authority"
+              },
+              {
+                "scheme": "COFOG",
+                "id": "01",
+                "description": "General public services"
+              }
+            ]
+          }
+        },
+        {
+          "name": "Edinburgh Sheriff Court",
+          "id": "GB-FTS-809",
+          "identifier": {
+            "legalName": "Edinburgh Sheriff Court"
+          },
+          "address": {
+            "streetAddress": "Sheriff Court House, 27 Chambers Street",
+            "locality": "Edinburgh",
+            "postalCode": "EH1 1LB",
+            "countryName": "United Kingdom"
+          },
+          "contactPoint": {
+            "telephone": "+44 1312252525"
+          },
+          "roles": [
+            "reviewBody"
+          ]
+        }
+      ],
+      "buyer": {
+        "id": "GB-FTS-594",
+        "name": "Midlothian Council"
+      },
+      "links": [
+        {
+          "rel": "canonical",
+          "href": "https://api.publiccontractsscotland.gov.uk/v1/Notice?id=ocds-r6ebe6-0000832265"
+        }
+      ],
+      "language": "en"
+    },
+    {
+      "ocid": "ocds-h6vhtk-06872e",
+      "id": "049950-2026",
+      "date": "2026-05-27T17:08:28+01:00",
+      "tag": [
+        "tender"
+      ],
+      "initiationType": "tender",
+      "tender": {
+        "id": "CNC/1259",
+        "legalBasis": {
+          "id": "32014L0024",
+          "scheme": "CELEX"
+        },
+        "title": "Carbine Magnifiers",
+        "status": "active",
+        "classification": {
+          "scheme": "CPV",
+          "id": "35300000",
+          "description": "Weapons, ammunition and associated parts"
+        },
+        "mainProcurementCategory": "goods",
+        "description": "Magnifiers for use on Carbine weapon systems",
+        "value": {
+          "amount": 900000.0,
+          "currency": "GBP"
+        },
+        "lots": [
+          {
+            "id": "1",
+            "description": "Magnifiers for use on Carbine weapon systems",
+            "value": {
+              "amount": 900000.0,
+              "currency": "GBP"
+            },
+            "contractPeriod": {
+              "startDate": "2026-08-16T00:00:00+01:00",
+              "endDate": "2031-08-15T23:59:59+01:00"
+            },
+            "hasRenewal": true,
+            "renewal": {
+              "description": "option years 1+1"
+            },
+            "submissionTerms": {
+              "variantPolicy": "notAllowed"
+            },
+            "hasOptions": false,
+            "status": "active"
+          }
+        ],
+        "items": [
+          {
+            "id": "1",
+            "additionalClassifications": [
+              {
+                "scheme": "CPV",
+                "id": "35340000",
+                "description": "Parts of firearms and ammunition"
+              },
+              {
+                "scheme": "CPV",
+                "id": "38636100",
+                "description": "Lasers"
+              }
+            ],
+            "deliveryAddresses": [
+              {
+                "region": "UK"
+              }
+            ],
+            "relatedLot": "1"
+          }
+        ],
+        "submissionMethod": [
+          "electronicSubmission",
+          "written"
+        ],
+        "submissionMethodDetails": "https://uk.eu-supply.com/app/rfq/rwlentrance_s.asp?PID=105849&B=BLUELIGHT",
+        "documents": [
+          {
+            "documentType": "economicSelectionCriteria",
+            "id": "economic"
+          },
+          {
+            "documentType": "technicalSelectionCriteria",
+            "id": "technical"
+          }
+        ],
+        "procurementMethod": "open",
+        "procurementMethodDetails": "Open procedure",
+        "coveredBy": [
+          "GPA"
+        ],
+        "tenderPeriod": {
+          "endDate": "2026-06-27T00:00:00+01:00"
+        },
+        "submissionTerms": {
+          "languages": [
+            "en"
+          ],
+          "bidValidityPeriod": {
+            "endDate": "2026-07-29T23:59:59+01:00"
+          }
+        },
+        "awardPeriod": {
+          "startDate": "2026-06-27T00:00:00+01:00"
+        },
+        "bidOpening": {
+          "date": "2026-06-27T00:00:00+01:00"
+        },
+        "hasRecurrence": false,
+        "contractTerms": {
+          "hasElectronicOrdering": true,
+          "electronicInvoicingPolicy": "allowed",
+          "hasElectronicPayment": true
+        }
+      },
+      "parties": [
+        {
+          "name": "Civil Nuclear Police Authority (CNPA)  / Civil Nuclear Constabulary (CNC)",
+          "id": "GB-FTS-182307",
+          "identifier": {
+            "legalName": "Civil Nuclear Police Authority (CNPA)  / Civil Nuclear Constabulary (CNC)",
+            "id": "PTBP-7472-NYGG"
+          },
+          "address": {
+            "streetAddress": "Building F6, First Floor, Culham Campus ",
+            "locality": "Abingdon ",
+            "region": "UKJ14",
+            "postalCode": "OX14 3DB",
+            "countryName": "United Kingdom"
+          },
+          "contactPoint": {
+            "name": "Ian Sweeney",
+            "telephone": "+44 3303135532",
+            "email": "ian.sweeney@cnc.police.uk",
+            "url": "https://uk.eu-supply.com/app/rfq/rwlentrance_s.asp?PID=105849&B=BLUELIGHT"
+          },
+          "roles": [
+            "buyer",
+            "centralPurchasingBody"
+          ],
+          "details": {
+            "url": "https://www.gov.uk/government/organisations/civil-nuclear-consta",
+            "buyerProfile": "https://uk.eu-supply.com/ctm/Company/CompanyInformation/Index/31796",
+            "classifications": [
+              {
+                "scheme": "TED_CA_TYPE",
+                "id": "BODY_PUBLIC",
+                "description": "Body governed by public law"
+              },
+              {
+                "scheme": "COFOG",
+                "id": "03",
+                "description": "Public order and safety"
+              }
+            ]
+          }
+        },
+        {
+          "name": "Civil Nuclear Police Authority",
+          "id": "GB-FTS-182308",
+          "identifier": {
+            "legalName": "Civil Nuclear Police Authority"
+          },
+          "address": {
+            "streetAddress": "F6, Culham Campus",
+            "locality": "Abingdon. Oxfordshire.",
+            "postalCode": "OX14 3DB",
+            "countryName": "United Kingdom"
+          },
+          "roles": [
+            "reviewBody",
+            "mediationBody",
+            "reviewContactPoint"
+          ]
+        }
+      ],
+      "buyer": {
+        "id": "GB-FTS-182307",
+        "name": "Civil Nuclear Police Authority (CNPA)  / Civil Nuclear Constabulary (CNC)"
+      },
+      "language": "en"
+    },
+    {
+      "ocid": "ocds-h6vhtk-06a6c7",
+      "id": "049902-2026",
+      "date": "2026-05-27T16:29:02+01:00",
+      "tag": [
+        "tender"
+      ],
+      "description": "NOTE: To register your interest in this notice and obtain any additional information please visit the Public Contracts Scotland Web Site at https://www.publiccontractsscotland.gov.uk/Search/Search_Switch.aspx?ID=832574.\nThe buyer has indicated that it will accept electronic responses to this notice via the Postbox facility. A user guide is available at https://www.publiccontractsscotland.gov.uk/sitehelp/help_guides.aspx.\nSuppliers are advised to allow adequate time for uploading documents and to dispatch the electronic response well in advance of the closing time to avoid any last minute problems.\n(SC Ref:832574)\nDownload the ESPD document here: https://www.publiccontractsscotland.gov.uk/ESPD/ESPD_Download.aspx?id=832574",
+      "initiationType": "tender",
+      "tender": {
+        "id": "20260521",
+        "legalBasis": {
+          "id": "32014L0024",
+          "scheme": "CELEX"
+        },
+        "title": "4.8MW Substation design and installation",
+        "status": "active",
+        "classification": {
+          "scheme": "CPV",
+          "id": "45232220",
+          "description": "Substation construction work"
+        },
+        "mainProcurementCategory": "works",
+        "description": "Design and construction of 4.8 MW substation on the island of Eday, Orkney",
+        "value": {
+          "amount": 1565000,
+          "currency": "GBP"
+        },
+        "lots": [
+          {
+            "id": "1",
+            "description": "We wish to appoint a contractor to design, procure, install and commission a 4.8 MW onshore tidal generation substation.\nDesign Works\n- Site layout design.\n- Civil design of the substation.\n- Electrical design of the substation lighting and small power circuits.\n- Electrical design for the balance of plant equipment required to facilitate the power export.\n- Electrical design of the site earthing system.\nConstruction works\n- Construction of the substation building(s).\n- Construction of foundation for SSEN shunt reactor.\n- Supply and construction of earthing systems.\n- Supply and construction installation of the 33 kV and 11 kV switchgear,  and transformer and associated equipment.\n- Commissioning of all site equipment.\n- Provision of documentation.",
+            "awardCriteria": {
+              "criteria": [
+                {
+                  "name": "Experience of contractor",
+                  "type": "quality",
+                  "description": "20"
+                },
+                {
+                  "name": "Proposed methodology / technical offering",
+                  "type": "quality",
+                  "description": "30"
+                },
+                {
+                  "name": "Availability/proposed schedule",
+                  "type": "quality",
+                  "description": "20"
+                },
+                {
+                  "name": "Cost / value for money",
+                  "type": "cost",
+                  "description": "30"
+                }
+              ]
+            },
+            "value": {
+              "amount": 1565000,
+              "currency": "GBP"
+            },
+            "contractPeriod": {
+              "startDate": "2026-08-03T00:00:00+01:00",
+              "endDate": "2028-03-31T23:59:59+01:00"
+            },
+            "hasRenewal": false,
+            "submissionTerms": {
+              "variantPolicy": "notAllowed"
+            },
+            "hasOptions": false,
+            "status": "active"
+          }
+        ],
+        "items": [
+          {
+            "id": "1",
+            "additionalClassifications": [
+              {
+                "scheme": "CPV",
+                "id": "71323100",
+                "description": "Electrical power systems design services"
+              },
+              {
+                "scheme": "CPV",
+                "id": "45232221",
+                "description": "Transformer substation"
+              }
+            ],
+            "deliveryAddresses": [
+              {
+                "region": "UKM65"
+              }
+            ],
+            "deliveryLocation": {
+              "description": "Fall or Warness, Eday, Orkney Islands"
+            },
+            "relatedLot": "1"
+          }
+        ],
+        "submissionMethod": [
+          "electronicSubmission"
+        ],
+        "submissionMethodDetails": "http://www.publiccontractsscotland.gov.uk",
+        "selectionCriteria": {
+          "criteria": [
+            {
+              "type": "suitability",
+              "description": "As appropriate for requirements in Invitation to Tender document:\nITT - 4.8 MW Substation Design and Installation.pdf",
+              "appliesTo": [
+                "supplier"
+              ]
+            },
+            {
+              "type": "economic",
+              "description": "Economic and financial standing do not form part of the selection criteria, however, financial due diligence will be carried out prior to contract signing.\n2 year's accounts will be requested.",
+              "appliesTo": [
+                "supplier"
+              ]
+            },
+            {
+              "type": "technical",
+              "description": "As appropriate for requirements in Invitation to Tender document:\nITT - 4.8 MW Substation Design and Installation.pdf",
+              "appliesTo": [
+                "supplier"
+              ]
+            }
+          ]
+        },
+        "procurementMethod": "open",
+        "procurementMethodDetails": "Open procedure",
+        "coveredBy": [
+          "GPA"
+        ],
+        "tenderPeriod": {
+          "endDate": "2026-06-26T12:00:00+01:00"
+        },
+        "submissionTerms": {
+          "languages": [
+            "en"
+          ],
+          "bidValidityPeriod": {
+            "durationInDays": 90
+          }
+        },
+        "awardPeriod": {
+          "startDate": "2026-06-26T12:00:00+01:00"
+        },
+        "bidOpening": {
+          "date": "2026-06-26T12:00:00+01:00",
+          "address": {
+            "streetAddress": "Stromness, Orkney"
+          },
+          "description": "Mike Partridge, Projects Controller"
+        },
+        "hasRecurrence": false,
+        "contractTerms": {
+          "hasElectronicOrdering": true,
+          "electronicInvoicingPolicy": "allowed",
+          "hasElectronicPayment": true
+        }
+      },
+      "parties": [
+        {
+          "name": "European Marine Energy Centre (EMEC) Ltd",
+          "id": "GB-FTS-603",
+          "identifier": {
+            "legalName": "European Marine Energy Centre (EMEC) Ltd"
+          },
+          "address": {
+            "streetAddress": "The Charles Clouston Building, ORIC, Back Road, Stromness",
+            "locality": "ORKNEY",
+            "region": "UKM65",
+            "postalCode": "KW16 3AW",
+            "countryName": "United Kingdom"
+          },
+          "contactPoint": {
+            "name": "Mike Partridge",
+            "telephone": "+44 1856852060",
+            "email": "procurement@emec.org.uk",
+            "url": "http://www.publiccontractsscotland.gov.uk"
+          },
+          "roles": [
+            "buyer",
+            "centralPurchasingBody"
+          ],
+          "details": {
+            "url": "http://www.emec.org.uk",
+            "buyerProfile": "https://www.publiccontractsscotland.gov.uk/search/Search_AuthProfile.aspx?ID=AA23883",
+            "classifications": [
+              {
+                "scheme": "TED_CA_TYPE",
+                "description": "Private company in receipt of EU funding"
+              },
+              {
+                "scheme": "COFOG",
+                "description": "Renewable Energy"
+              }
+            ]
+          }
+        },
+        {
+          "name": "Sheriff Court",
+          "id": "GB-FTS-174907",
+          "identifier": {
+            "legalName": "Sheriff Court"
+          },
+          "address": {
+            "streetAddress": "Sheriff Court House, Watergate",
+            "locality": "Kirkwall",
+            "postalCode": "KW15",
+            "countryName": "United Kingdom"
+          },
+          "contactPoint": {
+            "telephone": "+44 1856852110",
+            "email": "kirkwall@scotcourt.org.uk"
+          },
+          "roles": [
+            "reviewBody"
+          ],
+          "details": {
+            "url": "https://www.scotcourts.gov.uk/the-courts/court-locations/kirkwall-sheriff-court"
+          }
+        }
+      ],
+      "buyer": {
+        "id": "GB-FTS-603",
+        "name": "European Marine Energy Centre (EMEC) Ltd"
+      },
+      "links": [
+        {
+          "rel": "canonical",
+          "href": "https://api.publiccontractsscotland.gov.uk/v1/Notice?id=ocds-r6ebe6-0000832574"
+        }
+      ],
+      "language": "en"
+    },
+    {
+      "ocid": "ocds-h6vhtk-06a691",
+      "id": "049783-2026",
+      "date": "2026-05-27T14:54:30+01:00",
+      "tag": [
+        "tender"
+      ],
+      "description": "\u00b7 The procurement will be conducted using the Competitive Process under the Provider Selection Regime (PSR) 2023.\n\u00b7 This is not a procurement under the Public Contracts Regulations 2024.\n\u00b7 The full specification and tender documents will be available upon release of the ITT",
+      "initiationType": "tender",
+      "tender": {
+        "id": "ocds-h6vhtk-06a691",
+        "legalBasis": {
+          "id": "32014L0024",
+          "scheme": "CELEX"
+        },
+        "title": "School Nursing for Children and Young People Aged 5\u201319 (up to 25 for SEND)",
+        "status": "active",
+        "classification": {
+          "scheme": "CPV",
+          "id": "85323000",
+          "description": "Community health services"
+        },
+        "mainProcurementCategory": "services",
+        "description": "The London Borough of Hammersmith & Fulham (the Council) is inviting suitably qualified and experienced providers to tender for the delivery of School Health & Wellbeing Services 5\u201319 (25). This procurement supports the delivery of the Healthy Child Programme (HCP) and aims to improve health outcomes for children, young people, and families across the borough.\nThe services will provide support for children aged 5\u201319 years, and up to 25 for young people with SEND. The contract estimated value is \u00a31,110,000 \u2013 \u00a31,260,000 per annum",
+        "value": {
+          "amount": 8820000,
+          "currency": "GBP"
+        },
+        "lots": [
+          {
+            "id": "1",
+            "description": "The London Borough of Hammersmith & Fulham (the Council) is inviting suitably qualified and experienced providers to tender for the delivery of School Health & Wellbeing Services 5\u201319 (25). This procurement supports the delivery of the Healthy Child Programme (HCP) and aims to improve health outcomes for children, young people, and families across the borough.\nThe services will provide support for children aged 5\u201319 years, and up to 25 for young people with SEND. The contract estimated value is \u00a31,110,000 \u2013 \u00a31,260,000 per annum\nStrategic Context:\nThis procurement represents a strategic redesign of the previously integrated 0\u201319 service model. It reflects learning from previous delivery, stakeholder engagement, and evolving public health priorities. The new model aims to streamline service pathways, reduce duplication, and enhance value for money through a more targeted and responsive approach.\nThe service fall under the Health Care Services (Provider Selection Regime) Regulations 2023, and the Council will be using the Competitive Process as set out in the regulations. This procurement is not governed by the Procurement Regulations 2024.\nScope of Services:\nThe commissioned services will deliver the national Healthy Child Programme, offering a universal schedule of screening, developmental reviews, and health promotion. The model is designed to:\n\u00b7 Promote early intervention and prevention\n\u00b7 Support children and young people\u2019s resilience and self-efficacy\n\u00b7 Improve access to health services for children and families\n\u00b7 Reduce health inequalities and prevent escalation of need\n\u00b7 Integrate with wider health, education, and social care systems\nThe redesigned model aims to streamline service pathways, encourage collaborative working across the health and social care sector, and provide support for children, young people and families. It reflects learning from previous delivery and aligns with the Public Health Outcomes Framework.\nAdditional Information:\n\u00b7 The procurement will be conducted using the Competitive Process under the Provider Selection Regime (PSR) 2023.\n\u00b7 This is not a procurement under the Public Contracts Regulations 2024.\n\u00b7 The full specification and tender documents will be available upon release of the Invitation to Tender (ITT).\nHow to Apply:\nInterested suppliers should register on the Council\u2019s e-procurement portal to access the tender documents once published. Further details, including submission deadlines and evaluation criteria, will be provided in the ITT.",
+            "contractPeriod": {
+              "durationInDays": 2520
+            },
+            "hasRenewal": false,
+            "submissionTerms": {
+              "variantPolicy": "notAllowed"
+            },
+            "hasOptions": false,
+            "status": "active"
+          }
+        ],
+        "items": [
+          {
+            "id": "1",
+            "deliveryAddresses": [
+              {
+                "region": "UKI33"
+              }
+            ],
+            "deliveryLocation": {
+              "description": "Hammersmith & Fulham"
+            },
+            "relatedLot": "1"
+          }
+        ],
+        "submissionMethod": [
+          "electronicSubmission",
+          "written"
+        ],
+        "submissionMethodDetails": "http://www.capitalesourcing.com",
+        "selectionCriteria": {
+          "criteria": [
+            {
+              "minimum": "All details are contained in the procurement tender pack on the e-procurement platform"
+            }
+          ]
+        },
+        "contractTerms": {
+          "performanceTerms": "All details are contained in the procurement tender pack on the e-procurement platform"
+        },
+        "procurementMethod": "open",
+        "procurementMethodDetails": "Open procedure",
+        "tenderPeriod": {
+          "endDate": "2026-06-01T12:00:00+01:00"
+        },
+        "submissionTerms": {
+          "languages": [
+            "en"
+          ]
+        },
+        "awardPeriod": {
+          "startDate": "2026-06-01T12:00:00+01:00"
+        },
+        "bidOpening": {
+          "date": "2026-06-01T12:00:00+01:00"
+        },
+        "hasRecurrence": false
+      },
+      "parties": [
+        {
+          "name": "London Borough of Hammersmith and Fulham",
+          "id": "GB-FTS-132730",
+          "identifier": {
+            "legalName": "London Borough of Hammersmith and Fulham"
+          },
+          "address": {
+            "streetAddress": "Town Hall, king street",
+            "locality": "London",
+            "region": "UKI33",
+            "postalCode": "W6 9JU",
+            "countryName": "United Kingdom"
+          },
+          "contactPoint": {
+            "email": "procurement@lbhf.gov.uk",
+            "url": "http://www.capitalesourcing.com"
+          },
+          "roles": [
+            "buyer"
+          ],
+          "details": {
+            "url": "http://www.capitalesourcing.com",
+            "buyerProfile": "https://www.lbhf.gov.uk/",
+            "classifications": [
+              {
+                "scheme": "TED_CA_TYPE",
+                "id": "REGIONAL_AUTHORITY",
+                "description": "Regional or local authority"
+              },
+              {
+                "scheme": "COFOG",
+                "id": "01",
+                "description": "General public services"
+              }
+            ]
+          }
+        },
+        {
+          "name": "PSR Review Panel",
+          "id": "GB-FTS-132424",
+          "identifier": {
+            "legalName": "PSR Review Panel"
+          },
+          "address": {
+            "locality": "London",
+            "countryName": "United Kingdom"
+          },
+          "roles": [
+            "reviewBody"
+          ]
+        }
+      ],
+      "buyer": {
+        "id": "GB-FTS-132730",
+        "name": "London Borough of Hammersmith and Fulham"
+      },
+      "language": "en"
+    },
+    {
+      "ocid": "ocds-h6vhtk-06a668",
+      "id": "049722-2026",
+      "date": "2026-05-27T13:55:13+01:00",
+      "tag": [
+        "tender"
+      ],
+      "description": "NOTE: To register your interest in this notice and obtain any additional information please visit the Public Contracts Scotland Web Site at https://www.publiccontractsscotland.gov.uk/Search/Search_Switch.aspx?ID=833006.\nThe buyer has indicated that it will accept electronic responses to this notice via the Postbox facility. A user guide is available at https://www.publiccontractsscotland.gov.uk/sitehelp/help_guides.aspx.\nSuppliers are advised to allow adequate time for uploading documents and to dispatch the electronic response well in advance of the closing time to avoid any last minute problems.\n(SC Ref:833006)\nDownload the ESPD document here: https://www.publiccontractsscotland.gov.uk/ESPD/ESPD_Download.aspx?id=833006",
+      "initiationType": "tender",
+      "tender": {
+        "id": "CASE/693111",
+        "legalBasis": {
+          "id": "32014L0024",
+          "scheme": "CELEX"
+        },
+        "title": "Framework Agreement for Fish Tracking Equipment",
+        "status": "active",
+        "classification": {
+          "scheme": "CPV",
+          "id": "34930000",
+          "description": "Marine equipment"
+        },
+        "mainProcurementCategory": "goods",
+        "description": "The Scottish Government, through Marine Directorate (MD) invites tenders from suitable contractors to supply a Framework Pricing Agreement for the provision of acoustic telemetry equipment, acoustic release and weight recovery system components for various telemetry projects that MD will undertake. This framework will run for a four year duration. Scottish Government conduct telemetry studies to determine the spatial and temporal movement of fish migrating from rivers around the Scottish coast and in the marine environment.",
+        "lots": [
+          {
+            "id": "1",
+            "description": "The Scottish Government, through Marine Directorate (MD) invites tenders from suitable contractors to supply a Framework Pricing Agreement for the provision of acoustic telemetry equipment, acoustic release and weight recovery system components for various telemetry projects that MD will undertake. This framework will run for a four year duration. Scottish Government conduct telemetry studies to determine the spatial and temporal movement of fish migrating from rivers around the Scottish coast and in the marine environment.",
+            "awardCriteria": {
+              "criteria": [
+                {
+                  "name": "Proposed Solution",
+                  "type": "quality",
+                  "description": "50"
+                },
+                {
+                  "name": "Lead Times, Warranty & Support",
+                  "type": "quality",
+                  "description": "20"
+                },
+                {
+                  "name": "Framework Management & Quality Assurance",
+                  "type": "quality",
+                  "description": "15"
+                },
+                {
+                  "name": "Corporate & Social Responsibilities",
+                  "type": "quality",
+                  "description": "10"
+                },
+                {
+                  "name": "Fair Work First",
+                  "type": "quality",
+                  "description": "5"
+                },
+                {
+                  "type": "price",
+                  "description": "30"
+                }
+              ]
+            },
+            "contractPeriod": {
+              "startDate": "2026-08-01T00:00:00+01:00",
+              "endDate": "2030-07-31T23:59:59+01:00"
+            },
+            "hasRenewal": false,
+            "submissionTerms": {
+              "variantPolicy": "allowed"
+            },
+            "hasOptions": false,
+            "status": "active"
+          }
+        ],
+        "items": [
+          {
+            "id": "1",
+            "deliveryAddresses": [
+              {
+                "region": "UKM"
+              }
+            ],
+            "relatedLot": "1"
+          }
+        ],
+        "submissionMethod": [
+          "electronicSubmission"
+        ],
+        "submissionMethodDetails": "https://www.publiccontractsscotland.gov.uk/",
+        "selectionCriteria": {
+          "criteria": [
+            {
+              "type": "economic",
+              "description": "This section covers questions 4B1-6 of the SPD (Scotland).",
+              "minimum": "4B1a: Bidders will be required to have a minimum \"specific\" yearly turnover of 500,000 GBP for the last two years.\nIn the event that the Bidder does not comply with this requirement, they will not be considered any further in this tendering exercise.\nAs evidence for the SPD (Scotland) question 4B1a, the Procurement Officer may ask for annual accounts from the bidder.\n4B5: It is a requirement of this contract that bidders hold or can commit to obtain prior to the commencement of any subsequently awarded contract, the types of insurance indicated below:\nEmployers (Compulsory) Liability Insurance = In accordance with the legal obligation for the time being enforced.\nPublic Liability Insurance = 1 Million GBP\n4B6: Bidders must demonstrate a Current Ratio of greater than 0.8.\nCurrent Ratio will be calculated as follows: net current assets divided by net current liabilities.\nPlease state whether you have applied IFRS15 to your accounts.\nThere must be no qualification or contra-indication from any evidence provided in support of the bidders economic and financial standing.",
+              "appliesTo": [
+                "supplier"
+              ]
+            },
+            {
+              "type": "technical",
+              "description": "Details of technical facilities, measures for ensuring quality and quality management procedures.",
+              "minimum": "4C1.2: Bidders will be required to provide three examples over the last five years that demonstrate that they have the relevant experience to deliver the services/supplies as described in the Contract Notice or the relevant section of the site notice.\n4C2: Bidders will be required to provide details of the technicians or technical bodies the bidder can call upon in relation to this procurement exercise.\n4C3a: Bidders will be required to provide details of the technical facilities and measures for ensuring quality.\n4C4: Bidders are required to provide a statement of the relevant supply chain management and/or tracking systems used.\n4C5. Bidder will be requested to provide an opportunity for the bidder to check on technical capacity of the bidder and on their quality measures.\n4C7: Bidders will be required to confirm what environmental management measures they will employ.\n4C9: Bidders should provide details of relevant tools, plant or technical equipment available to you in relation to this procurement exercise.\n4C10: Bidders will be required to confirm that whether they intend to subcontract and if so, for what proportion of the contract.\nQuality Management Procedures\n1. The bidder must hold a UKAS (or equivalent) accredited independent third party certificate of compliance in accordance with BS EN ISO 9001 (or equivalent).\nOR\n2. The bidder must have the following:\nA documented policy regarding quality management. The policy must set out the responsibilities for quality management demonstrating that the bidder has and continues to implement a quality management policy that is authorised by their Chief Executive, or equivalent, and is periodically reviewed at a senior management level. The policy must be relevant to the nature and scale of the work to be undertaken and set out responsibilities for quality management throughout the organisation.",
+              "appliesTo": [
+                "supplier"
+              ]
+            }
+          ]
+        },
+        "otherRequirements": {
+          "requiresStaffNamesAndQualifications": true
+        },
+        "procurementMethod": "open",
+        "procurementMethodDetails": "Open procedure",
+        "techniques": {
+          "hasFrameworkAgreement": true,
+          "frameworkAgreement": {
+            "maximumParticipants": 1
+          }
+        },
+        "coveredBy": [
+          "GPA"
+        ],
+        "tenderPeriod": {
+          "endDate": "2026-06-29T12:00:00+01:00"
+        },
+        "submissionTerms": {
+          "languages": [
+            "en"
+          ],
+          "bidValidityPeriod": {
+            "durationInDays": 180
+          }
+        },
+        "awardPeriod": {
+          "startDate": "2026-06-29T13:00:00+01:00"
+        },
+        "bidOpening": {
+          "date": "2026-06-29T13:00:00+01:00",
+          "address": {
+            "streetAddress": "East Lothian"
+          }
+        },
+        "hasRecurrence": false,
+        "contractTerms": {
+          "hasElectronicOrdering": true,
+          "hasElectronicPayment": true
+        }
+      },
+      "parties": [
+        {
+          "name": "Scottish Government",
+          "id": "GB-FTS-182309",
+          "identifier": {
+            "legalName": "Scottish Government"
+          },
+          "address": {
+            "streetAddress": "Victoria Quay, The Shore",
+            "locality": "Edinburgh",
+            "region": "UKM",
+            "postalCode": "EH6 6 QQ",
+            "countryName": "United Kingdom"
+          },
+          "contactPoint": {
+            "email": "brody.johnston@gov.scot",
+            "url": "https://www.publiccontractsscotland.gov.uk/"
+          },
+          "roles": [
+            "buyer",
+            "centralPurchasingBody"
+          ],
+          "details": {
+            "url": "http://www.scotland.gov.uk",
+            "buyerProfile": "https://www.publiccontractsscotland.gov.uk/search/Search_AuthProfile.aspx?ID=AA10482",
+            "classifications": [
+              {
+                "scheme": "TED_CA_TYPE",
+                "id": "MINISTRY",
+                "description": "Ministry or any other national or federal authority, including their regional or local subdivisions"
+              },
+              {
+                "scheme": "COFOG",
+                "id": "01",
+                "description": "General public services"
+              }
+            ]
+          }
+        },
+        {
+          "name": "Sheriff Court House",
+          "id": "GB-FTS-324",
+          "identifier": {
+            "legalName": "Sheriff Court House"
+          },
+          "address": {
+            "streetAddress": "27 Chambers Street",
+            "locality": "Edinburgh",
+            "postalCode": "EH1 1LB",
+            "countryName": "United Kingdom"
+          },
+          "roles": [
+            "reviewBody"
+          ]
+        }
+      ],
+      "buyer": {
+        "id": "GB-FTS-182309",
+        "name": "Scottish Government"
+      },
+      "links": [
+        {
+          "rel": "canonical",
+          "href": "https://api.publiccontractsscotland.gov.uk/v1/Notice?id=ocds-r6ebe6-0000833006"
+        }
+      ],
+      "language": "en"
+    },
+    {
+      "ocid": "ocds-h6vhtk-0686fa",
+      "id": "049693-2026",
+      "date": "2026-05-27T13:38:34+01:00",
+      "tag": [
+        "tender"
+      ],
+      "initiationType": "tender",
+      "tender": {
+        "id": "CNC/1255",
+        "legalBasis": {
+          "id": "32014L0024",
+          "scheme": "CELEX"
+        },
+        "title": "Carbine Holographic Sights",
+        "status": "active",
+        "classification": {
+          "scheme": "CPV",
+          "id": "35300000",
+          "description": "Weapons, ammunition and associated parts"
+        },
+        "mainProcurementCategory": "goods",
+        "description": "The CNC are seeking to procure a holographic sighting system for their fleet of Carbines",
+        "value": {
+          "amount": 840000.0,
+          "currency": "GBP"
+        },
+        "lots": [
+          {
+            "id": "1",
+            "description": "The CNC are seeking to procure a holographic sighting system for their fleet of Carbines",
+            "value": {
+              "amount": 840000.0,
+              "currency": "GBP"
+            },
+            "contractPeriod": {
+              "startDate": "2026-08-16T00:00:00+01:00",
+              "endDate": "2031-08-15T23:59:59+01:00"
+            },
+            "hasRenewal": true,
+            "renewal": {
+              "description": "option for 1+1 extension"
+            },
+            "submissionTerms": {
+              "variantPolicy": "notAllowed",
+              "electronicCataloguePolicy": "required"
+            },
+            "hasOptions": false,
+            "status": "active"
+          }
+        ],
+        "items": [
+          {
+            "id": "1",
+            "additionalClassifications": [
+              {
+                "scheme": "CPV",
+                "id": "35341000",
+                "description": "Parts of light firearms"
+              },
+              {
+                "scheme": "CPV",
+                "id": "38633000",
+                "description": "Telescopic sights"
+              },
+              {
+                "scheme": "CPV",
+                "id": "38636000",
+                "description": "Specialist optical instruments"
+              }
+            ],
+            "deliveryAddresses": [
+              {
+                "region": "UKJ14"
+              },
+              {
+                "region": "UK"
+              }
+            ],
+            "relatedLot": "1"
+          }
+        ],
+        "submissionMethod": [
+          "electronicSubmission",
+          "written"
+        ],
+        "submissionMethodDetails": "https://uk.eu-supply.com/app/rfq/rwlentrance_s.asp?PID=105831&B=BLUELIGHT",
+        "documents": [
+          {
+            "documentType": "economicSelectionCriteria",
+            "id": "economic"
+          },
+          {
+            "documentType": "technicalSelectionCriteria",
+            "id": "technical"
+          }
+        ],
+        "procurementMethod": "open",
+        "procurementMethodDetails": "Open procedure",
+        "coveredBy": [
+          "GPA"
+        ],
+        "tenderPeriod": {
+          "endDate": "2026-06-27T00:00:00+01:00"
+        },
+        "submissionTerms": {
+          "languages": [
+            "en"
+          ],
+          "bidValidityPeriod": {
+            "endDate": "2026-07-29T23:59:59+01:00"
+          }
+        },
+        "awardPeriod": {
+          "startDate": "2026-06-27T00:00:00+01:00"
+        },
+        "bidOpening": {
+          "date": "2026-06-27T00:00:00+01:00"
+        },
+        "hasRecurrence": false,
+        "contractTerms": {
+          "hasElectronicOrdering": true,
+          "hasElectronicPayment": true
+        }
+      },
+      "parties": [
+        {
+          "name": "Civil Nuclear Police Authority (CNPA)  / Civil Nuclear Constabulary (CNC)",
+          "id": "GB-FTS-182307",
+          "identifier": {
+            "legalName": "Civil Nuclear Police Authority (CNPA)  / Civil Nuclear Constabulary (CNC)",
+            "id": "PTBP-7472-NYGG"
+          },
+          "address": {
+            "streetAddress": "Building F6, First Floor, Culham Campus ",
+            "locality": "Abingdon ",
+            "region": "UKJ14",
+            "postalCode": "OX14 3DB",
+            "countryName": "United Kingdom"
+          },
+          "contactPoint": {
+            "name": "Ian Sweeney",
+            "telephone": "+44 3303135532",
+            "email": "ian.sweeney@cnc.police.uk",
+            "url": "https://uk.eu-supply.com/app/rfq/rwlentrance_s.asp?PID=105831&B=BLUELIGHT"
+          },
+          "roles": [
+            "buyer",
+            "centralPurchasingBody"
+          ],
+          "details": {
+            "url": "https://www.gov.uk/government/organisations/civil-nuclear-consta",
+            "buyerProfile": "https://uk.eu-supply.com/ctm/Company/CompanyInformation/Index/31796",
+            "classifications": [
+              {
+                "scheme": "TED_CA_TYPE",
+                "id": "BODY_PUBLIC",
+                "description": "Body governed by public law"
+              },
+              {
+                "scheme": "COFOG",
+                "id": "03",
+                "description": "Public order and safety"
+              }
+            ]
+          }
+        },
+        {
+          "name": "Civil Nuclear Police Authority",
+          "id": "GB-FTS-182308",
+          "identifier": {
+            "legalName": "Civil Nuclear Police Authority"
+          },
+          "address": {
+            "streetAddress": "F6, Culham Campus",
+            "locality": "Abingdon. Oxfordshire.",
+            "postalCode": "OX14 3DB",
+            "countryName": "United Kingdom"
+          },
+          "roles": [
+            "reviewBody",
+            "mediationBody",
+            "reviewContactPoint"
+          ]
+        }
+      ],
+      "buyer": {
+        "id": "GB-FTS-182307",
+        "name": "Civil Nuclear Police Authority (CNPA)  / Civil Nuclear Constabulary (CNC)"
+      },
+      "language": "en"
+    }
+  ],
+  "links": {
+    "next": "https://www.find-tender.service.gov.uk/api/1.0/ocdsReleasePackages?updatedFrom=2026-05-23T20:19:46Z&updatedTo=2026-05-30T20:19:46Z&stages=tender&limit=20&cursor=dXBkYXRlZEZyb209MjAyNi0wNS0yM1QyMDoxOTo0Nlp8dXBkYXRlZFRvPTIwMjYtMDUtMzBUMjA6MTk6NDZafG5leHRDdXJzb3I9NTU1Njk0"
+  }
+}
