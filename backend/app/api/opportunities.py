@@ -68,9 +68,15 @@ def _build_stmt(
             )
         )
 
+    # Normalize tz-aware query params to naive UTC to match the DB column
+    # (TIMESTAMP WITHOUT TIME ZONE); otherwise Postgres rejects the comparison.
     if deadline_from:
+        if deadline_from.tzinfo is not None:
+            deadline_from = deadline_from.astimezone(timezone.utc).replace(tzinfo=None)
         stmt = stmt.where(TenderOpportunity.deadline >= deadline_from)
     if deadline_to:
+        if deadline_to.tzinfo is not None:
+            deadline_to = deadline_to.astimezone(timezone.utc).replace(tzinfo=None)
         stmt = stmt.where(TenderOpportunity.deadline <= deadline_to)
 
     if value_min is not None or value_max is not None:

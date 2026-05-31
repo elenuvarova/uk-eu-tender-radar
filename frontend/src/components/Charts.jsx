@@ -97,7 +97,10 @@ const COMPONENTS = [
 /** Five-segment breakdown bars for a relevance score (0–1 per component). */
 export function ScoreBreakdown({ breakdown }) {
   if (!breakdown) return null;
-  const pct = (v) => Math.max(0, Math.min(100, Math.round((v ?? 0) * 100)));
+  const pct = (v) => {
+    const n = Number(v);
+    return Number.isFinite(n) ? Math.max(0, Math.min(100, Math.round(n * 100))) : 0;
+  };
   const summary = COMPONENTS.map(([key, label]) => `${label} ${pct(breakdown[key])}%`).join(", ");
   return (
     <div className="score-breakdown" role="img" aria-label={`Relevance breakdown: ${summary}`}>
