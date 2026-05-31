@@ -138,10 +138,18 @@ def resolve(session: Session, batch_size: int = 500) -> tuple[int, int]:
                 buyer.name_aliases = aliases
                 session.add(buyer)
 
-        # Bulk-update all matching rows
+        # Bulk-update all matching rows. Must filter by country too — buyer_id
+        # is now name+country, so matching on name alone would let one country's
+        # iteration claim another country's rows (same name, different buyer).
+        country_filter = (
+            TenderOpportunity.buyer_country.is_(None)
+            if country is None
+            else TenderOpportunity.buyer_country == country
+        )
         opps = session.exec(
             select(TenderOpportunity).where(
                 TenderOpportunity.buyer_name == raw_name,
+                country_filter,
                 TenderOpportunity.buyer_id.is_(None),
             )
         ).all()
