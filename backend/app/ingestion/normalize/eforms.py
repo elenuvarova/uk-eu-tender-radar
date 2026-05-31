@@ -21,6 +21,7 @@ from datetime import datetime, timezone
 from typing import Any
 
 from app.ingestion.normalize._util import json_safe
+from app.ingestion.normalize.fx import to_eur
 from app.ingestion.normalize.enums import (
     AWARD, CONTRACT, MODIFICATION, NOTICE_OTHER, PLANNING, TENDER,
     map_procedure_type,
@@ -264,6 +265,7 @@ def normalize_ted_notice(notice: dict) -> dict[str, Any]:
 
     # Value
     estimated_value, currency = _extract_value(notice)
+    estimated_value_eur, fx_rate_date = to_eur(estimated_value, currency)
 
     # Dates
     pub_date_raw = notice.get("publication-date")
@@ -305,8 +307,8 @@ def normalize_ted_notice(notice: dict) -> dict[str, Any]:
         "buyer_region_code": nuts,  # NUTS codes are already structured
         "estimated_value": estimated_value,
         "currency": currency,
-        "estimated_value_eur": estimated_value if currency == "EUR" else None,
-        "fx_rate_date": None,
+        "estimated_value_eur": estimated_value_eur,
+        "fx_rate_date": fx_rate_date,
         "publication_date": publication_date,
         "deadline": deadline,
         "deadline_tz_offset": deadline_tz_offset,

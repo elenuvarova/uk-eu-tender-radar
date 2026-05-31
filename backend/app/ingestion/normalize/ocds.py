@@ -20,11 +20,9 @@ from app.ingestion.normalize.enums import (
     map_status,
 )
 
-FTS_BASE_URL = "https://www.find-tender.service.gov.uk/Notice"
+from app.ingestion.normalize.fx import to_eur
 
-# Static GBP/EUR rate — updated 2026-05-31. Replace with a daily FX job when available.
-_GBP_EUR_RATE: float = 1.17
-_FX_RATE_DATE: datetime = datetime(2026, 5, 31)
+FTS_BASE_URL = "https://www.find-tender.service.gov.uk/Notice"
 
 # FTS returns full country names, not ISO codes — map the ones we'll see.
 _COUNTRY_NAME_TO_ISO = {
@@ -157,6 +155,9 @@ def normalize_fts_release(release: dict) -> dict[str, Any]:
     deadline = _parse_dt(deadline_raw)
     deadline_tz_offset = _deadline_offset(deadline_raw)
 
+    # Convert to a common EUR figure for value scoring/filters
+    estimated_value_eur, fx_rate_date = to_eur(estimated_value, currency)
+
     # Enums
     notice_type = map_notice_type(tags)
     procedure_type = map_procedure_type(tender.get("procurementMethod"))
@@ -191,12 +192,8 @@ def normalize_fts_release(release: dict) -> dict[str, Any]:
         "buyer_region_code": buyer_region_code,
         "estimated_value": estimated_value,
         "currency": currency,
-        "estimated_value_eur": (
-            round(estimated_value * _GBP_EUR_RATE, 2)
-            if estimated_value is not None and currency == "GBP"
-            else None
-        ),
-        "fx_rate_date": _FX_RATE_DATE if (estimated_value is not None and currency == "GBP") else None,
+        "estimated_value_eur": estimated_value_eur,
+        "fx_rate_date": fx_rate_date,
         "publication_date": publication_date,
         "deadline": deadline,
         "deadline_tz_offset": deadline_tz_offset,
