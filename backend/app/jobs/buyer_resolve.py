@@ -48,12 +48,54 @@ def make_buyer_id(normalized: str, country: str | None = None) -> str:
     return f"B:{digest}"
 
 
+def _reset_stale_links(session: Session) -> int:
+    """Null out buyer_id on rows whose stored id no longer matches the current
+    make_buyer_id scheme (e.g. after the hash gained the country component), so
+    they get re-resolved below. Without this, a scheme change would split one
+    buyer across an old and a new id and fragment its history. Idempotent: once
+    every row matches the current scheme, this is a no-op.
+    """
+    reset = 0
+    rows = session.exec(
+        select(TenderOpportunity).where(
+            TenderOpportunity.buyer_name.isnot(None),
+            TenderOpportunity.buyer_id.isnot(None),
+        )
+    ).all()
+    for opp in rows:
+        norm = normalize_name(opp.buyer_name or "")
+        if not norm:
+            continue
+        if opp.buyer_id != make_buyer_id(norm, opp.buyer_country):
+            opp.buyer_id = None
+            session.add(opp)
+            reset += 1
+    if reset:
+        # Drop now-orphaned Buyer rows that no live opportunity references.
+        live_ids = {
+            r for (r,) in session.exec(
+                select(TenderOpportunity.buyer_id).where(
+                    TenderOpportunity.buyer_id.isnot(None)
+                ).distinct()
+            ).all()
+        }
+        for buyer in session.exec(select(Buyer)).all():
+            if buyer.id not in live_ids:
+                session.delete(buyer)
+        session.commit()
+        log.info("buyer_resolve: reset %d rows to re-resolve under current scheme", reset)
+    return reset
+
+
 def resolve(session: Session, batch_size: int = 500) -> tuple[int, int]:
     """
     Assign buyer_id to all TenderOpportunity rows that have a buyer_name
     but no buyer_id.  Returns (created, linked) counts.
     """
     created = linked = 0
+
+    # Heal any rows resolved under a previous make_buyer_id scheme first.
+    _reset_stale_links(session)
 
     # Fetch distinct unresolved names
     stmt = (
