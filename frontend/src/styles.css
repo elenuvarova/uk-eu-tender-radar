@@ -26,8 +26,8 @@ a { color: var(--accent); }
 .attr a:hover { color: var(--text); }
 
 /* ── stats ── */
-.stats-row { display: flex; gap: 1rem; padding: 1rem 1.5rem; flex-wrap: wrap; }
-.stat-card { background: var(--surface); border: 1px solid var(--border); border-radius: 8px; padding: 0.75rem 1rem; min-width: 120px; }
+.stats-row { display: flex; gap: 1rem; padding: 1rem 1.5rem; }
+.stat-card { flex: 1; min-width: 0; background: var(--surface); border: 1px solid var(--border); border-radius: 8px; padding: 0.75rem 1rem; }
 .stat-card-urgent { border-color: var(--urgent); }
 .stat-value { font-size: 1.5rem; font-weight: 700; line-height: 1; }
 .stat-label { color: var(--muted); font-size: 12px; margin-top: 4px; }
@@ -655,15 +655,13 @@ button.stat-card:hover {
   .app-header h1 { font-size: 1rem; }
   .db-indicator { display: none; }
 
-  /* stats: 2×2 grid, urgent spans full width */
+  /* stats: 2×2 grid, all cards equal */
   .stats-row {
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 0.5rem;
     padding: 0.75rem 1rem;
   }
-  .stat-card { min-width: 0; }
-  .stat-card-urgent { grid-column: span 2; }
   .stat-value { font-size: 1.25rem; }
 
   /* summary band: toggle visible; charts collapsed by default */

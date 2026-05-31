@@ -42,10 +42,10 @@ export function SourceDonut({ uk = 0, eu = 0 }) {
               <circle cx={cx} cy={cy} r={hole} fill="var(--surface)" />
             </>
           )}
-          <text x={cx} y={cy - 2} textAnchor="middle" className="donut-total">
+          <text x={cx} y={cy - 8} textAnchor="middle" dominantBaseline="central" className="donut-total">
             {fmtCount(total)}
           </text>
-          <text x={cx} y={cy + 14} textAnchor="middle" className="donut-sub">
+          <text x={cx} y={cy + 9} textAnchor="middle" dominantBaseline="central" className="donut-sub">
             notices
           </text>
         </svg>
