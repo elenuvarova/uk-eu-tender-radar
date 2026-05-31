@@ -28,7 +28,7 @@ a { color: var(--accent); }
 /* ── stats ── */
 .stats-row { display: flex; gap: 1rem; padding: 1rem 1.5rem; }
 .stat-card { flex: 1; min-width: 0; background: var(--surface); border: 1px solid var(--border); border-radius: 8px; padding: 0.75rem 1rem; }
-.stat-card-urgent { border-color: var(--urgent); }
+.stat-card-urgent { }
 .stat-value { font-size: 1.5rem; font-weight: 700; line-height: 1; }
 .stat-label { color: var(--muted); font-size: 12px; margin-top: 4px; }
 
@@ -348,8 +348,8 @@ button.stat-card:hover {
   box-shadow: inset 0 0 0 1px var(--accent);
 }
 .stat-card-urgent.stat-card-active {
-  border-color: var(--urgent);
-  box-shadow: inset 0 0 0 1px var(--urgent);
+  border-color: var(--accent);
+  box-shadow: inset 0 0 0 1px var(--accent);
 }
 .stat-card-static { cursor: default; }
 
