@@ -1,6 +1,7 @@
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 
 import { useApi, usePut, useDebouncedValue } from "./lib/api";
+import { useFocusTrap } from "./lib/useFocusTrap";
 import { fmtValue, fmtDate, fmtCount, daysLeft } from "./lib/format";
 import {
   NOTICE_TYPES,
@@ -48,7 +49,11 @@ function DeadlinePill({ iso }) {
   const d = daysLeft(iso);
   if (d == null) return <span className="pill pill-none">No deadline</span>;
   if (d < 0)    return <span className="pill pill-expired">Expired</span>;
-  if (d <= 7)   return <span className="pill pill-urgent">{d}d left</span>;
+  // Red pill must stay strictly inside the server "closing in 7 days" window
+  // (deadline <= now + 7d). daysLeft() floors, so a 7.x-day deadline returns 7
+  // but is NOT in the closing-soon set — hence `< 7`, not `<= 7`. Keep these in
+  // sync with the backend deadline window so the pill and the stat card agree.
+  if (d < 7)    return <span className="pill pill-urgent">{d}d left</span>;
   if (d <= 21)  return <span className="pill pill-soon">{d}d left</span>;
   return <span className="pill pill-ok">{fmtDate(iso)}</span>;
 }
@@ -107,6 +112,8 @@ function ScorePill({ relevance }) {
 
 function BuyerPanel({ buyerId, onClose }) {
   const { data, loading, error } = useApi(`/api/buyers/${buyerId}`, {}, [buyerId]);
+  const panelRef = useRef(null);
+  useFocusTrap(panelRef, true);
 
   useEffect(() => {
     const onKey = (e) => e.key === "Escape" && onClose();
@@ -115,7 +122,7 @@ function BuyerPanel({ buyerId, onClose }) {
   }, [onClose]);
 
   return (
-    <div className="buyer-panel" role="dialog" aria-label="Buyer profile">
+    <div className="buyer-panel" role="dialog" aria-label="Buyer profile" ref={panelRef}>
       <div className="buyer-panel-header">
         <span>Buyer profile</span>
         <button className="buyer-close" onClick={onClose} aria-label="Close">✕</button>
@@ -168,6 +175,8 @@ function BuyerPanel({ buyerId, onClose }) {
 
 function NoticeDrawer({ noticeId, onClose, onBuyerClick }) {
   const { data, loading, error } = useApi(`/api/opportunities/${noticeId}`, {}, [noticeId]);
+  const drawerRef = useRef(null);
+  useFocusTrap(drawerRef, true);
 
   useEffect(() => {
     const onKey = (e) => e.key === "Escape" && onClose();
@@ -189,6 +198,7 @@ function NoticeDrawer({ noticeId, onClose, onBuyerClick }) {
         aria-modal="true"
         aria-label="Notice detail"
         onClick={(e) => e.stopPropagation()}
+        ref={drawerRef}
       >
         <div className="drawer-header">
           <span>Notice detail</span>
@@ -325,8 +335,8 @@ function StatsRow({ facets, error, filters, onQuick }) {
   return (
     <div className="stats-row" id="tour-stats">
       <StatCard value={fmtCount(facets.total)} label="Total notices" active={showingAll} onClick={() => onQuick("all")} />
-      <StatCard value={fmtCount(facets.by_source.UK)} label="UK (Find a Tender)" active={filters.source === "UK"} onClick={() => onQuick("UK")} />
-      <StatCard value={fmtCount(facets.by_source.EU)} label="EU (TED)" active={filters.source === "EU"} onClick={() => onQuick("EU")} />
+      <StatCard value={fmtCount(facets.by_source?.UK ?? 0)} label="UK (Find a Tender)" active={filters.source === "UK"} onClick={() => onQuick("UK")} />
+      <StatCard value={fmtCount(facets.by_source?.EU ?? 0)} label="EU (TED)" active={filters.source === "EU"} onClick={() => onQuick("EU")} />
       <StatCard value={facets.closing_soon} label="Closing in 7 days" urgent active={!!filters.closing} onClick={() => onQuick("closing")} />
     </div>
   );
@@ -351,7 +361,7 @@ function SummaryBand({ facets }) {
         Overview charts <span>{mobileExpanded ? "▾" : "▸"}</span>
       </button>
       <div className={`summary-band ${mobileExpanded ? "" : "summary-band-collapsed"}`} id="tour-charts">
-        <SourceDonut uk={facets.by_source.UK || 0} eu={facets.by_source.EU || 0} />
+        <SourceDonut uk={facets.by_source?.UK ?? 0} eu={facets.by_source?.EU ?? 0} />
         <BarList title="Top categories" items={cpvItems} color="var(--accent)" />
         <BarList title="Top countries" items={facets.by_country || []} color="var(--eu)" />
       </div>
@@ -551,7 +561,7 @@ function SortBtn({ field, label, sort, onSort }) {
 function MobileCardList({ items, hasProfile, onBuyerClick, onNoticeClick, onSourceClick, onTypeClick, filters }) {
   return (
     <div className="mobile-list">
-      {items.map((o, idx) => (
+      {items.map((o) => (
         <div key={o.id} className="mobile-card" onClick={() => onNoticeClick(o.id)}>
           <div className="mobile-card-top">
             <div className="mobile-card-tags">
@@ -763,10 +773,21 @@ function MobileFilterBar({ filters, sort, onOpenSheet }) {
 
 function MobileFilterSheet({ open, onClose, filters, onChange, profile, onSaved }) {
   const [showProfile, setShowProfile] = useState(false);
+  const sheetRef = useRef(null);
+  useFocusTrap(sheetRef, open);
+
+  // Escape closes the sheet (other dialogs already do this; the sheet didn't).
+  useEffect(() => {
+    if (!open) return;
+    const onKey = (e) => e.key === "Escape" && onClose();
+    window.addEventListener("keydown", onKey);
+    return () => window.removeEventListener("keydown", onKey);
+  }, [open, onClose]);
+
   return (
     <>
       <div className={`filter-sheet-scrim ${open ? "open" : ""}`} onClick={onClose} />
-      <div className={`filter-sheet ${open ? "open" : ""}`} role="dialog" aria-label="Filters">
+      <div className={`filter-sheet ${open ? "open" : ""}`} role="dialog" aria-label="Filters" ref={sheetRef}>
         <div className="filter-sheet-header">
           <button className="buyer-close" onClick={onClose} aria-label="Close filters">✕</button>
           <span>Filters</span>
@@ -871,15 +892,30 @@ export default function App() {
   const facets = useApi("/api/facets", {});
   const health = useApi("/api/health", {});
 
-  // Auto-start tour on first visit, after data loads
+  // Keep pagination in range: if the result set shrank (e.g. filters changed)
+  // and the current offset now points past the last page, snap back to page 1.
+  // Prevents "Page 6 of 1" and an empty list when data is actually present.
+  const oppsTotal = opps.data?.total;
+  useEffect(() => {
+    if (oppsTotal != null && offset >= oppsTotal && offset > 0) setOffset(0);
+  }, [oppsTotal, offset]);
+
+  // Auto-start tour on first visit, after data loads.
+  // Dep is `[!!facets.data]` (a boolean) on purpose: it flips false→true exactly
+  // once when data arrives, so the effect runs a single time. Depending on the
+  // raw `facets.data` object would re-run on every refetch; don't "simplify" it.
   useEffect(() => {
     if (facets.data && !localStorage.getItem("hasSeenTour")) {
+      let pulseTimer;
       const t = setTimeout(() => {
         setTourActive(true);
         setTourPulse(true);
-        setTimeout(() => setTourPulse(false), 6500);
+        pulseTimer = setTimeout(() => setTourPulse(false), 6500);
       }, 800);
-      return () => clearTimeout(t);
+      return () => {
+        clearTimeout(t);
+        clearTimeout(pulseTimer);
+      };
     }
   }, [!!facets.data]);
 

@@ -1,4 +1,6 @@
-import { useEffect, useLayoutEffect, useState } from "react";
+import { useEffect, useLayoutEffect, useRef, useState } from "react";
+
+import { useFocusTrap } from "../lib/useFocusTrap";
 
 const STEPS = [
   {
@@ -89,6 +91,8 @@ function useTargetRect(targetId, active) {
 }
 
 function Tooltip({ cfg, stepIndex, total, rect, onNext, onSkip }) {
+  const ref = useRef(null);
+  useFocusTrap(ref, !!rect);
   if (!rect) return null;
 
   const vw = window.innerWidth;
@@ -122,6 +126,7 @@ function Tooltip({ cfg, stepIndex, total, rect, onNext, onSkip }) {
       style={{ top, left }}
       role="dialog"
       aria-label={`Tour step ${stepIndex + 1} of ${total}`}
+      ref={ref}
     >
       <div className="tour-step-label">Step {stepIndex + 1} of {total}</div>
       <div className="tour-title">{cfg.title}</div>
@@ -140,10 +145,12 @@ function Tooltip({ cfg, stepIndex, total, rect, onNext, onSkip }) {
 }
 
 function FinishModal({ onStartFiltering, onDismiss }) {
+  const ref = useRef(null);
+  useFocusTrap(ref, true);
   return (
     <>
       <div className="tour-overlay" style={{ background: "rgba(0,0,0,0.55)", pointerEvents: "auto" }} />
-      <div className="tour-center-modal" role="dialog" aria-label="Tour complete">
+      <div className="tour-center-modal" role="dialog" aria-label="Tour complete" ref={ref}>
         <div className="tour-step-label">Tour complete</div>
         <div className="tour-title">You're all set</div>
         <div className="tour-body">
@@ -163,6 +170,12 @@ export default function Tour({ active, onClose }) {
   const [done, setDone] = useState(false);
   const cfg = STEPS[stepIndex];
   const rect = useTargetRect(cfg?.targetId, active && !done);
+
+  // Trap focus in the centered fallback card (shown only when the step's target
+  // is missing, so the tooltip isn't rendered). The tooltip and finish modal
+  // each manage their own trap; this covers the third surface.
+  const fallbackRef = useRef(null);
+  useFocusTrap(fallbackRef, active && !done && !rect);
 
   // Reset to the first step each time the tour is (re)opened.
   useEffect(() => {
@@ -229,7 +242,7 @@ export default function Tour({ active, onClose }) {
       {/* If the target is missing entirely, still show a centered card so the
           user can advance or skip rather than seeing a frozen dim screen. */}
       {!rect && (
-        <div className="tour-center-modal" role="dialog" aria-label={`Tour step ${stepIndex + 1}`}>
+        <div className="tour-center-modal" role="dialog" aria-label={`Tour step ${stepIndex + 1}`} ref={fallbackRef}>
           <div className="tour-step-label">Step {stepIndex + 1} of {STEPS.length}</div>
           <div className="tour-title">{cfg.title}</div>
           <div className="tour-body">{cfg.body}</div>

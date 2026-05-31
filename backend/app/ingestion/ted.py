@@ -47,6 +47,7 @@ DEFAULT_COUNTRIES = [
 
 MAX_RETRIES = 4
 RETRY_DELAYS = [5, 15, 30, 60]
+MAX_PAGES = 200  # safety cap against runaway ITERATION cursors
 
 
 def _post(client: httpx.Client, body: dict) -> dict:
@@ -119,14 +120,19 @@ def iter_notices(
     }
 
     with httpx.Client() as client:
+        pages_fetched = 0
         while True:
+            if pages_fetched >= MAX_PAGES:
+                log.warning("TED: hit MAX_PAGES=%d safety cap — truncating", MAX_PAGES)
+                break
             data = _post(client, body)
             notices = data.get("notices") or []
-            log.info("TED page: %d notices (total=%s)", len(notices), data.get("totalNoticeCount"))
+            log.info("TED page %d: %d notices (total=%s)", pages_fetched + 1, len(notices), data.get("totalNoticeCount"))
 
             for n in notices:
                 yield n
 
+            pages_fetched += 1
             token = data.get("iterationNextToken")
             if not token or not notices:
                 break

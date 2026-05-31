@@ -37,9 +37,14 @@ def normalize_name(raw: str) -> str:
     return n
 
 
-def make_buyer_id(normalized: str) -> str:
-    """Deterministic, stable ID from the normalized name."""
-    digest = hashlib.md5(normalized.encode()).hexdigest()[:12]
+def make_buyer_id(normalized: str, country: str | None = None) -> str:
+    """Deterministic, stable ID from the normalized name + country.
+
+    Country is included to prevent same-named buyers in different countries
+    (e.g. "Department of Health" GB vs IE) from collapsing into one entity.
+    """
+    key = f"{country or ''}:{normalized}"
+    digest = hashlib.md5(key.encode()).hexdigest()[:12]
     return f"B:{digest}"
 
 
@@ -69,7 +74,7 @@ def resolve(session: Session, batch_size: int = 500) -> tuple[int, int]:
         if not norm:
             continue
 
-        bid = make_buyer_id(norm)
+        bid = make_buyer_id(norm, country)
 
         # Reuse existing Buyer or create
         buyer = session.get(Buyer, bid)

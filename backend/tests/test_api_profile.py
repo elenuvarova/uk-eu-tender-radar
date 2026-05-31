@@ -85,7 +85,7 @@ def test_opportunities_with_scoring(client, session):
     assert len(items) == 1
     assert items[0]["relevance"] is not None
     assert 0 <= items[0]["relevance"]["score"] <= 100
-    assert len(items[0]["relevance"]["reasons"]) == 4
+    assert len(items[0]["relevance"]["reasons"]) == 5
 
 
 def test_opportunities_without_scoring_no_relevance(client, session):

@@ -97,15 +97,17 @@ const COMPONENTS = [
 /** Five-segment breakdown bars for a relevance score (0–1 per component). */
 export function ScoreBreakdown({ breakdown }) {
   if (!breakdown) return null;
+  const pct = (v) => Math.max(0, Math.min(100, Math.round((v ?? 0) * 100)));
+  const summary = COMPONENTS.map(([key, label]) => `${label} ${pct(breakdown[key])}%`).join(", ");
   return (
-    <div className="score-breakdown">
+    <div className="score-breakdown" role="img" aria-label={`Relevance breakdown: ${summary}`}>
       {COMPONENTS.map(([key, label]) => {
-        const v = breakdown[key] ?? 0;
+        const w = pct(breakdown[key]);
         return (
           <div key={key} className="sb-row">
             <span className="sb-label">{label}</span>
             <span className="sb-track">
-              <span className="sb-fill" style={{ width: `${Math.round(v * 100)}%` }} />
+              <span className="sb-fill" style={{ width: `${w}%` }} />
             </span>
           </div>
         );

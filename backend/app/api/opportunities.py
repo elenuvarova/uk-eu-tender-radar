@@ -91,7 +91,8 @@ def _build_stmt(
         # CLOSED is synthetic (OPEN + deadline passed) and OPEN must exclude
         # those, so resolve effective status here rather than matching the
         # stored column literally.
-        now = datetime.now(timezone.utc)
+        # Use naive UTC to match the TIMESTAMP WITHOUT TIME ZONE DB column.
+        now = datetime.now(timezone.utc).replace(tzinfo=None)
         conds = []
         plain = [s for s in status if s not in ("OPEN", "CLOSED")]
         if plain:
@@ -295,8 +296,8 @@ def get_facets(session: Session = Depends(get_session)):
     ).all()
     by_cpv_division = [CountItem(label=row[0], count=row[1]) for row in by_cpv_rows]
 
-    # Closing soon (deadline in next 7 days)
-    now = datetime.now(timezone.utc)
+    # Closing soon (deadline in next 7 days). Naive UTC matches the DB column type.
+    now = datetime.now(timezone.utc).replace(tzinfo=None)
     soon = now + timedelta(days=7)
     closing_soon = session.exec(
         select(func.count(TenderOpportunity.id)).where(

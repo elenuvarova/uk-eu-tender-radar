@@ -20,6 +20,7 @@ FTS_API = "https://www.find-tender.service.gov.uk/api/1.0/ocdsReleasePackages"
 # Back-off config
 MAX_RETRIES = 4
 RETRY_DELAYS = [5, 15, 30, 60]  # seconds
+MAX_PAGES = 200  # safety cap; ~20 000 releases per run
 
 
 def _get(client: httpx.Client, url: str, params: dict | None = None) -> dict:
@@ -69,15 +70,20 @@ def iter_releases(
     with httpx.Client(headers=headers) as client:
         url = FTS_API
         page_params: dict | None = params
+        pages_fetched = 0
 
         while url:
+            if pages_fetched >= MAX_PAGES:
+                log.warning("FTS: hit MAX_PAGES=%d safety cap — truncating", MAX_PAGES)
+                break
             data = _get(client, url, page_params)
             releases = data.get("releases") or []
-            log.info("FTS page: %d releases", len(releases))
+            log.info("FTS page %d: %d releases", pages_fetched + 1, len(releases))
 
             for release in releases:
                 yield release
 
+            pages_fetched += 1
             # Follow cursor; once we switch to links.next, drop query params
             next_url = (data.get("links") or {}).get("next")
             url = next_url or ""
@@ -85,9 +91,13 @@ def iter_releases(
 
 
 def normalize_releases(releases: list[dict]) -> list[dict]:
-    """Normalize a list of raw OCDS releases to TenderOpportunity field dicts."""
-    result = []
-    seen_ids: set[str] = set()
+    """Normalize a list of raw OCDS releases to TenderOpportunity field dicts.
+
+    When multiple releases share the same ocid (amendments), keep the one with
+    the latest publication_date rather than the first-seen.
+    """
+    result: list[dict] = []
+    id_to_idx: dict[str, int] = {}
     for release in releases:
         try:
             row = normalize_fts_release(release)
@@ -95,9 +105,14 @@ def normalize_releases(releases: list[dict]) -> list[dict]:
             log.warning("FTS normalize error (ocid=%s): %s", release.get("ocid"), exc)
             continue
         uid = row["id"]
-        if uid in seen_ids:
-            log.debug("FTS: skipping duplicate %s", uid)
-            continue
-        seen_ids.add(uid)
-        result.append(row)
+        if uid in id_to_idx:
+            existing = result[id_to_idx[uid]]
+            if row["publication_date"] > existing["publication_date"]:
+                result[id_to_idx[uid]] = row
+                log.debug("FTS: replaced %s with newer release", uid)
+            else:
+                log.debug("FTS: skipping older duplicate %s", uid)
+        else:
+            id_to_idx[uid] = len(result)
+            result.append(row)
     return result

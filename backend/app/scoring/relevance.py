@@ -97,15 +97,27 @@ def score_value(
 
 
 def score_deadline(deadline: datetime | None, min_days_to_bid: int) -> float:
-    """C4: enough time left to bid."""
+    """C4: enough time left to bid.
+
+    Ramp zones prevent a cliff at the min_days boundary:
+      d < 0              → 0.0  (past)
+      0 <= d < min       → 0.3 * d/min  (too tight, partial credit)
+      min <= d < min+7   → 0.3 → 1.0 linear ramp  (just opened, accelerating)
+      min+7 <= d <= 45   → 1.0  (comfortable window)
+      d > 45             → decay toward 0.6  (very early stage)
+    """
     if deadline is None:
-        return 0.5  # no deadline (PIN/award notices) — neutral
+        return 0.5
     now = datetime.now(timezone.utc)
     d = _days_until(deadline, now)
     if d < 0:
         return 0.0
     if d < min_days_to_bid:
         return 0.3 * (d / max(1, min_days_to_bid))
+    ramp_top = min_days_to_bid + 7
+    if d < ramp_top:
+        t = (d - min_days_to_bid) / 7.0
+        return 0.3 + 0.7 * t
     if d <= 45:
         return 1.0
     return max(0.6, 1.0 - (d - 45) / 120)
@@ -170,6 +182,18 @@ def _val_reason(s: float, v_min: float | None, v_max: float | None) -> str:
     return "❌ Value well outside your target range"
 
 
+def _buy_reason(s: float, match_count: int | None) -> str:
+    if match_count is None:
+        return "– Buyer not yet resolved"
+    if match_count == 0:
+        return "❌ Buyer has no history in your target CPV divisions"
+    if match_count <= 2:
+        return "⚠️ Buyer occasionally awards in your target categories"
+    if match_count <= 5:
+        return "✅ Buyer regularly awards in your target categories"
+    return "✅ Buyer frequently awards in your target categories"
+
+
 def _ddl_reason(s: float, deadline: datetime | None, min_days: int) -> str:
     if deadline is None:
         return "– No submission deadline (PIN or award notice)"
@@ -222,6 +246,7 @@ def compute_score(
         _kw_reason(s_kw, profile_keywords),
         _val_reason(s_val, profile_value_min, profile_value_max),
         _ddl_reason(s_ddl, deadline, profile_min_days_to_bid),
+        _buy_reason(s_buy, buyer_match_count),
     ]
 
     breakdown = {

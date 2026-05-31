@@ -170,7 +170,7 @@ def test_full_score_returns_score_result():
     )
     assert isinstance(result, ScoreResult)
     assert 0 <= result.score <= 100
-    assert len(result.reasons) == 4
+    assert len(result.reasons) == 5
 
 
 def test_full_score_range():

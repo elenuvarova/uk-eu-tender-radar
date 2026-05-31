@@ -24,7 +24,7 @@ from app.ingestion.normalize._util import json_safe
 from app.ingestion.normalize.enums import (
     AWARD, CONTRACT, MODIFICATION, NOTICE_OTHER, PLANNING, TENDER,
     map_procedure_type,
-    STATUS_OPEN, AWARDED, PLANNED, CANCELLED, UNSUCCESSFUL,
+    STATUS_OPEN, AWARDED, PLANNED,
 )
 
 TED_BASE_URL = "https://ted.europa.eu/en/notice"
@@ -131,15 +131,25 @@ def _extract_nuts(place_of_performance: list | None) -> str | None:
 
 
 def _parse_ted_date(value: str | None) -> datetime | None:
-    """Parse TED date strings like '2026-05-29+02:00' or '2026-06-12+02:00'."""
+    """Parse TED date strings — handles Z suffix, offset, and fractional seconds."""
     if not value:
         return None
-    # Strip the trailing offset to parse the date part, then re-attach UTC
-    bare = re.sub(r"[+-]\d{2}:\d{2}$", "", value).strip()
+    # Normalize Z to +00:00 so fromisoformat handles it uniformly
+    normalized = value.strip()
+    if normalized.endswith("Z"):
+        normalized = normalized[:-1] + "+00:00"
+    try:
+        dt = datetime.fromisoformat(normalized)
+        if dt.tzinfo is None:
+            dt = dt.replace(tzinfo=timezone.utc)
+        return dt.astimezone(timezone.utc)
+    except ValueError:
+        pass
+    # Fallback: strip offset and try simple formats
+    bare = re.sub(r"[+-]\d{2}:\d{2}$", "", normalized).strip()
     for fmt in ("%Y-%m-%dT%H:%M:%S", "%Y-%m-%dT%H:%M", "%Y-%m-%d"):
         try:
-            dt = datetime.strptime(bare, fmt)
-            return dt.replace(tzinfo=timezone.utc)
+            return datetime.strptime(bare, fmt).replace(tzinfo=timezone.utc)
         except ValueError:
             continue
     return None
@@ -156,18 +166,26 @@ def _extract_value(notice: dict) -> tuple[float | None, str | None]:
     """
     Extract estimated value + currency.
     Prefer estimated-value-lot (list of strings) then total-value (number).
+    Multi-lot: sum values sharing the first lot's currency.
     """
-    # estimated-value-lot is a list of strings in the live data
     evl = notice.get("estimated-value-lot")
     cur_l = notice.get("estimated-value-cur-lot")
     if evl:
-        raw = evl[0] if isinstance(evl, list) else evl
-        try:
-            val = float(raw)
-            currency = (cur_l[0] if isinstance(cur_l, list) else cur_l) if cur_l else "EUR"
-            return val, currency
-        except (TypeError, ValueError):
-            pass
+        lots = evl if isinstance(evl, list) else [evl]
+        curs = (cur_l if isinstance(cur_l, list) else [cur_l]) if cur_l else []
+        dominant_cur = (curs[0] if curs else None) or "EUR"
+        total = 0.0
+        found = False
+        for i, raw in enumerate(lots):
+            lot_cur = curs[i] if i < len(curs) else dominant_cur
+            if lot_cur == dominant_cur:
+                try:
+                    total += float(raw)
+                    found = True
+                except (TypeError, ValueError):
+                    pass
+        if found:
+            return total, dominant_cur
 
     tv = notice.get("total-value")
     tc = notice.get("total-value-cur")

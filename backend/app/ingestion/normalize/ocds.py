@@ -22,6 +22,10 @@ from app.ingestion.normalize.enums import (
 
 FTS_BASE_URL = "https://www.find-tender.service.gov.uk/Notice"
 
+# Static GBP/EUR rate — updated 2026-05-31. Replace with a daily FX job when available.
+_GBP_EUR_RATE: float = 1.17
+_FX_RATE_DATE: datetime = datetime(2026, 5, 31)
+
 # FTS returns full country names, not ISO codes — map the ones we'll see.
 _COUNTRY_NAME_TO_ISO = {
     "united kingdom": "GB",
@@ -36,21 +40,23 @@ def _parse_dt(value: str | None) -> datetime | None:
     """Parse an ISO-8601 date or datetime string to a tz-aware UTC datetime."""
     if not value:
         return None
-    # Accept both date-only (YYYY-MM-DD) and full datetime strings.
-    for fmt in (
-        "%Y-%m-%dT%H:%M:%S%z",
-        "%Y-%m-%dT%H:%M:%SZ",
-        "%Y-%m-%dT%H:%M:%S",
-        "%Y-%m-%d",
-    ):
-        try:
-            dt = datetime.strptime(value[:len(fmt) + 6], fmt)
-            if dt.tzinfo is None:
-                dt = dt.replace(tzinfo=timezone.utc)
-            return dt.astimezone(timezone.utc)
-        except ValueError:
-            continue
-    return None
+    # Normalize Z suffix so fromisoformat handles it uniformly (Python 3.11+
+    # fromisoformat supports Z, but older versions do not — replace to be safe)
+    normalized = value.strip()
+    if normalized.endswith("Z"):
+        normalized = normalized[:-1] + "+00:00"
+    try:
+        dt = datetime.fromisoformat(normalized)
+        if dt.tzinfo is None:
+            dt = dt.replace(tzinfo=timezone.utc)
+        return dt.astimezone(timezone.utc)
+    except ValueError:
+        pass
+    # Fallback for bare date-only strings without any offset
+    try:
+        return datetime.strptime(normalized[:10], "%Y-%m-%d").replace(tzinfo=timezone.utc)
+    except ValueError:
+        return None
 
 
 def _deadline_offset(value: str | None) -> str | None:
@@ -185,8 +191,12 @@ def normalize_fts_release(release: dict) -> dict[str, Any]:
         "buyer_region_code": buyer_region_code,
         "estimated_value": estimated_value,
         "currency": currency,
-        "estimated_value_eur": None,  # set by FX job later
-        "fx_rate_date": None,
+        "estimated_value_eur": (
+            round(estimated_value * _GBP_EUR_RATE, 2)
+            if estimated_value is not None and currency == "GBP"
+            else None
+        ),
+        "fx_rate_date": _FX_RATE_DATE if (estimated_value is not None and currency == "GBP") else None,
         "publication_date": publication_date,
         "deadline": deadline,
         "deadline_tz_offset": deadline_tz_offset,
