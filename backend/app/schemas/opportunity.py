@@ -5,6 +5,9 @@ from pydantic import BaseModel, ConfigDict
 class RelevanceScore(BaseModel):
     score: int          # 0-100
     reasons: list[str]
+    # Per-component sub-scores (0–1): sCPV, sKW, sVAL, sDDL, sBUY. Drives the
+    # score-breakdown rail on the client.
+    breakdown: dict[str, float] | None = None
 
 
 class OpportunityItem(BaseModel):
