@@ -12,9 +12,11 @@ if _url.startswith("postgres://") or _url.startswith("postgresql://"):
         "postgresql://", "postgresql+psycopg://", 1
     )
     db_kind = "postgres"
-    connect_args = {}
+    # prepare_threshold=0 disables server-side prepared statements, required
+    # when using Supabase transaction pooler (port 6543).
+    connect_args = {"prepare_threshold": 0}
     if settings.is_production:
-        connect_args = {"sslmode": "require"}
+        connect_args["sslmode"] = "require"
     engine = create_engine(normalized, echo=False, connect_args=connect_args)
 else:
     db_kind = "sqlite"
