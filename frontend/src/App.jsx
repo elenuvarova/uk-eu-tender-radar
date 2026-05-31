@@ -10,7 +10,7 @@ import {
   CPV_DIVISION_LABELS,
   scoreBand,
 } from "./lib/constants";
-import { SourceDonut, BarList } from "./components/Charts";
+import { SourceDonut, BarList, ScoreBreakdown } from "./components/Charts";
 
 const SCORE_CLASS = { strong: "score-high", good: "score-mid", weak: "score-low" };
 const BAND_WORD = { strong: "Strong", good: "Good", weak: "Weak" };
@@ -103,6 +103,118 @@ function BuyerPanel({ buyerId, onClose }) {
           ))}
         </>
       )}
+    </div>
+  );
+}
+
+// ── notice detail drawer ──────────────────────────────────────────────────────
+
+function NoticeDrawer({ noticeId, onClose, onBuyerClick }) {
+  const { data, loading, error } = useApi(`/api/opportunities/${noticeId}`, {}, [noticeId]);
+
+  useEffect(() => {
+    const onKey = (e) => e.key === "Escape" && onClose();
+    window.addEventListener("keydown", onKey);
+    return () => window.removeEventListener("keydown", onKey);
+  }, [onClose]);
+
+  return (
+    <div className="drawer-scrim" onClick={onClose}>
+      <div
+        className="drawer"
+        role="dialog"
+        aria-modal="true"
+        aria-label="Notice detail"
+        onClick={(e) => e.stopPropagation()}
+      >
+        <div className="drawer-header">
+          <span>Notice detail</span>
+          <button className="buyer-close" onClick={onClose} aria-label="Close">✕</button>
+        </div>
+        {loading && <div className="msg">Loading…</div>}
+        {error && <div className="msg msg-error">{error}</div>}
+        {data && (
+          <div className="drawer-body">
+            <div className="drawer-badges">
+              <SourceBadge source={data.source} />
+              <span className="pill pill-type">{data.notice_type}</span>
+              <span className="pill pill-type">{data.status}</span>
+            </div>
+            <h2 className="drawer-title">{data.title}</h2>
+
+            <dl className="drawer-facts">
+              <div>
+                <dt>Buyer</dt>
+                <dd>
+                  {data.buyer_id ? (
+                    <button className="buyer-link" onClick={() => onBuyerClick(data.buyer_id)}>
+                      {data.buyer_name || "—"}
+                    </button>
+                  ) : (
+                    data.buyer_name || "—"
+                  )}
+                </dd>
+              </div>
+              <div><dt>Country</dt><dd>{data.buyer_country || "—"}</dd></div>
+              <div>
+                <dt>Value</dt>
+                <dd>
+                  {data.estimated_value != null
+                    ? fmtValue(data.estimated_value, data.currency)
+                    : "Value not disclosed"}
+                  {data.estimated_value_eur != null && data.currency !== "EUR" && (
+                    <span className="drawer-eur"> · {fmtValue(data.estimated_value_eur, "EUR")}</span>
+                  )}
+                </dd>
+              </div>
+              <div><dt>Deadline</dt><dd><DeadlinePill iso={data.deadline} /></dd></div>
+              <div><dt>Published</dt><dd>{fmtDate(data.publication_date)}</dd></div>
+              <div><dt>Procedure</dt><dd>{data.procedure_type || "—"}</dd></div>
+            </dl>
+
+            {data.relevance?.breakdown && (
+              <>
+                <div className="buyer-section-title">
+                  Relevance {data.relevance.score} · {BAND_WORD[scoreBand(data.relevance.score)]} match
+                </div>
+                <ScoreBreakdown breakdown={data.relevance.breakdown} />
+                <ul className="drawer-reasons">
+                  {data.relevance.reasons.map((r, i) => <li key={i}>{r}</li>)}
+                </ul>
+              </>
+            )}
+
+            {data.cpv_codes?.length > 0 && (
+              <>
+                <div className="buyer-section-title">CPV codes</div>
+                <div className="drawer-cpvs">
+                  {data.cpv_codes.map((c) => (
+                    <span key={c} className="pill pill-type">{c}</span>
+                  ))}
+                </div>
+              </>
+            )}
+
+            {data.description && (
+              <>
+                <div className="buyer-section-title">Description</div>
+                <p className="drawer-desc">{data.description}</p>
+              </>
+            )}
+
+            {data.award_supplier && (
+              <>
+                <div className="buyer-section-title">Awarded to</div>
+                <p className="drawer-desc">{data.award_supplier}</p>
+              </>
+            )}
+
+            <a className="btn-save drawer-cta" href={data.source_url} target="_blank" rel="noopener noreferrer">
+              Open original notice ↗
+            </a>
+          </div>
+        )}
+      </div>
     </div>
   );
 }
@@ -312,7 +424,7 @@ function SortBtn({ field, label, sort, onSort }) {
   );
 }
 
-function OpportunitiesTable({ state, sort, onSort, onPage, offset, limit, hasProfile, onBuyerClick, onResetFilters }) {
+function OpportunitiesTable({ state, sort, onSort, onPage, offset, limit, hasProfile, onBuyerClick, onResetFilters, onNoticeClick }) {
   const { data, loading, error, slow, reload } = state;
 
   if (error) {
@@ -382,7 +494,9 @@ function OpportunitiesTable({ state, sort, onSort, onPage, offset, limit, hasPro
               <tr key={o.id}>
                 <td className="cell-title">
                   <SourceBadge source={o.source} />
-                  {o.title}
+                  <button className="title-link" onClick={() => onNoticeClick(o.id)}>
+                    {o.title}
+                  </button>
                 </td>
                 <td className="cell-buyer">
                   {o.buyer_id ? (
@@ -426,6 +540,7 @@ export default function App() {
   const [offset, setOffset] = useState(0);
   const [showProfile, setShowProfile] = useState(false);
   const [activeBuyerId, setActiveBuyerId] = useState(null);
+  const [activeNoticeId, setActiveNoticeId] = useState(null);
 
   const limit = 25;
 
@@ -500,10 +615,18 @@ export default function App() {
             limit={limit}
             hasProfile={hasProfile}
             onBuyerClick={setActiveBuyerId}
+            onNoticeClick={setActiveNoticeId}
             onResetFilters={() => handleFilters({})}
           />
           {activeBuyerId && (
             <BuyerPanel buyerId={activeBuyerId} onClose={() => setActiveBuyerId(null)} />
+          )}
+          {activeNoticeId && (
+            <NoticeDrawer
+              noticeId={activeNoticeId}
+              onClose={() => setActiveNoticeId(null)}
+              onBuyerClick={(id) => { setActiveNoticeId(null); setActiveBuyerId(id); }}
+            />
           )}
         </div>
       </div>
