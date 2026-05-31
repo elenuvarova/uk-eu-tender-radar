@@ -1,0 +1,50 @@
+name: Scheduled ingestion
+
+on:
+  schedule:
+    # Every day at 06:00 UTC (after TED and FTS publish overnight notices)
+    - cron: "0 6 * * *"
+  workflow_dispatch:
+    inputs:
+      days:
+        description: "Days of history to fetch"
+        default: "1"
+        required: false
+      niche_only:
+        description: "Niche-only filter (digital/edtech CPV)"
+        type: boolean
+        default: true
+
+jobs:
+  ingest:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+          cache-dependency-path: backend/pyproject.toml
+
+      - name: Install backend
+        run: pip install --no-cache-dir ./backend
+
+      - name: Run UK FTS ingestion
+        working-directory: backend
+        env:
+          DATABASE_URL: ${{ secrets.DATABASE_URL }}
+        run: |
+          DAYS=${{ github.event.inputs.days || '1' }}
+          NICHE=${{ github.event.inputs.niche_only != 'false' && '--niche-only' || '' }}
+          python -m app.ingestion.run --source fts --days $DAYS $NICHE
+
+      - name: Run EU TED ingestion
+        working-directory: backend
+        env:
+          DATABASE_URL: ${{ secrets.DATABASE_URL }}
+        run: |
+          DAYS=${{ github.event.inputs.days || '1' }}
+          NICHE=${{ github.event.inputs.niche_only != 'false' && '--niche-only' || '' }}
+          python -m app.ingestion.run --source ted --days $DAYS $NICHE

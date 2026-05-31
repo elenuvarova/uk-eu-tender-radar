@@ -16,12 +16,13 @@ ENV PORT=3001
 ENV PYTHONUNBUFFERED=1
 WORKDIR /app/backend
 
-COPY backend/pyproject.toml ./
+# Copy backend source first so pip can find the app package, then install
+COPY backend/ ./
 RUN pip install --no-cache-dir .
 
-COPY backend/ ./
+# Copy built frontend into backend/public/ (served in production)
 COPY --from=frontend-build /app/frontend/dist ./public
 
 EXPOSE 3001
-# Apply migrations, then serve. uvicorn binds to $PORT.
+# Apply Alembic migrations then start uvicorn
 CMD ["sh", "-c", "alembic upgrade head && uvicorn app.main:app --host 0.0.0.0 --port ${PORT:-3001}"]
