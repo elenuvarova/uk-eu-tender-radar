@@ -14,10 +14,12 @@ if _url.startswith("postgres://") or _url.startswith("postgresql://"):
     )
     db_kind = "postgres"
     # The Supabase transaction pooler (port 6543) routes each transaction to a
-    # possibly-different backend, so:
-    #  - prepare_threshold=0 disables server-side prepared statements, and
-    #  - NullPool avoids reusing connections that may carry stale server state.
-    connect_args = {"prepare_threshold": 0}
+    # possibly-different backend, so server-side prepared statements must be
+    # disabled. In psycopg3: prepare_threshold=None means NEVER prepare
+    # (prepare_threshold=0 means "prepare on first use", which is WRONG here —
+    # it causes DuplicatePreparedStatement when the same INSERT is committed
+    # multiple times on the same connection within a session).
+    connect_args = {"prepare_threshold": None}
     if settings.is_production:
         connect_args["sslmode"] = "require"
     engine = create_engine(
