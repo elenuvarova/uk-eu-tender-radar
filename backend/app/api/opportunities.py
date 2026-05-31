@@ -1,10 +1,11 @@
 from datetime import datetime, timedelta, timezone
 
 from fastapi import APIRouter, Depends, HTTPException, Query
-from sqlalchemy import func, nullslast, or_, distinct
+from sqlalchemy import and_, func, nullslast, or_, distinct
 from sqlmodel import Session, select
 
 from app.db import get_session
+from app.timeutil import ensure_utc
 from app.models.tender import TenderCpv, TenderOpportunity
 from app.models.profile import SupplierProfile
 from app.models.buyer import BuyerCategoryStat
@@ -23,10 +24,7 @@ router = APIRouter(prefix="/api", tags=["opportunities"])
 def _compute_effective_status(opp: TenderOpportunity) -> str:
     """CLOSED is synthetic: OPEN with deadline already passed."""
     if opp.status == "OPEN" and opp.deadline:
-        dl = opp.deadline
-        if dl.tzinfo is None:
-            dl = dl.replace(tzinfo=timezone.utc)
-        if dl < datetime.now(timezone.utc):
+        if ensure_utc(opp.deadline) < datetime.now(timezone.utc):
             return "CLOSED"
     return opp.status
 
@@ -90,7 +88,34 @@ def _build_stmt(
         stmt = stmt.where(TenderOpportunity.notice_type.in_(notice_type))
 
     if status:
-        stmt = stmt.where(TenderOpportunity.status.in_(status))
+        # CLOSED is synthetic (OPEN + deadline passed) and OPEN must exclude
+        # those, so resolve effective status here rather than matching the
+        # stored column literally.
+        now = datetime.now(timezone.utc)
+        conds = []
+        plain = [s for s in status if s not in ("OPEN", "CLOSED")]
+        if plain:
+            conds.append(TenderOpportunity.status.in_(plain))
+        if "OPEN" in status:
+            conds.append(
+                and_(
+                    TenderOpportunity.status == "OPEN",
+                    or_(
+                        TenderOpportunity.deadline.is_(None),
+                        TenderOpportunity.deadline >= now,
+                    ),
+                )
+            )
+        if "CLOSED" in status:
+            conds.append(
+                and_(
+                    TenderOpportunity.status == "OPEN",
+                    TenderOpportunity.deadline.isnot(None),
+                    TenderOpportunity.deadline < now,
+                )
+            )
+        if conds:
+            stmt = stmt.where(or_(*conds))
 
     return stmt
 
@@ -124,16 +149,20 @@ def list_opportunities(
     count_stmt = select(func.count()).select_from(stmt.subquery())
     total = session.exec(count_stmt).one()
 
-    # Sort
+    # Sort — append id as a tiebreaker so OFFSET/LIMIT paging is stable on
+    # Postgres (ties on a non-unique sort key can otherwise skip/repeat rows).
     if sort == "published_desc":
-        stmt = stmt.order_by(TenderOpportunity.publication_date.desc())
+        stmt = stmt.order_by(
+            TenderOpportunity.publication_date.desc(), TenderOpportunity.id.asc()
+        )
     elif sort == "value_desc":
         stmt = stmt.order_by(
-            nullslast(TenderOpportunity.estimated_value_eur.desc())
+            nullslast(TenderOpportunity.estimated_value_eur.desc()),
+            TenderOpportunity.id.asc(),
         )
     else:  # deadline_asc (default)
         stmt = stmt.order_by(
-            nullslast(TenderOpportunity.deadline.asc())
+            nullslast(TenderOpportunity.deadline.asc()), TenderOpportunity.id.asc()
         )
 
     stmt = stmt.offset(offset).limit(limit)

@@ -106,15 +106,26 @@ def _dedup_list(items: list | None) -> list:
     return result
 
 
+_ALPHA3_CODES = frozenset(_ALPHA3_TO_ALPHA2)
+
+
 def _extract_nuts(place_of_performance: list | None) -> str | None:
     """
-    From place-of-performance (mixed NUTS + alpha-3 codes, possibly duplicated),
-    return the first NUTS code (starts with 2 letters + digits, e.g. FRE11, DEA33).
+    From place-of-performance (mixed NUTS + alpha-3 country codes, possibly
+    duplicated), return the first NUTS code.
+
+    NUTS codes are a 2-letter country prefix + 1–3 alphanumeric chars
+    (NUTS-1 = 3 chars e.g. UKI, NUTS-2 = 4 e.g. FRE1, NUTS-3 = 5 e.g. DEA33).
+    Alpha-3 country codes (GBR, DEU, FRA) are also 3 letters and otherwise
+    match, so exclude the known set explicitly instead of by length.
     """
     for item in _dedup_list(place_of_performance):
-        # NUTS codes: 2-letter country prefix + alphanumeric suffix (e.g. FRE11, DEA33, UKI)
-        # Alpha-3 country codes are pure letters (FRA, DEU, BEL) — exclude them
-        if item and re.match(r"^[A-Z]{2}[A-Z0-9]+$", item) and len(item) > 3:
+        if (
+            item
+            and len(item) >= 3
+            and re.match(r"^[A-Z]{2}[A-Z0-9]+$", item)
+            and item not in _ALPHA3_CODES
+        ):
             return item
     return None
 

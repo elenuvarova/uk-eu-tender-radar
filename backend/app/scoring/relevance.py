@@ -11,6 +11,7 @@ from datetime import datetime, timezone
 from typing import NamedTuple
 
 from app.scoring.weights import SCORE_WEIGHTS
+from app.timeutil import days_until as _days_until
 
 
 # ── sub-scores ────────────────────────────────────────────────────────────────
@@ -100,10 +101,7 @@ def score_deadline(deadline: datetime | None, min_days_to_bid: int) -> float:
     if deadline is None:
         return 0.5  # no deadline (PIN/award notices) — neutral
     now = datetime.now(timezone.utc)
-    # SQLite returns naive datetimes; treat them as UTC
-    if deadline.tzinfo is None:
-        deadline = deadline.replace(tzinfo=timezone.utc)
-    d = (deadline - now).days
+    d = _days_until(deadline, now)
     if d < 0:
         return 0.0
     if d < min_days_to_bid:
@@ -163,10 +161,12 @@ def _val_reason(s: float, v_min: float | None, v_max: float | None) -> str:
         return "– No value range in profile"
     if s >= 1.0:
         return "✅ Value within your target range"
-    if s >= 0.5:
-        return "⚠️ Value slightly outside your range"
+    # score_value returns exactly 0.5 only when the value is undisclosed (range
+    # is set, but estimated_value_eur is None). Check that before the >0.5 band.
     if s == 0.5:
         return "– Value not disclosed"
+    if s > 0.5:
+        return "⚠️ Value slightly outside your range"
     return "❌ Value well outside your target range"
 
 
@@ -174,9 +174,7 @@ def _ddl_reason(s: float, deadline: datetime | None, min_days: int) -> str:
     if deadline is None:
         return "– No submission deadline (PIN or award notice)"
     now = datetime.now(timezone.utc)
-    if deadline.tzinfo is None:
-        deadline = deadline.replace(tzinfo=timezone.utc)
-    d = (deadline - now).days
+    d = int(_days_until(deadline, now))
     if d < 0:
         return "❌ Deadline has passed"
     if d < min_days:
