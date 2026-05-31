@@ -1,6 +1,6 @@
 services:
   - type: web
-    name: ai-workshop-web
+    name: uk-eu-tender-radar
     runtime: docker
     plan: free
     dockerfilePath: ./Dockerfile
