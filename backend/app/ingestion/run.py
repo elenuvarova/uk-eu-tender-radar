@@ -17,9 +17,9 @@ log = logging.getLogger("ingestion.run")
 def _upsert_rows(session, rows: list[dict]) -> tuple[int, int, int]:
     """Insert or update TenderOpportunity + TenderCpv rows.
 
-    Each record is committed inside its own SAVEPOINT, so one malformed notice
-    (bad JSON, constraint violation, type error) is skipped instead of aborting
-    the whole batch. Returns (inserted, updated, failed).
+    Each record is committed on its own, so one malformed notice (bad JSON,
+    constraint violation, type error) is rolled back and skipped instead of
+    aborting the whole batch. Returns (inserted, updated, failed).
     """
     from sqlmodel import select
 
@@ -30,17 +30,22 @@ def _upsert_rows(session, rows: list[dict]) -> tuple[int, int, int]:
     for row in rows:
         cpv_codes: list[str] = row.pop("_cpv_codes", [])
         tender_id = row["id"]
+        was_update = False
         try:
-            with session.begin_nested():
+            # no_autoflush + explicit flush so a constraint error surfaces in
+            # THIS row's iteration (not deferred into a later row's autoflush
+            # and misattributed). Count only after the flush succeeds.
+            with session.no_autoflush:
                 existing = session.get(TenderOpportunity, tender_id)
                 if existing:
+                    was_update = True
                     for k, v in row.items():
                         setattr(existing, k, v)
                     existing.updated_at = datetime.now(timezone.utc)
-                    updated += 1
                 else:
                     session.add(TenderOpportunity(**row))
-                    inserted += 1
+
+                session.flush()
 
                 # Replace CPV child rows
                 for old in session.exec(
@@ -49,11 +54,16 @@ def _upsert_rows(session, rows: list[dict]) -> tuple[int, int, int]:
                     session.delete(old)
                 for cpv_row in build_cpv_rows(tender_id, cpv_codes):
                     session.add(TenderCpv(**cpv_row))
-        except Exception as exc:  # noqa: BLE001
+
+            session.commit()
+        except Exception as exc:  # noqa: BLE001 — isolate one bad record
+            session.rollback()
             failed += 1
             log.warning("upsert failed for %s: %s", tender_id, exc)
+        else:
+            updated += int(was_update)
+            inserted += int(not was_update)
 
-    session.commit()
     return inserted, updated, failed
 
 
