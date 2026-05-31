@@ -27,6 +27,15 @@ export const CPV_DIVISIONS = [
 
 // Extended map covering all common CPV divisions that appear in procurement data.
 // Used to translate raw division codes to readable labels in charts.
+// Display label for a country code. GB → "UK" so the country column matches the
+// "UK" source badge (Find a Tender covers the whole United Kingdom); every other
+// ISO code is shown as-is. Keeps the data layer on ISO codes for filtering.
+const COUNTRY_DISPLAY = { GB: "UK" };
+export function displayCountry(code) {
+  if (!code) return "—";
+  return COUNTRY_DISPLAY[code] || code;
+}
+
 export const CPV_DIVISION_LABELS = {
   ...Object.fromEntries(CPV_DIVISIONS),
   "30": "Office & computer equipment",

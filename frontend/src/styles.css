@@ -326,14 +326,37 @@ button.profile-toggle {
 
 /* ── micro-animations ── */
 button:active:not(:disabled) { transform: scale(0.97); }
-.stat-card {
-  transition: transform 150ms ease-out, box-shadow 150ms ease-out;
-  cursor: default;
+
+/* stat cards as quick-filter buttons */
+button.stat-card {
+  font: inherit;
+  color: inherit;
+  text-align: left;
+  cursor: pointer;
+  width: 100%;
 }
-.stat-card:hover {
+.stat-card {
+  transition: transform 150ms ease-out, box-shadow 150ms ease-out, border-color 150ms;
+}
+button.stat-card:hover {
   transform: translateY(-2px);
   box-shadow: 0 4px 14px rgba(0,0,0,0.25);
+  border-color: var(--accent);
 }
+.stat-card-active {
+  border-color: var(--accent);
+  box-shadow: inset 0 0 0 1px var(--accent);
+}
+.stat-card-urgent.stat-card-active {
+  border-color: var(--urgent);
+  box-shadow: inset 0 0 0 1px var(--urgent);
+}
+.stat-card-static { cursor: default; }
+
+/* ── form validation ── */
+.input-invalid { border-color: var(--urgent) !important; }
+.input-invalid:focus { border-color: var(--urgent) !important; }
+.field-error { color: var(--urgent); font-size: 11px; margin-top: -2px; }
 
 /* skeleton shimmer for loading state */
 @keyframes shimmer {
@@ -508,8 +531,15 @@ button:active:not(:disabled) { transform: scale(0.97); }
   position: absolute;
   border-radius: 6px;
   box-shadow: 0 0 0 9999px rgba(0,0,0,0.65);
-  transition: all 250ms ease-out;
+  transition: top 250ms ease-out, left 250ms ease-out, width 250ms ease-out, height 250ms ease-out;
   pointer-events: none;
+}
+/* Fallback full-screen dim when there's no target to spotlight. */
+.tour-dim {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.65);
+  pointer-events: auto;
 }
 .tour-tooltip {
   position: absolute;

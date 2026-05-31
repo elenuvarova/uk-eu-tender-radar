@@ -3,6 +3,22 @@ import { useCallback, useEffect, useRef, useState } from "react";
 const REQUEST_TIMEOUT_MS = 60_000; // Render free tier cold start can take ~50s
 const SLOW_AFTER_MS = 3_000; // show a "waking up" hint after this
 
+const TIMEOUT_MSG =
+  "This is taking too long — the free server may be waking up. Please try again.";
+
+/** Turn a raw fetch error / HTTP status into a short, human message. */
+export function friendlyError(err) {
+  const m = String(err?.message || "");
+  if (/Failed to fetch|NetworkError|ERR_NETWORK/i.test(m)) {
+    return "Can't reach the server. Check your connection and try again.";
+  }
+  if (/HTTP 5\d\d/.test(m)) return "The server ran into a problem. Please try again in a moment.";
+  if (/HTTP 404/.test(m)) return "That wasn't found — it may have been removed.";
+  if (/HTTP 4(00|22)/.test(m)) return "Some values look off. Please review them and try again.";
+  if (/HTTP 429/.test(m)) return "Too many requests right now. Give it a few seconds.";
+  return "Something went wrong. Please try again.";
+}
+
 export function buildUrl(path, params = {}) {
   const url = new URL(path, window.location.origin);
   Object.entries(params).forEach(([k, v]) => {
@@ -39,10 +55,11 @@ export function useApi(path, params = {}, deps = []) {
     let alive = true;
     setState((s) => ({ ...s, loading: true, error: null, slow: false }));
 
+    let timedOut = false;
     const slowTimer = setTimeout(() => {
       if (alive) setState((s) => ({ ...s, slow: true }));
     }, SLOW_AFTER_MS);
-    const timeoutTimer = setTimeout(() => ac.abort(), REQUEST_TIMEOUT_MS);
+    const timeoutTimer = setTimeout(() => { timedOut = true; ac.abort(); }, REQUEST_TIMEOUT_MS);
 
     fetch(buildUrl(path, params), { signal: ac.signal })
       .then((r) => {
@@ -53,9 +70,13 @@ export function useApi(path, params = {}, deps = []) {
         if (alive) setState({ data, loading: false, error: null, slow: false });
       })
       .catch((e) => {
-        if (alive && e.name !== "AbortError") {
-          setState({ data: null, loading: false, error: e.message, slow: false });
+        if (!alive) return;
+        if (e.name === "AbortError") {
+          // A genuine cancellation (params changed) is silent; a timeout is not.
+          if (timedOut) setState({ data: null, loading: false, error: TIMEOUT_MSG, slow: false });
+          return;
         }
+        setState({ data: null, loading: false, error: friendlyError(e), slow: false });
       })
       .finally(() => {
         clearTimeout(slowTimer);
@@ -84,7 +105,8 @@ export function usePut(path) {
       setSaving(true);
       setError(null);
       const ac = new AbortController();
-      const timeoutTimer = setTimeout(() => ac.abort(), REQUEST_TIMEOUT_MS);
+      let timedOut = false;
+      const timeoutTimer = setTimeout(() => { timedOut = true; ac.abort(); }, REQUEST_TIMEOUT_MS);
       try {
         const r = await fetch(path, {
           method: "PUT",
@@ -95,7 +117,7 @@ export function usePut(path) {
         if (!r.ok) throw new Error(`HTTP ${r.status}`);
         return await r.json();
       } catch (e) {
-        setError(e.message);
+        setError(timedOut ? TIMEOUT_MSG : friendlyError(e));
         return null;
       } finally {
         clearTimeout(timeoutTimer);

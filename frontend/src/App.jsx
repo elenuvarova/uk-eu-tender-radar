@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 
 import { useApi, usePut, useDebouncedValue } from "./lib/api";
 import { fmtValue, fmtDate, fmtCount, daysLeft } from "./lib/format";
@@ -8,6 +8,7 @@ import {
   COUNTRIES,
   CPV_DIVISIONS,
   CPV_DIVISION_LABELS,
+  displayCountry,
   scoreBand,
 } from "./lib/constants";
 import { SourceDonut, BarList, ScoreBreakdown } from "./components/Charts";
@@ -37,7 +38,7 @@ function isDownloadUrl(url) {
 
 function activeFilterCount(filters) {
   return Object.values(filters).filter(
-    (v) => v != null && v !== "" && (!Array.isArray(v) || v.length > 0)
+    (v) => v != null && v !== "" && v !== false && (!Array.isArray(v) || v.length > 0)
   ).length;
 }
 
@@ -217,7 +218,7 @@ function NoticeDrawer({ noticeId, onClose, onBuyerClick }) {
                   )}
                 </dd>
               </div>
-              <div><dt>Country</dt><dd>{data.buyer_country || "—"}</dd></div>
+              <div><dt>Country</dt><dd>{displayCountry(data.buyer_country)}</dd></div>
               <div>
                 <dt>Value</dt>
                 <dd>
@@ -283,35 +284,50 @@ function NoticeDrawer({ noticeId, onClose, onBuyerClick }) {
 
 // ── stats row ─────────────────────────────────────────────────────────────────
 
-function StatsRow({ facets, error }) {
+function StatCard({ value, label, active, urgent, onClick }) {
+  return (
+    <button
+      type="button"
+      className={`stat-card ${urgent ? "stat-card-urgent" : ""} ${active ? "stat-card-active" : ""}`}
+      onClick={onClick}
+      aria-pressed={active}
+      title={`Show ${label}`}
+    >
+      <div className="stat-value">{value}</div>
+      <div className="stat-label">{label}</div>
+    </button>
+  );
+}
+
+function StatsRow({ facets, error, filters, onQuick }) {
   if (error) {
     return (
-      <div className="stats-row">
-        <div className="stat-card">
-          <div className="stat-label">Stats unavailable</div>
+      <div className="stats-row" id="tour-stats">
+        <div className="stat-card stat-card-static">
+          <div className="stat-label">Stats unavailable right now</div>
         </div>
       </div>
     );
   }
-  if (!facets) return null;
+  if (!facets) {
+    return (
+      <div className="stats-row" id="tour-stats">
+        {Array.from({ length: 4 }).map((_, i) => (
+          <div key={i} className="stat-card stat-card-static">
+            <div className="stat-value skeleton">0,000</div>
+            <div className="stat-label skeleton">Loading</div>
+          </div>
+        ))}
+      </div>
+    );
+  }
+  const showingAll = !filters.source && !filters.closing;
   return (
     <div className="stats-row" id="tour-stats">
-      <div className="stat-card">
-        <div className="stat-value">{fmtCount(facets.total)}</div>
-        <div className="stat-label">Total notices</div>
-      </div>
-      <div className="stat-card">
-        <div className="stat-value">{fmtCount(facets.by_source.UK)}</div>
-        <div className="stat-label">UK (Find a Tender)</div>
-      </div>
-      <div className="stat-card">
-        <div className="stat-value">{fmtCount(facets.by_source.EU)}</div>
-        <div className="stat-label">EU (TED)</div>
-      </div>
-      <div className="stat-card stat-card-urgent">
-        <div className="stat-value">{facets.closing_soon}</div>
-        <div className="stat-label">Closing in 7 days</div>
-      </div>
+      <StatCard value={fmtCount(facets.total)} label="Total notices" active={showingAll} onClick={() => onQuick("all")} />
+      <StatCard value={fmtCount(facets.by_source.UK)} label="UK (Find a Tender)" active={filters.source === "UK"} onClick={() => onQuick("UK")} />
+      <StatCard value={fmtCount(facets.by_source.EU)} label="EU (TED)" active={filters.source === "EU"} onClick={() => onQuick("EU")} />
+      <StatCard value={facets.closing_soon} label="Closing in 7 days" urgent active={!!filters.closing} onClick={() => onQuick("closing")} />
     </div>
   );
 }
@@ -365,16 +381,34 @@ function ProfilePanel({ profile, onSaved }) {
 
   const f = (k) => (v) => setForm((p) => ({ ...p, [k]: v }));
 
+  // Inline validation — catch mistakes before hitting the API (which would
+  // otherwise bounce back an opaque 422).
+  const vmin = form.value_min !== "" ? Number(form.value_min) : null;
+  const vmax = form.value_max !== "" ? Number(form.value_max) : null;
+  const mind = form.min_days !== "" ? Number(form.min_days) : null;
+  const cpvTokens = form.cpvs.split(",").map((s) => s.trim()).filter(Boolean);
+  const badCpv = cpvTokens.filter((c) => !/^\d{2,8}$/.test(c));
+
+  const errors = {};
+  if (form.value_min !== "" && (Number.isNaN(vmin) || vmin < 0)) errors.value_min = "Enter a number ≥ 0";
+  if (form.value_max !== "" && (Number.isNaN(vmax) || vmax < 0)) errors.value_max = "Enter a number ≥ 0";
+  if (vmin != null && vmax != null && !Number.isNaN(vmin) && !Number.isNaN(vmax) && vmin > vmax)
+    errors.value_max = "Max must be ≥ min";
+  if (form.min_days !== "" && (Number.isNaN(mind) || mind < 0)) errors.min_days = "Enter a number ≥ 0";
+  if (badCpv.length) errors.cpvs = `CPV codes must be 2–8 digits: ${badCpv.join(", ")}`;
+  const hasErrors = Object.keys(errors).length > 0;
+
   const save = async () => {
+    if (hasErrors) return;
     const body = {
       name: profile?.name || "My Company",
-      target_cpv_codes: form.cpvs.split(",").map((s) => s.trim()).filter(Boolean),
-      keywords: form.keywords.split(",").map((s) => s.trim()).filter(Boolean),
-      value_min: form.value_min !== "" ? Number(form.value_min) : null,
-      value_max: form.value_max !== "" ? Number(form.value_max) : null,
+      target_cpv_codes: [...new Set(cpvTokens)],
+      keywords: [...new Set(form.keywords.split(",").map((s) => s.trim()).filter(Boolean))],
+      value_min: vmin,
+      value_max: vmax,
       value_currency: "EUR",
-      target_countries: form.countries.split(",").map((s) => s.trim()).filter(Boolean),
-      min_days_to_bid: Number(form.min_days) || 7,
+      target_countries: form.countries.split(",").map((s) => s.trim().toUpperCase()).filter(Boolean),
+      min_days_to_bid: mind ?? 7,
     };
     const saved = await put(body);
     if (saved) onSaved(saved);
@@ -389,23 +423,28 @@ function ProfilePanel({ profile, onSaved }) {
       <label className="filter-label">
         Target CPV codes <span className="profile-hint">(comma-separated)</span>
       </label>
-      <input className="filter-input" value={form.cpvs} onChange={(e) => f("cpvs")(e.target.value)} placeholder="72000000, 48000000" />
+      <input className={`filter-input ${errors.cpvs ? "input-invalid" : ""}`} value={form.cpvs} onChange={(e) => f("cpvs")(e.target.value)} placeholder="72000000, 48000000" />
+      {errors.cpvs && <span className="field-error">{errors.cpvs}</span>}
       <label className="filter-label">Keywords</label>
       <input className="filter-input" value={form.keywords} onChange={(e) => f("keywords")(e.target.value)} placeholder="cloud, digital, GDPR" />
       <label className="filter-label">Value range (EUR)</label>
       <div className="value-range">
-        <input className="filter-input" type="number" value={form.value_min} onChange={(e) => f("value_min")(e.target.value)} placeholder="min" />
+        <input className={`filter-input ${errors.value_min ? "input-invalid" : ""}`} type="number" min="0" value={form.value_min} onChange={(e) => f("value_min")(e.target.value)} placeholder="min" />
         <span>–</span>
-        <input className="filter-input" type="number" value={form.value_max} onChange={(e) => f("value_max")(e.target.value)} placeholder="max" />
+        <input className={`filter-input ${errors.value_max ? "input-invalid" : ""}`} type="number" min="0" value={form.value_max} onChange={(e) => f("value_max")(e.target.value)} placeholder="max" />
       </div>
+      {(errors.value_min || errors.value_max) && (
+        <span className="field-error">{errors.value_min || errors.value_max}</span>
+      )}
       <label className="filter-label">
         Target countries <span className="profile-hint">(ISO codes)</span>
       </label>
       <input className="filter-input" value={form.countries} onChange={(e) => f("countries")(e.target.value)} placeholder="GB, DE, FR" />
       <label className="filter-label">Min days to bid</label>
-      <input className="filter-input" type="number" value={form.min_days} onChange={(e) => f("min_days")(e.target.value)} />
-      {error && <div className="msg msg-error" style={{ padding: "8px 0" }}>Save failed: {error}</div>}
-      <button className="btn-save" onClick={save} disabled={saving}>
+      <input className={`filter-input ${errors.min_days ? "input-invalid" : ""}`} type="number" min="0" value={form.min_days} onChange={(e) => f("min_days")(e.target.value)} />
+      {errors.min_days && <span className="field-error">{errors.min_days}</span>}
+      {error && <div className="msg msg-error" style={{ padding: "8px 0" }}>Couldn't save: {error}</div>}
+      <button className="btn-save" onClick={save} disabled={saving || hasErrors} title={hasErrors ? "Fix the highlighted fields first" : undefined}>
         {saving ? "Saving…" : "Save profile"}
       </button>
     </div>
@@ -543,7 +582,7 @@ function MobileCardList({ items, hasProfile, onBuyerClick, onNoticeClick, onSour
               <span>{o.buyer_name || "—"}</span>
             )}
             <span className="mobile-card-sep">·</span>
-            <span>{o.buyer_country || "—"}</span>
+            <span>{displayCountry(o.buyer_country)}</span>
             <span className="mobile-card-value">{fmtValue(o.estimated_value, o.currency)}</span>
             {hasProfile && o.relevance && <ScorePill relevance={o.relevance} />}
             <a
@@ -653,7 +692,7 @@ function OpportunitiesTable({ state, sort, onSort, onPage, offset, limit, hasPro
                       o.buyer_name || "—"
                     )}
                   </td>
-                  <td>{o.buyer_country || "—"}</td>
+                  <td>{displayCountry(o.buyer_country)}</td>
                   <td className="cell-value">{fmtValue(o.estimated_value, o.currency)}</td>
                   <td>
                     <TypePill
@@ -796,17 +835,35 @@ export default function App() {
     setOffset(0);
   };
 
+  // Quick-filter via the stat cards (source segmented control + closing-soon).
+  const handleQuick = (which) => {
+    setFilters((f) => {
+      if (which === "all") return { ...f, source: "", closing: false };
+      if (which === "closing") return { ...f, closing: !f.closing };
+      return { ...f, source: f.source === which ? "" : which };
+    });
+    setOffset(0);
+  };
+
   const debouncedQ = useDebouncedValue(filters.q || "", 350);
 
   // Convert { field, dir } to the sort param the API expects
   const sortParam = `${sort.field}_${sort.dir}`;
 
+  // "Closing in 7 days" → deadline window. Frozen at mount so the request key
+  // is stable (a fresh Date() each render would refetch forever).
+  const nowIso = useMemo(() => new Date().toISOString(), []);
+  const in7days = useMemo(() => new Date(Date.now() + 7 * 86400000).toISOString(), []);
+
+  // `closing` is a UI-only flag — translate it to the API's deadline params.
+  const { closing, ...filterParams } = filters;
   const apiParams = {
-    ...filters,
+    ...filterParams,
     q: debouncedQ,
     sort: sortParam,
     limit,
     offset,
+    ...(closing ? { deadline_from: nowIso, deadline_to: in7days } : {}),
     ...(hasProfile ? { score: true } : {}),
   };
 
@@ -860,7 +917,7 @@ export default function App() {
         </span>
       </header>
 
-      <StatsRow facets={facets.data} error={facets.error} />
+      <StatsRow facets={facets.data} error={facets.error} filters={filters} onQuick={handleQuick} />
       <SummaryBand facets={facets.data} />
 
       <div className="main-layout">
