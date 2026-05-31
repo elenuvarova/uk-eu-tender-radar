@@ -87,6 +87,12 @@ def test_buyer_id_different_names():
     assert make_buyer_id("acme") != make_buyer_id("globex")
 
 
+def test_buyer_id_country_disambiguates():
+    # Same name, different country -> different id; same name+country -> stable
+    assert make_buyer_id("dept of health", "GB") != make_buyer_id("dept of health", "IE")
+    assert make_buyer_id("dept of health", "GB") == make_buyer_id("dept of health", "GB")
+
+
 # ── resolve ───────────────────────────────────────────────────────────────────
 
 def test_resolve_creates_buyers(session):
@@ -140,10 +146,49 @@ def test_resolve_merges_aliases(session):
     session.commit()
 
     resolve(session)
-    buyer_id = make_buyer_id(normalize_name("NHS Trust"))
+    buyer_id = make_buyer_id(normalize_name("NHS Trust"), None)
     buyer = session.get(Buyer, buyer_id)
     assert buyer is not None
     assert "NHS Trust" in buyer.name_aliases
+
+
+def test_resolve_splits_same_name_across_countries(session):
+    """Same buyer name in two countries → two distinct Buyer records."""
+    session.add(_opp("UK:1", "Department of Health", buyer_country="GB"))
+    session.add(_opp("IE:1", "Department of Health", buyer_country="IE"))
+    session.commit()
+
+    created, linked = resolve(session)
+    assert created == 2
+    assert linked == 2
+    ids = {o.buyer_id for o in session.exec(TenderOpportunity.__table__.select()).fetchall()}
+    assert len(ids) == 2
+
+
+def test_resolve_heals_stale_scheme_links(session):
+    """A row resolved under the old name-only scheme is re-resolved under the
+    current name+country scheme, and its orphaned Buyer is dropped."""
+    opp = _opp("UK:1", "Acme Ltd", buyer_country="GB")
+    # Simulate a row resolved under the old name-only hash (no country)
+    old_id = make_buyer_id(normalize_name("Acme Ltd"))
+    opp.buyer_id = old_id
+    session.add(opp)
+    session.add(Buyer(
+        id=old_id, canonical_name="Acme Ltd",
+        normalized_name=normalize_name("Acme Ltd"), country="GB",
+        name_aliases=["Acme Ltd"],
+    ))
+    session.commit()
+
+    resolve(session)
+
+    new_id = make_buyer_id(normalize_name("Acme Ltd"), "GB")
+    refreshed = session.get(TenderOpportunity, "UK:1")
+    assert refreshed.buyer_id == new_id
+    # Old orphaned buyer gone; exactly one buyer remains
+    buyers = session.exec(Buyer.__table__.select()).fetchall()
+    assert len(buyers) == 1
+    assert buyers[0].id == new_id
 
 
 # ── rollup ────────────────────────────────────────────────────────────────────
