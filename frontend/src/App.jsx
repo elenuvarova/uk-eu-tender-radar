@@ -7,8 +7,10 @@ import {
   STATUSES,
   COUNTRIES,
   CPV_DIVISIONS,
+  CPV_DIVISION_LABELS,
   scoreBand,
 } from "./lib/constants";
+import { SourceDonut, BarList } from "./components/Charts";
 
 const SCORE_CLASS = { strong: "score-high", good: "score-mid", weak: "score-low" };
 const BAND_WORD = { strong: "Strong", good: "Good", weak: "Weak" };
@@ -136,6 +138,23 @@ function StatsRow({ facets, error }) {
         <div className="stat-value">{facets.closing_soon}</div>
         <div className="stat-label">Closing in 7 days</div>
       </div>
+    </div>
+  );
+}
+
+// ── summary band (charts) ─────────────────────────────────────────────────────
+
+function SummaryBand({ facets }) {
+  if (!facets || !facets.total) return null;
+  const cpvItems = (facets.by_cpv_division || []).map((d) => ({
+    label: CPV_DIVISION_LABELS[d.label] || d.label,
+    count: d.count,
+  }));
+  return (
+    <div className="summary-band">
+      <SourceDonut uk={facets.by_source.UK || 0} eu={facets.by_source.EU || 0} />
+      <BarList title="Top categories" items={cpvItems} color="var(--accent)" />
+      <BarList title="Top countries" items={facets.by_country || []} color="var(--eu)" />
     </div>
   );
 }
@@ -456,6 +475,7 @@ export default function App() {
       </header>
 
       <StatsRow facets={facets.data} error={facets.error} />
+      <SummaryBand facets={facets.data} />
 
       <div className="main-layout">
         <div className="left-col">

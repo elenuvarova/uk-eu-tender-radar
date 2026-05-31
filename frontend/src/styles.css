@@ -131,3 +131,100 @@ a { color: var(--accent); }
 .pagination button { background: var(--surface); border: 1px solid var(--border); color: var(--text); padding: 4px 12px; border-radius: 6px; cursor: pointer; }
 .pagination button:disabled { opacity: 0.4; cursor: default; }
 .pagination button:not(:disabled):hover { border-color: var(--accent); }
+
+/* ════════════════════════════════════════════════════════════════════════════
+   Phase D: summary charts + visual polish
+   ════════════════════════════════════════════════════════════════════════════ */
+
+/* Make the app a flex column so the summary band takes natural height and the
+   work surface fills the rest (replaces the fragile calc(100vh - 140px)). */
+.app { display: flex; flex-direction: column; min-height: 100dvh; }
+.main-layout { flex: 1; min-height: 0; height: auto; }
+
+/* ── summary band ── */
+.summary-band {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 1rem;
+  padding: 0 1.5rem 1rem;
+}
+.chart-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 0.85rem 1rem;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.03);
+}
+.chart-title {
+  font-size: 11px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--muted);
+  margin-bottom: 0.6rem;
+}
+.chart-body { min-height: 120px; }
+.chart-empty { color: var(--muted); font-size: 12px; padding: 1rem 0; }
+
+/* donut */
+.chart-donut { display: flex; align-items: center; gap: 0.75rem; }
+.donut-total { fill: var(--text); font-size: 20px; font-weight: 700; font-variant-numeric: tabular-nums; }
+.donut-sub { fill: var(--muted); font-size: 10px; }
+.chart-legend { list-style: none; font-size: 12px; display: flex; flex-direction: column; gap: 6px; }
+.chart-legend li { display: flex; align-items: center; gap: 6px; color: var(--muted); }
+.chart-legend b { color: var(--text); font-variant-numeric: tabular-nums; }
+.chart-legend .dot { width: 10px; height: 10px; border-radius: 3px; display: inline-block; }
+
+/* bar list */
+.bar-list { list-style: none; display: flex; flex-direction: column; gap: 8px; }
+.bar-row { display: grid; grid-template-columns: 80px 1fr 36px; align-items: center; gap: 8px; font-size: 12px; }
+.bar-label { color: var(--muted); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.bar-track { background: var(--surface2); border-radius: 4px; height: 10px; overflow: hidden; }
+.bar-fill { display: block; height: 100%; border-radius: 4px; transition: width 400ms ease-out; }
+.bar-count { text-align: right; color: var(--text); font-variant-numeric: tabular-nums; }
+
+/* ── score breakdown bars (drawer-ready) ── */
+.score-breakdown { display: flex; flex-direction: column; gap: 5px; }
+.sb-row { display: grid; grid-template-columns: 64px 1fr; align-items: center; gap: 8px; font-size: 11px; }
+.sb-label { color: var(--muted); }
+.sb-track { background: var(--surface2); border-radius: 3px; height: 8px; overflow: hidden; }
+.sb-fill { display: block; height: 100%; background: var(--accent); border-radius: 3px; transition: width 400ms ease-out; }
+
+/* ── tabular figures for data cells ── */
+.cell-value, .stat-value, .pill-urgent, .pill-soon { font-variant-numeric: tabular-nums; }
+
+/* ── score pill: slightly bigger, tabular ── */
+.score-pill { font-variant-numeric: tabular-nums; min-width: 26px; text-align: center; }
+
+/* ── elevation + hover lift on result rows ── */
+.opp-table tr { transition: background 150ms ease-out; }
+
+/* ── accessibility: visible focus ring everywhere ── */
+:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+fieldset.check-group { border: none; padding: 0; margin: 0; }
+fieldset.check-group legend { padding: 0; }
+
+/* ── profile toggle as a real button ── */
+button.profile-toggle {
+  width: 100%;
+  text-align: left;
+  border: none;
+  font: inherit;
+}
+
+/* ── respect reduced motion ── */
+@media (prefers-reduced-motion: reduce) {
+  * { animation: none !important; transition: none !important; }
+}
+
+/* ── responsive: stack under 768px ── */
+@media (max-width: 768px) {
+  .main-layout { flex-direction: column; height: auto; overflow: visible; }
+  .left-col { width: 100%; min-width: 0; border-right: none; border-bottom: 1px solid var(--border); }
+  .results-wrap { overflow-x: auto; }
+  .summary-band { grid-template-columns: 1fr; }
+}

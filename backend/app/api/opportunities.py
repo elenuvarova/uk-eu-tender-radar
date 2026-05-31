@@ -223,7 +223,9 @@ def list_opportunities(
                 profile_min_days_to_bid=profile.min_days_to_bid,
                 buyer_match_count=match_count,
             )
-            item.relevance = RelevanceScore(score=result.score, reasons=result.reasons)
+            item.relevance = RelevanceScore(
+                score=result.score, reasons=result.reasons, breakdown=result.breakdown
+            )
         return item
 
     return OpportunityListResponse(
