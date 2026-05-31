@@ -115,6 +115,7 @@ def test_upsert_isolates_bad_record(session):
         "publication_date": datetime.now(timezone.utc),
         "status": "OPEN",
         "notice_type": "TENDER",
+        "procedure_type": "OPEN",
         "_cpv_codes": ["72000000"],
     }
     bad = {
@@ -183,6 +184,7 @@ def test_cpv_filter_and_status_filter(client, session):
             "publication_date": datetime.now(timezone.utc),
             "status": "OPEN",
             "notice_type": "TENDER",
+            "procedure_type": "OPEN",
             "deadline": datetime.now(timezone.utc) + timedelta(days=10),
             "_cpv_codes": ["72000000"] if i % 2 == 0 else ["33000000"],
         }
