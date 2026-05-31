@@ -13,6 +13,7 @@ import re
 from datetime import datetime, timezone
 from typing import Any
 
+from app.ingestion.normalize._util import json_safe
 from app.ingestion.normalize.enums import (
     map_notice_type,
     map_procedure_type,
@@ -50,17 +51,6 @@ def _parse_dt(value: str | None) -> datetime | None:
         except ValueError:
             continue
     return None
-
-
-def _json_safe(obj: Any) -> Any:
-    """Recursively replace non-JSON-serialisable floats (Infinity, NaN) with None."""
-    if isinstance(obj, dict):
-        return {k: _json_safe(v) for k, v in obj.items()}
-    if isinstance(obj, list):
-        return [_json_safe(v) for v in obj]
-    if isinstance(obj, float) and (obj != obj or obj == float("inf") or obj == float("-inf")):
-        return None
-    return obj
 
 
 def _deadline_offset(value: str | None) -> str | None:
@@ -205,6 +195,6 @@ def normalize_fts_release(release: dict) -> dict[str, Any]:
         "procedure_type_raw": tender.get("procurementMethodDetails"),
         "status": status,
         "award_supplier": award_supplier,
-        "raw_json": _json_safe(release),
+        "raw_json": json_safe(release),
         "_cpv_codes": cpv_codes,  # consumed by caller to build TenderCpv rows
     }

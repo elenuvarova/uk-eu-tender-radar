@@ -20,6 +20,7 @@ import re
 from datetime import datetime, timezone
 from typing import Any
 
+from app.ingestion.normalize._util import json_safe
 from app.ingestion.normalize.enums import (
     AWARD, CONTRACT, MODIFICATION, NOTICE_OTHER, PLANNING, TENDER,
     map_procedure_type,
@@ -61,25 +62,34 @@ _TED_PROCEDURE_TO_OCDS = {
 }
 
 
-def _pick_lang(field: dict | None, preferred: str = "eng") -> str | None:
+def _pick_lang(field: Any, preferred: str = "eng") -> str | None:
     """
-    Extract a string from a TED multilingual field.
-    - notice-title shape: {lang: str}        -> return string directly
-    - buyer-name shape:   {lang: [str]}      -> return first element of list
+    Extract a string from a TED field that may be multilingual or flat.
+    TED is inconsistent across fields and notice versions, so handle every shape:
+    - str                -> return as-is        (e.g. a bare winner-name)
+    - [str, ...]         -> first non-empty element
+    - {lang: str}        -> notice-title style
+    - {lang: [str]}      -> buyer-name style (first element of the list)
     Fall back through all language keys if preferred is missing.
     """
     if not field:
         return None
-    # Try preferred language first, then any available
-    for lang in [preferred, *field.keys()]:
-        val = field.get(lang)
-        if val is None:
-            continue
-        if isinstance(val, list):
-            # buyer-name, description-lot style
-            return val[0] if val else None
-        if isinstance(val, str) and val:
-            return val
+    if isinstance(field, str):
+        return field or None
+    if isinstance(field, list):
+        for v in field:
+            if isinstance(v, str) and v:
+                return v
+        return None
+    if isinstance(field, dict):
+        for lang in [preferred, *field.keys()]:
+            val = field.get(lang)
+            if val is None:
+                continue
+            if isinstance(val, list):
+                return val[0] if val else None
+            if isinstance(val, str) and val:
+                return val
     return None
 
 
@@ -199,10 +209,13 @@ def normalize_ted_notice(notice: dict) -> dict[str, Any]:
     form_type = notice.get("form-type")
     notice_type_raw = notice.get("notice-type")
 
-    # Title (flat lang->str)
+    # Title (flat lang->str, but may also arrive as a bare string)
     title_field = notice.get("notice-title") or {}
     title = _pick_lang(title_field) or "(no title)"
-    title_lang = "eng" if title_field.get("eng") else (next(iter(title_field), None) or "eng")
+    if isinstance(title_field, dict) and title_field:
+        title_lang = "eng" if title_field.get("eng") else (next(iter(title_field), None) or "eng")
+    else:
+        title_lang = "eng"
 
     # Buyer (lang->[str] map)
     buyer_name = _pick_lang(notice.get("buyer-name"))
@@ -246,13 +259,8 @@ def normalize_ted_notice(notice: dict) -> dict[str, Any]:
 
     status = _map_ted_status(form_type, deadline_raw)
 
-    # Award supplier: TED exposes winner-name if present
+    # Award supplier: TED exposes winner-name if present (str / list / lang-map)
     award_supplier: str | None = _pick_lang(notice.get("winner-name"))
-    if not award_supplier:
-        # fallback scalar field
-        wn = notice.get("winner-name")
-        if isinstance(wn, str):
-            award_supplier = wn
 
     return {
         "id": f"EU:{pub_num}",
@@ -278,7 +286,7 @@ def normalize_ted_notice(notice: dict) -> dict[str, Any]:
         "procedure_type_raw": procedure_type_raw,
         "status": status,
         "award_supplier": award_supplier,
-        "raw_json": notice,
+        "raw_json": json_safe(notice),
         "_cpv_codes": cpv_codes,
     }
 

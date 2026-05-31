@@ -1,4 +1,3 @@
-from collections import defaultdict
 from datetime import datetime, timedelta, timezone
 
 from fastapi import APIRouter, Depends, HTTPException, Query
@@ -54,11 +53,13 @@ def _build_stmt(
         stmt = stmt.where(TenderOpportunity.buyer_country.in_(country))
 
     if cpv:
-        stmt = (
-            stmt.join(TenderCpv, TenderOpportunity.id == TenderCpv.tender_id)
-            .where(or_(*[TenderCpv.cpv_code.startswith(p) for p in cpv]))
-            .distinct()
+        # EXISTS subquery instead of join+DISTINCT: avoids row multiplication and,
+        # critically, avoids SELECT DISTINCT over the raw_json column, which
+        # Postgres rejects ("no equality operator for type json").
+        cpv_subq = select(TenderCpv.tender_id).where(
+            or_(*[TenderCpv.cpv_code.startswith(p) for p in cpv])
         )
+        stmt = stmt.where(TenderOpportunity.id.in_(cpv_subq))
 
     if q:
         like = f"%{q}%"

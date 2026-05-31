@@ -14,38 +14,47 @@ logging.basicConfig(level=logging.INFO, format="%(levelname)s %(name)s: %(messag
 log = logging.getLogger("ingestion.run")
 
 
-def _upsert_rows(session, rows: list[dict]) -> tuple[int, int]:
-    """Insert or update TenderOpportunity + TenderCpv rows. Returns (inserted, updated)."""
+def _upsert_rows(session, rows: list[dict]) -> tuple[int, int, int]:
+    """Insert or update TenderOpportunity + TenderCpv rows.
+
+    Each record is committed inside its own SAVEPOINT, so one malformed notice
+    (bad JSON, constraint violation, type error) is skipped instead of aborting
+    the whole batch. Returns (inserted, updated, failed).
+    """
     from sqlmodel import select
 
     from app.ingestion.cpv import build_cpv_rows
     from app.models.tender import TenderCpv, TenderOpportunity
 
-    inserted = updated = 0
+    inserted = updated = failed = 0
     for row in rows:
         cpv_codes: list[str] = row.pop("_cpv_codes", [])
         tender_id = row["id"]
+        try:
+            with session.begin_nested():
+                existing = session.get(TenderOpportunity, tender_id)
+                if existing:
+                    for k, v in row.items():
+                        setattr(existing, k, v)
+                    existing.updated_at = datetime.now(timezone.utc)
+                    updated += 1
+                else:
+                    session.add(TenderOpportunity(**row))
+                    inserted += 1
 
-        existing = session.get(TenderOpportunity, tender_id)
-        if existing:
-            for k, v in row.items():
-                setattr(existing, k, v)
-            existing.updated_at = datetime.now(timezone.utc)
-            updated += 1
-        else:
-            session.add(TenderOpportunity(**row))
-            inserted += 1
-
-        # Replace CPV child rows
-        for old in session.exec(
-            select(TenderCpv).where(TenderCpv.tender_id == tender_id)
-        ).all():
-            session.delete(old)
-        for cpv_row in build_cpv_rows(tender_id, cpv_codes):
-            session.add(TenderCpv(**cpv_row))
+                # Replace CPV child rows
+                for old in session.exec(
+                    select(TenderCpv).where(TenderCpv.tender_id == tender_id)
+                ).all():
+                    session.delete(old)
+                for cpv_row in build_cpv_rows(tender_id, cpv_codes):
+                    session.add(TenderCpv(**cpv_row))
+        except Exception as exc:  # noqa: BLE001
+            failed += 1
+            log.warning("upsert failed for %s: %s", tender_id, exc)
 
     session.commit()
-    return inserted, updated
+    return inserted, updated, failed
 
 
 def run_fts(days: int, niche_only: bool) -> None:
@@ -66,8 +75,8 @@ def run_fts(days: int, niche_only: bool) -> None:
     log.info("FTS: %d rows to upsert", len(rows))
 
     with next(get_session()) as session:
-        ins, upd = _upsert_rows(session, rows)
-    log.info("FTS: done — inserted=%d updated=%d", ins, upd)
+        ins, upd, failed = _upsert_rows(session, rows)
+    log.info("FTS: done — inserted=%d updated=%d failed=%d", ins, upd, failed)
     _run_buyer_jobs()
 
 
@@ -103,8 +112,8 @@ def run_ted(days: int, niche_only: bool) -> None:
     log.info("TED: %d rows to upsert", len(rows))
 
     with next(get_session()) as session:
-        ins, upd = _upsert_rows(session, rows)
-    log.info("TED: done — inserted=%d updated=%d", ins, upd)
+        ins, upd, failed = _upsert_rows(session, rows)
+    log.info("TED: done — inserted=%d updated=%d failed=%d", ins, upd, failed)
     _run_buyer_jobs()
 
 

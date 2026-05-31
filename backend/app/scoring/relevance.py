@@ -78,16 +78,21 @@ def score_value(
         return 0.5  # missing value — neutral (common; don't punish)
     v = estimated_value_eur
     lo, hi = value_min, value_max
+    # Helpers guard against division by zero (value_min=0, or a notice with value 0).
+    def _below(val: float, bound: float) -> float:
+        return max(0.0, val / bound) if bound > 0 else 0.0
+
+    def _above(bound: float, val: float) -> float:
+        return max(0.0, bound / val) if val > 0 else 0.0
+
     if lo is not None and hi is not None:
         if lo <= v <= hi:
             return 1.0
-        if v < lo:
-            return max(0.0, v / lo)
-        return max(0.0, hi / v)
+        return _below(v, lo) if v < lo else _above(hi, v)
     if lo is not None:
-        return 1.0 if v >= lo else max(0.0, v / lo)
+        return 1.0 if v >= lo else _below(v, lo)
     # hi only
-    return 1.0 if v <= hi else max(0.0, hi / v)
+    return 1.0 if v <= hi else _above(hi, v)
 
 
 def score_deadline(deadline: datetime | None, min_days_to_bid: int) -> float:
