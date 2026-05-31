@@ -155,10 +155,23 @@ def list_opportunities(
         stmt = stmt.order_by(
             TenderOpportunity.publication_date.desc(), TenderOpportunity.id.asc()
         )
+    elif sort == "published_asc":
+        stmt = stmt.order_by(
+            TenderOpportunity.publication_date.asc(), TenderOpportunity.id.asc()
+        )
     elif sort == "value_desc":
         stmt = stmt.order_by(
             nullslast(TenderOpportunity.estimated_value_eur.desc()),
             TenderOpportunity.id.asc(),
+        )
+    elif sort == "value_asc":
+        stmt = stmt.order_by(
+            nullslast(TenderOpportunity.estimated_value_eur.asc()),
+            TenderOpportunity.id.asc(),
+        )
+    elif sort == "deadline_desc":
+        stmt = stmt.order_by(
+            nullslast(TenderOpportunity.deadline.desc()), TenderOpportunity.id.asc()
         )
     else:  # deadline_asc (default)
         stmt = stmt.order_by(

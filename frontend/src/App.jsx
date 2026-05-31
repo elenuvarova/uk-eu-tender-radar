@@ -11,23 +11,80 @@ import {
   scoreBand,
 } from "./lib/constants";
 import { SourceDonut, BarList, ScoreBreakdown } from "./components/Charts";
+import Tour from "./components/Tour";
 
 const SCORE_CLASS = { strong: "score-high", good: "score-mid", weak: "score-low" };
-const BAND_WORD = { strong: "Strong", good: "Good", weak: "Weak" };
+const BAND_WORD  = { strong: "Strong",      good: "Good",     weak: "Weak" };
+
+// ── theme ─────────────────────────────────────────────────────────────────────
+
+function useTheme() {
+  const [theme, setTheme] = useState(() => localStorage.getItem("theme") || "dark");
+  useEffect(() => {
+    document.documentElement.setAttribute("data-theme", theme);
+    localStorage.setItem("theme", theme);
+  }, [theme]);
+  const toggle = () => setTheme((t) => (t === "dark" ? "light" : "dark"));
+  return [theme, toggle];
+}
+
+// ── helpers ───────────────────────────────────────────────────────────────────
+
+function isDownloadUrl(url) {
+  if (!url) return false;
+  return /\.(pdf|docx?|xlsx?|zip)(\?.*)?$/i.test(url);
+}
+
+function activeFilterCount(filters) {
+  return Object.values(filters).filter(
+    (v) => v != null && v !== "" && (!Array.isArray(v) || v.length > 0)
+  ).length;
+}
 
 // ── small presentationals ─────────────────────────────────────────────────────
 
 function DeadlinePill({ iso }) {
   const d = daysLeft(iso);
   if (d == null) return <span className="pill pill-none">No deadline</span>;
-  if (d < 0) return <span className="pill pill-expired">Expired</span>;
-  if (d <= 7) return <span className="pill pill-urgent">{d}d left</span>;
-  if (d <= 21) return <span className="pill pill-soon">{d}d left</span>;
+  if (d < 0)    return <span className="pill pill-expired">Expired</span>;
+  if (d <= 7)   return <span className="pill pill-urgent">{d}d left</span>;
+  if (d <= 21)  return <span className="pill pill-soon">{d}d left</span>;
   return <span className="pill pill-ok">{fmtDate(iso)}</span>;
 }
 
-function SourceBadge({ source }) {
-  return <span className={`badge badge-${source?.toLowerCase()}`}>{source}</span>;
+function SourceBadge({ source, onClick, activeSource }) {
+  const isActive = activeSource && activeSource === source;
+  const clickable = !!onClick;
+  return (
+    <span
+      className={`badge badge-${source?.toLowerCase()} ${clickable ? "badge-clickable" : ""} ${isActive ? "badge-active" : ""}`}
+      onClick={onClick}
+      title={clickable ? `Filter by ${source}` : source === "UK" ? "UK Find a Tender" : "EU TED"}
+      role={clickable ? "button" : undefined}
+      tabIndex={clickable ? 0 : undefined}
+      onKeyDown={clickable ? (e) => e.key === "Enter" && onClick() : undefined}
+      aria-pressed={clickable ? isActive : undefined}
+    >
+      {source}
+    </span>
+  );
+}
+
+function TypePill({ type, onClick, activeTypes }) {
+  const isActive = activeTypes?.includes(type);
+  const clickable = !!onClick;
+  return (
+    <span
+      className={`pill pill-type ${clickable ? "badge-clickable" : ""} ${isActive ? "badge-active" : ""}`}
+      onClick={onClick}
+      title={clickable ? `Filter by ${type}` : undefined}
+      role={clickable ? "button" : undefined}
+      tabIndex={clickable ? 0 : undefined}
+      onKeyDown={clickable ? (e) => e.key === "Enter" && onClick() : undefined}
+    >
+      {type}
+    </span>
+  );
 }
 
 function ScorePill({ relevance }) {
@@ -50,7 +107,6 @@ function ScorePill({ relevance }) {
 function BuyerPanel({ buyerId, onClose }) {
   const { data, loading, error } = useApi(`/api/buyers/${buyerId}`, {}, [buyerId]);
 
-  // Esc closes the panel.
   useEffect(() => {
     const onKey = (e) => e.key === "Escape" && onClose();
     window.addEventListener("keydown", onKey);
@@ -84,7 +140,7 @@ function BuyerPanel({ buyerId, onClose }) {
           ) : (
             data.top_categories.map((c) => (
               <div key={c.cpv_division} className="buyer-cat-row">
-                <span className="pill pill-type">{c.cpv_division}</span>
+                <span className="pill pill-type">{CPV_DIVISION_LABELS[c.cpv_division] || c.cpv_division}</span>
                 <span>{c.notice_count} notice{c.notice_count !== 1 ? "s" : ""}</span>
                 {c.avg_value_eur && (
                   <span className="buyer-val">avg {fmtValue(c.avg_value_eur, "EUR")}</span>
@@ -118,6 +174,12 @@ function NoticeDrawer({ noticeId, onClose, onBuyerClick }) {
     return () => window.removeEventListener("keydown", onKey);
   }, [onClose]);
 
+  const ctaLabel = data?.source === "UK"
+    ? "View on Find a Tender ↗"
+    : data?.source === "EU"
+      ? (isDownloadUrl(data?.source_url) ? "Download document ⬇" : "View on TED ↗")
+      : "Open original notice ↗";
+
   return (
     <div className="drawer-scrim" onClick={onClose}>
       <div
@@ -137,7 +199,7 @@ function NoticeDrawer({ noticeId, onClose, onBuyerClick }) {
           <div className="drawer-body">
             <div className="drawer-badges">
               <SourceBadge source={data.source} />
-              <span className="pill pill-type">{data.notice_type}</span>
+              <TypePill type={data.notice_type} />
               <span className="pill pill-type">{data.status}</span>
             </div>
             <h2 className="drawer-title">{data.title}</h2>
@@ -189,7 +251,7 @@ function NoticeDrawer({ noticeId, onClose, onBuyerClick }) {
                 <div className="buyer-section-title">CPV codes</div>
                 <div className="drawer-cpvs">
                   {data.cpv_codes.map((c) => (
-                    <span key={c} className="pill pill-type">{c}</span>
+                    <span key={c} className="pill pill-type" title={CPV_DIVISION_LABELS[c.slice(0, 2)] || c}>{c}</span>
                   ))}
                 </div>
               </>
@@ -210,7 +272,7 @@ function NoticeDrawer({ noticeId, onClose, onBuyerClick }) {
             )}
 
             <a className="btn-save drawer-cta" href={data.source_url} target="_blank" rel="noopener noreferrer">
-              Open original notice ↗
+              {ctaLabel}
             </a>
           </div>
         )}
@@ -233,7 +295,7 @@ function StatsRow({ facets, error }) {
   }
   if (!facets) return null;
   return (
-    <div className="stats-row">
+    <div className="stats-row" id="tour-stats">
       <div className="stat-card">
         <div className="stat-value">{fmtCount(facets.total)}</div>
         <div className="stat-label">Total notices</div>
@@ -257,17 +319,27 @@ function StatsRow({ facets, error }) {
 // ── summary band (charts) ─────────────────────────────────────────────────────
 
 function SummaryBand({ facets }) {
+  const [mobileExpanded, setMobileExpanded] = useState(false);
   if (!facets || !facets.total) return null;
   const cpvItems = (facets.by_cpv_division || []).map((d) => ({
     label: CPV_DIVISION_LABELS[d.label] || d.label,
     count: d.count,
   }));
   return (
-    <div className="summary-band">
-      <SourceDonut uk={facets.by_source.UK || 0} eu={facets.by_source.EU || 0} />
-      <BarList title="Top categories" items={cpvItems} color="var(--accent)" />
-      <BarList title="Top countries" items={facets.by_country || []} color="var(--eu)" />
-    </div>
+    <>
+      <button
+        className="summary-band-toggle"
+        onClick={() => setMobileExpanded((e) => !e)}
+        aria-expanded={mobileExpanded}
+      >
+        Overview charts <span>{mobileExpanded ? "▾" : "▸"}</span>
+      </button>
+      <div className={`summary-band ${mobileExpanded ? "" : "summary-band-collapsed"}`} id="tour-charts">
+        <SourceDonut uk={facets.by_source.UK || 0} eu={facets.by_source.EU || 0} />
+        <BarList title="Top categories" items={cpvItems} color="var(--accent)" />
+        <BarList title="Top countries" items={facets.by_country || []} color="var(--eu)" />
+      </div>
+    </>
   );
 }
 
@@ -277,8 +349,6 @@ function ProfilePanel({ profile, onSaved }) {
   const [form, setForm] = useState(null);
   const { put, saving, error } = usePut("/api/profile");
 
-  // Initialise (and re-sync) the form whenever the loaded profile changes —
-  // in an effect, not during render.
   useEffect(() => {
     if (!profile) return;
     setForm({
@@ -350,7 +420,7 @@ function FilterPanel({ filters, onChange }) {
   };
 
   return (
-    <aside className="filter-panel">
+    <aside className="filter-panel" id="tour-filters">
       <h2 className="filter-heading">Filters</h2>
 
       <label className="filter-label" htmlFor="kw">Keyword</label>
@@ -416,21 +486,92 @@ function FilterPanel({ filters, onChange }) {
 
 // ── results table ─────────────────────────────────────────────────────────────
 
+const SORT_FIELDS = [
+  { key: "deadline", label: "Deadline" },
+  { key: "published", label: "Published" },
+  { key: "value", label: "Value" },
+];
+
+const SORT_DEFAULTS = { deadline: "asc", published: "desc", value: "desc" };
+
 function SortBtn({ field, label, sort, onSort }) {
+  const isActive = sort.field === field;
+  const dir = isActive ? sort.dir : SORT_DEFAULTS[field];
+  const arrow = dir === "asc" ? "↑" : "↓";
   return (
-    <button className={`sort-btn ${sort === field ? "active" : ""}`} onClick={() => onSort(field)}>
-      {label}
+    <button
+      className={`sort-btn ${isActive ? "active" : ""}`}
+      onClick={() => onSort(field)}
+      aria-label={`Sort by ${label} ${dir === "asc" ? "ascending" : "descending"}`}
+    >
+      {label} <span className="sort-icon">{isActive ? arrow : "↕"}</span>
     </button>
   );
 }
 
-function OpportunitiesTable({ state, sort, onSort, onPage, offset, limit, hasProfile, onBuyerClick, onResetFilters, onNoticeClick }) {
+function MobileCardList({ items, hasProfile, onBuyerClick, onNoticeClick, onSourceClick, onTypeClick, filters }) {
+  return (
+    <div className="mobile-list">
+      {items.map((o, idx) => (
+        <div key={o.id} className="mobile-card" onClick={() => onNoticeClick(o.id)}>
+          <div className="mobile-card-top">
+            <div className="mobile-card-tags">
+              <SourceBadge
+                source={o.source}
+                onClick={(e) => { e?.stopPropagation?.(); onSourceClick(o.source); }}
+                activeSource={filters.source}
+              />
+              <TypePill
+                type={o.notice_type}
+                onClick={(e) => { e?.stopPropagation?.(); onTypeClick(o.notice_type); }}
+                activeTypes={filters.notice_type}
+              />
+            </div>
+            <DeadlinePill iso={o.deadline} />
+          </div>
+          <div className="mobile-card-title">{o.title}</div>
+          <div className="mobile-card-meta">
+            {o.buyer_id ? (
+              <button
+                className="buyer-link"
+                style={{ fontSize: 12 }}
+                onClick={(e) => { e.stopPropagation(); onBuyerClick(o.buyer_id); }}
+              >
+                {o.buyer_name || "—"}
+              </button>
+            ) : (
+              <span>{o.buyer_name || "—"}</span>
+            )}
+            <span className="mobile-card-sep">·</span>
+            <span>{o.buyer_country || "—"}</span>
+            <span className="mobile-card-value">{fmtValue(o.estimated_value, o.currency)}</span>
+            {hasProfile && o.relevance && <ScorePill relevance={o.relevance} />}
+            <a
+              className={isDownloadUrl(o.source_url) ? "link-source link-source-download" : "link-source"}
+              href={o.source_url}
+              target="_blank"
+              rel="noopener noreferrer"
+              title={o.source === "UK" ? "View on Find a Tender" : isDownloadUrl(o.source_url) ? "Download document" : "View on TED"}
+              onClick={(e) => e.stopPropagation()}
+              aria-label="Open source"
+              style={{ minWidth: 28, textAlign: "center" }}
+            >
+              {isDownloadUrl(o.source_url) ? "⬇" : "↗"}
+            </a>
+          </div>
+        </div>
+      ))}
+    </div>
+  );
+}
+
+function OpportunitiesTable({ state, sort, onSort, onPage, offset, limit, hasProfile, onBuyerClick, onResetFilters, onNoticeClick, onSourceClick, onTypeClick, filters }) {
   const { data, loading, error, slow, reload } = state;
 
   if (error) {
     return (
       <div className="msg msg-error">
-        Couldn’t load notices: {error}
+        Couldn't load notices: {error}
         <div>
           <button className="btn-reset" style={{ maxWidth: 160, marginTop: 12 }} onClick={reload}>
             Try again
@@ -451,18 +592,18 @@ function OpportunitiesTable({ state, sort, onSort, onPage, offset, limit, hasPro
   if (!data) return null;
 
   const { items, total } = data;
-  const page = Math.floor(offset / limit);
+  const page  = Math.floor(offset / limit);
   const pages = Math.max(1, Math.ceil(total / limit));
 
   return (
     <div className="results-wrap">
-      <div className="results-meta">
+      <div className="results-meta" id="tour-sort">
         {loading ? "Refreshing…" : `${fmtCount(total)} notices`}
         <span className="sort-row">
           Sort:
-          <SortBtn field="deadline_asc" label="Deadline ↑" sort={sort} onSort={onSort} />
-          <SortBtn field="published_desc" label="Published ↓" sort={sort} onSort={onSort} />
-          <SortBtn field="value_desc" label="Value ↓" sort={sort} onSort={onSort} />
+          {SORT_FIELDS.map(({ key, label }) => (
+            <SortBtn key={key} field={key} label={label} sort={sort} onSort={onSort} />
+          ))}
         </span>
       </div>
 
@@ -476,49 +617,81 @@ function OpportunitiesTable({ state, sort, onSort, onPage, offset, limit, hasPro
           </div>
         </div>
       ) : (
-        <table className="opp-table">
-          <thead>
-            <tr>
-              <th>Title</th>
-              <th>Buyer</th>
-              <th>Country</th>
-              <th>Value</th>
-              <th>Type</th>
-              <th>Deadline</th>
-              {hasProfile && <th>Score</th>}
-              <th aria-label="Open source"></th>
-            </tr>
-          </thead>
-          <tbody>
-            {items.map((o) => (
-              <tr key={o.id}>
-                <td className="cell-title">
-                  <SourceBadge source={o.source} />
-                  <button className="title-link" onClick={() => onNoticeClick(o.id)}>
-                    {o.title}
-                  </button>
-                </td>
-                <td className="cell-buyer">
-                  {o.buyer_id ? (
-                    <button className="buyer-link" onClick={() => onBuyerClick(o.buyer_id)}>
-                      {o.buyer_name || "—"}
-                    </button>
-                  ) : (
-                    o.buyer_name || "—"
-                  )}
-                </td>
-                <td>{o.buyer_country || "—"}</td>
-                <td className="cell-value">{fmtValue(o.estimated_value, o.currency)}</td>
-                <td><span className="pill pill-type">{o.notice_type}</span></td>
-                <td><DeadlinePill iso={o.deadline} /></td>
-                {hasProfile && <td><ScorePill relevance={o.relevance} /></td>}
-                <td>
-                  <a className="link-source" href={o.source_url} target="_blank" rel="noopener noreferrer" aria-label="Open original notice">↗</a>
-                </td>
+        <>
+          <table className="opp-table">
+            <thead>
+              <tr>
+                <th>Title</th>
+                <th>Buyer</th>
+                <th>Country</th>
+                <th>Value</th>
+                <th>Type</th>
+                <th>Deadline</th>
+                {hasProfile && <th>Score</th>}
+                <th aria-label="Source link"></th>
               </tr>
-            ))}
-          </tbody>
-        </table>
+            </thead>
+            <tbody>
+              {items.map((o, idx) => (
+                <tr key={o.id} style={{ "--row-i": idx }} id={idx === 0 ? "tour-first-row" : undefined}>
+                  <td className="cell-title">
+                    <SourceBadge
+                      source={o.source}
+                      onClick={() => onSourceClick(o.source)}
+                      activeSource={filters.source}
+                    />
+                    <button className="title-link" onClick={() => onNoticeClick(o.id)}>
+                      {o.title}
+                    </button>
+                  </td>
+                  <td className="cell-buyer">
+                    {o.buyer_id ? (
+                      <button className="buyer-link" onClick={() => onBuyerClick(o.buyer_id)}>
+                        {o.buyer_name || "—"}
+                      </button>
+                    ) : (
+                      o.buyer_name || "—"
+                    )}
+                  </td>
+                  <td>{o.buyer_country || "—"}</td>
+                  <td className="cell-value">{fmtValue(o.estimated_value, o.currency)}</td>
+                  <td>
+                    <TypePill
+                      type={o.notice_type}
+                      onClick={() => onTypeClick(o.notice_type)}
+                      activeTypes={filters.notice_type}
+                    />
+                  </td>
+                  <td><DeadlinePill iso={o.deadline} /></td>
+                  {hasProfile && <td><ScorePill relevance={o.relevance} /></td>}
+                  <td>
+                    <a
+                      className={isDownloadUrl(o.source_url) ? "link-source link-source-download" : "link-source"}
+                      href={o.source_url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      title={o.source === "UK" ? "View on Find a Tender" : isDownloadUrl(o.source_url) ? "Download document" : "View on TED"}
+                      aria-label="Open source"
+                    >
+                      {isDownloadUrl(o.source_url) ? "⬇" : "↗"}
+                    </a>
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+
+          {/* mobile card list */}
+          <MobileCardList
+            items={items}
+            hasProfile={hasProfile}
+            onBuyerClick={onBuyerClick}
+            onNoticeClick={onNoticeClick}
+            onSourceClick={onSourceClick}
+            onTypeClick={onTypeClick}
+            filters={filters}
+          />
+        </>
       )}
 
       {pages > 1 && (
@@ -532,19 +705,66 @@ function OpportunitiesTable({ state, sort, onSort, onPage, offset, limit, hasPro
   );
 }
 
+// ── mobile filter bottom sheet ────────────────────────────────────────────────
+
+function MobileFilterBar({ filters, sort, onOpenSheet }) {
+  const count = activeFilterCount(filters);
+  const activeField = SORT_FIELDS.find((f) => f.key === sort.field);
+  const sortLabel = activeField ? `${activeField.label} ${sort.dir === "asc" ? "↑" : "↓"}` : "";
+  return (
+    <div className="mobile-filter-bar">
+      <button className="mobile-filter-btn" onClick={onOpenSheet}>
+        Filters
+        {count > 0 && <span className="filter-badge">{count}</span>}
+      </button>
+      {sortLabel && <span className="mobile-sort-label">Sort: {sortLabel}</span>}
+    </div>
+  );
+}
+
+function MobileFilterSheet({ open, onClose, filters, onChange, profile, onSaved }) {
+  const [showProfile, setShowProfile] = useState(false);
+  return (
+    <>
+      <div className={`filter-sheet-scrim ${open ? "open" : ""}`} onClick={onClose} />
+      <div className={`filter-sheet ${open ? "open" : ""}`} role="dialog" aria-label="Filters">
+        <div className="filter-sheet-header">
+          <button className="buyer-close" onClick={onClose} aria-label="Close filters">✕</button>
+          <span>Filters</span>
+          <button className="btn-save" style={{ width: "auto", padding: "4px 16px", margin: 0 }} onClick={onClose}>Done</button>
+        </div>
+        <div className="filter-sheet-body">
+          <FilterPanel filters={filters} onChange={onChange} />
+          <div style={{ borderTop: "1px solid var(--border)", padding: "0.5rem 1rem" }}>
+            <button className="profile-toggle" onClick={() => setShowProfile((p) => !p)} style={{ width: "100%" }}>
+              Supplier profile {showProfile ? "▲" : "▼"}
+            </button>
+            {showProfile && (
+              <ProfilePanel profile={profile} onSaved={(p) => { onSaved(p); setShowProfile(false); }} />
+            )}
+          </div>
+        </div>
+      </div>
+    </>
+  );
+}
+
 // ── app ───────────────────────────────────────────────────────────────────────
 
 export default function App() {
   const [filters, setFilters] = useState({});
-  const [sort, setSort] = useState("deadline_asc");
+  const [sort, setSort] = useState({ field: "deadline", dir: "asc" });
   const [offset, setOffset] = useState(0);
   const [showProfile, setShowProfile] = useState(false);
   const [activeBuyerId, setActiveBuyerId] = useState(null);
   const [activeNoticeId, setActiveNoticeId] = useState(null);
+  const [showFilterSheet, setShowFilterSheet] = useState(false);
+  const [tourActive, setTourActive] = useState(false);
+  const [tourPulse, setTourPulse] = useState(false);
+  const [theme, toggleTheme] = useTheme();
 
   const limit = 25;
 
-  // Profile is the server's copy — no local mirror to drift. Reload after save.
   const profileApi = useApi("/api/profile", {});
   const profile = profileApi.data;
   const hasProfile =
@@ -552,34 +772,85 @@ export default function App() {
     ((profile.target_cpv_codes || []).length > 0 || (profile.keywords || []).length > 0);
 
   const handleFilters = (f) => { setFilters(f); setOffset(0); };
-  const handleSort = (s) => { setSort(s); setOffset(0); };
 
-  // Debounce the keyword so each keystroke doesn't fire an ILIKE scan.
+  const handleSort = (field) => {
+    setSort((prev) => ({
+      field,
+      dir: prev.field === field
+        ? (prev.dir === "asc" ? "desc" : "asc")
+        : SORT_DEFAULTS[field],
+    }));
+    setOffset(0);
+  };
+
+  // Quick-filter helpers from table clicks
+  const handleSourceClick = (source) => {
+    setFilters((f) => ({ ...f, source: f.source === source ? "" : source }));
+    setOffset(0);
+  };
+  const handleTypeClick = (type) => {
+    setFilters((f) => {
+      const arr = f.notice_type || [];
+      return { ...f, notice_type: arr.includes(type) ? arr.filter((x) => x !== type) : [...arr, type] };
+    });
+    setOffset(0);
+  };
+
   const debouncedQ = useDebouncedValue(filters.q || "", 350);
+
+  // Convert { field, dir } to the sort param the API expects
+  const sortParam = `${sort.field}_${sort.dir}`;
 
   const apiParams = {
     ...filters,
     q: debouncedQ,
-    sort,
+    sort: sortParam,
     limit,
     offset,
     ...(hasProfile ? { score: true } : {}),
   };
 
-  const opps = useApi("/api/opportunities", apiParams);
+  const opps   = useApi("/api/opportunities", apiParams);
   const facets = useApi("/api/facets", {});
   const health = useApi("/api/health", {});
+
+  // Auto-start tour on first visit, after data loads
+  useEffect(() => {
+    if (facets.data && !localStorage.getItem("hasSeenTour")) {
+      const t = setTimeout(() => {
+        setTourActive(true);
+        setTourPulse(true);
+        setTimeout(() => setTourPulse(false), 6500);
+      }, 800);
+      return () => clearTimeout(t);
+    }
+  }, [!!facets.data]);
+
+  const startTour = () => {
+    setTourActive(true);
+    setTourPulse(false);
+  };
 
   return (
     <div className="app">
       <header className="app-header">
-        <h1>UK &amp; EU Procurement Radar</h1>
+        <h1>UK &amp; EU Digital Procurement Radar</h1>
         <span className="header-sub">
           {health.data && (
             <span className={`db-indicator db-${health.data.db}`} title={`Database: ${health.data.db}`}>
               db: {health.data.db}
             </span>
           )}
+          <button
+            className={`tour-btn ${tourPulse ? "tour-pulse" : ""}`}
+            onClick={startTour}
+            aria-label="Start guided tour"
+          >
+            Tour
+          </button>
+          <button className="theme-toggle" onClick={toggleTheme} aria-label={`Switch to ${theme === "dark" ? "light" : "dark"} mode`}>
+            {theme === "dark" ? "☀ Light" : "☾ Dark"}
+          </button>
           <span className="attr">
             Data:{" "}
             <a href="https://www.find-tender.service.gov.uk" target="_blank" rel="noopener noreferrer">UK FTS (OGL v3)</a>
@@ -594,7 +865,7 @@ export default function App() {
 
       <div className="main-layout">
         <div className="left-col">
-          <button className="profile-toggle" onClick={() => setShowProfile((p) => !p)}>
+          <button className="profile-toggle" id="tour-profile" onClick={() => setShowProfile((p) => !p)}>
             {hasProfile ? "Profile active" : "Set profile"} {showProfile ? "▲" : "▼"}
           </button>
           {showProfile && (
@@ -617,6 +888,9 @@ export default function App() {
             onBuyerClick={setActiveBuyerId}
             onNoticeClick={setActiveNoticeId}
             onResetFilters={() => handleFilters({})}
+            onSourceClick={handleSourceClick}
+            onTypeClick={handleTypeClick}
+            filters={filters}
           />
           {activeBuyerId && (
             <BuyerPanel buyerId={activeBuyerId} onClose={() => setActiveBuyerId(null)} />
@@ -630,6 +904,19 @@ export default function App() {
           )}
         </div>
       </div>
+
+      {/* mobile bottom filter bar */}
+      <MobileFilterBar filters={filters} sort={sort} onOpenSheet={() => setShowFilterSheet(true)} />
+      <MobileFilterSheet
+        open={showFilterSheet}
+        onClose={() => setShowFilterSheet(false)}
+        filters={filters}
+        onChange={handleFilters}
+        profile={profile}
+        onSaved={() => { profileApi.reload(); }}
+      />
+
+      <Tour active={tourActive} onClose={() => setTourActive(false)} />
     </div>
   );
 }
