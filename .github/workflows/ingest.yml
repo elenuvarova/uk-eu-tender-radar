@@ -2,13 +2,14 @@ name: Scheduled ingestion
 
 on:
   schedule:
-    # Every day at 06:00 UTC (after TED and FTS publish overnight notices)
-    - cron: "0 6 * * *"
+    # Weekly, Monday 06:00 UTC (after TED and FTS publish overnight notices).
+    # The niche feed is low-volume, so daily polling is unnecessary churn.
+    - cron: "0 6 * * 1"
   workflow_dispatch:
     inputs:
       days:
         description: "Days of history to fetch"
-        default: "1"
+        default: "8"
         required: false
       niche_only:
         description: "Niche-only filter (digital/edtech CPV)"
@@ -36,7 +37,7 @@ jobs:
         env:
           DATABASE_URL: ${{ secrets.DATABASE_URL }}
         run: |
-          DAYS=${{ github.event.inputs.days || '1' }}
+          DAYS=${{ github.event.inputs.days || '8' }}
           NICHE=${{ github.event.inputs.niche_only != 'false' && '--niche-only' || '' }}
           python -m app.ingestion.run --source fts --days $DAYS $NICHE
 
@@ -45,6 +46,6 @@ jobs:
         env:
           DATABASE_URL: ${{ secrets.DATABASE_URL }}
         run: |
-          DAYS=${{ github.event.inputs.days || '1' }}
+          DAYS=${{ github.event.inputs.days || '8' }}
           NICHE=${{ github.event.inputs.niche_only != 'false' && '--niche-only' || '' }}
           python -m app.ingestion.run --source ted --days $DAYS $NICHE
