@@ -20,7 +20,10 @@ if _url.startswith("postgres://") or _url.startswith("postgresql://"):
     # it causes DuplicatePreparedStatement when the same INSERT is committed
     # multiple times on the same connection within a session).
     connect_args = {"prepare_threshold": None}
-    if settings.is_production:
+    # Enable SSL only when the URL asks for it (Neon/Supabase external carry
+    # ?sslmode=require). The Coolify-internal Postgres speaks plaintext, so
+    # forcing sslmode=require there would fail the connection.
+    if "sslmode=require" in _url:
         connect_args["sslmode"] = "require"
     engine = create_engine(
         normalized, echo=False, poolclass=NullPool, connect_args=connect_args
