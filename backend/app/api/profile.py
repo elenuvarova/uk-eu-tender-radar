@@ -1,5 +1,5 @@
 from fastapi import APIRouter, Depends
-from pydantic import BaseModel, field_validator, model_validator
+from pydantic import BaseModel, Field, field_validator, model_validator
 from sqlmodel import Session
 
 from app.db import get_session
@@ -18,14 +18,18 @@ class ProfileUpdate(BaseModel):
     (value_min=0 / value_max<value_min would otherwise break score_value).
     """
 
-    name: str | None = None
-    target_cpv_codes: list[str] | None = None
-    keywords: list[str] | None = None
+    # Length caps below bound request size (DoS) and keep list items sane before
+    # they reach the scorer. Caps are generous relative to real profiles.
+    name: str | None = Field(default=None, max_length=200)
+    target_cpv_codes: list[str] | None = Field(default=None, max_length=100)
+    keywords: list[str] | None = Field(default=None, max_length=100)
     value_min: float | None = None
     value_max: float | None = None
-    value_currency: str | None = None
-    target_countries: list[str] | None = None
-    min_days_to_bid: int | None = None
+    value_currency: str | None = Field(default=None, max_length=8)
+    target_countries: list[str] | None = Field(default=None, max_length=100)
+    # Upper clamp (<=60) keeps the score_deadline ramp inside its design range:
+    # values >38 would skip the comfortable-window plateau (ramp_top > 45).
+    min_days_to_bid: int | None = Field(default=None, ge=0, le=60)
 
     @field_validator("value_min", "value_max")
     @classmethod
@@ -34,11 +38,14 @@ class ProfileUpdate(BaseModel):
             raise ValueError("value must be >= 0")
         return v
 
-    @field_validator("min_days_to_bid")
+    @field_validator("target_cpv_codes", "keywords", "target_countries")
     @classmethod
-    def _days_non_negative(cls, v: int | None) -> int | None:
-        if v is not None and v < 0:
-            raise ValueError("min_days_to_bid must be >= 0")
+    def _cap_item_lengths(cls, v: list[str] | None) -> list[str] | None:
+        # Bound each element so a single 100-item list can't carry megabytes.
+        if v is not None:
+            for item in v:
+                if len(item) > 64:
+                    raise ValueError("list item exceeds 64 characters")
         return v
 
     @model_validator(mode="after")

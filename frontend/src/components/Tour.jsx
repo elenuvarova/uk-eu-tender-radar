@@ -1,6 +1,7 @@
 import { useEffect, useLayoutEffect, useRef, useState } from "react";
 
 import { useFocusTrap } from "../lib/useFocusTrap";
+import Icon from "./Icon";
 
 const STEPS = [
   {
@@ -133,7 +134,9 @@ function Tooltip({ cfg, stepIndex, total, rect, onNext, onSkip }) {
       <div className="tour-body">{cfg.body}</div>
       <div className="tour-actions">
         <button className="tour-skip" onClick={onSkip}>Skip</button>
-        <button className="tour-next" onClick={onNext}>{isLast ? "Done →" : "Next →"}</button>
+        <button className="tour-next" onClick={onNext}>
+          {isLast ? "Done" : "Next"} <Icon name="arrow-right" size={13} />
+        </button>
         <div className="tour-dots" aria-hidden="true">
           {Array.from({ length: total }).map((_, i) => (
             <span key={i} className={`tour-dot ${i === stepIndex ? "active" : ""}`} />
@@ -154,7 +157,7 @@ function FinishModal({ onStartFiltering, onDismiss }) {
         <div className="tour-step-label">Tour complete</div>
         <div className="tour-title">You're all set</div>
         <div className="tour-body">
-          Notices refresh nightly. Set your supplier profile to see relevance scores, or start filtering now.
+          Notices refresh weekly. Set your supplier profile to see relevance scores, or start filtering now.
         </div>
         <div className="tour-finish-actions">
           <button className="tour-finish-primary" onClick={onStartFiltering}>Start filtering</button>
@@ -247,7 +250,7 @@ export default function Tour({ active, onClose }) {
           <div className="tour-title">{cfg.title}</div>
           <div className="tour-body">{cfg.body}</div>
           <div className="tour-finish-actions">
-            <button className="tour-finish-primary" onClick={next}>Next →</button>
+            <button className="tour-finish-primary" onClick={next}>Next</button>
             <button className="tour-finish-secondary" onClick={finish}>Skip</button>
           </div>
         </div>

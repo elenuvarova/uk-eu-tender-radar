@@ -5,6 +5,7 @@ from sqlmodel import Session, select
 from app.db import get_session
 from app.models.buyer import Buyer, BuyerCategoryStat
 from app.models.tender import TenderOpportunity
+from app.timeutil import ensure_utc
 
 router = APIRouter(prefix="/api", tags=["buyers"])
 
@@ -74,7 +75,9 @@ def get_buyer(buyer_id: str, session: Session = Depends(get_session)):
                 id=o.id,
                 title=o.title,
                 source=o.source,
-                publication_date=o.publication_date.isoformat(),
+                # ensure_utc so the emitted ISO carries an explicit +00:00
+                # offset (naive DB value would otherwise parse as local time).
+                publication_date=ensure_utc(o.publication_date).isoformat(),
                 source_url=o.source_url,
             )
             for o in recent

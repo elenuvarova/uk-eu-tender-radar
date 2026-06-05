@@ -37,18 +37,23 @@ def rollup(session: Session) -> int:
         select(TenderCpv).where(TenderCpv.tender_id.in_(opp_ids))
     ).all()
 
-    # Group: (buyer_id, cpv_division) → list of opportunities
-    groups: dict[tuple, list] = defaultdict(list)
+    # Group: (buyer_id, cpv_division) → set of distinct opportunity ids.
+    # A notice can carry several CPV codes in the SAME division (e.g. 72500000
+    # and 72600000); grouping per cpv_row would then count that one notice
+    # twice in notice_count and skew awarded_count / avg_value / last_date.
+    # Dedupe by opportunity id so each notice counts once per division.
+    group_ids: dict[tuple, set] = defaultdict(set)
     for cpv_row in cpv_rows:
         opp = opp_map.get(cpv_row.tender_id)
         if opp and opp.buyer_id:
-            groups[(opp.buyer_id, cpv_row.cpv_division)].append(opp)
+            group_ids[(opp.buyer_id, cpv_row.cpv_division)].add(opp.id)
 
     # Delete existing stats and rewrite
     session.exec(delete(BuyerCategoryStat))
 
     rows_written = 0
-    for (buyer_id, div), group_opps in groups.items():
+    for (buyer_id, div), opp_id_set in group_ids.items():
+        group_opps = [opp_map[oid] for oid in opp_id_set]
         awarded = [o for o in group_opps if o.status == "AWARDED"]
         values = [o.estimated_value_eur for o in group_opps if o.estimated_value_eur]
         dates = [o.publication_date for o in group_opps if o.publication_date]

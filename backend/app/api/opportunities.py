@@ -129,10 +129,10 @@ def _build_stmt(
 
 @router.get("/opportunities", response_model=OpportunityListResponse)
 def list_opportunities(
-    source: str | None = None,
+    source: str | None = Query(default=None, max_length=16),
     country: list[str] = Query(default=[]),
     cpv: list[str] = Query(default=[]),
-    q: str | None = None,
+    q: str | None = Query(default=None, max_length=200),
     deadline_from: datetime | None = None,
     deadline_to: datetime | None = None,
     value_min: float | None = None,
@@ -140,12 +140,24 @@ def list_opportunities(
     include_unspecified_value: bool = True,
     notice_type: list[str] = Query(default=[]),
     status: list[str] = Query(default=[]),
-    sort: str = "deadline_asc",
+    sort: str = Query(default="deadline_asc", max_length=32),
     limit: int = Query(default=25, ge=1, le=100),
     offset: int = Query(default=0, ge=0),
     score: bool = False,   # attach relevance scores using the stored profile
     session: Session = Depends(get_session),
 ):
+    # Bound repeated list query params (DoS): a caller can otherwise pass an
+    # unbounded number of country=/cpv=/notice_type=/status= values, each
+    # widening an IN/OR clause. Cap count and per-item length; 400 on abuse.
+    for name, values in (
+        ("country", country), ("cpv", cpv),
+        ("notice_type", notice_type), ("status", status),
+    ):
+        if len(values) > 60:
+            raise HTTPException(status_code=400, detail=f"too many {name} values")
+        if any(len(v) > 64 for v in values):
+            raise HTTPException(status_code=400, detail=f"{name} value too long")
+
     stmt = _build_stmt(
         source, country, cpv, q, deadline_from, deadline_to,
         value_min, value_max, include_unspecified_value,
@@ -269,6 +281,46 @@ def get_opportunity(opportunity_id: str, session: Session = Depends(get_session)
 
     detail = OpportunityDetail.model_validate(opp)
     detail.cpv_codes = cpv_codes
+    detail.status = _compute_effective_status(opp)  # CLOSED is synthetic
+
+    # Score the detail when a profile exists, so the drawer's score breakdown
+    # renders. Mirrors the list path's buyer-stat logic (C5): None when the
+    # buyer is unresolved, 0 when resolved but with no matching-CPV history.
+    profile = session.get(SupplierProfile, "default")
+    if profile:
+        match_count: int | None = None
+        if opp.buyer_id:
+            profile_divs = list({c[:2] for c in (profile.target_cpv_codes or [])})
+            if profile_divs:
+                stat_rows = session.exec(
+                    select(BuyerCategoryStat).where(
+                        BuyerCategoryStat.buyer_id == opp.buyer_id,
+                        BuyerCategoryStat.cpv_division.in_(profile_divs),
+                    )
+                ).all()
+                match_count = sum(s.notice_count for s in stat_rows)
+            else:
+                match_count = 0
+
+        from app.scoring.relevance import compute_score
+        result = compute_score(
+            tender_cpvs=cpv_codes,
+            title=opp.title,
+            description=opp.description,
+            deadline=opp.deadline,
+            estimated_value_eur=opp.estimated_value_eur,
+            buyer_name=opp.buyer_name,
+            profile_cpv_codes=profile.target_cpv_codes or [],
+            profile_keywords=profile.keywords or [],
+            profile_value_min=profile.value_min,
+            profile_value_max=profile.value_max,
+            profile_min_days_to_bid=profile.min_days_to_bid,
+            buyer_match_count=match_count,
+        )
+        detail.relevance = RelevanceScore(
+            score=result.score, reasons=result.reasons, breakdown=result.breakdown
+        )
+
     return detail
 
 

@@ -9,6 +9,7 @@ import logging
 import time
 from datetime import datetime, timedelta, timezone
 from typing import Generator
+from urllib.parse import urlparse
 
 import httpx
 
@@ -17,25 +18,51 @@ from app.ingestion.normalize.ocds import normalize_fts_release
 log = logging.getLogger(__name__)
 
 FTS_API = "https://www.find-tender.service.gov.uk/api/1.0/ocdsReleasePackages"
-# Back-off config
-MAX_RETRIES = 4
+FTS_HOST = "www.find-tender.service.gov.uk"  # SSRF allow-list for links.next
+# Back-off config. One delay per retry between attempts; total attempts is
+# len(RETRY_DELAYS) + 1 (the initial try plus one retry per delay), so every
+# delay — including the last — is actually used before giving up.
 RETRY_DELAYS = [5, 15, 30, 60]  # seconds
 MAX_PAGES = 200  # safety cap; ~20 000 releases per run
+MAX_RESPONSE_BYTES = 50 * 1024 * 1024  # 50 MB guard before parsing JSON
+
+
+def _parse_json(resp: httpx.Response) -> dict:
+    """Reject oversized bodies before json() buffers them into memory."""
+    declared = resp.headers.get("content-length")
+    if declared is not None and int(declared) > MAX_RESPONSE_BYTES:
+        raise RuntimeError("FTS: response exceeds size cap")
+    if len(resp.content) > MAX_RESPONSE_BYTES:
+        raise RuntimeError("FTS: response exceeds size cap")
+    return resp.json()
 
 
 def _get(client: httpx.Client, url: str, params: dict | None = None) -> dict:
-    """GET with exponential back-off on 429/5xx."""
-    for attempt, delay in enumerate(RETRY_DELAYS, 1):
-        resp = client.get(url, params=params, timeout=60)
+    """GET with exponential back-off on 429/5xx.
+
+    Makes len(RETRY_DELAYS)+1 attempts; sleeps the matching delay between
+    transient failures. follow_redirects=False: we drive pagination via
+    links.next ourselves and refuse to chase server-issued redirects.
+    """
+    for delay in [*RETRY_DELAYS, None]:
+        resp = client.get(url, params=params, timeout=60, follow_redirects=False)
         if resp.status_code == 200:
-            return resp.json()
-        if resp.status_code == 429 or resp.status_code >= 500:
-            if attempt < MAX_RETRIES:
-                log.warning("FTS %s (attempt %d), retrying in %ds", resp.status_code, attempt, delay)
-                time.sleep(delay)
-                continue
+            return _parse_json(resp)
+        if (resp.status_code == 429 or resp.status_code >= 500) and delay is not None:
+            log.warning("FTS %s, retrying in %ds", resp.status_code, delay)
+            time.sleep(delay)
+            continue
         resp.raise_for_status()
     raise RuntimeError("FTS: exceeded retries")
+
+
+def _is_allowed_next(url: str) -> bool:
+    """True only for an https URL on the expected FTS host (SSRF guard)."""
+    try:
+        parsed = urlparse(url)
+    except ValueError:
+        return False
+    return parsed.scheme == "https" and parsed.hostname == FTS_HOST
 
 
 def iter_releases(
@@ -86,6 +113,12 @@ def iter_releases(
             pages_fetched += 1
             # Follow cursor; once we switch to links.next, drop query params
             next_url = (data.get("links") or {}).get("next")
+            # SSRF guard: links.next is upstream-supplied. Only follow it when it
+            # is https on the expected FTS host; otherwise stop pagination rather
+            # than let a poisoned response redirect us at an internal/arbitrary URL.
+            if next_url and not _is_allowed_next(next_url):
+                log.warning("FTS: refusing to follow off-host links.next=%r", next_url)
+                next_url = None
             url = next_url or ""
             page_params = None  # cursor already encoded in next_url
 

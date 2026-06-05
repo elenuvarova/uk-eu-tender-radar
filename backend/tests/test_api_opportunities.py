@@ -1,4 +1,5 @@
 """API tests for /api/opportunities and /api/facets with an in-memory DB."""
+import time
 from datetime import datetime, timezone
 
 import pytest
@@ -157,6 +158,48 @@ def test_opportunity_detail_found(client, two_opps):
     body = r.json()
     assert body["id"] == opp1.id
     assert body["cpv_codes"] == ["72500000"]
+
+
+# ── timezone serialization (deadline/publication_date carry UTC offset) ───────
+
+def test_deadline_serialized_with_utc_offset(client, session, monkeypatch):
+    """A known UTC deadline must round-trip WITH an explicit offset, and the
+    days-left a client computes must be identical regardless of process TZ.
+
+    Naive ISO (no offset) would be parsed as local time by `new Date(iso)`,
+    shifting the deadline and flipping the urgent/soon pill for non-UTC users.
+    """
+    # Store a naive datetime, exactly as the SQLite/Postgres columns return it.
+    deadline_utc = datetime(2026, 6, 15, 9, 30, 0)
+    opp = _make_opp("tz", deadline=deadline_utc,
+                    publication_date=datetime(2026, 6, 1, 0, 0, 0))
+    session.add(opp)
+    session.commit()
+
+    def _days_left(iso: str) -> float:
+        # Mirror the client: parse the ISO and diff against a fixed "now".
+        parsed = datetime.fromisoformat(iso)
+        assert parsed.tzinfo is not None, "deadline must carry an offset"
+        now = datetime(2026, 6, 1, 9, 30, 0, tzinfo=timezone.utc)
+        return (parsed - now).total_seconds() / 86400.0
+
+    # Run under two opposite process timezones; the parsed instant must match.
+    results = []
+    for tz in ("UTC", "Asia/Tokyo", "America/Los_Angeles"):
+        monkeypatch.setenv("TZ", tz)
+        time.tzset()
+        body = client.get(f"/api/opportunities/{opp.id}").json()
+        iso = body["deadline"]
+        # Offset present and resolves to the stored UTC instant.
+        assert datetime.fromisoformat(iso) == deadline_utc.replace(tzinfo=timezone.utc)
+        results.append(round(_days_left(iso), 6))
+
+    # Stable days-left across all process timezones (14.0 days here).
+    assert results == [14.0, 14.0, 14.0]
+
+    # Restore default TZ for subsequent tests.
+    monkeypatch.delenv("TZ", raising=False)
+    time.tzset()
 
 
 def test_facets_with_data(client, two_opps):

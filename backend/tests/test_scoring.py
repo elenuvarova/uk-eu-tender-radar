@@ -154,6 +154,16 @@ def test_deadline_far_out():
     assert 0.6 <= s < 1.0
 
 
+def test_deadline_large_min_days_keeps_plateau():
+    """A large min_days_to_bid must not push ramp_top past 45 and erase the
+    comfortable plateau: the ramp window is clamped at 38, so 45 days out is
+    still a full 1.0 instead of mid-ramp."""
+    # Without the clamp, min=50 → ramp_top=57, so d=45 would be on the ramp (<1.0).
+    assert score_deadline(_dl(45), 50) == pytest.approx(1.0)
+    # Default behavior (min=7) is unchanged.
+    assert score_deadline(_dl(21), 7) == pytest.approx(1.0)
+
+
 # ── full compute_score ────────────────────────────────────────────────────────
 
 def test_full_score_returns_score_result():

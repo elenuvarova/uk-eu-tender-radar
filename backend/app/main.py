@@ -2,6 +2,7 @@ from contextlib import asynccontextmanager
 from pathlib import Path
 
 from fastapi import FastAPI
+from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import FileResponse
 from fastapi.staticfiles import StaticFiles
 
@@ -17,12 +18,28 @@ PUBLIC_DIR = Path(__file__).resolve().parent.parent / "public"
 
 @asynccontextmanager
 async def lifespan(app: FastAPI):
-    init_db()
+    # Schema ownership: Postgres (prod) is migrated solely by `alembic upgrade
+    # head` in the Docker CMD. Only the SQLite/local/test path creates tables
+    # here, so we never have two schema owners racing on the same database.
+    if db_kind == "sqlite":
+        init_db()
     print(f"Server starting (db: {db_kind})")
     yield
 
 
 app = FastAPI(title="UK & EU Procurement Radar", lifespan=lifespan)
+
+# CORS. allow_origins is an explicit allow-list (never "*") so credentialed
+# requests stay safe; empty list in prod since the SPA is served same-origin.
+if settings.allowed_origins:
+    app.add_middleware(
+        CORSMiddleware,
+        allow_origins=settings.allowed_origins,
+        allow_credentials=True,
+        allow_methods=["GET", "POST", "PUT", "DELETE", "OPTIONS"],
+        allow_headers=["*"],
+    )
+
 app.include_router(health_router)
 app.include_router(opp_router)
 app.include_router(profile_router)

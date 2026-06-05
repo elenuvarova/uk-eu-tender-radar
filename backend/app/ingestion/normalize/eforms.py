@@ -216,17 +216,17 @@ def _map_form_type(form_type: str | None, notice_type_raw: str | None) -> str:
 
 
 def _map_ted_status(form_type: str | None, deadline_raw: str | None) -> str:
-    """Derive unified status from TED form-type and deadline."""
+    """Derive unified status from TED form-type.
+
+    Note: competition notices are stored as OPEN even past their deadline —
+    CLOSED is synthetic and evaluated at query time, not persisted here. So
+    deadline_raw doesn't affect the stored status and everything else is OPEN.
+    """
     ft = (form_type or "").lower()
     if ft == "result":
         return AWARDED
     if ft == "planning":
         return PLANNED
-    if ft == "competition":
-        if not deadline_raw:
-            return STATUS_OPEN
-        # CLOSED is synthetic: deadline passed — evaluated at query time, not stored
-        return STATUS_OPEN
     return STATUS_OPEN
 
 

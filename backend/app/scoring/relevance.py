@@ -108,15 +108,19 @@ def score_deadline(deadline: datetime | None, min_days_to_bid: int) -> float:
     """
     if deadline is None:
         return 0.5
+    # Clamp the ramp window so a large min_days_to_bid can't push ramp_top past
+    # 45 and erase the comfortable plateau. Profile input is also capped at 60
+    # in ProfileUpdate; this guards direct/legacy callers. Default (7) unchanged.
+    min_days = min(min_days_to_bid, 38)
     now = datetime.now(timezone.utc)
     d = _days_until(deadline, now)
     if d < 0:
         return 0.0
-    if d < min_days_to_bid:
-        return 0.3 * (d / max(1, min_days_to_bid))
-    ramp_top = min_days_to_bid + 7
+    if d < min_days:
+        return 0.3 * (d / max(1, min_days))
+    ramp_top = min_days + 7
     if d < ramp_top:
-        t = (d - min_days_to_bid) / 7.0
+        t = (d - min_days) / 7.0
         return 0.3 + 0.7 * t
     if d <= 45:
         return 1.0

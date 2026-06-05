@@ -45,22 +45,38 @@ DEFAULT_COUNTRIES = [
     "ESP", "ITA", "POL", "AUT", "SWE", "DNK",
 ]
 
-MAX_RETRIES = 4
+# One delay per retry between attempts; total attempts is len(RETRY_DELAYS)+1
+# (initial try plus one retry per delay), so every delay is actually used.
 RETRY_DELAYS = [5, 15, 30, 60]
 MAX_PAGES = 200  # safety cap against runaway ITERATION cursors
+MAX_RESPONSE_BYTES = 50 * 1024 * 1024  # 50 MB guard before parsing JSON
+
+
+def _parse_json(resp: httpx.Response) -> dict:
+    """Reject oversized bodies before json() buffers them into memory."""
+    declared = resp.headers.get("content-length")
+    if declared is not None and int(declared) > MAX_RESPONSE_BYTES:
+        raise RuntimeError("TED: response exceeds size cap")
+    if len(resp.content) > MAX_RESPONSE_BYTES:
+        raise RuntimeError("TED: response exceeds size cap")
+    return resp.json()
 
 
 def _post(client: httpx.Client, body: dict) -> dict:
-    """POST with retry on 429/5xx."""
-    for attempt, delay in enumerate(RETRY_DELAYS, 1):
-        resp = client.post(TED_SEARCH_URL, json=body, timeout=60)
+    """POST with retry on 429/5xx.
+
+    Makes len(RETRY_DELAYS)+1 attempts; sleeps the matching delay between
+    transient failures. follow_redirects=False: the search endpoint is fixed,
+    so a redirect is unexpected and we refuse to chase it.
+    """
+    for delay in [*RETRY_DELAYS, None]:
+        resp = client.post(TED_SEARCH_URL, json=body, timeout=60, follow_redirects=False)
         if resp.status_code == 200:
-            return resp.json()
-        if resp.status_code == 429 or resp.status_code >= 500:
-            if attempt < MAX_RETRIES:
-                log.warning("TED %s (attempt %d), retrying in %ds", resp.status_code, attempt, delay)
-                time.sleep(delay)
-                continue
+            return _parse_json(resp)
+        if (resp.status_code == 429 or resp.status_code >= 500) and delay is not None:
+            log.warning("TED %s, retrying in %ds", resp.status_code, delay)
+            time.sleep(delay)
+            continue
         resp.raise_for_status()
     raise RuntimeError("TED: exceeded retries")
 

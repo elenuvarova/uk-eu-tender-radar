@@ -36,16 +36,19 @@ jobs:
         working-directory: backend
         env:
           DATABASE_URL: ${{ secrets.DATABASE_URL }}
+          # Pass inputs via env, never interpolated into the shell line, so a
+          # crafted `days` value can't inject commands. NICHE is computed from
+          # the boolean expression (no untrusted text) and referenced quoted.
+          DAYS: ${{ github.event.inputs.days || '8' }}
+          NICHE: ${{ github.event.inputs.niche_only != 'false' && '--niche-only' || '' }}
         run: |
-          DAYS=${{ github.event.inputs.days || '8' }}
-          NICHE=${{ github.event.inputs.niche_only != 'false' && '--niche-only' || '' }}
-          python -m app.ingestion.run --source fts --days $DAYS $NICHE
+          python -m app.ingestion.run --source fts --days "$DAYS" $NICHE
 
       - name: Run EU TED ingestion
         working-directory: backend
         env:
           DATABASE_URL: ${{ secrets.DATABASE_URL }}
+          DAYS: ${{ github.event.inputs.days || '8' }}
+          NICHE: ${{ github.event.inputs.niche_only != 'false' && '--niche-only' || '' }}
         run: |
-          DAYS=${{ github.event.inputs.days || '8' }}
-          NICHE=${{ github.event.inputs.niche_only != 'false' && '--niche-only' || '' }}
-          python -m app.ingestion.run --source ted --days $DAYS $NICHE
+          python -m app.ingestion.run --source ted --days "$DAYS" $NICHE

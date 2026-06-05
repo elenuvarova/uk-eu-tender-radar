@@ -231,6 +231,24 @@ def test_rollup_empty_db(session):
     assert rows == 0
 
 
+def test_rollup_dedups_same_division_cpvs_on_one_notice(session):
+    """Two CPV codes in the SAME division on one notice must count the notice
+    once — not twice — in notice_count (and not skew the value/date aggregates)."""
+    opp = _opp("UK:1", "Acme Ltd", estimated_value_eur=500_000, status="OPEN")
+    session.add(opp); session.commit()
+    resolve(session)
+    # Both codes are division "72"; the notice should still count as 1.
+    session.add(TenderCpv(tender_id=opp.id, cpv_code="72500000", cpv_division="72"))
+    session.add(TenderCpv(tender_id=opp.id, cpv_code="72600000", cpv_division="72"))
+    session.commit()
+
+    rollup(session)
+    stats = session.exec(BuyerCategoryStat.__table__.select()).fetchall()
+    assert len(stats) == 1
+    assert stats[0].notice_count == 1            # not 2 (deduped per notice)
+    assert stats[0].avg_value_eur == 500_000     # value counted once, not averaged twice
+
+
 # ── C5 score integration ──────────────────────────────────────────────────────
 
 def test_score_buyer_none_neutral():

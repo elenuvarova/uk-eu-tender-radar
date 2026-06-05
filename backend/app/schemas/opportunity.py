@@ -1,5 +1,7 @@
 from datetime import datetime
-from pydantic import BaseModel, ConfigDict
+from pydantic import BaseModel, ConfigDict, field_serializer
+
+from app.timeutil import ensure_utc
 
 
 class RelevanceScore(BaseModel):
@@ -31,6 +33,16 @@ class OpportunityItem(BaseModel):
     award_supplier: str | None
     buyer_id: str | None = None    # set after buyer_resolve job runs
     relevance: RelevanceScore | None = None
+
+    @field_serializer("publication_date", "deadline")
+    def _serialize_utc(self, v: datetime | None) -> str | None:
+        # DB columns are TIMESTAMP WITHOUT TIME ZONE and return naive datetimes.
+        # Without an explicit offset the client's `new Date(iso)` parses the
+        # string as LOCAL time, shifting every deadline for non-UTC users. Emit
+        # an explicit +00:00 suffix so the instant is unambiguous.
+        if v is None:
+            return None
+        return ensure_utc(v).isoformat()
 
 
 class OpportunityDetail(OpportunityItem):

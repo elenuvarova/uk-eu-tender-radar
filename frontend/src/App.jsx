@@ -13,6 +13,7 @@ import {
   scoreBand,
 } from "./lib/constants";
 import { SourceDonut, BarList, ScoreBreakdown } from "./components/Charts";
+import Icon from "./components/Icon";
 import Tour from "./components/Tour";
 
 const SCORE_CLASS = { strong: "score-high", good: "score-mid", weak: "score-low" };
@@ -60,36 +61,42 @@ function DeadlinePill({ iso }) {
 
 function SourceBadge({ source, onClick, activeSource }) {
   const isActive = activeSource && activeSource === source;
-  const clickable = !!onClick;
+  const cls = `badge badge-${source?.toLowerCase()}`;
+  if (!onClick) {
+    return (
+      <span className={cls} title={source === "UK" ? "UK Find a Tender" : "EU TED"}>
+        {source}
+      </span>
+    );
+  }
   return (
-    <span
-      className={`badge badge-${source?.toLowerCase()} ${clickable ? "badge-clickable" : ""} ${isActive ? "badge-active" : ""}`}
+    <button
+      type="button"
+      className={`${cls} badge-clickable ${isActive ? "badge-active" : ""}`}
       onClick={onClick}
-      title={clickable ? `Filter by ${source}` : source === "UK" ? "UK Find a Tender" : "EU TED"}
-      role={clickable ? "button" : undefined}
-      tabIndex={clickable ? 0 : undefined}
-      onKeyDown={clickable ? (e) => e.key === "Enter" && onClick() : undefined}
-      aria-pressed={clickable ? isActive : undefined}
+      aria-pressed={isActive}
+      aria-label={`Filter by ${source} source`}
     >
       {source}
-    </span>
+    </button>
   );
 }
 
 function TypePill({ type, onClick, activeTypes }) {
   const isActive = activeTypes?.includes(type);
-  const clickable = !!onClick;
+  if (!onClick) {
+    return <span className="pill pill-type">{type}</span>;
+  }
   return (
-    <span
-      className={`pill pill-type ${clickable ? "badge-clickable" : ""} ${isActive ? "badge-active" : ""}`}
+    <button
+      type="button"
+      className={`pill pill-type badge-clickable ${isActive ? "badge-active" : ""}`}
       onClick={onClick}
-      title={clickable ? `Filter by ${type}` : undefined}
-      role={clickable ? "button" : undefined}
-      tabIndex={clickable ? 0 : undefined}
-      onKeyDown={clickable ? (e) => e.key === "Enter" && onClick() : undefined}
+      aria-pressed={isActive}
+      aria-label={`Filter by ${type} notice type`}
     >
       {type}
-    </span>
+    </button>
   );
 }
 
@@ -100,7 +107,6 @@ function ScorePill({ relevance }) {
   return (
     <span
       className={`score-pill ${SCORE_CLASS[band]}`}
-      title={relevance.reasons.join("\n")}
       aria-label={`Relevance ${s} of 100, ${BAND_WORD[band].toLowerCase()} match`}
     >
       {s}
@@ -122,51 +128,62 @@ function BuyerPanel({ buyerId, onClose }) {
   }, [onClose]);
 
   return (
-    <div className="buyer-panel" role="dialog" aria-label="Buyer profile" ref={panelRef}>
-      <div className="buyer-panel-header">
-        <span>Buyer profile</span>
-        <button className="buyer-close" onClick={onClose} aria-label="Close">✕</button>
-      </div>
-      {loading && <div className="msg">Loading…</div>}
-      {error && <div className="msg msg-error">{error}</div>}
-      {data && (
-        <>
-          <h3 className="buyer-name">{data.canonical_name}</h3>
-          {data.country && (
-            <div className="buyer-meta">
-              {data.country}{data.region ? ` · ${data.region}` : ""}
-            </div>
-          )}
-          {data.name_aliases?.length > 1 && (
-            <div className="buyer-aliases">
-              Also known as: {data.name_aliases.filter((a) => a !== data.canonical_name).join(", ")}
-            </div>
-          )}
-          <div className="buyer-section-title">Top categories</div>
-          {data.top_categories.length === 0 ? (
-            <div className="buyer-empty">No category stats yet</div>
-          ) : (
-            data.top_categories.map((c) => (
-              <div key={c.cpv_division} className="buyer-cat-row">
-                <span className="pill pill-type">{CPV_DIVISION_LABELS[c.cpv_division] || c.cpv_division}</span>
-                <span>{c.notice_count} notice{c.notice_count !== 1 ? "s" : ""}</span>
-                {c.avg_value_eur && (
-                  <span className="buyer-val">avg {fmtValue(c.avg_value_eur, "EUR")}</span>
-                )}
+    <div className="drawer-scrim" onClick={onClose}>
+      <div
+        className="buyer-panel"
+        role="dialog"
+        aria-modal="true"
+        aria-label="Buyer profile"
+        ref={panelRef}
+        onClick={(e) => e.stopPropagation()}
+      >
+        <div className="buyer-panel-header">
+          <span>Buyer profile</span>
+          <button className="buyer-close" onClick={onClose} aria-label="Close buyer profile">
+            <Icon name="x" />
+          </button>
+        </div>
+        {loading && <div className="msg" role="status">Loading…</div>}
+        {error && <div className="msg msg-error" role="alert">{error}</div>}
+        {data && (
+          <>
+            <h3 className="buyer-name">{data.canonical_name}</h3>
+            {data.country && (
+              <div className="buyer-meta">
+                {data.country}{data.region ? ` · ${data.region}` : ""}
               </div>
-            ))
-          )}
-          <div className="buyer-section-title">Recent notices</div>
-          {data.recent_notices.map((n) => (
-            <div key={n.id} className="buyer-notice-row">
-              <a href={n.source_url} target="_blank" rel="noopener noreferrer">
-                {n.title.slice(0, 60)}{n.title.length > 60 ? "…" : ""}
-              </a>
-              <span className="buyer-notice-date">{fmtDate(n.publication_date)}</span>
-            </div>
-          ))}
-        </>
-      )}
+            )}
+            {data.name_aliases?.length > 1 && (
+              <div className="buyer-aliases">
+                Also known as: {data.name_aliases.filter((a) => a !== data.canonical_name).join(", ")}
+              </div>
+            )}
+            <h4 className="buyer-section-title">Top categories</h4>
+            {data.top_categories.length === 0 ? (
+              <div className="buyer-empty">No category stats yet</div>
+            ) : (
+              data.top_categories.map((c) => (
+                <div key={c.cpv_division} className="buyer-cat-row">
+                  <span className="pill pill-type">{CPV_DIVISION_LABELS[c.cpv_division] || c.cpv_division}</span>
+                  <span>{c.notice_count} notice{c.notice_count !== 1 ? "s" : ""}</span>
+                  {c.avg_value_eur && (
+                    <span className="buyer-val">avg {fmtValue(c.avg_value_eur, "EUR")}</span>
+                  )}
+                </div>
+              ))
+            )}
+            <h4 className="buyer-section-title">Recent notices</h4>
+            {data.recent_notices.map((n) => (
+              <div key={n.id} className="buyer-notice-row">
+                <a href={n.source_url} target="_blank" rel="noopener noreferrer">
+                  {n.title.slice(0, 60)}{n.title.length > 60 ? "…" : ""}
+                </a>
+                <span className="buyer-notice-date">{fmtDate(n.publication_date)}</span>
+              </div>
+            ))}
+          </>
+        )}
+      </div>
     </div>
   );
 }
@@ -184,11 +201,12 @@ function NoticeDrawer({ noticeId, onClose, onBuyerClick }) {
     return () => window.removeEventListener("keydown", onKey);
   }, [onClose]);
 
+  const isDownload = data?.source === "EU" && isDownloadUrl(data?.source_url);
   const ctaLabel = data?.source === "UK"
-    ? "View on Find a Tender ↗"
+    ? "View on Find a Tender"
     : data?.source === "EU"
-      ? (isDownloadUrl(data?.source_url) ? "Download document ⬇" : "View on TED ↗")
-      : "Open original notice ↗";
+      ? (isDownload ? "Download document" : "View on TED")
+      : "Open original notice";
 
   return (
     <div className="drawer-scrim" onClick={onClose}>
@@ -202,10 +220,12 @@ function NoticeDrawer({ noticeId, onClose, onBuyerClick }) {
       >
         <div className="drawer-header">
           <span>Notice detail</span>
-          <button className="buyer-close" onClick={onClose} aria-label="Close">✕</button>
+          <button className="buyer-close" onClick={onClose} aria-label="Close notice detail">
+            <Icon name="x" />
+          </button>
         </div>
-        {loading && <div className="msg">Loading…</div>}
-        {error && <div className="msg msg-error">{error}</div>}
+        {loading && <div className="msg" role="status">Loading…</div>}
+        {error && <div className="msg msg-error" role="alert">{error}</div>}
         {data && (
           <div className="drawer-body">
             <div className="drawer-badges">
@@ -247,9 +267,9 @@ function NoticeDrawer({ noticeId, onClose, onBuyerClick }) {
 
             {data.relevance?.breakdown && (
               <>
-                <div className="buyer-section-title">
+                <h3 className="drawer-section">
                   Relevance {data.relevance.score} · {BAND_WORD[scoreBand(data.relevance.score)]} match
-                </div>
+                </h3>
                 <ScoreBreakdown breakdown={data.relevance.breakdown} />
                 <ul className="drawer-reasons">
                   {data.relevance.reasons.map((r, i) => <li key={i}>{r}</li>)}
@@ -259,7 +279,7 @@ function NoticeDrawer({ noticeId, onClose, onBuyerClick }) {
 
             {data.cpv_codes?.length > 0 && (
               <>
-                <div className="buyer-section-title">CPV codes</div>
+                <h3 className="drawer-section">CPV codes</h3>
                 <div className="drawer-cpvs">
                   {data.cpv_codes.map((c) => (
                     <span key={c} className="pill pill-type" title={CPV_DIVISION_LABELS[c.slice(0, 2)] || c}>{c}</span>
@@ -270,20 +290,21 @@ function NoticeDrawer({ noticeId, onClose, onBuyerClick }) {
 
             {data.description && (
               <>
-                <div className="buyer-section-title">Description</div>
+                <h3 className="drawer-section">Description</h3>
                 <p className="drawer-desc">{data.description}</p>
               </>
             )}
 
             {data.award_supplier && (
               <>
-                <div className="buyer-section-title">Awarded to</div>
+                <h3 className="drawer-section">Awarded to</h3>
                 <p className="drawer-desc">{data.award_supplier}</p>
               </>
             )}
 
             <a className="btn-save drawer-cta" href={data.source_url} target="_blank" rel="noopener noreferrer">
               {ctaLabel}
+              <Icon name={isDownload ? "download" : "external"} size={15} />
             </a>
           </div>
         )}
@@ -358,7 +379,7 @@ function SummaryBand({ facets }) {
         onClick={() => setMobileExpanded((e) => !e)}
         aria-expanded={mobileExpanded}
       >
-        Overview charts <span>{mobileExpanded ? "▾" : "▸"}</span>
+        Overview charts <Icon name={mobileExpanded ? "chevron-up" : "chevron-down"} size={14} />
       </button>
       <div className={`summary-band ${mobileExpanded ? "" : "summary-band-collapsed"}`} id="tour-charts">
         <SourceDonut uk={facets.by_source?.UK ?? 0} eu={facets.by_source?.EU ?? 0} />
@@ -430,30 +451,64 @@ function ProfilePanel({ profile, onSaved }) {
         <span>Supplier profile</span>
         <span className="profile-hint">Used to score relevance</span>
       </div>
-      <label className="filter-label">
+      <label className="filter-label" htmlFor="profile-cpvs">
         Target CPV codes <span className="profile-hint">(comma-separated)</span>
       </label>
-      <input className={`filter-input ${errors.cpvs ? "input-invalid" : ""}`} value={form.cpvs} onChange={(e) => f("cpvs")(e.target.value)} placeholder="72000000, 48000000" />
-      {errors.cpvs && <span className="field-error">{errors.cpvs}</span>}
-      <label className="filter-label">Keywords</label>
-      <input className="filter-input" value={form.keywords} onChange={(e) => f("keywords")(e.target.value)} placeholder="cloud, digital, GDPR" />
-      <label className="filter-label">Value range (EUR)</label>
+      <input
+        id="profile-cpvs"
+        className={`filter-input ${errors.cpvs ? "input-invalid" : ""}`}
+        value={form.cpvs}
+        onChange={(e) => f("cpvs")(e.target.value)}
+        placeholder="72000000, 48000000"
+        aria-invalid={!!errors.cpvs}
+        aria-describedby={errors.cpvs ? "profile-cpvs-err" : undefined}
+      />
+      {errors.cpvs && <span className="field-error" id="profile-cpvs-err">{errors.cpvs}</span>}
+
+      <label className="filter-label" htmlFor="profile-keywords">Keywords</label>
+      <input id="profile-keywords" className="filter-input" value={form.keywords} onChange={(e) => f("keywords")(e.target.value)} placeholder="cloud, digital, GDPR" />
+
+      <label className="filter-label" htmlFor="profile-value-min">Value range (EUR)</label>
       <div className="value-range">
-        <input className={`filter-input ${errors.value_min ? "input-invalid" : ""}`} type="number" min="0" value={form.value_min} onChange={(e) => f("value_min")(e.target.value)} placeholder="min" />
+        <input
+          id="profile-value-min"
+          className={`filter-input ${errors.value_min ? "input-invalid" : ""}`}
+          type="number" min="0" value={form.value_min}
+          onChange={(e) => f("value_min")(e.target.value)} placeholder="min"
+          aria-label="Minimum value in euros"
+          aria-invalid={!!errors.value_min}
+          aria-describedby={(errors.value_min || errors.value_max) ? "profile-value-err" : undefined}
+        />
         <span>–</span>
-        <input className={`filter-input ${errors.value_max ? "input-invalid" : ""}`} type="number" min="0" value={form.value_max} onChange={(e) => f("value_max")(e.target.value)} placeholder="max" />
+        <input
+          className={`filter-input ${errors.value_max ? "input-invalid" : ""}`}
+          type="number" min="0" value={form.value_max}
+          onChange={(e) => f("value_max")(e.target.value)} placeholder="max"
+          aria-label="Maximum value in euros"
+          aria-invalid={!!errors.value_max}
+          aria-describedby={(errors.value_min || errors.value_max) ? "profile-value-err" : undefined}
+        />
       </div>
       {(errors.value_min || errors.value_max) && (
-        <span className="field-error">{errors.value_min || errors.value_max}</span>
+        <span className="field-error" id="profile-value-err">{errors.value_min || errors.value_max}</span>
       )}
-      <label className="filter-label">
+
+      <label className="filter-label" htmlFor="profile-countries">
         Target countries <span className="profile-hint">(ISO codes)</span>
       </label>
-      <input className="filter-input" value={form.countries} onChange={(e) => f("countries")(e.target.value)} placeholder="GB, DE, FR" />
-      <label className="filter-label">Min days to bid</label>
-      <input className={`filter-input ${errors.min_days ? "input-invalid" : ""}`} type="number" min="0" value={form.min_days} onChange={(e) => f("min_days")(e.target.value)} />
-      {errors.min_days && <span className="field-error">{errors.min_days}</span>}
-      {error && <div className="msg msg-error" style={{ padding: "8px 0" }}>Couldn't save: {error}</div>}
+      <input id="profile-countries" className="filter-input" value={form.countries} onChange={(e) => f("countries")(e.target.value)} placeholder="GB, DE, FR" />
+
+      <label className="filter-label" htmlFor="profile-min-days">Min days to bid</label>
+      <input
+        id="profile-min-days"
+        className={`filter-input ${errors.min_days ? "input-invalid" : ""}`}
+        type="number" min="0" value={form.min_days}
+        onChange={(e) => f("min_days")(e.target.value)}
+        aria-invalid={!!errors.min_days}
+        aria-describedby={errors.min_days ? "profile-min-days-err" : undefined}
+      />
+      {errors.min_days && <span className="field-error" id="profile-min-days-err">{errors.min_days}</span>}
+      {error && <div className="msg msg-error profile-error" role="alert">Couldn't save: {error}</div>}
       <button className="btn-save" onClick={save} disabled={saving || hasErrors} title={hasErrors ? "Fix the highlighted fields first" : undefined}>
         {saving ? "Saving…" : "Save profile"}
       </button>
@@ -546,70 +601,76 @@ const SORT_DEFAULTS = { deadline: "asc", published: "desc", value: "desc" };
 function SortBtn({ field, label, sort, onSort }) {
   const isActive = sort.field === field;
   const dir = isActive ? sort.dir : SORT_DEFAULTS[field];
-  const arrow = dir === "asc" ? "↑" : "↓";
+  const iconName = !isActive ? "sort-none" : dir === "asc" ? "arrow-up" : "arrow-down";
   return (
     <button
+      type="button"
       className={`sort-btn ${isActive ? "active" : ""}`}
       onClick={() => onSort(field)}
       aria-label={`Sort by ${label} ${dir === "asc" ? "ascending" : "descending"}`}
     >
-      {label} <span className="sort-icon">{isActive ? arrow : "↕"}</span>
+      {label} <Icon name={iconName} size={13} />
     </button>
   );
+}
+
+// Map a table column key to its sort field, returning the aria-sort value for
+// the current sort state (or "none" for sortable-but-inactive columns).
+function ariaSortFor(field, sort) {
+  if (sort.field !== field) return "none";
+  return sort.dir === "asc" ? "ascending" : "descending";
 }
 
 function MobileCardList({ items, hasProfile, onBuyerClick, onNoticeClick, onSourceClick, onTypeClick, filters }) {
   return (
     <div className="mobile-list">
-      {items.map((o) => (
-        <div key={o.id} className="mobile-card" onClick={() => onNoticeClick(o.id)}>
-          <div className="mobile-card-top">
-            <div className="mobile-card-tags">
-              <SourceBadge
-                source={o.source}
-                onClick={(e) => { e?.stopPropagation?.(); onSourceClick(o.source); }}
-                activeSource={filters.source}
-              />
-              <TypePill
-                type={o.notice_type}
-                onClick={(e) => { e?.stopPropagation?.(); onTypeClick(o.notice_type); }}
-                activeTypes={filters.notice_type}
-              />
+      {items.map((o) => {
+        const download = isDownloadUrl(o.source_url);
+        return (
+          <div key={o.id} className="mobile-card">
+            <div className="mobile-card-top">
+              <div className="mobile-card-tags">
+                <SourceBadge
+                  source={o.source}
+                  onClick={() => onSourceClick(o.source)}
+                  activeSource={filters.source}
+                />
+                <TypePill
+                  type={o.notice_type}
+                  onClick={() => onTypeClick(o.notice_type)}
+                  activeTypes={filters.notice_type}
+                />
+              </div>
+              <DeadlinePill iso={o.deadline} />
             </div>
-            <DeadlinePill iso={o.deadline} />
-          </div>
-          <div className="mobile-card-title">{o.title}</div>
-          <div className="mobile-card-meta">
-            {o.buyer_id ? (
-              <button
-                className="buyer-link"
-                style={{ fontSize: 12 }}
-                onClick={(e) => { e.stopPropagation(); onBuyerClick(o.buyer_id); }}
+            <button className="mobile-card-title title-link" onClick={() => onNoticeClick(o.id)}>
+              {o.title}
+            </button>
+            <div className="mobile-card-meta">
+              {o.buyer_id ? (
+                <button className="buyer-link" onClick={() => onBuyerClick(o.buyer_id)}>
+                  {o.buyer_name || "—"}
+                </button>
+              ) : (
+                <span>{o.buyer_name || "—"}</span>
+              )}
+              <span className="mobile-card-sep">·</span>
+              <span>{displayCountry(o.buyer_country)}</span>
+              <span className="mobile-card-value">{fmtValue(o.estimated_value, o.currency)}</span>
+              {hasProfile && o.relevance && <ScorePill relevance={o.relevance} />}
+              <a
+                className={download ? "link-source link-source-download" : "link-source"}
+                href={o.source_url}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label={o.source === "UK" ? "View on Find a Tender" : download ? "Download document" : "View on TED"}
               >
-                {o.buyer_name || "—"}
-              </button>
-            ) : (
-              <span>{o.buyer_name || "—"}</span>
-            )}
-            <span className="mobile-card-sep">·</span>
-            <span>{displayCountry(o.buyer_country)}</span>
-            <span className="mobile-card-value">{fmtValue(o.estimated_value, o.currency)}</span>
-            {hasProfile && o.relevance && <ScorePill relevance={o.relevance} />}
-            <a
-              className={isDownloadUrl(o.source_url) ? "link-source link-source-download" : "link-source"}
-              href={o.source_url}
-              target="_blank"
-              rel="noopener noreferrer"
-              title={o.source === "UK" ? "View on Find a Tender" : isDownloadUrl(o.source_url) ? "Download document" : "View on TED"}
-              onClick={(e) => e.stopPropagation()}
-              aria-label="Open source"
-              style={{ minWidth: 28, textAlign: "center" }}
-            >
-              {isDownloadUrl(o.source_url) ? "⬇" : "↗"}
-            </a>
+                <Icon name={download ? "download" : "external"} />
+              </a>
+            </div>
           </div>
-        </div>
-      ))}
+        );
+      })}
     </div>
   );
 }
@@ -619,10 +680,10 @@ function OpportunitiesTable({ state, sort, onSort, onPage, offset, limit, hasPro
 
   if (error) {
     return (
-      <div className="msg msg-error">
+      <div className="msg msg-error" role="alert">
         Couldn't load notices: {error}
         <div>
-          <button className="btn-reset" style={{ maxWidth: 160, marginTop: 12 }} onClick={reload}>
+          <button className="btn-reset btn-reset-inline" onClick={reload}>
             Try again
           </button>
         </div>
@@ -631,7 +692,7 @@ function OpportunitiesTable({ state, sort, onSort, onPage, offset, limit, hasPro
   }
   if (loading && !data) {
     return (
-      <div className="msg">
+      <div className="msg" role="status">
         {slow
           ? "Waking the server… the free tier spins down when idle, first load can take ~1 min."
           : "Loading…"}
@@ -647,7 +708,9 @@ function OpportunitiesTable({ state, sort, onSort, onPage, offset, limit, hasPro
   return (
     <div className="results-wrap">
       <div className="results-meta" id="tour-sort">
-        {loading ? "Refreshing…" : `${fmtCount(total)} notices`}
+        <span role="status" aria-live="polite">
+          {loading ? "Refreshing…" : `${fmtCount(total)} notices`}
+        </span>
         <span className="sort-row">
           Sort:
           {SORT_FIELDS.map(({ key, label }) => (
@@ -657,10 +720,10 @@ function OpportunitiesTable({ state, sort, onSort, onPage, offset, limit, hasPro
       </div>
 
       {items.length === 0 ? (
-        <div className="msg msg-empty">
+        <div className="msg msg-empty" role="status">
           No notices match these filters.
           <div>
-            <button className="btn-reset" style={{ maxWidth: 160, marginTop: 12 }} onClick={onResetFilters}>
+            <button className="btn-reset btn-reset-inline" onClick={onResetFilters}>
               Clear filters
             </button>
           </div>
@@ -670,14 +733,14 @@ function OpportunitiesTable({ state, sort, onSort, onPage, offset, limit, hasPro
           <table className="opp-table">
             <thead>
               <tr>
-                <th>Title</th>
-                <th>Buyer</th>
-                <th>Country</th>
-                <th>Value</th>
-                <th>Type</th>
-                <th>Deadline</th>
-                {hasProfile && <th>Score</th>}
-                <th aria-label="Source link"></th>
+                <th scope="col">Title</th>
+                <th scope="col">Buyer</th>
+                <th scope="col">Country</th>
+                <th scope="col" aria-sort={ariaSortFor("value", sort)}>Value</th>
+                <th scope="col">Type</th>
+                <th scope="col" aria-sort={ariaSortFor("deadline", sort)}>Deadline</th>
+                {hasProfile && <th scope="col">Score</th>}
+                <th scope="col"><span className="sr-only">Source link</span></th>
               </tr>
             </thead>
             <tbody>
@@ -719,10 +782,9 @@ function OpportunitiesTable({ state, sort, onSort, onPage, offset, limit, hasPro
                       href={o.source_url}
                       target="_blank"
                       rel="noopener noreferrer"
-                      title={o.source === "UK" ? "View on Find a Tender" : isDownloadUrl(o.source_url) ? "Download document" : "View on TED"}
-                      aria-label="Open source"
+                      aria-label={o.source === "UK" ? "View on Find a Tender" : isDownloadUrl(o.source_url) ? "Download document" : "View on TED"}
                     >
-                      {isDownloadUrl(o.source_url) ? "⬇" : "↗"}
+                      <Icon name={isDownloadUrl(o.source_url) ? "download" : "external"} />
                     </a>
                   </td>
                 </tr>
@@ -745,9 +807,13 @@ function OpportunitiesTable({ state, sort, onSort, onPage, offset, limit, hasPro
 
       {pages > 1 && (
         <div className="pagination">
-          <button disabled={page === 0} onClick={() => onPage((page - 1) * limit)}>← Prev</button>
+          <button disabled={page === 0} onClick={() => onPage((page - 1) * limit)}>
+            <Icon name="arrow-left" size={14} /> Prev
+          </button>
           <span>Page {page + 1} of {pages}</span>
-          <button disabled={page >= pages - 1} onClick={() => onPage((page + 1) * limit)}>Next →</button>
+          <button disabled={page >= pages - 1} onClick={() => onPage((page + 1) * limit)}>
+            Next <Icon name="arrow-right" size={14} />
+          </button>
         </div>
       )}
     </div>
@@ -759,14 +825,19 @@ function OpportunitiesTable({ state, sort, onSort, onPage, offset, limit, hasPro
 function MobileFilterBar({ filters, sort, onOpenSheet }) {
   const count = activeFilterCount(filters);
   const activeField = SORT_FIELDS.find((f) => f.key === sort.field);
-  const sortLabel = activeField ? `${activeField.label} ${sort.dir === "asc" ? "↑" : "↓"}` : "";
   return (
     <div className="mobile-filter-bar">
       <button className="mobile-filter-btn" onClick={onOpenSheet}>
+        <Icon name="sliders" size={15} />
         Filters
         {count > 0 && <span className="filter-badge">{count}</span>}
       </button>
-      {sortLabel && <span className="mobile-sort-label">Sort: {sortLabel}</span>}
+      {activeField && (
+        <span className="mobile-sort-label">
+          Sort: {activeField.label}
+          <Icon name={sort.dir === "asc" ? "arrow-up" : "arrow-down"} size={12} />
+        </span>
+      )}
     </div>
   );
 }
@@ -787,17 +858,30 @@ function MobileFilterSheet({ open, onClose, filters, onChange, profile, onSaved 
   return (
     <>
       <div className={`filter-sheet-scrim ${open ? "open" : ""}`} onClick={onClose} />
-      <div className={`filter-sheet ${open ? "open" : ""}`} role="dialog" aria-label="Filters" ref={sheetRef}>
+      <div
+        className={`filter-sheet ${open ? "open" : ""}`}
+        role="dialog"
+        aria-modal="true"
+        aria-label="Filters"
+        ref={sheetRef}
+      >
         <div className="filter-sheet-header">
-          <button className="buyer-close" onClick={onClose} aria-label="Close filters">✕</button>
+          <button className="buyer-close" onClick={onClose} aria-label="Close filters">
+            <Icon name="x" />
+          </button>
           <span>Filters</span>
-          <button className="btn-save" style={{ width: "auto", padding: "4px 16px", margin: 0 }} onClick={onClose}>Done</button>
+          <button className="btn-save" onClick={onClose}>Done</button>
         </div>
         <div className="filter-sheet-body">
           <FilterPanel filters={filters} onChange={onChange} />
-          <div style={{ borderTop: "1px solid var(--border)", padding: "0.5rem 1rem" }}>
-            <button className="profile-toggle" onClick={() => setShowProfile((p) => !p)} style={{ width: "100%" }}>
-              Supplier profile {showProfile ? "▲" : "▼"}
+          <div className="filter-sheet-profile">
+            <button
+              className="profile-toggle"
+              onClick={() => setShowProfile((p) => !p)}
+              aria-expanded={showProfile}
+            >
+              Supplier profile
+              <Icon name={showProfile ? "chevron-up" : "chevron-down"} size={14} />
             </button>
             {showProfile && (
               <ProfilePanel profile={profile} onSaved={(p) => { onSaved(p); setShowProfile(false); }} />
@@ -924,10 +1008,16 @@ export default function App() {
     setTourPulse(false);
   };
 
+  const modalOpen = !!activeBuyerId || !!activeNoticeId;
+
   return (
     <div className="app">
-      <header className="app-header">
-        <h1>UK &amp; EU Digital Procurement Radar</h1>
+      <a className="skip-link" href="#main">Skip to results</a>
+      <header className="app-header" inert={modalOpen ? "" : undefined}>
+        <h1>
+          <Icon name="radar" size={20} className="app-logo" />
+          UK &amp; EU Digital Procurement Radar
+        </h1>
         <span className="header-sub">
           {health.data && (
             <span className={`db-indicator db-${health.data.db}`} title={`Database: ${health.data.db}`}>
@@ -935,14 +1025,19 @@ export default function App() {
             </span>
           )}
           <button
-            className={`tour-btn ${tourPulse ? "tour-pulse" : ""}`}
+            className={`icon-btn tour-btn ${tourPulse ? "tour-pulse" : ""}`}
             onClick={startTour}
             aria-label="Start guided tour"
           >
             Tour
           </button>
-          <button className="theme-toggle" onClick={toggleTheme} aria-label={`Switch to ${theme === "dark" ? "light" : "dark"} mode`}>
-            {theme === "dark" ? "☀ Light" : "☾ Dark"}
+          <button
+            className="icon-btn theme-toggle"
+            onClick={toggleTheme}
+            aria-label={`Switch to ${theme === "dark" ? "light" : "dark"} mode`}
+          >
+            <Icon name={theme === "dark" ? "sun" : "moon"} size={14} />
+            {theme === "dark" ? "Light" : "Dark"}
           </button>
           <span className="attr">
             Data:{" "}
@@ -953,13 +1048,21 @@ export default function App() {
         </span>
       </header>
 
-      <StatsRow facets={facets.data} error={facets.error} filters={filters} onQuick={handleQuick} />
-      <SummaryBand facets={facets.data} />
+      <div inert={modalOpen ? "" : undefined}>
+        <StatsRow facets={facets.data} error={facets.error} filters={filters} onQuick={handleQuick} />
+        <SummaryBand facets={facets.data} />
+      </div>
 
       <div className="main-layout">
-        <div className="left-col">
-          <button className="profile-toggle" id="tour-profile" onClick={() => setShowProfile((p) => !p)}>
-            {hasProfile ? "Profile active" : "Set profile"} {showProfile ? "▲" : "▼"}
+        <div className="left-col" inert={modalOpen ? "" : undefined}>
+          <button
+            className="profile-toggle"
+            id="tour-profile"
+            onClick={() => setShowProfile((p) => !p)}
+            aria-expanded={showProfile}
+          >
+            {hasProfile ? "Profile active" : "Set profile"}
+            <Icon name={showProfile ? "chevron-up" : "chevron-down"} size={14} />
           </button>
           {showProfile && (
             <ProfilePanel
@@ -970,21 +1073,23 @@ export default function App() {
           <FilterPanel filters={filters} onChange={handleFilters} />
         </div>
         <div className="feed-wrap">
-          <OpportunitiesTable
-            state={opps}
-            sort={sort}
-            onSort={handleSort}
-            onPage={setOffset}
-            offset={offset}
-            limit={limit}
-            hasProfile={hasProfile}
-            onBuyerClick={setActiveBuyerId}
-            onNoticeClick={setActiveNoticeId}
-            onResetFilters={() => handleFilters({})}
-            onSourceClick={handleSourceClick}
-            onTypeClick={handleTypeClick}
-            filters={filters}
-          />
+          <main className="results-main" id="main" inert={modalOpen ? "" : undefined}>
+            <OpportunitiesTable
+              state={opps}
+              sort={sort}
+              onSort={handleSort}
+              onPage={setOffset}
+              offset={offset}
+              limit={limit}
+              hasProfile={hasProfile}
+              onBuyerClick={setActiveBuyerId}
+              onNoticeClick={setActiveNoticeId}
+              onResetFilters={() => handleFilters({})}
+              onSourceClick={handleSourceClick}
+              onTypeClick={handleTypeClick}
+              filters={filters}
+            />
+          </main>
           {activeBuyerId && (
             <BuyerPanel buyerId={activeBuyerId} onClose={() => setActiveBuyerId(null)} />
           )}

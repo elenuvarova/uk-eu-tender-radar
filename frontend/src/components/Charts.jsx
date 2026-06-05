@@ -62,6 +62,7 @@ export function SourceDonut({ uk = 0, eu = 0 }) {
 export function BarList({ title, items = [], color = "var(--accent)" }) {
   const max = Math.max(1, ...items.map((d) => d.count));
   const top = items.slice(0, 6);
+  const summary = top.map((d) => `${d.label} ${d.count}`).join(", ");
   return (
     <div className="chart-card">
       <div className="chart-title">{title}</div>
@@ -69,17 +70,19 @@ export function BarList({ title, items = [], color = "var(--accent)" }) {
         {top.length === 0 ? (
           <div className="chart-empty">No data yet</div>
         ) : (
-          <ul className="bar-list" aria-label={`${title}: ${top.map((d) => `${d.label} ${d.count}`).join(", ")}`}>
-            {top.map((d) => (
-              <li key={d.label} className="bar-row">
-                <span className="bar-label" title={d.label}>{d.label}</span>
-                <span className="bar-track">
-                  <span className="bar-fill" style={{ width: `${(d.count / max) * 100}%`, background: color }} />
-                </span>
-                <span className="bar-count">{fmtCount(d.count)}</span>
-              </li>
-            ))}
-          </ul>
+          <div className="bar-list" role="img" aria-label={`${title}: ${summary}`}>
+            <ul aria-hidden="true" className="bar-list">
+              {top.map((d) => (
+                <li key={d.label} className="bar-row">
+                  <span className="bar-label" title={d.label}>{d.label}</span>
+                  <span className="bar-track">
+                    <span className="bar-fill" style={{ width: `${(d.count / max) * 100}%`, background: color }} />
+                  </span>
+                  <span className="bar-count">{fmtCount(d.count)}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
         )}
       </div>
     </div>
