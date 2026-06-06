@@ -1,10 +1,12 @@
-name: Scheduled ingestion
+name: Manual ingestion
 
+# NOTE: weekly PRODUCTION ingestion runs SERVER-SIDE via a host cron that
+# `docker exec`s into the live Coolify container (see ops/ingest-cron.sh +
+# the root crontab on the Hetzner box). Prod Postgres lives on the server's
+# internal Docker network and is NOT reachable from a GitHub runner, so the
+# weekly `schedule` trigger was removed to stop it failing every Monday.
+# This workflow is kept for manual runs against a CI-reachable DATABASE_URL.
 on:
-  schedule:
-    # Weekly, Monday 06:00 UTC (after TED and FTS publish overnight notices).
-    # The niche feed is low-volume, so daily polling is unnecessary churn.
-    - cron: "0 6 * * 1"
   workflow_dispatch:
     inputs:
       days:

@@ -205,11 +205,12 @@ def _ddl_reason(s: float, deadline: datetime | None, min_days: int) -> str:
     d = int(_days_until(deadline, now))
     if d < 0:
         return "❌ Deadline has passed"
+    day = "day" if d == 1 else "days"
     if d < min_days:
-        return f"❌ Only {d} days left — less than your {min_days}d minimum"
+        return f"❌ Only {d} {day} left — less than your {min_days}d minimum"
     if d <= 45:
-        return f"✅ {d} days to deadline — comfortable window"
-    return f"⚠️ {d} days to deadline — early stage"
+        return f"✅ {d} {day} to deadline — comfortable window"
+    return f"⚠️ {d} {day} to deadline — early stage"
 
 
 # ── main scorer ───────────────────────────────────────────────────────────────
